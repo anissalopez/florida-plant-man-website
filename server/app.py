@@ -21,7 +21,7 @@ def index():
 
 class Plants(Resource):
     def get(self):
-        plants = [plant.to_dict for plant in Plant.query.all()]
+        plants = [plant.to_dict() for plant in Plant.query.all()]
 
         response = make_response(plants, 200)
         return response
