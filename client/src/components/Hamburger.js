@@ -27,8 +27,8 @@ function DropDown() {
   return (
     <div>
       <Hamburger color="#377E30" rounded toggled={isOpen} toggle={toggleMenu} />
-      <div ref={menuRef}>
-      {isOpen && <Menu />}
+      <div ref={menuRef} className={isOpen ? "open": "closed"}>
+     <Menu />
       </div>
     </div>
   );
