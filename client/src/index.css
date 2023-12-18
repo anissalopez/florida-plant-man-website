@@ -5,8 +5,13 @@
 }
 
 
+.featured-plant{
+  background-color: #f1f1f1;
+}
+
 .card-image {
-  border: 3px solid #377E30; 
+  object-fit: cover;
+  border: 5px solid #377E30; 
 }
 
 .cart-btn-div{
@@ -14,8 +19,7 @@
 }
 
 body{
-  background-color: #f1f1f1;
- 
+  background-color: #f1f1f1; 
 }
 
 .cart-btn{
@@ -24,7 +28,6 @@ body{
   color: black;
   font-family: "Flower";
 }
-
 
 .card-row{
   display: flex;
@@ -77,3 +80,36 @@ body{
   background-color: #435740;
   border-color: #435740;
 }
+
+.nav-bar{
+  
+  background-color: #BED500;
+  width: 25%;
+  height: 100vh;
+  text-align: left;
+  padding-left: 0%;
+  font-family: "Flower";
+  overflow: scroll;
+ 
+
+ 
+ 
+  
+}
+
+ul li{
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.nav-list{
+  list-style-type: none;
+}
+
+.nav-logo{
+text-align: center;
+background-color: #f1f1f1;
+border: solid #BED500;
+margin-bottom: 35px;
+}
+

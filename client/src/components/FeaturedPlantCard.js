@@ -10,9 +10,13 @@ function FeaturedPlants({ plant }) {
     return (
    
         <Col md={3}>
+    
 
-        <Card className="border-0" >
-        <Card.Img height="300" width="100%" variant="top" src={plant.image1} className="card-image rounded mb-0"/>
+        <Card className="featured-plant border-0" >
+       
+        
+    
+        <Card.Img  variant="top" src={plant.image1} className="card-image  rounded mb-0"/>
         <Card.Body>
             <Row className="card-row">
             <Col className="name">{plant.name}</Col>
