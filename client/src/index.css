@@ -4,17 +4,16 @@
     url("./fonts/Flowers-Sunday.otf") format("truetype");
 }
 
-
 .featured-plant{
   background-color: #f1f1f1;
 }
 
-.card-image {
+.featured-images {
   object-fit: cover;
   border: 5px solid #377E30; 
 }
 
-.cart-btn-div{
+.add-to-cart-div{
   text-align: center;
 }
 
@@ -22,18 +21,15 @@ body{
   background-color: #f1f1f1; 
 }
 
-.cart-btn{
+.add-to-cart-btn{
   background-color: #BED500;
   border: solid #BED500;
   color: black;
   font-family: "Flower";
 }
 
-.card-row{
-  display: flex;
-  justify-content: space-between;
-}
-.name{
+
+.featured-plant-name{
   text-align: left;
   padding-left: 0%;
   font-size:larger;
@@ -41,7 +37,7 @@ body{
 
 }
 
-.price{
+.featured-plant-price{
   text-align: right;
   padding-right: 0%;
 }
@@ -52,11 +48,11 @@ body{
   font-family: "Flower";
 }
 
-.image-container {
-  position: relative;
+.header-container{
+  padding-top: 10%;
 }
 
-.button {
+.explore-btn {
   position: absolute; /* set button to an absolute position */
   top: 50%; /* adjust the top position of the button */
   left: 50%; /* adjust the left position of the button */
@@ -65,65 +61,23 @@ body{
   border: solid #BED500;
   color: black;
   font-family: "Flower";
-
   cursor: pointer; /* change mouse cursor on hover */
 }
 
 .homepage-img{
-   width:100%;
-   height: 400px;
-   object-fit:cover;
-   
+   width:100%; 
 }
-
-.btn-primary:hover{
-  background-color: #435740;
-  border-color: #435740;
-}
-
-.nav-bar{
-  
-  background-color: #BED500;
-  width: 25%;
-  height: 100vh;
-  text-align: left;
-  padding-left: 0%;
-  font-family: "Flower";
-  overflow: scroll;
- 
-
- 
- 
-  
-}
-
-ul li{
-  margin-bottom: 20px;
-  font-size: 25px;
-}
-
-.nav-list{
-  list-style-type: none;
-}
-
-.nav-logo{
-text-align: center;
-background-color: #f1f1f1;
-border: solid #BED500;
-margin-bottom: 35px;
-}
-
 
 #app {
-  font-family: sans-serif;
   height: 100vh;
 }
 
 #page-wrap {
   text-align: center;
   overflow: auto;
-  top: 45%;
   position: relative;
+ 
+
 }
 
 .bm-item {
@@ -134,6 +88,7 @@ margin-bottom: 35px;
   margin-bottom: 10px;
   color: #d1d1d1;
   transition: color 0.2s;
+
 }
 
 .bm-item:hover {
@@ -145,19 +100,19 @@ margin-bottom: 35px;
   width: 36px;
   height: 30px;
   top: 36px;
-  right:36px;
-
+  left:8%
+  
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background:  #435740;
 }
 
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+  height: 35px;
+  width: 35px;
 }
 
 /* Color/shape of close button cross */
@@ -185,4 +140,42 @@ margin-bottom: 35px;
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.nav-div{
+  background-color: #000;
+}
+
+.hamburger{
+  background-color: #BED500;
+}
+
+.bm-menu-wrap{
+  background-color: #a90000;
+}
+
+.outer-container{
+  background-color: black;
+
+}
+
+#nav-image{
+  height:100px;
+  position: fixed;
+}
+ 
+.hamburger-div{
+  width:100%;
+  background-color: #f1f1f1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 12%;
+  color:  #435740;
+}
+
+#cart{
+ float:right;
+ 
+ 
 }

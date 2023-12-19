@@ -1,37 +1,36 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Twirl as Hamburger } from 'hamburger-react';
-import Menu from "./Menu";
+import React from "react";
+import { Navbar, Container } from "react-bootstrap";
+import { slide as Menu } from 'react-burger-menu';
+import image from "../images/logo.png"
+import { BsCartDashFill } from "react-icons/bs";
 
-function DropDown() {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+const Hamburger = ({outerContainerId, pageWrapId}) => {
+    return (
+     
+    <div className="hamburger-div">
+    
+
+      <Menu >
+        <a className="menu-item" href="/">
+          Home
+        </a>
+        <a className="menu-item" href="">
+         All Plants
+        </a>
+        <a className="menu-item" href="">
+        About Us
+        </a>
+        <a className="menu-item" href="">
+          Shipping Policy
+        </a>
+      </Menu>
+      <img src={image} id="nav-image"></img>
+      <BsCartDashFill id="cart"/>
+
+      </div>
+  
+    );
   };
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (menuRef.current && menuRef.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    };
-    
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener('mousedown', handler);
-    };
-  }, []);
-
-  return (
-    <div>
-      <Hamburger color="#377E30" rounded toggled={isOpen} toggle={toggleMenu} />
-      <div ref={menuRef} className={isOpen ? "open": "closed"}>
-     <Menu />
-      </div>
-    </div>
-  );
-}
-
-export default DropDown;
+  export default Hamburger;
