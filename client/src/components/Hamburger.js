@@ -26,7 +26,11 @@ const Hamburger = ({outerContainerId, pageWrapId}) => {
         </a>
       </Menu>
       <img src={image} id="nav-image"></img>
-      <BsCartDashFill id="cart"/>
+      <div id="cart-div">
+
+      
+      <BsCartDashFill id="cart" size={25}/>
+      </div>
 
       </div>
   
