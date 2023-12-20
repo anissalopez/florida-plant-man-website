@@ -14,9 +14,6 @@ function FeaturedPlant({ plant }) {
                 component="img"
                 alt="featured plant"
                 image={plant.image1}
-                sx={{
-                    border: "solid #BED500;"
-                }}
             />
             <CardContent>
                 <Box sx={{
