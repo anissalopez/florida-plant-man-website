@@ -1,6 +1,7 @@
-import React from "react";
+import * as React from 'react';
 import Button from 'react-bootstrap/Button';
 import {Card, Container, Col, Row} from 'react-bootstrap';
+
 
 
 

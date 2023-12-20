@@ -4,42 +4,9 @@
     url("./fonts/Flowers-Sunday.otf") format("truetype");
 }
 
-.featured-plant{
-  background-color: #f1f1f1;
-}
-
-.featured-images {
-  object-fit: cover;
-  border: 5px solid #377E30; 
-}
-
-.add-to-cart-div{
-  text-align: center;
-}
 
 body{
   background-color: #f1f1f1; 
-}
-
-.add-to-cart-btn{
-  background-color: #BED500;
-  border: solid #BED500;
-  color: black;
-  font-family: "Flower";
-}
-
-
-.featured-plant-name{
-  text-align: left;
-  padding-left: 0%;
-  font-size:larger;
-  font-family: "Flower";
-
-}
-
-.featured-plant-price{
-  text-align: right;
-  padding-right: 0%;
 }
 
 .homepage-headers{
@@ -48,9 +15,14 @@ body{
   font-family: "Flower";
 }
 
-.header-container{
-  padding-top: 10%;
+
+
+.header-container img{
+    width: 100%;
+    border-radius: 8px;
+
 }
+
 
 .explore-btn {
   position: absolute; /* set button to an absolute position */
@@ -64,21 +36,6 @@ body{
   cursor: pointer; /* change mouse cursor on hover */
 }
 
-.homepage-img{
-   width:100%; 
-}
-
-#app {
-  height: 100vh;
-}
-
-#page-wrap {
-  text-align: center;
-  overflow: auto;
-  position: relative;
- 
-
-}
 
 .bm-item {
   display: inline-block;
@@ -99,8 +56,8 @@ body{
   position: fixed;
   width: 36px;
   height: 30px;
-  top: 36px;
-  left:8%
+  margin-top: 36px;
+ margin-left:8%;
   
 }
 
@@ -154,10 +111,7 @@ body{
   background-color: #a90000;
 }
 
-.outer-container{
-  background-color: black;
 
-}
 
 #nav-image{
   height:100px;
@@ -168,16 +122,15 @@ body{
   width:100%;
   background-color: #f1f1f1;
   position: fixed;
-  top: 0;
-  left: 0;
+  margin-left: 0;
   height: 12%;
   color:  #435740;
 }
 
+
 #cart{
  float:right;
- 
- 
+
 }
 
 #cart-div{

@@ -10,19 +10,10 @@ import Header from "./Header";
 function HomePage ({ plants }) {
     return(
     <div id="outer-container" >
-  
     <Hamburger  pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
-   
     <Header />
-    <Container id="page-wrap">
-
-      <Row>
-        <h2 className="homepage-headers">Featured Plants</h2>
-    </Row>
-    <Row><FeaturedPlantList plants={plants}/></Row>
+    <FeaturedPlantList plants={plants}/>
  
-        
-    </Container>
     </div>
     )
   
