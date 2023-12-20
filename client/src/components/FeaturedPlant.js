@@ -9,11 +9,14 @@ import Typography from '@mui/material/Typography';
 
 function FeaturedPlant({ plant }) {
     return (
-        <Card variant="outlined" color="">
+        <Card >
             <CardMedia
                 component="img"
                 alt="featured plant"
                 image={plant.image1}
+                sx={{
+                    border: "solid #BED500;"
+                }}
             />
             <CardContent>
                 <Box sx={{
