@@ -21,41 +21,25 @@ export default function ButtonAppBar() {
         setState({ ...state, [anchor]: open });
       };
   return (
-
-   
-  
       <AppBar sx={{backgroundColor: "#f1f1f1"}}>
         <Toolbar>
-        <Box sx={{flexGrow:1}}>
-          <IconButton
-            size="large"
-            edge="start"
-            aria-label="menu"
-            sx={{  color:"#377E30" }}
-            onClick={toggleDrawer("left", true)}
-          >
-            <MenuRoundedIcon />
-          </IconButton>
-      
-   
- 
-  
-   
-          <img src={image} alt="company logo" width="50px" height="50px"></img>
+            <Box sx={{flexGrow:1}}>
+            <IconButton
+                size="large"
+                edge="start"
+                aria-label="menu"
+                sx={{  color:"#377E30" }}
+                onClick={toggleDrawer("left", true)}
+            >
+                <MenuRoundedIcon />
+            </IconButton>
+            <img src={image} alt="company logo" width="50px" height="50px"></img>
           </Box>
-        
-          <IconButton
-            size="large"
-
-            sx={{color:"#377E30" }}
-          >
+          <IconButton size="large" sx={{color:"#377E30" }}>
             <ShoppingCartIcon />
           </IconButton>
-      
-
-      <TemporaryDrawer toggleDrawer={toggleDrawer} state={state} setState={setState}></TemporaryDrawer>
-      </Toolbar>
+        <TemporaryDrawer toggleDrawer={toggleDrawer} state={state} setState={setState}></TemporaryDrawer>
+        </Toolbar>
       </AppBar>
- 
   );
 }

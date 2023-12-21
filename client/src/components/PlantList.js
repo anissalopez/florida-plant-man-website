@@ -5,7 +5,6 @@ function PlantList({plants}){
         return <PlantCard name={plant.name} sunlight={plant.sun} water={plant.water} image1={plant.image1} 
         price={plant.price}/>
     })
-
     return(
         <div>{plantList}</div>
     )

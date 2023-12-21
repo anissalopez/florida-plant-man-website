@@ -41,10 +41,8 @@ function FeaturedPlant({ plant }) {
                 }}>
                     Add to Cart
                 </Button>
-            </CardActions>
-            
-        </Card>
-      
+            </CardActions>     
+        </Card>  
     );
   }
   export default FeaturedPlant;
