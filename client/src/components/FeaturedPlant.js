@@ -6,16 +6,21 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
 
-function FeaturedPlant({ plant }) {
+function FeaturedPlant({ plant, handlePlantDetail }) {
+  
     return (
-        <Card >
+
+        <Link  to={`/plants/${plant.id}`} key={plant.id}>
+        <Card  >
             <CardMedia
                 component="img"
                 alt="featured plant"
                 image={plant.image1}
             />
-            <CardContent>
+            <CardContent >
+
                 <Box sx={{
                     display:"flex", FlexDirection:"Column", justifyContent:"space-between"}}>
                 <Typography sx={{
@@ -38,11 +43,13 @@ function FeaturedPlant({ plant }) {
                      border: "#BED500",
                      color:"black",
                      fontFamily: "Flower",
-                }}>
+                }}  >
                     Add to Cart
                 </Button>
             </CardActions>     
         </Card>  
+        </Link>
+
     );
   }
   export default FeaturedPlant;

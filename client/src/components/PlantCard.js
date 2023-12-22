@@ -3,7 +3,10 @@ import Card from 'react-bootstrap/Card';
 
 
 
+
 function PlantCard({image1, name, sunlight, water, price}) {
+
+ 
     return (
       <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={image1} />

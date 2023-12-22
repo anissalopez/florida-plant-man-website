@@ -4,9 +4,9 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 
-function FeaturedPlantList({plants}){
+function FeaturedPlantList({plants, handlePlantDetail}){
     const featured_plants = plants.slice(-4).map((plant) => {
-        return <Grid item xs={3}><FeaturedPlant plant={plant} key={plant.id}/></Grid>  
+        return <Grid item xs={3}><FeaturedPlant handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/></Grid>  
      });
     return(
         <Container>
