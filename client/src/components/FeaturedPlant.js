@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import CardActions from '@mui/material/CardActions';
@@ -8,49 +7,56 @@ import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 
-function FeaturedPlant({ plant, handlePlantDetail }) {
-  
+const FeaturedPlant = ({ plant }) => {
     return (
-
-        <Link  to={`/plants/${plant.id}`} key={plant.id}>
-        <Card  >
-            <CardMedia
-                component="img"
-                alt="featured plant"
-                image={plant.image1}
-            />
-            <CardContent >
-
-                <Box sx={{
-                    display:"flex", FlexDirection:"Column", justifyContent:"space-between"}}>
-                <Typography sx={{
-                textAlign: "left",
-                fontSize:"larger",
-                fontFamily: "Flower"}}>
-                    {plant.name}
-                </Typography>   
-                <Typography sx={{
-                textAlign: "right",}}>
-                    {plant.price}
-                </Typography> 
-                </Box>  
-            </CardContent>
-            <CardActions sx={{
-                justifyContent: "center"
+        <Card
+            sx={{
+                backgroundColor: "#f1f1f1",
+                boxShadow: 0
+                
+                
             }}>
+            <Link style={{textDecoration:'none', color: 'black'}} to={`/plants/${plant.id}`} 
+                  key={plant.id}> 
+                <CardMedia
+                    component="img"
+                    alt="featured plant"
+                    image={plant.image1}
+                    sx={{
+                        border: "solid 4px #377E30",
+                        borderRadius: 3
+                    }}
+                />
+                <CardContent>
+                    <Box sx={{display:"flex", FlexDirection:"Column", 
+                        justifyContent:"space-between"
+                        }}>
+                        <Typography sx={{
+                                    textAlign: "left",
+                                    fontSize:"larger",
+                                    fontFamily: "Flower"}}>
+                            {plant.name}
+                        </Typography>   
+                        <Typography sx={{textAlign: "right",}}>
+                            {plant.price}
+                        </Typography> 
+                    </Box>  
+                
+                </CardContent>
+            </Link>
+            <CardActions sx={{
+                        justifyContent: "center",
+                        marginTop: 0
+                        }}>
                 <Button sx={{
                      backgroundColor: "#BED500",
                      border: "#BED500",
                      color:"black",
-                     fontFamily: "Flower",
-                }}  >
+                     fontFamily: "Flower",}}>
                     Add to Cart
                 </Button>
             </CardActions>     
         </Card>  
-        </Link>
-
-    );
-  }
+    )}
   export default FeaturedPlant;
   

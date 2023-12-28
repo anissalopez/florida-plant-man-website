@@ -13,8 +13,6 @@ from config import app, db, api
 from models import Plant
 
 
-# Views go here!
-
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
@@ -26,8 +24,6 @@ class Plants(Resource):
         response = make_response(plants, 200)
         return response
     
-    
-
     def post(self):
         data = request.get_json()
 
@@ -59,7 +55,25 @@ class Plants(Resource):
             return response
 
 
+class PlantById(Resource):
+    
+    def get(self, id):
+        result = None
+        for plant in Plant.query.all():
+            if plant.id == id:
+                result = plant.to_dict()
+
+        try:
+            response = make_response(result, 200)
+            return response
+        except Exception as exc:
+            response = make_response({"Error": exc}, 500)
+            
+
+
+
 api.add_resource(Plants, '/plants')
+api.add_resource(PlantById, '/plants/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

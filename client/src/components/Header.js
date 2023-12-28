@@ -3,13 +3,15 @@ import image from "../images/main.jpg";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
+
 function Header(){
 
     return(
 
-    <div className="image-container">
+    <header className="image-container">
        
         <img src={image} />
+       
         <Button sx={{
             position: "absolute",
             top: "50%",
@@ -25,7 +27,7 @@ function Header(){
         }}>Explore All Plants</Button>
     
   
-    </div>
+    </header>
 
  
    
