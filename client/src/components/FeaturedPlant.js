@@ -12,9 +12,8 @@ const FeaturedPlant = ({ plant }) => {
         <Card
             sx={{
                 backgroundColor: "#f1f1f1",
-                boxShadow: 0
-                
-                
+                boxShadow: 0,
+                height: "700px"
             }}>
             <Link style={{textDecoration:'none', color: 'black'}} to={`/plants/${plant.id}`} 
                   key={plant.id}> 
@@ -24,30 +23,27 @@ const FeaturedPlant = ({ plant }) => {
                     image={plant.image1}
                     sx={{
                         border: "solid 4px #377E30",
-                        borderRadius: 3
+                        borderRadius: 3,
+                        height:"400px"
                     }}
                 />
-                <CardContent>
-                    <Box sx={{display:"flex", FlexDirection:"Column", 
-                        justifyContent:"space-between"
+                <Box sx={{display:"flex", flexDirection:"row", 
+                        justifyContent:"center"
                         }}>
-                        <Typography sx={{
-                                    textAlign: "left",
-                                    fontSize:"larger",
-                                    fontFamily: "Flower"}}>
-                            {plant.name}
-                        </Typography>   
-                        <Typography sx={{textAlign: "right",}}>
-                            {plant.price}
-                        </Typography> 
-                    </Box>  
-                
-                </CardContent>
+                    <CardContent sx={{marginBottom:0}}>
+                            <Typography sx={{fontSize:"larger", fontFamily: "Flower"}}>
+                                {plant.name}
+                            </Typography>   
+                    </CardContent>
+                </Box>  
             </Link>
-            <CardActions sx={{
-                        justifyContent: "center",
-                        marginTop: 0
-                        }}>
+                <Box sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    height: "auto"
+                }}>
+            <CardActions>
                 <Button sx={{
                      backgroundColor: "#BED500",
                      border: "#BED500",
@@ -55,8 +51,9 @@ const FeaturedPlant = ({ plant }) => {
                      fontFamily: "Flower",}}>
                     Add to Cart
                 </Button>
-            </CardActions>     
+            </CardActions> 
+            </Box>  
         </Card>  
-    )}
+    )};
   export default FeaturedPlant;
   

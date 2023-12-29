@@ -9,9 +9,7 @@ function Header(){
     return(
 
     <header className="image-container">
-       
         <img src={image} />
-       
         <Button sx={{
             position: "absolute",
             top: "50%",
@@ -25,8 +23,6 @@ function Header(){
             fontFamily:"Flower"
 
         }}>Explore All Plants</Button>
-    
-  
     </header>
 
  

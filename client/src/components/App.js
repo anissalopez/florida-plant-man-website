@@ -16,15 +16,15 @@ const App = () => {
   useEffect(()=> {
     const fetchPlants = async () => {
       try{
-        const response = await fetch(plant_url)
-        if (!response.ok) throw Error('Error receiving data')
-        const plantList = await response.json()
-        setPlants(plantList)
-        setFetchError(null)
+          const response = await fetch(plant_url)
+          if (!response.ok) throw Error('Error receiving data')
+          const plantList = await response.json()
+          setPlants(plantList)
+          setFetchError(null)
       }catch(err){
-        setFetchError(err.message)
+          setFetchError(err.message)
       }finally{
-        setIsLoading(false);
+          setIsLoading(false);
       }
     }
     fetchPlants()

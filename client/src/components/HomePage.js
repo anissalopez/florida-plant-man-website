@@ -14,9 +14,6 @@ function HomePage ({ plants, handlePlantDetail}) {
     
     <DrawerAppBar />
     <Header />
-
- ]
-  
     <Link to="/plants">Plants</Link>
     <FeaturedPlantList plants={plants} handlePlantDetail={handlePlantDetail}/>
  
