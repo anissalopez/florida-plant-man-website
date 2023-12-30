@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import App from "./components/App";
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
 import "./fonts/Flowers-Sunday.otf"
 import '@fontsource/roboto/300.css';

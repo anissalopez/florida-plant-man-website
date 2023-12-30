@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from 'react';
 import FeaturedPlant from "./FeaturedPlant";
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 
 function FeaturedPlantList({plants, handlePlantDetail}){
     const featured_plants = plants.slice(-4).map((plant) => (
-         <Grid item xs={3}><FeaturedPlant handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/></Grid>  
+         <FeaturedPlant xs={3} handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/>
     ));
     return(
         <Container>

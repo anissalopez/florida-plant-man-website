@@ -40,3 +40,9 @@ body{
   text-align: center;
 }
 
+.cardContentDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+
+}
