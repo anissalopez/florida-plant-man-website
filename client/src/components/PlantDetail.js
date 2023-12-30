@@ -38,24 +38,14 @@ function PlantDetail({}) {
 
   
   return (
-
     <>
-    {
-      plant ? 
-   
-  
+    {plant ? 
       <Grid container  spacing={0}>
-      <Grid item xs={4} >
         <Box  sx={{width:"300px",
-                    marginLeft:"40px"}}>
-
-     
+                  marginLeft:"40px", border:1}} xs={4}>
         <Card>
-        <CardMedia
-                    component="img"
-                    alt="featured plant"
-                    image={plant.image1}
-                    sx={{
+        <CardMedia component="img" alt="featured plant" image={plant.image1}
+                   sx={{
                         height:"200px",
                         padding:"10px"
                     }}
@@ -79,12 +69,10 @@ function PlantDetail({}) {
                     }}
                 />
         </Card>
-        </Box>
-      </Grid>
-
-      <Grid item xs={4} >
-        <Box>
- 
+       
+      {/* </Grid> */}
+      </Box>
+      <Box sx={{border:1}} xs={4}>
       <Card>
         <CardMedia
                     component="img"
@@ -92,13 +80,15 @@ function PlantDetail({}) {
                     image={plant.image1}
                     sx={{
                         height:"600px",
+                        padding: "10px"
                       
                     }}
                 />
         </Card>
-        </Box>
+ 
   
-      </Grid>
+      {/* </Grid> */}
+      </Box>
 
       </Grid>
      
