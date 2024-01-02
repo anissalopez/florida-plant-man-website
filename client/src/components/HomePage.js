@@ -16,6 +16,8 @@ function HomePage ({ plants, handlePlantDetail}) {
     <Header />
     <Link to="/plants">Plants</Link>
     <FeaturedPlantList plants={plants} handlePlantDetail={handlePlantDetail}/>
+
+    
     </>
     )
   

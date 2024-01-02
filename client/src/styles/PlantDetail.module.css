@@ -1,0 +1,30 @@
+.container{
+    display:grid;
+    grid-template-columns: 20% 30% 20% 30%;
+    /* grid-template-rows: 400px; */
+    height: 65vh;
+    margin-top:5%;
+}
+
+
+.main{
+    grid-column-start: 2;
+    grid-column-end:3;
+}
+
+
+.sideleft div{
+    height: 33%;
+    width: 50%;
+    border: solid 1px black;   
+    margin-left:30%;
+    margin-bottom:4%  
+}
+
+
+
+.main div{
+    height: 100%;
+}
+
+

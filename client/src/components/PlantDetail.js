@@ -1,27 +1,26 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import  Card  from "@mui/material/Card";
-import  CardMedia  from "@mui/material/CardMedia";
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import styles from "../styles/PlantDetail.module.css"
 
 
 
 function PlantDetail({ plants }) {
   const { id } = useParams();
-  const [plant, setPlant] = useState(null);
+  const [plant, setPlant] = useState('');
+ 
 
 
   useEffect(() => {
     const fetchPlant = async () => {
       try{
           const response = await fetch(`/plants/${id}`)
+        
           if (!response.ok) throw Error('Error receiving data')
           const plantData = await response.json()
+          console.log(plantData)
           setPlant(plantData)
+          console.log(plant)
         
           // setFetchError(null)
       }catch(err){
@@ -34,68 +33,21 @@ function PlantDetail({ plants }) {
     fetchPlant()
   }, [id]);
 
-
   
   return (
     <>
     {plant ? 
-      <Grid container>
-      <Grid item sx={{border:1}} xs={4}>
-          <Card sx={{backgroundColor: "#f1f1f1", height:"500px", width: "350px"}}>
-            <CardMedia
-                        component="img"
-                        alt="featured plant"
-                        src={plant.image1}
-                        sx={{
-                            height:"150px",
-                            padding: "10px"
-                        }}
-                    />   
-                 <CardMedia
-                        component="img"
-                        alt="featured plant"
-                        src={plant.image1}
-                        sx={{
-                            height:"150px",
-                            padding: "10px"
-                        }}
-                    />   
-                 <CardMedia
-                        component="img"
-                        alt="featured plant"
-                        src={plant.image1}
-                        sx={{
-                            
-                            height:"150px",
-                            padding: "10px"
-                        }}
-                    />   
-            </Card>
-            
-       </Grid>
-       <Grid item sx={{border:1}} xs={4}>
-          <Card sx={{backgroundColor: "#f1f1f1", height: "500px", width:"350px"}}>
-            <CardMedia
-                        component="img"
-                        alt="featured plant"
-                        src={plant.image1}
-                        sx={{
-                            height: "500px",
-                            padding: "10px"
-                        }}
-                    />
-            </Card>
-       </Grid>
-       <Box>
-        <Card>
-          <CardContent>
-            <Typography variant="h1">
-             
-            </Typography>
-          </CardContent>
-        </Card>
-       </Box>
-      </Grid>
+     <div className={styles.container}>
+          <div className={styles.sideleft}>
+            <div style={{background: `url(${plant.image1})`, backgroundSize: "100% 100%"}}>1</div>
+            <div style={{background: `url(${plant.image2})`, backgroundSize: "100% 100%"}}>2</div>
+            <div style={{background: `url(${plant.image3})`, backgroundSize: "100% 100%"}}>3</div>
+        </div>
+        <div className={styles.main}>
+            <div style={{background: `url(${plant.image1})`, backgroundSize: "100% 100%", padding:"10px"}}>4</div>
+          </div>
+     </div>
+      
      : null}
       </>
   );
