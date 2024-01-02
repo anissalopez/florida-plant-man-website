@@ -1,30 +1,59 @@
 .container{
     display:grid;
-    grid-template-columns: 20% 30% 20% 30%;
+    grid-template-columns: 20% 30% 50%;
     /* grid-template-rows: 400px; */
     height: 65vh;
     margin-top:5%;
+    background-color: f1f1f1;
 }
-
 
 .main{
     grid-column-start: 2;
     grid-column-end:3;
 }
 
-
 .sideleft div{
     height: 33%;
     width: 50%;
-    border: solid 1px black;   
     margin-left:30%;
     margin-bottom:4%  
 }
 
-
-
 .main div{
     height: 100%;
 }
+
+.plantInfo div{
+   color: #6DC01E;
+
+   display: inline-flex;
+   align-items: center;
+}
+
+.plantInfo{
+    color: #377E30;
+    margin-left: 3rem;
+    margin-left:1.5rem;
+    margin-right: 20%;
+}
+.plantInfo p{
+    color: black;
+    line-height: 1.5rem;
+    margin-left: 1.5rem;
+ 
+}
+
+.plantInfo button{
+    background-color: #BED500;
+    width: 100%;
+    height: 30px;
+    font-family: Flower;
+    border-radius: 3px;
+    margin-bottom: 0;
+  
+}
+
+
+
 
 

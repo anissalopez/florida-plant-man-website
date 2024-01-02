@@ -46,3 +46,7 @@ body{
     justify-content: center
 
 }
+
+.material-icons{
+  vertical-align: middle;
+}
