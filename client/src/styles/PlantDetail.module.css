@@ -1,48 +1,50 @@
 .container{
     display:grid;
     grid-template-columns: 20% 40% 40%;
-    height: 65vh;
-    
     margin-top:5%;
     background-color: f1f1f1;
-    /* font-family: 'Sometype Mono', monospace; */
     width: 75vw;
     margin-left:10%;
-    
- 
-}
-
-.sideimgs{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     height:500px;
 }
 
-.sideimgs div{
-    height:30%;
-    width: 100%
+.sideimgs{
+   height:450px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height:500px;
 }
 
-/* .sideimgs img{
-    height: 100%;
+.sideimgs div{
+    display: flex;
+    justify-content: space-between;
+    height:30%
+}
+.sideimgs img{
+    height:100%;
     width: 100%;
     border-radius:5px;
-} */
-
+    
+    /* overflow:hidden; */
+    object-fit: cover;
+}
 
 .mainimg{
     height: 500px;
     margin-left:15px;
+    display:flex;
 }
 
-.container img{
+.mainimg img{
     height: 100%;
     width: 100%;
     border-radius:5px;
+    object-fit: cover;
 }
 
 .plantInfo{
+    height: 500px;
     margin-left: 25px;
     margin-left:1.5rem;
     display: flex;
@@ -52,7 +54,7 @@
 
 h2{
     color: #377E30;
-    margin-top: 0;
+    margin-top: .25rem;
     font-family: Flower;
 }
 
@@ -76,7 +78,6 @@ h2{
     height: 30px;
     font-family: Flower;
     border-radius: 3px; 
-    
 } 
 
 

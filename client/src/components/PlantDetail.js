@@ -6,6 +6,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import Loading from "./Loading";
+import image from "../images/monsterab1.jpg"
 
 
 function PlantDetail({ setFetchError, setIsLoading, isLoading}) {
@@ -31,34 +32,26 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading}) {
 
   const displayStyle = (img) => {
     return{
-     backgroundImage: `url(${img})`,
-     width:"100%",
-     height:"100%"
+     backgroundImage: `url(${img})`
     }
 
   }
 
   
   return (
-    <>
+    <section className={styles.container}>
       {isLoading && <Loading />}
     {
-     <div className={styles.container}>
+      <>
         <div className={styles.sideimgs}>
-            {/* <div style={displayStyle(plant.image1)}></div>
-            <div style={displayStyle(plant.image1)}></div>
-            <div style={displayStyle(plant.image1)}></div> */}
             <div><img  src={plant.image1} /></div>
-            <div><img  src={plant.image1} /></div>
-            <div><img  src={plant.image1} /></div>
-            {/* <img  src={plant.image1} /> */}
-            {/* <img  src={plant.image1} />
-            <img  src={plant.image1} /> */}
-            
+            <div><img  src={plant.image2} /></div>
+            <div><img  src={plant.image3} /></div>
         </div>
         <div className={styles.mainimg}>
-            {/* <div style={displayStyle(plant.image1)}></div> */}
-            <img style={styles.main} src={plant.image1} />
+            <div>
+            <img  src={plant.image1} />
+            </div> 
         </div>
         <div className={styles.plantInfo}>
             <h2>{plant.name}</h2>
@@ -76,9 +69,9 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading}) {
             <h3 className={styles.plantInfo.price}>$ {plant.price}</h3>
             <button>Add to Cart</button>
           </div>
-     </div>
+      </>
      }
-    </>
+    </section>
   );
 }
 
