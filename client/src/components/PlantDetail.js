@@ -1,20 +1,20 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import * as React from 'react';
-import styles from "../styles/PlantDetail.module.css";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import StraightenIcon from '@mui/icons-material/Straighten';
-import Loading from "./Loading";
-import image from "../images/monsterab1.jpg"
+import PlantBanner from "./PlantBanner";
+import styles from "../styles/PlantDetail.module.css";
 
 
-function PlantDetail({ setFetchError, setIsLoading, isLoading}) {
+
+function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   const { id } = useParams();
   const [plant, setPlant] = useState('');
  
   useEffect(() => {
     const fetchPlant = async () => {
+     
         try{
             const response = await fetch(`/plants/${id}`)
             if (!response.ok) throw Error('Error receiving data')
@@ -39,21 +39,22 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading}) {
 
   
   return (
-    <section className={styles.container}>
-      {isLoading && <Loading />}
-    {
-      <>
+    <>
+
+    {!fetchError && !isLoading &&
+    <>
+      <section className={styles.container}>
         <div className={styles.sideimgs}>
-            <div><img  src={plant.image1} /></div>
-            <div><img  src={plant.image2} /></div>
-            <div><img  src={plant.image3} /></div>
+            <div><img  src={plant.image1} alt="displayPlant1"/></div>
+            <div><img  src={plant.image2} alt="displayPlant2"/></div>
+            <div><img  src={plant.image3} alt="displayPlant3"/></div>
         </div>
-        <div className={styles.mainimg}>
+        <div className={styles["main-plant-image"]}>
             <div>
-            <img  src={plant.image1} />
+            <img  alt="displayPlant1" src={plant.image1} />
             </div> 
         </div>
-        <div className={styles.plantInfo}>
+        <div className={styles["plant-info"]}>
             <h2>{plant.name}</h2>
             <div>
               <WbSunnyIcon />
@@ -65,13 +66,16 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading}) {
           </div>
           <div>
               <StraightenIcon />
+              <p>4 inch pot</p>
           </div>
-            <h3 className={styles.plantInfo.price}>$ {plant.price}</h3>
+            <h3>$ {plant.price}</h3>
             <button>Add to Cart</button>
           </div>
-      </>
-     }
-    </section>
+      </section>
+      <PlantBanner plant={plant}/>
+    </>
+    }
+    </>
   );
 }
 

@@ -18,10 +18,11 @@ class Plant(db.Model, SerializerMixin):
     image1 = db.Column(db.String, nullable=False)
     image2 = db.Column(db.String, nullable=False)
     image3 = db.Column(db.String, nullable=False)
+    description = db.Column(db.String, nullable=False)
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
-    @validates('name', 'water', 'sun', 'image1', 'image2', 'image3')
+    @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', description)
     def validate_inputs(self, key, value):  
         if len(value) < 5:
             raise ValueError('Input must be greater than 5 characters')

@@ -33,7 +33,7 @@ export default function ButtonAppBar() {
             >
                 <MenuRoundedIcon />
             </IconButton>
-            <img src={image} alt="company logo" width="50px" height="50px"></img>
+            <img src={image} alt="company logo" width="50px"  ></img>
           </Box>
           <IconButton size="large" sx={{color:"#377E30" }}>
             <ShoppingCartIcon />
