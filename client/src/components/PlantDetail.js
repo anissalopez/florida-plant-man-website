@@ -5,21 +5,25 @@ import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import PlantBanner from "./PlantBanner";
 import styles from "../styles/PlantDetail.module.css";
+import Loading from "./Loading"
 
 
 
 function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   const { id } = useParams();
   const [plant, setPlant] = useState('');
+  const [mainImg, setMainImg] = useState('')
+  
+  
  
   useEffect(() => {
     const fetchPlant = async () => {
-     
         try{
             const response = await fetch(`/plants/${id}`)
             if (!response.ok) throw Error('Error receiving data')
             const plantData = await response.json()
             setPlant(plantData)
+            setMainImg(plantData.image1)
             setFetchError(null)
         }catch(err){
             setFetchError(err.message)
@@ -30,28 +34,25 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
         fetchPlant()
   }, [id]);
 
-  const displayStyle = (img) => {
-    return{
-     backgroundImage: `url(${img})`
-    }
-
-  }
-
+ const handleClick = (e) => {
+   console.log(e.target.src)
+    setMainImg(e.target.src)
+ }
   
   return (
     <>
-
+    {isLoading && <Loading />}
     {!fetchError && !isLoading &&
     <>
       <section className={styles.container}>
         <div className={styles.sideimgs}>
-            <div><img  src={plant.image1} alt="displayPlant1"/></div>
-            <div><img  src={plant.image2} alt="displayPlant2"/></div>
-            <div><img  src={plant.image3} alt="displayPlant3"/></div>
+            <div><img  onClick={handleClick} src={plant.image1} alt="displayPlant1"/></div>
+            <div><img  onClick={handleClick} src={plant.image2} alt="displayPlant2"/></div>
+            <div><img  onClick={handleClick} src={plant.image3} alt="displayPlant3"/></div>
         </div>
         <div className={styles["main-plant-image"]}>
             <div>
-            <img  alt="displayPlant1" src={plant.image1} />
+            <img  alt="displayPlant1" src={mainImg} />
             </div> 
         </div>
         <div className={styles["plant-info"]}>
