@@ -38,17 +38,16 @@ function PlantDetail({ plants }) {
     <>
     {plant ? 
      <div className={styles.container}>
-          <div className={styles.sideleft}>
+          <div className={styles.sideimgs}>
             <div style={{background: `url(${plant.image1})`, backgroundSize: "100% 100%"}}></div>
             <div style={{background: `url(${plant.image2})`, backgroundSize: "100% 100%"}}></div>
             <div style={{background: `url(${plant.image3})`, backgroundSize: "100% 100%"}}></div>
         </div>
-        <div className={styles.main}>
+        <div className={styles.mainimg}>
             <div style={{background: `url(${plant.image1})`, backgroundSize: "100% 100%", padding:"10px"}}></div>
           </div>
         <div className={styles.plantInfo}>
           <h3>{plant.name}</h3>
-        
           <div>
             <WbSunnyIcon />
             <p>{plant.sun}</p>
@@ -60,14 +59,12 @@ function PlantDetail({ plants }) {
           <div>
             <StraightenIcon />
           </div>
-        
-       
           <p>{plant.price}</p>
           <button>Add to Cart</button>
+          </div>
+         
      
-          
 
-        </div>
      </div>
       
      : null}
