@@ -38,10 +38,9 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<HomePage plants={plants}/>} />
           <Route exact path="/plants" element={<PlantViews plants={plants}/>} />
-          <Route exact path="/plants/:id" element={<PlantDetail plants={plants} />} />
+          <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading}/>} />
         </Routes>
       }
-      
     </div>
   )}
 

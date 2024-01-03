@@ -11,13 +11,10 @@ function HomePage ({ plants, handlePlantDetail}) {
 
     return(
     <>
-    
     <DrawerAppBar />
     <Header />
     <Link to="/plants">Plants</Link>
     <FeaturedPlantList plants={plants} handlePlantDetail={handlePlantDetail}/>
-
-    
     </>
     )
   
