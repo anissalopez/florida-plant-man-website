@@ -26,6 +26,8 @@ const ReviewList = () => {
       const reviewList = reviews.map((review) => (
         <Review xs={4} review={review} key={review.id}/>
       ));
+
+      console.log(reviews)
       
 
       return (

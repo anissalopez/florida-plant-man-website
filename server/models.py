@@ -24,6 +24,9 @@ class Plant(db.Model, SerializerMixin):
 
     reviews = db.relationship(
         'Review', back_populates='plant', cascade='all, delete-orphan')
+    shoppers = association_proxy('reviews', 'shopper',
+                                 creator=lambda project_obj: Review(project=project_obj))
+
     
 
     serialize_rules =('-reviews.plant',)
@@ -64,7 +67,8 @@ class Review(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     plant = db.relationship('Plant', back_populates='reviews')
-    serialize_rules =('-plant.reviews',)
+    shopper = db.relationship('Shopper', back_populates='reviews')
+    serialize_rules =('-plant.reviews', '-shopper.reviews')
 
     @validates('rating')
     def validate_rating(self, key, value):
@@ -79,4 +83,36 @@ class Review(db.Model, SerializerMixin):
         return value
 
     def __repr__(self):
-        return f'Id: {self.id} - Plant_Id: {self.plant_id} - PlantName: {self.plant.name} - Rating: {self.rating}'
+        return f'Id: {self.id} - Plant_Info <{self.plant_id}> - PlantName: {self.plant} - Rating: {self.rating}'
+    
+
+class Shopper(db.Model, SerializerMixin):
+    __tablename__ ='shoppers'
+
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
+
+
+    
+    
+    created_at = db.Column(DateTime(), server_default=func.now())
+    updated_at = db.Column(DateTime(), onupdate=func.now())
+
+    reviews = db.relationship(
+        'Review', back_populates='shopper', cascade='all, delete-orphan')
+    serialize_rules =('-shopper.reviews',)
+
+    plants = association_proxy('reviews', 'plant',
+                                 creator=lambda project_obj: Review(project=project_obj))
+
+    @validates('first_name', 'last_name')
+    def validate_rating(self, key, value):
+        if value not in range(1,6):
+            raise ValueError('Name must be greater than 5 characters')
+        return value
+    
+
+
+    def __repr__(self):
+        return f'Id: {self.id} - Plant_Id: {self.plant_id} - reviews: {self.reviews}'
