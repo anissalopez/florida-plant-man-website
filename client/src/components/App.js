@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
+import Test from "./Test"
 
 import PlantViews from "./PlantViews";
 import PlantDetail from "./PlantDetail";
 import DrawerAppBar from "./Nav";
+import ReviewList from "./ReviewList"
 
 
 const App = () => {
@@ -42,10 +44,13 @@ const App = () => {
       
       <div>
       <DrawerAppBar />
+      
         <Routes>
           <Route exact path="/" element={<HomePage plants={plants}/>} />
+          <Route exact path="/test" element={<Test />} />
           <Route exact path="/plants" element={<PlantViews plants={plants}/>} />
           <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading} fetchError={fetchError} isLoading={isLoading}/>} />
+          {/* <Route exact path="/reviews" element={<ReviewList />} /> */}
         </Routes>
         </div>
       }

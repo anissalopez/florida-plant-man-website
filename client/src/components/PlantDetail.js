@@ -9,13 +9,14 @@ import Loading from "./Loading"
 
 
 
+
 function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   const { id } = useParams();
   const [plant, setPlant] = useState('');
   const [mainImg, setMainImg] = useState('')
+  const [img, setImg] = useState('')
   
   
- 
   useEffect(() => {
     const fetchPlant = async () => {
         try{
@@ -38,6 +39,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
    console.log(e.target.src)
     setMainImg(e.target.src)
  }
+
   
   return (
     <>

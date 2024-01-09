@@ -22,7 +22,14 @@ class Plant(db.Model, SerializerMixin):
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
-    @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', description)
+    reviews = db.relationship(
+        'Review', back_populates='plant', cascade='all, delete-orphan')
+    
+
+    serialize_rules =('-reviews.plant',)
+
+
+    @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', 'description')
     def validate_inputs(self, key, value):  
         if len(value) < 5:
             raise ValueError('Input must be greater than 5 characters')
@@ -44,3 +51,32 @@ class Plant(db.Model, SerializerMixin):
     
     def __repr__(self):
         return f'Id: {self.id} - Name: {self.name} - Qty:{self.qty} - price:{self.price}'
+
+
+class Review(db.Model, SerializerMixin):
+    __tablename__ ='reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    plant_id = db.Column(db.Integer, db.ForeignKey('plants.id'))
+    rating = db.Column(db.Integer)
+    comment = db.Column(db.String)
+    created_at = db.Column(DateTime(), server_default=func.now())
+    updated_at = db.Column(DateTime(), onupdate=func.now())
+
+    plant = db.relationship('Plant', back_populates='reviews')
+    serialize_rules =('-plant.reviews',)
+
+    @validates('rating')
+    def validate_rating(self, key, value):
+        if value not in range(1,6):
+            raise ValueError('Rating must be between 1 and 5')
+        return value
+    
+    @validates('comment')
+    def validate_comment(self, key, value):
+        if len(value) < 5:
+            raise ValueError('Comment must be at least 5 characters')
+        return value
+
+    def __repr__(self):
+        return f'Id: {self.id} - Plant_Id: {self.plant_id} - PlantName: {self.plant.name} - Rating: {self.rating}'

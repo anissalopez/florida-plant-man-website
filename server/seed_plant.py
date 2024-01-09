@@ -2,23 +2,40 @@
 import random
 from app import app
 from models import db, Plant
+import os
+import base64
 
 if __name__ == '__main__':
     with app.app_context():
+        
+        image_directory = os.path.join(app.config["Images"])
+        image_files = os.listdir(image_directory)
+
+        images = {}
+        for filename in image_files:
+            file_path = os.path.join(image_directory, filename)
+            with open(file_path, 'rb') as f:
+                encoded_image = base64.b64encode(f.read()).decode('utf-8')
+                encoded_image = encoded_image.replace('\n', '')
+                image_url = 'data:image/jpg;base64,' + encoded_image
+               
+                images[filename] = image_url
+     
+      
+        ant1 = images['ant1.jpg']
+        ant2 = images['ant2.jpg']
+        ant3 = images['ant3.jpg']
+        burl1 = images['burl1.jpg']
+        burl2 = images['burl2.jpg']
+        burl3 = images['burl3.jpg']
+        thai1 = images['thai1.jpg']
+        thai2 = images['thai2.jpg']
+        thai3 = images['thai3.jpg']
+        syn1 = images['syn1.jpg']
+        syn2 = images['syn2.jpg']
+        syn3 = images['syn3.jpg']
         sun = "bright, indirect sunlight for 6-8 hours daily"
         water = "water thorougly once per week, allowing top layer of soil to dry out completely in between waterings."
-        ant1 ="https://i.etsystatic.com/46082082/r/il/3a18d1/5453178392/il_fullxfull.5453178392_a88c.jpg"
-        ant2="https://i.etsystatic.com/46082082/r/il/b99171/5453178244/il_fullxfull.5453178244_omxc.jpg"
-        ant3="https://i.etsystatic.com/46082082/r/il/9ae225/5453178548/il_fullxfull.5453178548_l9a0.jpg"
-        montthai1 ="https://i.etsystatic.com/46082082/r/il/b0fb8c/5450792352/il_fullxfull.5450792352_glq5.jpg"
-        montthai2="https://i.etsystatic.com/46082082/r/il/283717/5498917375/il_fullxfull.5498917375_kr6s.jpg"
-        montthai3="https://i.etsystatic.com/46082082/r/il/fa8ad6/5498917591/il_fullxfull.5498917591_eg4c.jpg"
-        syn1="https://i.etsystatic.com/46082082/r/il/edcefa/5475002173/il_fullxfull.5475002173_iost.jpg"
-        syn2="https://i.etsystatic.com/46082082/r/il/9f2c6a/5475002321/il_fullxfull.5475002321_b8ds.jpg"
-        syn3="https://i.etsystatic.com/46082082/r/il/a33f8b/5475002421/il_fullxfull.5475002421_ibc0.jpg"
-        mont1="https://i.etsystatic.com/46082082/r/il/16d248/5400587794/il_fullxfull.5400587794_re3h.jpg"
-        mont2="https://i.etsystatic.com/46082082/r/il/c8040d/5400588006/il_fullxfull.5400588006_qa4g.jpg"
-        mont3="https://i.etsystatic.com/46082082/r/il/a99203/5400588164/il_fullxfull.5400588164_ssgr.jpg"
         antdesc= """The new Anthurium 'Michelle' is  said to have been named after the "Anthurium Doctor" Jeff Block's wife, 
                 Michelle.These new hybrids are vigorous plants with bold colors ranging from burgundy-purples to red-browns! 
                 As the foliage matures, their hues grow richer and the color on the veins more pronounced. Even more unique is that 
@@ -44,13 +61,13 @@ if __name__ == '__main__':
                             sun=sun, image1=ant1, image2=ant2, image3=ant3, 
                             qty=2, description=antdesc)
             plant2 = Plant(name="Monstera Thai Constellation", price='129.00', water=water, 
-                            sun=sun, image1=montthai1, image2=montthai2, image3=montthai3,
+                            sun=sun, image1=thai1, image2=thai2, image3=thai3,
                             qty=1, description=montthaidesc)
             plant3 = Plant(name="Syngonium Podophyllum Aurea", price='49.99', water=water, 
                             sun=sun, image1=syn1, image2=syn2, image3=syn3,
                             qty=4, description=syndesc)
             plant4 = Plant(name="Monstera Burle Marx Flame", price='599.99', water=water, 
-                            sun=sun, image1=mont1, image2=mont2, image3=mont3,
+                            sun=sun, image1=burl1, image2=burl2, image3=burl3,
                             qty=4, description=burldesc)
             plants.extend([plant1, plant2, plant3, plant4])
             db.session.add_all(plants)
