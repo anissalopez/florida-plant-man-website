@@ -1,11 +1,9 @@
 .container{
-    display:grid;
-    grid-template-columns: 10% 40% 30%;
     margin-top:10%;
-    background-color: f1f1f1;
+    background-color: #f1f1f1;
     align-items: center;
-    justify-content: center;
- 
+    justify-content: center; 
+    width: 60vw;
 }
 
 .sideimgs{
@@ -18,15 +16,14 @@
 .sideimgs div{
     display: flex;
     justify-content: space-between;
-    height:30%;
-    align-items: left;
+    height:32%;
+    width: 95%;
 
 }
 .sideimgs img{
     height:100%;
     width: 100%;
     border-radius:5px;
-    margin-left: 0;
     object-fit: cover;
 }
 
@@ -34,7 +31,7 @@
     height: 500px;
     display:flex;
     width:90%;
-    margin-left: 15px;
+    
     
 }
 
@@ -49,7 +46,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+    height:"500px"  
 }
 
 h2{
@@ -62,9 +59,7 @@ h2{
     color: #6DC01E;
     display: flex;
     align-items: center;
-    margin-right: 20px;
-    
-
+  
  }
 
 

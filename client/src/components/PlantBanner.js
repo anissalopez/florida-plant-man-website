@@ -1,5 +1,5 @@
 import styles from "../styles/PlantBanner.module.css";
-
+import Box from "@mui/material/Box";
 
 const PlantBanner = ({ plant }) => {
 
@@ -36,7 +36,6 @@ const PlantBanner = ({ plant }) => {
                         <td>{returnPolicy}</td>
                     </tr>
                 </tbody>
-
             </table>
             </section>
 

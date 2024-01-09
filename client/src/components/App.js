@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import HomePage from "./HomePage";
 import Test from "./Test"
-
 import PlantViews from "./PlantViews";
 import PlantDetail from "./PlantDetail";
-import DrawerAppBar from "./Nav";
-import ReviewList from "./ReviewList"
+import Nav from "./Nav";
 
-
-const App = () => {
+export default function App(){
   const [plants, setPlants] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [fetchError, setFetchError] = useState(null)
@@ -40,21 +38,19 @@ const App = () => {
       {isLoading && <h1>Page Loading...</h1>}
       {fetchError && <h1>{fetchError}</h1>}
       {!fetchError && !isLoading &&
-
-      
       <div>
-      <DrawerAppBar />
-      
-        <Routes>
-          <Route exact path="/" element={<HomePage plants={plants}/>} />
-          <Route exact path="/test" element={<Test />} />
-          <Route exact path="/plants" element={<PlantViews plants={plants}/>} />
-          <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading} fetchError={fetchError} isLoading={isLoading}/>} />
-          {/* <Route exact path="/reviews" element={<ReviewList />} /> */}
-        </Routes>
+        <Nav />
+        
+          <Routes>
+            <Route exact path="/" element={<HomePage plants={plants}/>} />
+            <Route exact path="/test" element={<Test />} />
+            <Route exact path="/plants" element={<PlantViews plants={plants}/>} />
+            <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading} fetchError={fetchError} isLoading={isLoading}/>} />
+            {/* <Route exact path="/reviews" element={<ReviewList />} /> */}
+          </Routes>
         </div>
       }
     </div>
-  )}
+  )};
 
-export default App;
+

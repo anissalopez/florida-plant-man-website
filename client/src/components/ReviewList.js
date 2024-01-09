@@ -1,16 +1,13 @@
 import React, {useEffect, useState } from "react";
+import Review from "./Review";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Review from "./Review"
-
-
 
 const ReviewList = () => {
 
     const [reviews, setReviews] = useState([])
     useEffect(()=> {
         const fetchReviews = async () => {
-         
           try{
               const response = await fetch("/reviews")
               if (!response.ok) throw Error('Error receiving data')
@@ -33,7 +30,7 @@ const ReviewList = () => {
 
       return (
         <Container>
-            <h2 className="homepage-headers">Featured Plants</h2>
+            <h2 className="homepage-headers">Reviews</h2>
         <Grid container spacing={4}>
             {reviewList}
         </Grid>
