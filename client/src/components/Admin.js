@@ -6,7 +6,7 @@ import AdminContent from "./AdminContent";
 import Box from "@mui/material/Box";
 
 
-export default function Admin(){
+export default function Admin({plants}){
     const [customers, setCustomers] = useState("")
   
 
@@ -31,7 +31,7 @@ export default function Admin(){
     return(
         <Box sx={{display:"flex"}}>
           <AdminPanel />
-          <AdminContent customers={customers}/>
+          <AdminContent customers={customers} plants={plants}/>
         </Box>
     )
 }

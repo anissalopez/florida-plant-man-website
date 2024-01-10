@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import LocalShippingRoundedIcon from '@mui/icons-material/LocalShippingRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
+import { RiPlantFill } from "react-icons/ri";
+
 
 const iconDisplay ={
     display:"flex", 
@@ -15,7 +17,7 @@ const iconDisplay ={
     
 }
 
-export default function AdminContent({customers}){
+export default function AdminContent({customers, plants}){
     return(
         <div className={styles.body}>
             <div className={styles.background}></div>
@@ -24,8 +26,8 @@ export default function AdminContent({customers}){
                     <p className={styles.header}>Plants</p>
  
                        <Box sx={iconDisplay}>
-                            <LocalShippingRoundedIcon fontSize="large" />
-                            <p>{customers.length}</p>
+                            <RiPlantFill fontSize="30px"/>
+                            <p>{plants.length}</p>
 
                        </Box>
                 </Box>

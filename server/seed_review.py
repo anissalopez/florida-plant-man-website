@@ -17,10 +17,10 @@ if __name__ == '__main__':
             print("Deleting existing data...")
             Review.query.delete()
             reviews = []
-            review1 = Review(plant_id=1, shopper_id=1, rating=5, comment=comment1)
-            review2 = Review(plant_id=1, shopper_id=2, rating=5, comment=comment2)
-            review3 = Review(plant_id=2, shopper_id=3, rating=5, comment=comment3)
-            review4 = Review(plant_id=3, shopper_id=4, rating=5, comment=comment4)
+            review1 = Review(plant_id=1, customer_id=1, rating=5, comment=comment1)
+            review2 = Review(plant_id=1, customer_id=2, rating=5, comment=comment2)
+            review3 = Review(plant_id=2, customer_id=3, rating=5, comment=comment3)
+            review4 = Review(plant_id=3, customer_id=4, rating=5, comment=comment4)
             
             reviews.extend([review1, review2, review3, review4])
             db.session.add_all(reviews)

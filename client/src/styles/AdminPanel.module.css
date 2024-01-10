@@ -1,11 +1,15 @@
-.div{
+.container {
     display:flex;
     flex-direction:column;
     align-items:left;
     width:25vw;
     justify-content:left;
     height:100vh;
-    background-color:#6DC01E;
+    /* background-image: linear-gradient(#6DC01E, #BED500 ); */
+    background-color: #6DC01E;
     color: white;
+}
 
+.container p{
+    font-size:24px;
 }
