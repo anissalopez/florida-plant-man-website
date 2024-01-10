@@ -6,6 +6,7 @@ import Test from "./Test"
 import PlantViews from "./PlantViews";
 import PlantDetail from "./PlantDetail";
 import Nav from "./Nav";
+import Admin from "./Admin";
 
 export default function App(){
   const [plants, setPlants] = useState([])
@@ -39,14 +40,14 @@ export default function App(){
       {fetchError && <h1>{fetchError}</h1>}
       {!fetchError && !isLoading &&
       <div>
-        <Nav />
+          <Nav />
         
           <Routes>
             <Route exact path="/" element={<HomePage plants={plants}/>} />
             <Route exact path="/test" element={<Test />} />
             <Route exact path="/plants" element={<PlantViews plants={plants}/>} />
             <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading} fetchError={fetchError} isLoading={isLoading}/>} />
-            {/* <Route exact path="/reviews" element={<ReviewList />} /> */}
+            <Route exact path="/admin" element={<Admin />} />
           </Routes>
         </div>
       }

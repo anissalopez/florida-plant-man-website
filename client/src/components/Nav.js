@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,7 +12,7 @@ import image from '../images/logo.png';
 
 
 export default function Nav() {
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         left: false
       });
     

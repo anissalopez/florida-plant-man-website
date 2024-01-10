@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
+
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -10,11 +12,23 @@ import image from '../images/logo.png'
 
 
 
+
 export default function TemporaryDrawer({toggleDrawer, state, setState}) {
     const [open, setOpen] = React.useState(true);
+    const navigate = useNavigate()
+
+
     const handleClick = () => {
     setOpen(!open);
     };
+
+    const handleNav = (e) => {
+        if (e.target.outerText === "Admin"){
+            navigate("/admin")
+        }
+    }
+
+
   
   const list = (anchor) => (
     <Box sx={{display:"flex-column"}}>
@@ -26,8 +40,7 @@ export default function TemporaryDrawer({toggleDrawer, state, setState}) {
         <Box sx={{width: 250, pt:"10px",}}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-        >
+        onKeyDown={toggleDrawer(anchor, false)}>
             <List>
                 {['Home', 'All Plants', 'Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
                 <ListItem key={text} disablePadding>
@@ -38,8 +51,8 @@ export default function TemporaryDrawer({toggleDrawer, state, setState}) {
                 ))}
             </List>
             <List>
-                {['About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
-                <ListItem key={text} disablePadding>
+                {['Admin', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
+                <ListItem  onClick={handleNav} key={text} disablePadding>
                     <ListItemButton >
                     <ListItemText  secondary={text} />
                     </ListItemButton>

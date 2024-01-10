@@ -19,6 +19,7 @@ class Plant(db.Model, SerializerMixin):
     image2 = db.Column(db.String, nullable=False)
     image3 = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
+
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
@@ -27,10 +28,7 @@ class Plant(db.Model, SerializerMixin):
     shoppers = association_proxy('reviews', 'shopper',
                                  creator=lambda project_obj: Review(project=project_obj))
 
-    
-
     serialize_rules =('-reviews.plant',)
-
 
     @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', 'description')
     def validate_inputs(self, key, value):  
@@ -61,13 +59,16 @@ class Review(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plants.id'))
+    shopper_id = db.Column(db.Integer, db.ForeignKey('shoppers.id'))
     rating = db.Column(db.Integer)
     comment = db.Column(db.String)
+
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     plant = db.relationship('Plant', back_populates='reviews')
     shopper = db.relationship('Shopper', back_populates='reviews')
+
     serialize_rules =('-plant.reviews', '-shopper.reviews')
 
     @validates('rating')
@@ -93,26 +94,22 @@ class Shopper(db.Model, SerializerMixin):
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
 
-
-    
-    
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
         'Review', back_populates='shopper', cascade='all, delete-orphan')
-    serialize_rules =('-shopper.reviews',)
-
+ 
     plants = association_proxy('reviews', 'plant',
                                  creator=lambda project_obj: Review(project=project_obj))
+    
+    serialize_rules =('-shopper.reviews',)
 
     @validates('first_name', 'last_name')
     def validate_rating(self, key, value):
-        if value not in range(1,6):
-            raise ValueError('Name must be greater than 5 characters')
+        if not value:
+            raise ValueError('Please enter a valid name')
         return value
     
-
-
     def __repr__(self):
-        return f'Id: {self.id} - Plant_Id: {self.plant_id} - reviews: {self.reviews}'
+        return f'Name: {self.first_name} - reviews: {self.reviews} -plants:{self.plants}'

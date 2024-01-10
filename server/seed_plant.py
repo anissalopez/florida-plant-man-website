@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import random
 from app import app
 from models import db, Plant
 import os

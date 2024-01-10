@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 import json
-from flask import make_response, request, send_from_directory, Response, jsonify
+from flask import make_response, request, send_from_directory
 from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
 import os
 # Add your model imports
-from models import Plant, Review
+from models import Plant, Review, Shopper
 import base64
 
 
@@ -116,10 +116,17 @@ class Reviews(Resource):
             response = make_response({"An error occurred": exc}, 400)
             return response
 
+class Shoppers(Resource):
+    def get(self):
+        shoppers = [shoppers.to_dict() for shoppers in Shopper.query.all()]
 
+        response = make_response(shoppers, 200)
+        return response
+    
 api.add_resource(Plants, '/plants')
 api.add_resource(PlantById, '/plants/<int:id>')
 api.add_resource(Reviews, '/reviews')
+api.add_resource(Shoppers, '/shoppers')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

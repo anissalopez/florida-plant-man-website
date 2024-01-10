@@ -1,0 +1,10 @@
+.div{
+    display:"flex";
+    flex-direction:"column";
+    align-items:"left";
+    width:"25vw";
+    justify-content:"left";
+    height:"100vh";
+    background-color:"#6DC01E";
+  
+}
