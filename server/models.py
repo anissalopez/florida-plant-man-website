@@ -25,7 +25,7 @@ class Plant(db.Model, SerializerMixin):
 
     reviews = db.relationship(
         'Review', back_populates='plant', cascade='all, delete-orphan')
-    shoppers = association_proxy('reviews', 'shopper',
+    customers = association_proxy('reviews', 'customer',
                                  creator=lambda project_obj: Review(project=project_obj))
 
     serialize_rules =('-reviews.plant',)
@@ -59,7 +59,7 @@ class Review(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plants.id'))
-    shopper_id = db.Column(db.Integer, db.ForeignKey('shoppers.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
     rating = db.Column(db.Integer)
     comment = db.Column(db.String)
 
@@ -67,9 +67,9 @@ class Review(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     plant = db.relationship('Plant', back_populates='reviews')
-    shopper = db.relationship('Shopper', back_populates='reviews')
+    customer = db.relationship('Customer', back_populates='reviews')
 
-    serialize_rules =('-plant.reviews', '-shopper.reviews')
+    serialize_rules =('-plant.reviews', '-customer.reviews')
 
     @validates('rating')
     def validate_rating(self, key, value):
@@ -87,8 +87,8 @@ class Review(db.Model, SerializerMixin):
         return f'Id: {self.id} - Plant_Info <{self.plant_id}> - PlantName: {self.plant} - Rating: {self.rating}'
     
 
-class Shopper(db.Model, SerializerMixin):
-    __tablename__ ='shoppers'
+class Customer(db.Model, SerializerMixin):
+    __tablename__ ='customers'
 
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
@@ -98,12 +98,12 @@ class Shopper(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='shopper', cascade='all, delete-orphan')
+        'Review', back_populates='customer', cascade='all, delete-orphan')
  
     plants = association_proxy('reviews', 'plant',
                                  creator=lambda project_obj: Review(project=project_obj))
     
-    serialize_rules =('-shopper.reviews',)
+    serialize_rules =('-customer.reviews',)
 
     @validates('first_name', 'last_name')
     def validate_rating(self, key, value):

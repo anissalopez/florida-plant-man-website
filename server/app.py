@@ -7,7 +7,7 @@ from flask_restful import Resource
 from config import app, db, api
 import os
 # Add your model imports
-from models import Plant, Review, Shopper
+from models import Plant, Review, Customer
 import base64
 
 
@@ -116,9 +116,9 @@ class Reviews(Resource):
             response = make_response({"An error occurred": exc}, 400)
             return response
 
-class Shoppers(Resource):
+class Customers(Resource):
     def get(self):
-        shoppers = [shoppers.to_dict() for shoppers in Shopper.query.all()]
+        shoppers = [customers.to_dict() for customers in Customer.query.all()]
 
         response = make_response(shoppers, 200)
         return response
@@ -126,7 +126,7 @@ class Shoppers(Resource):
 api.add_resource(Plants, '/plants')
 api.add_resource(PlantById, '/plants/<int:id>')
 api.add_resource(Reviews, '/reviews')
-api.add_resource(Shoppers, '/shoppers')
+api.add_resource(Customers, '/customers')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
