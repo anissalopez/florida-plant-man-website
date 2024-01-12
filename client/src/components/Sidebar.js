@@ -18,9 +18,9 @@ export default function TemporaryDrawer({toggleDrawer, state, setState}) {
     const navigate = useNavigate()
 
 
-    const handleClick = () => {
-    setOpen(!open);
-    };
+    // const handleClick = () => {
+    // setOpen(!open);
+    // };
 
     const handleNav = (e) => {
         if (e.target.outerText === "Admin"){

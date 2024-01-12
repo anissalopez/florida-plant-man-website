@@ -13,3 +13,8 @@
 .container p{
     font-size:24px;
 }
+
+.accordion-values{
+    font-size: 24px;
+    margin-left: 30px;
+}

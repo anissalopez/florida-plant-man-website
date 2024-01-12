@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 import json
-from flask import make_response, request, send_from_directory
+from flask import make_response, request, send_from_directory, jsonify
 from flask_restful import Resource
+from werkzeug.utils import secure_filename
+import uuid
+
 
 # Local imports
 from config import app, db, api
@@ -10,6 +13,21 @@ import os
 from models import Plant, Review, Customer
 import base64
 
+def encodeImages():
+    image_directory = os.path.join(app.config["Images"])
+    image_files = os.listdir(image_directory)
+
+    images = {}
+    for filename in image_files:
+            file_path = os.path.join(image_directory, filename)
+            with open(file_path, 'rb') as f:
+                encoded_image = base64.b64encode(f.read()).decode('utf-8')
+                encoded_image = encoded_image.replace('\n', '')
+                image_url = 'data:image/jpg;base64,' + encoded_image
+               
+                images[filename] = image_url
+
+    return images
 
 @app.route('/test')
 def index():
@@ -36,52 +54,126 @@ def index():
     
 class Plants(Resource):
     def get(self):
-        plants = [plant.to_dict() for plant in Plant.query.all()]
+        encoded_images = encodeImages()
+        plants = Plant.query.all()
+        plant_data = []
 
-        response = make_response(plants, 200)
-        return response
+        for plant in plants:
+              plant_info = {
+                "id": plant.id,
+                "name": plant.name,
+                "description": plant.description,
+                "price": plant.price,
+                "qty": plant.qty,
+                "sun": plant.sun,
+                "water": plant.water,
+                "reviews": [],  
+                "image1": encoded_images[plant.image1], 
+                "image2": encoded_images[plant.image2], 
+                "image3": encoded_images[plant.image3],  
+            }
+              
+              plant_data.append(plant_info)
+
+      
+
+        return make_response(plant_data, 200)
+      
+    
     
     def post(self):
-        data = request.get_json()
-
-        try:
-            name = data['name']
-            price = data['price']
-            care_instructions = data.get('care_instructions')
-            qty = data['qty']
-            images = data['images']
-
-          
-            new_plant = Plant(
-                name=name,
-                price=price,
-                care_instructions=care_instructions,  
-                qty=qty,
-                images=images
-            )
+        default_value = '0'
+        
 
     
-            db.session.add(new_plant)
+        image_directory = app.config["Images"]
+        images = []
+      
+        
+
+        uploaded_files = [
+            request.files.get('image1', default_value),
+            request.files.get('image2', default_value),
+            request.files.get('image3', default_value)
+        ]
+
+        unique_str = str(uuid.uuid4())[:8]
+
+        for image in uploaded_files:
+            if image:
+                # Generate a unique filename for each image
+                filename = f"{unique_str}_{secure_filename(image.filename)}"
+                images.append(filename)
+                # Specify the full path to save the image
+                image_path = os.path.join(image_directory, filename)
+                # Save the image
+                image.save(image_path)
+                # images.append(image_path)
+
+        # try:
+        name = request.form.get('name', default_value)
+        price = request.form.get('price', default_value)
+        description = request.form.get('description', default_value)
+        water = request.form.get('water', default_value)
+           
+        sun = request.form.get('sun', default_value)
+        qty = request.form.get('qty', default_value)
+        image1 = images[0]
+        image2 = images[1]
+        image3 = images[2]
+
+          
+        new_plant = Plant(
+                name=name,
+                price=price,
+                description=description,
+                qty=qty,
+                image1=image1,
+                image2=image2,
+                image3=image3,
+                water=water,
+                sun=sun
+            )
+            
+           
+        db.session.add(new_plant)
+        try:
             db.session.commit()
-
-
-            response_data = make_response(new_plant.to_dict(), 201)
-            return response_data
+            return make_response(new_plant.to_dict(), 201)
         except Exception as exc:
-            response = make_response({"An error occurred": exc}, 400)
-            return response
+                db.session.rollback()  # Rollback changes if an error occurs
+                return make_response({"An error occurred": str(exc)}, 400)
+        
+        # except Exception as exc:
+        #     response = make_response({"An error occurred": exc}, 400)
+        #     return response
 
 
 class PlantById(Resource):
     
     def get(self, id):
-        result = None
+        encoded_images = encodeImages()
+
+        plant_info = None
         for plant in Plant.query.all():
             if plant.id == id:
-                result = plant.to_dict()
+                plant_info = {
+                "id": plant.id,
+                "name": plant.name,
+                "description": plant.description,
+                "price": plant.price,
+                "qty": plant.qty,
+                "sun": plant.sun,
+                "water": plant.water,
+                "reviews": [],  
+                "image1": encoded_images[plant.image1], 
+                "image2": encoded_images[plant.image2], 
+                "image3": encoded_images[plant.image3],  
+            }
+
 
         try:
-            response = make_response(result, 200)
+            response = make_response(plant_info, 200)
             return response
         except Exception as exc:
             response = make_response({"Error": exc}, 500)

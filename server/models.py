@@ -36,11 +36,11 @@ class Plant(db.Model, SerializerMixin):
             raise ValueError('Input must be greater than 5 characters')
         return value
     
-    @validates('qty')
-    def validate_qty(self, key, value):
-        if value < 1:
-            raise ValueError('Must enter a value greater than 1')
-        return value
+    # @validates('qty')
+    # def validate_qty(self, key, value):
+    #     if value < 1:
+    #         raise ValueError('Must enter a value greater than 1')
+    #     return value
     
     @validates('price')
     def validate_price(self, key, value):

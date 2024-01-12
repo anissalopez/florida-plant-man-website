@@ -28,6 +28,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
             if (!response.ok) throw Error('Error receiving data')
             const plantData = await response.json()
             setPlant(plantData)
+            console.log(plantData)
             setMainImg(plantData.image1)
             setFetchError(null)
         }catch(err){
