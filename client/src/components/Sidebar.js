@@ -13,7 +13,7 @@ import image from '../images/logo.png'
 
 
 
-export default function TemporaryDrawer({toggleDrawer, state, setState}) {
+export default function TemporaryDrawer({toggleDrawer, state, setState, handlePlantNav}) {
     const [open, setOpen] = React.useState(true);
     const navigate = useNavigate()
 
@@ -23,10 +23,12 @@ export default function TemporaryDrawer({toggleDrawer, state, setState}) {
     // };
 
     const handleNav = (e) => {
-        if (e.target.outerText === "Admin"){
+        if (e.target.textContent === "Admin"){
             navigate("/admin")
         }
+       
     }
+   
 
 
   
@@ -43,7 +45,7 @@ export default function TemporaryDrawer({toggleDrawer, state, setState}) {
         onKeyDown={toggleDrawer(anchor, false)}>
             <List>
                 {['Home', 'All Plants', 'Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
-                <ListItem key={text} disablePadding>
+                <ListItem onClick={handlePlantNav}key={text} disablePadding>
                     <ListItemButton>
                     <ListItemText primary={text} />
                     </ListItemButton>

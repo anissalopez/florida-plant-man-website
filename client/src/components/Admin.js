@@ -19,7 +19,7 @@ export default function Admin({plants}){
                 throw Error("Error fetching data")
             }
             setCustomers(data)
-            console.log(data)
+    
             
         }
         fetchCustomers()

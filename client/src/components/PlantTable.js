@@ -17,6 +17,8 @@ const columns = [
 export default function PlantTable({plants}) {
 
   return (
+
+
     <div style={{ height: 400, width: '100%', marginTop:"200px" }}>
       <DataGrid
         rows={plants}
@@ -30,5 +32,6 @@ export default function PlantTable({plants}) {
         checkboxSelection
       />
     </div>
+
   );
 }

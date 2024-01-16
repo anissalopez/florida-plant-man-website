@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-// import formSchema from "./plantformSchema";
 
-// import TextField from '@mui/material/TextField';
-// import Button from '@mui/material/Button';
-// import { FormControl, FormLabel } from '@mui/material';
-
-// import AdminPanel from "./AdminPanel";
 
 export default function PlantForm({ plants, setPlants}){
     const navigate = useNavigate()
@@ -29,8 +23,7 @@ export default function PlantForm({ plants, setPlants}){
       image3:yup.mixed()
           .required("Required"),
         
-      description:yup.string().min(5).required("Description must be min of 5 characters")
-          
+      description:yup.string().min(5).required("Description must be min of 5 characters")  
       });
   
   

@@ -11,18 +11,21 @@ import Typography from '@mui/material/Typography';
 
 import Grid from "@mui/material/Grid";
 
-export default function FeaturedPlant({ plant }){
+export default function PlantCard({ plant, xs }){
     return (
-        <Grid item xs={3}>
+        <Grid item xs={xs}>
             <Card
                 sx={{
                     backgroundColor: "#f1f1f1",
                     boxShadow: 0,
-                    height: "600px"
+                    height: "600px",
+             
                 }}>
+             
                 <Link style={{textDecoration:'none', color: 'black'}} 
                         to={`/plants/${plant.id}`} 
                         key={plant.id}> 
+            
                     <CardMedia
                         component="img"
                         alt="featured plant"
@@ -32,33 +35,51 @@ export default function FeaturedPlant({ plant }){
                             height:"400px"
                         }}
                     />
-                    <Box sx={{display:"flex", flexDirection:"row", 
-                            justifyContent:"center"
+                        <Box sx={{display:"flex", flexDirection:"row", 
+                            justifyContent:"center",
+                            height:"125px"
                             }}>
-                        <CardContent sx={{marginBottom:0}}>
+                   
+                        <CardContent sx={{marginBottom:"20px"}}>
                                 <Typography sx={{fontSize:"larger", fontFamily: "Flower"}}>
                                     {plant.name}
                                 </Typography>   
                         </CardContent>
-                    </Box>  
-            
+                        </Box>
+                 
                 </Link>
-                    <Box sx={{
+                <Box sx={{
                         display: "flex",
-                        justifyContent: "center",
-                        alignContent: "center",
-                        height: "auto"
+                       justifyContent:"space-between",
+                     
+                      
+                       
+                       
+                     
+                        
                     }}>
-                        <CardActions>
+                       
+
+                     
+                        
+                     
+                          
+
+                            <div  style={{display:"flex", alignSelf:"flex-end", fontSize:"24px"}}>${plant.price}</div>
                             <Button sx={{
+                                display:"flex",
+                             
                                 backgroundColor: "#BED500",
                                 border: "#BED500",
                                 color:"black",
-                                fontFamily: "Flower",}}>
+                                fontFamily: "Flower",
+                                marginRight:"20px"
+                               }}>
                                 Add to Cart
                             </Button>
-                        </CardActions> 
-                    </Box>  
+                      
+                        </Box>
+                   
             </Card>  
         </Grid>
     )};

@@ -1,14 +1,15 @@
 import * as React from 'react';
 
-import FeaturedPlant from "./FeaturedPlant";
+
 
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import PlantCard from './PlantCard';
 
 
 export default function FeaturedPlantList({plants, handlePlantDetail}){
     const featured_plants = plants.slice(-4).map((plant) => (
-         <FeaturedPlant xs={3} handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/>
+         <PlantCard xs="3" handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/>
     ));
     return(
         <Container>

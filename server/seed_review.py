@@ -5,7 +5,7 @@ from models import db, Review
 
 if __name__ == '__main__':
     with app.app_context():
-         comment1= """"Item is exactly as described. Packaged very well and plant started putting out a new 
+         comment1= """Item is exactly as described. Packaged very well and plant started putting out a new 
                         leaf right away. Roots also looked very healthy!"""
          
          comment2="""Awesome plant from a great seller with excellent communication"""

@@ -192,10 +192,27 @@ class Reviews(Resource):
 
 class Customers(Resource):
     def get(self):
-        shoppers = [customers.to_dict() for customers in Customer.query.all()]
+        customers = [customers.to_dict() for customers in Customer.query.all()]
 
-        response = make_response(shoppers, 200)
+        response = make_response(customers, 200)
         return response
+    
+    def post(self):
+        data = request.get_json()
+        print(data)
+
+        new_customer = Customer(first_name=data.get("first_name", "0"), last_name=data.get("last_name", "0"))
+        db.session.add(new_customer)
+
+        try:
+            db.session.commit()
+            response = make_response(new_customer.to_dict(), 201)
+            return response
+        except Exception as exc:
+            db.session.rollback()
+            
+            response = make_response({"Error creating customer": exc}, 400)
+
     
 api.add_resource(Plants, '/plants')
 api.add_resource(PlantById, '/plants/<int:id>')

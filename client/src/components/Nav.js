@@ -11,7 +11,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import image from '../images/logo.png';
 
 
-export default function Nav() {
+export default function Nav({handlePlantNav}) {
     const [state, setState] = useState({
         left: false
       });
@@ -26,6 +26,10 @@ export default function Nav() {
       <AppBar sx={{backgroundColor: "#f1f1f1"}}>
         <Toolbar>
             <Box sx={{flexGrow:1}}>
+            {/* <IconButton>
+              <img style={{display:"flex"}}src={image} alt="company logo" width="50px"  ></img>
+              </IconButton> */}
+              
               <IconButton
                   size="large"
                   edge="start"
@@ -34,12 +38,12 @@ export default function Nav() {
                   onClick={toggleDrawer("left", true)}>
               <MenuRoundedIcon />
               </IconButton>
-              <img src={image} alt="company logo" width="50px"  ></img>
+              
           </Box>
-          <IconButton size="large" sx={{color:"#377E30" }}>
+          <IconButton  sx={{color:"#377E30" }}>
           <ShoppingCartIcon />
           </IconButton>
-          <TemporaryDrawer toggleDrawer={toggleDrawer} state={state} setState={setState}></TemporaryDrawer>
+          <TemporaryDrawer handlePlantNav={handlePlantNav} toggleDrawer={toggleDrawer} state={state} setState={setState}></TemporaryDrawer>
         </Toolbar>
       </AppBar>
   )};

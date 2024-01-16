@@ -4,14 +4,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import Accordion from '@mui/material/Accordion';
 
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 
-import Button from '@mui/material/Button';
 
-import AddIcon from '@mui/icons-material/Add';
 
 import styles from "../styles/AdminPanel.module.css";
 
@@ -44,6 +39,13 @@ export default function AdminPanel(){
       console.log("View Plants Clicked"); 
       navigate("/admin/planttable");
     }
+    if (e.target.textContent === 'View Customers') {
+      navigate("/admin/customertable");
+    }
+    if (e.target.textContent === 'Add Customers') {
+      navigate("/admin/customerform");
+    }
+    
   
 
   }
@@ -55,7 +57,7 @@ export default function AdminPanel(){
         {['Plants', 'View Plants', 'Add Plants', 'Customers', 'View Customers', 'Add Customers', 'Orders', 'Account'].map((text, index) => {
             
 
-                if (text === 'View Plants' || text == 'Add Plants'){
+                if (text === 'View Plants' || text === 'Add Plants'){
 
                         if(open.plants){
                           return (
@@ -73,7 +75,7 @@ export default function AdminPanel(){
                         }
                       }
 
-                  if (text === 'View Customers' || text == 'Add Customers'){
+                  if (text === 'View Customers' || text === 'Add Customers'){
 
                         if(open.customers){
                           return (
