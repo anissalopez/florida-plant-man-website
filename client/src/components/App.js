@@ -8,6 +8,7 @@ import PlantDetail from "./PlantDetail";
 import Nav from "./Nav";
 import Admin from "./Admin";
 import PlantForm from "./PlantForm";
+import PlantTable from "./PlantTable";
 
 export default function App(){
   const [plants, setPlants] = useState([])
@@ -50,6 +51,7 @@ export default function App(){
             <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading} fetchError={fetchError} isLoading={isLoading}/>} />
             <Route exact path="/admin" element={<Admin plants={plants}/>} />
             <Route exact path="/admin/plantform" element={<PlantForm setPlants={setPlants} plants={plants}/>} />
+            <Route exact path="/admin/planttable" element={<PlantTable setPlants={setPlants} plants={plants}/>} />
           </Routes>
         </div>
       }

@@ -13,7 +13,7 @@ class Plant(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     water = db.Column(db.String, nullable=False)
     sun = db.Column(db.String, nullable=False)
-    qty = db.Column(db.Integer, db.CheckConstraint('qty > 1'))
+    qty = db.Column(db.Integer)
     price = db.Column(db.String, nullable=False)
     image1 = db.Column(db.String, nullable=False)
     image2 = db.Column(db.String, nullable=False)
@@ -36,11 +36,11 @@ class Plant(db.Model, SerializerMixin):
             raise ValueError('Input must be greater than 5 characters')
         return value
     
-    # @validates('qty')
-    # def validate_qty(self, key, value):
-    #     if value < 1:
-    #         raise ValueError('Must enter a value greater than 1')
-    #     return value
+    @validates('qty')
+    def validate_qty(self, key, value):
+        if int(value) < 1:
+            raise ValueError('Must enter a value greater than 1')
+        return value
     
     @validates('price')
     def validate_price(self, key, value):

@@ -2,32 +2,38 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { FormControl, FormLabel } from '@mui/material';
+// import formSchema from "./plantformSchema";
 
-import AdminPanel from "./AdminPanel";
+// import TextField from '@mui/material/TextField';
+// import Button from '@mui/material/Button';
+// import { FormControl, FormLabel } from '@mui/material';
 
-export default function PlantForm({ plants, setPlants }){
+// import AdminPanel from "./AdminPanel";
+
+export default function PlantForm({ plants, setPlants}){
     const navigate = useNavigate()
     const formSchema = yup.object().shape({
-        name: yup.string().min(5).required("Must enter plant name"),
-        water: yup.string().min(5).required("Must enter water requirements"),
-        sun: yup.string().min(5).required("Must enter min sun requirements"),
-        qty: yup.number().positive().integer().required("Must enter qty"),
-        price: yup.string().required("Price must be in string format with two decimal points i.e 3.44"),
-        image1:yup.mixed()
-            .required("Required"),
-      
-        image2:yup.mixed()
-            .required("Required"),
+      name: yup.string().min(5).required("Must enter plant name"),
+      water: yup.string().min(5).required("Must enter water requirements"),
+      sun: yup.string().min(5).required("Must enter min sun requirements"),
+      qty: yup.number().positive().integer().required("Must enter qty"),
+      price: yup.string()
+      .matches(/^\d+\.[0-9][0-9]$/, "Price must be in string format with two decimal points i.e 3.44")
+      .required("Price must be in string format with two decimal points i.e 3.44"),
+      image1:yup.mixed()
+          .required("Required"),
     
-        image3:yup.mixed()
-            .required("Required"),
+      image2:yup.mixed()
+          .required("Required"),
+  
+      image3:yup.mixed()
+          .required("Required"),
+        
+      description:yup.string().min(5).required("Description must be min of 5 characters")
           
-        description:yup.string().min(5).required("Description must be min of 5 characters")
-            
-        });
+      });
+  
+  
     const formik = useFormik({
         initialValues: {
           name: '',
@@ -40,11 +46,9 @@ export default function PlantForm({ plants, setPlants }){
           sun: '',
           qty: '',
         },
-        validationSchema: formSchema, // Define your form schema here
-        onSubmit: async (values) => {
-            // Your code to handle image uploads via API
-            // You can use the FormData API to send the images to the server
-            console.log(values)
+        validationSchema: formSchema, 
+        onSubmit: 
+        async (values) => {
             const formData = new FormData();
             for (let value in values) {
                 formData.append(value, values[value]);
@@ -53,23 +57,11 @@ export default function PlantForm({ plants, setPlants }){
             for (let property of formData.entries()) {
                 console.log(property[0], property[1]);
               }
-            // formData.append('name', values.name);
-            // formData.append('price', values.price);
-            // formData.append('description', values.description);
-            // formData.append('water', values.water);
-            // formData.append('sun', values.sun);
-            // formData.append('qty', values.qty);
-            // formData.append('image1', values.image1);
-            // formData.append('image2', values.image2);
-            // formData.append('image3', values.image3);
-
-            console.log(formData.values)
       
             try {
 
               const response = await fetch('/plants', {
-                method: 'POST',
-                
+                method: 'POST',    
                 mode:'same-origin',
                 body: formData,
               });
@@ -78,11 +70,10 @@ export default function PlantForm({ plants, setPlants }){
                 for (let key in response) {
                     console.log('response: ', key, response[key]);
                   }
+                navigate('/admin')
               } else {
                 
             } 
-
-      
         }
         catch (error) {
             throw new Error('HTTP error: ', error)
@@ -91,7 +82,7 @@ export default function PlantForm({ plants, setPlants }){
 }});
       
   
-      const labels = ["Plant Name", "Price", "Description", "Image1", "Image2", "Image3", "Water Requirements", "Sun Requirements", "Qty"]
+    const labels = ["Plant Name", "Price", "Description", "Image1", "Image2", "Image3", "Water Requirements", "Sun Requirements", "Qty"]
 
 
     return (

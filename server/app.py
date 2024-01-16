@@ -13,7 +13,7 @@ import os
 from models import Plant, Review, Customer
 import base64
 
-def encodeImages():
+def encode_imgage_directory():
     image_directory = os.path.join(app.config["Images"])
     image_files = os.listdir(image_directory)
 
@@ -24,13 +24,11 @@ def encodeImages():
                 encoded_image = base64.b64encode(f.read()).decode('utf-8')
                 encoded_image = encoded_image.replace('\n', '')
                 image_url = 'data:image/jpg;base64,' + encoded_image
-               
                 images[filename] = image_url
-
     return images
 
-@app.route('/test')
-def index():
+# @app.route('/test')
+# def index():
         # image_path = os.path.join(app.config["Images"], "ant1.jpg")
         # image_directory = os.path.join(app.config["Images"])
         # image_files = os.listdir(image_directory)
@@ -48,13 +46,13 @@ def index():
                
         #         images[filename] = image 
         # return make_response(jsonify(images), 200)
-        breakpoint()
-        return send_from_directory(app.config['Images'], "ant1.jpg")
+        # breakpoint()
+        # return send_from_directory(app.config['Images'], "ant1.jpg")
     
     
 class Plants(Resource):
     def get(self):
-        encoded_images = encodeImages()
+        encoded_images = encode_imgage_directory()
         plants = Plant.query.all()
         plant_data = []
 
@@ -71,12 +69,8 @@ class Plants(Resource):
                 "image1": encoded_images[plant.image1], 
                 "image2": encoded_images[plant.image2], 
                 "image3": encoded_images[plant.image3],  
-            }
-              
+                }     
               plant_data.append(plant_info)
-
-      
-
         return make_response(plant_data, 200)
       
     
@@ -84,13 +78,9 @@ class Plants(Resource):
     def post(self):
         default_value = '0'
         
-
-    
         image_directory = app.config["Images"]
         images = []
-      
-        
-
+  
         uploaded_files = [
             request.files.get('image1', default_value),
             request.files.get('image2', default_value),
@@ -100,17 +90,15 @@ class Plants(Resource):
         unique_str = str(uuid.uuid4())[:8]
 
         for image in uploaded_files:
-            if image:
-                # Generate a unique filename for each image
+            try:
                 filename = f"{unique_str}_{secure_filename(image.filename)}"
                 images.append(filename)
-                # Specify the full path to save the image
                 image_path = os.path.join(image_directory, filename)
-                # Save the image
                 image.save(image_path)
-                # images.append(image_path)
+            
+            except Exception as exc: 
+                return make_response({"An error occurred saving image": str(exc)}, 400)
 
-        # try:
         name = request.form.get('name', default_value)
         price = request.form.get('price', default_value)
         description = request.form.get('description', default_value)
@@ -133,26 +121,20 @@ class Plants(Resource):
                 image3=image3,
                 water=water,
                 sun=sun
-            )
-            
-           
+            )   
         db.session.add(new_plant)
         try:
             db.session.commit()
             return make_response(new_plant.to_dict(), 201)
         except Exception as exc:
-                db.session.rollback()  # Rollback changes if an error occurs
+                db.session.rollback()  
                 return make_response({"An error occurred": str(exc)}, 400)
-        
-        # except Exception as exc:
-        #     response = make_response({"An error occurred": exc}, 400)
-        #     return response
-
+    
 
 class PlantById(Resource):
     
     def get(self, id):
-        encoded_images = encodeImages()
+        encoded_images = encode_imgage_directory()
 
         plant_info = None
         for plant in Plant.query.all():

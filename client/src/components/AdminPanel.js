@@ -24,10 +24,11 @@ export default function AdminPanel(){
      plants: false,
      customers: false
   })
-  console.log(open)
+
   
 
   const handleClick = (e) =>{
+    console.log(e)
   
     if (e.target.textContent === 'Plants'){
       setOpen({...open, plants:!(open.plants)})
@@ -36,8 +37,14 @@ export default function AdminPanel(){
       setOpen({...open, customers:!(open.customers)})
     }
     if (e.target.textContent === "Add Plants"){
+      console.log(e)
       navigate("/admin/plantform")
-  }
+    }
+    if (e.target.textContent === 'View Plants') {
+      console.log("View Plants Clicked"); 
+      navigate("/admin/planttable");
+    }
+  
 
   }
     const accordionValues = ['View Plants', 'Add Plants', 'View Customers', 'Add Customers']
