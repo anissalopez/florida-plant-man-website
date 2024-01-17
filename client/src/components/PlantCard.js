@@ -18,68 +18,46 @@ export default function PlantCard({ plant, xs }){
                 sx={{
                     backgroundColor: "#f1f1f1",
                     boxShadow: 0,
-                    height: "600px",
-             
+                    height: "800px",
+                   
+                 
                 }}>
              
                 <Link style={{textDecoration:'none', color: 'black'}} 
                         to={`/plants/${plant.id}`} 
                         key={plant.id}> 
-            
                     <CardMedia
                         component="img"
                         alt="featured plant"
                         image={plant.image1}
                         sx={{
                             borderRadius: 3,
-                            height:"400px"
+                            height:"500px"
                         }}
                     />
                         <Box sx={{display:"flex", flexDirection:"row", 
                             justifyContent:"center",
-                            height:"125px"
+                            height:"90px"
                             }}>
-                   
-                        <CardContent sx={{marginBottom:"20px"}}>
-                                <Typography sx={{fontSize:"larger", fontFamily: "Flower"}}>
-                                    {plant.name}
-                                </Typography>   
-                        </CardContent>
+                            <CardContent sx={{marginBottom:"20px"}}>
+                                    <Typography sx={{fontSize:"larger", fontFamily: "Flower"}}>
+                                        {plant.name}
+                                    </Typography>   
+                            </CardContent>
                         </Box>
-                 
                 </Link>
-                <Box sx={{
-                        display: "flex",
-                       justifyContent:"space-between",
-                     
-                      
-                       
-                       
-                     
-                        
-                    }}>
-                       
-
-                     
-                        
-                     
-                          
-
-                            <div  style={{display:"flex", alignSelf:"flex-end", fontSize:"24px"}}>${plant.price}</div>
+                <Box sx={{textAlign:"center"}}>
+                            <div style={{fontSize:"20px"}}>${plant.price}</div>
                             <Button sx={{
-                                display:"flex",
-                             
                                 backgroundColor: "#BED500",
                                 border: "#BED500",
                                 color:"black",
                                 fontFamily: "Flower",
-                                marginRight:"20px"
+                                marginTop:"20px"
                                }}>
                                 Add to Cart
                             </Button>
-                      
                         </Box>
-                   
             </Card>  
         </Grid>
     )};

@@ -8,8 +8,8 @@ import PlantCard from './PlantCard';
 
 
 export default function FeaturedPlantList({plants, handlePlantDetail}){
-    const featured_plants = plants.slice(-4).map((plant) => (
-         <PlantCard xs="3" handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/>
+    const featured_plants = plants.slice(-3).map((plant) => (
+         <PlantCard xs={4} handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/>
     ));
     return(
         <Container>
