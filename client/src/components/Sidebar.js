@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -17,15 +18,13 @@ export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
    
     const navigate = useNavigate()
 
-
-
-
     const handleNav = (e) => {
         if (e.target.textContent === "Admin"){
             navigate("/admin")
         }
-       
     }
+
+    
    
       
    
@@ -43,13 +42,30 @@ export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}>
-            <List>
-                {['Home', 'All Plants', 'Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
-                <ListItem onClick={handlePlantNav}key={text} disablePadding>
+              <List >
+                <Link key="home" to={`/`} style={{textDecoration:'none', color: 'black'}} >
+                <ListItem onClick={handlePlantNav} disablePadding>
+                    <ListItemButton>
+                    <ListItemText primary="Home" />
+                    </ListItemButton>
+                </ListItem>
+                </Link>
+                <Link key="All Plants" to={"/plants/AllPlants"} style={{textDecoration:'none', color: 'black'}} >
+                <ListItem onClick={handlePlantNav} disablePadding>
+                    <ListItemButton>
+                    <ListItemText primary="All Plants" />
+                    </ListItemButton>
+                </ListItem>
+                </Link>
+          
+                {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
+                <Link key={text} to={`/${text.toLowerCase()}`} style={{textDecoration:'none', color: 'black'}} >
+                <ListItem onClick={handlePlantNav} disablePadding>
                     <ListItemButton>
                     <ListItemText primary={text} />
                     </ListItemButton>
                 </ListItem>
+                </Link>
                 ))}
             </List>
             <List>

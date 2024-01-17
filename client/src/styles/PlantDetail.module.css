@@ -1,52 +1,63 @@
-.container{
-    margin-top:10%;
-    background-color: #f1f1f1;
-    align-items: center;
-    justify-content: center; 
-    width: 60vw;
-}
+
 
 .sideimgs{
+   height: 600px;
+   width:100%;
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
-   height:500px;
+   justify-content: space-around;
+
+    
 }
 
 .sideimgs div{
     display: flex;
-    justify-content: space-between;
-    height:32%;
-    width: 95%;
+    justify-content:center;
+    align-items: center;
+    height:30%;
+    width:70%;
+   
 
-}
+
+} 
 .sideimgs img{
-    height:100%;
-    width: 100%;
+    height:90%;
     border-radius:5px;
     object-fit: cover;
+    width:80%
+}
+
+.main-plant-image{
+    height: 600px;
+  
+    
+    
+    
 }
 
 .main-plant-image div{
-    height: 500px;
-    display:flex;
-    width:90%;
-    
-    
-}
-
-.main-plant-image img{
-    height: 100%;
-    width: 100%;
+    height:100%;
+    width:100%;
+  
     border-radius:5px;
     object-fit: cover;
 }
+
+.main-plant-image img{
+    height:100%;
+    width:90%;
+  
+    border-radius:5px;
+    object-fit: cover;
+}
+
 
 .plant-info{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height:"500px"  
+    height:500px ;
+    border:1px solid black
 }
 
 h2{
@@ -72,8 +83,10 @@ h2{
 
 .plant-info button{
     background-color: #BED500;
+    color: white;
     width: 60%;
     height: 40px;
     font-family: Flower;
     border-radius: 3px; 
+
 } 

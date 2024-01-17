@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import StraightenIcon from '@mui/icons-material/Straighten';
+
 import PlantBanner from "./PlantBanner";
 import Loading from "./Loading"
+
 import styles from "../styles/PlantDetail.module.css";
 
 
@@ -28,7 +31,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
             if (!response.ok) throw Error('Error receiving data')
             const plantData = await response.json()
             setPlant(plantData)
-            console.log(plantData)
+            
             setMainImg(plantData.image1)
             setFetchError(null)
         }catch(err){
@@ -50,10 +53,11 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
     <>
     {isLoading && <Loading />}
     {!fetchError && !isLoading &&
-    <>
-      <Grid sx={{justifyContent:"center", alignItems:"center", marginTop:"10%"}} 
-      container spacing={3}> 
-        <Grid  item xs={2}>
+    <div>
+    <div>
+      <Grid sx={{height:"600px",justifyContent:"center", alignItems:"center", marginTop:"150px"}} 
+      container> 
+       <Grid  item xs={2}>
           <Box className={styles.sideimgs}>
               <Box><img  onClick={handleClick} src={plant.image1} alt={plant.name}/></Box>
               <Box><img  onClick={handleClick} src={plant.image2} alt={plant.name}/></Box>
@@ -61,12 +65,16 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
               
           </Box>
       
-        </Grid>
-        <Grid className={styles["main-plant-image"]} item xs={5}>
-          <Box>
-            <img  alt="displayPlant" src={mainImg} />
+        </Grid> 
+        <Grid item xs={4}>
+          <Box className={styles["main-plant-image"]}>
+            <Box >
+              <img  alt="displayPlant" src={mainImg} />
+            </Box>
+
           </Box>
-        </Grid>
+       
+        </Grid> 
         <Grid  item xs={4}>
           <Box className={styles["plant-info"]} >
             <Box>
@@ -86,10 +94,11 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
                 <p>4 inch pot</p>
             </Box>
               <h3>$ {plant.price}</h3>
-              <button>Add to Cart</button>
+              <Button className={styles.button}>Add to Cart</Button>
             </Box>
-        </Grid>
-      </Grid>
+        </Grid> */}
+     </Grid> 
+      </div>
       <PlantBanner plant={plant}/>
       {/* <section className={styles.container}>
         <div className={styles.sideimgs}>
@@ -121,7 +130,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
           </div>
       </section>
       <PlantBanner plant={plant}/> */}
-    </>
+    </div>
     }
     </>
   );

@@ -78,8 +78,8 @@ export default function App(){
             <Route exact path="/admin/planttable" element={<PlantTable setPlants={setPlants} plants={plants}/>} />
             <Route exact path="/admin/customertable" element={<CustomerTable />} />
             <Route exact path="/admin/customerform" element={<CustomerForm />} />
-            <Route exact path="/allplants" element={<AllPlants plants={plants} setPlants={setPlants} />} />
-            <Route exact path="/alocasia" element={<PlantCategory plantFilter={plantFilter} plantCategory={plantCategory} />} />
+            <Route exact path="/plants/AllPlants" element={<AllPlants plants={plants} setPlants={setPlants} />} />
+            <Route exact path="/:category" element={<PlantCategory plants={plants} />} />
           </Routes>
         </div>
       }

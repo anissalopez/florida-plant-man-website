@@ -6,9 +6,9 @@ import { categories } from "./categoryVariables";
 
 export default function CategoryHeaders({plantCategory}){
    
-        const currentCategory = categories.filter((plant)=>{
-            if( plant.name === plantCategory){
-                return plant
+        const currentCategory = categories.filter((category)=>{
+            if( category.name.toLowerCase() === plantCategory){
+                return category
             }
         })
 
