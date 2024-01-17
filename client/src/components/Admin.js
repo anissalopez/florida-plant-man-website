@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import { Link } from "react-router-dom";
 
 import AdminPanel from "./AdminPanel";
 import AdminContent from "./AdminContent";
@@ -19,8 +18,6 @@ export default function Admin({plants}){
                 throw Error("Error fetching data")
             }
             setCustomers(data)
-    
-            
         }
         fetchCustomers()
 

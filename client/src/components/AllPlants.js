@@ -6,83 +6,94 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
-import PlantHeader from './PlantHeader';
 import styles from "../styles/AllPlants.module.css";
 
 
-export default function FeaturedPlantList({plants, handlePlantDetail}){
-    const [sort, setSort] = useState(plants)
+export default function AllPlants({plants, handlePlantDetail}){
+    const [sort, setSort] = useState("")
+    const [filtered_plant, setFilter] = useState("")
    
-
-
-    const filtered_plants = plants.sort(function(a,b){
-                
-        if (sort === 'Alphabetically, A-Z' || sort === "Price, low to high"){
-        if(a.name > b.name || a.price > a.price){
-                    return 1
-                }
-                if(a.name < b.name || a.price < b.price){
-                    return -1
-                }
-                return 0}
-            
-
-        if (sort === 'Alphabetically, Z-A' || sort === 'Price, high to low'){
-                return a.name < b.name || a.price < b.price ? -1 : 1
-              
+    const filtered_plants = plants.sort(function(a,b){       
+        if (sort === 'Alphabetically, A-Z'){
+            if(a.name > b.name){
+                        return 1
+                    }
+                    if(a.name < b.name){
+                        return -1
+                    }
+                    return 0}
+        if(sort === "Price, low to high"){
+                return a.price - b.price
             }
+        if(sort === 'Price, high to low'){
+            return b.price - a.price
+            }
+    
+        if (sort === 'Alphabetically, Z-A'){
+            if(a.name > b.name){
+                return -1
+                }
+            if(a.name < b.name){
+                return 1
+                }
+            return 0
+            }
+    }).filter((plant)=>{
+        if(plant.name.toLowerCase().includes(filtered_plant.toLowerCase())){
+ 
+            return plant
+        }
+        if(filtered_plant === 'All Plants'){
+            return true
+        }
+      
+
+    })
+
+    
 
 
-         
-        })
      
-
-
     const featured_plants = filtered_plants.map((plant) => (
-            <PlantCard  xs={4} handlePlantDetail={handlePlantDetail} plant={plant} key={plant.id}/>
+            <PlantCard  xs={4}  plant={plant} key={plant.id}/>
        ));
     return(
         <Container className={styles.container}>
             <h1  className={styles.header}>All Plants</h1>
-                <Box className={styles["sort-container"]}>
-                {/* <div >Sort By:</div>
-                <div className={styles.featured} onClick={()=> setDisplay(!display)}>Featured</div>
-             {display ? 
-                      <div className={styles["sort-list"]}>
-                      <div>Featured </div>
-                      <div>Alphabetically, A-Z</div>
-                      <div>Alphabetically, Z-A</div>
-                      <div>Price, low to high </div>
-                      <div>Price, high to low</div>
-                  </div> :
-                  null
-             } */}
+            <div className={styles['button-container']}>
+                {
+                ['All Plants','Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium'].map((category)=>{
+                    return(<Button key={category} onClick={(e)=>setFilter(e.target.textContent)}>{category}</Button>
 
-            <div>
-                <label>
-                    <span>sortBy</span>
-                    <span></span>
-                    <select onChange={(e)=>setSort(e.target.value)}>
-                        <option >Featured</option>
-                        <option >Alphabetically, A-Z</option>
-                        <option>Alphabetically, Z-A</option>
-                        <option>Price, low to high</option>
-                        <option>Price, high to low</option>
-                    </select>
-                </label>
-            </div>
-            
-             </Box>
-              
-
-        
                 
-      
-            <Divider sx={{height:"50px" }}/>
-            
-            
-            <Grid className={styles["plant-list"]} container spacing={3} >
+                    
+                    )}
+                        
+                 
+                )}
+             
+             </div>
+            <Divider sx={{marginTop:"40px"}}/>
+            <Box className={styles["sort-container"]}>
+
+                <div>
+                    <label>
+                        <span>sortBy</span>
+                        <span></span>
+                        <select onChange={(e)=>setSort(e.target.value)}>
+                            <option >Featured</option>
+                            <option >Alphabetically, A-Z</option>
+                            <option>Alphabetically, Z-A</option>
+                            <option>Price, low to high</option>
+                            <option>Price, high to low</option>
+                        </select>
+                    </label>
+                </div>
+
+            </Box>
+            <Grid sx={{marginTop:"50px"}} container spacing={3} >
                     {featured_plants}      
             </Grid>
         </Container>

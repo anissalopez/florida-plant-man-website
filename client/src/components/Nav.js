@@ -9,6 +9,7 @@ import TemporaryDrawer from './Sidebar';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import image from '../images/logo.png';
+import { Typography } from '@mui/material';
 
 
 export default function Nav({handlePlantNav}) {
@@ -39,7 +40,12 @@ export default function Nav({handlePlantNav}) {
               <MenuRoundedIcon />
               </IconButton>
               
+              
           </Box>
+          <Box sx={{textAlign:"center"}}>
+          <p>The Florida Plant Man </p>
+          </Box>
+          
           <IconButton  sx={{color:"#377E30" }}>
           <ShoppingCartIcon />
           </IconButton>

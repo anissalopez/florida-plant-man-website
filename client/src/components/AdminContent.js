@@ -36,7 +36,6 @@ export default function AdminContent({customers, plants}){
                     <Box sx={iconDisplay}>
                             <PersonRoundedIcon fontSize="large"/>
                             <p>{customers.length}</p>
-
                     </Box>
                 </Box>
                 <Box className={styles['box-elements']}>
@@ -44,12 +43,9 @@ export default function AdminContent({customers, plants}){
                     <Box sx={iconDisplay}>
                             <LocalShippingRoundedIcon fontSize="large"/>
                             <p>{customers.length}</p>
-
                     </Box>
                 </Box>
-
             </div>
-           
         </div>
     )
 }

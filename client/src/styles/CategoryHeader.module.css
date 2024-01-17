@@ -1,0 +1,43 @@
+.main{
+    margin-top: 205px;
+    margin-left:100px;
+
+}
+
+.container{
+    display: inline-flex;
+    gap: 15px;
+    align-items: baseline;
+   
+
+}
+
+.noun{
+    color: #377E30;
+    font-size: 40px;
+    font-weight: bold;
+    height:50px;
+   
+
+}
+
+.header{
+    color: black;
+    font-size:50px;
+    height:50px
+
+}
+
+.pronunciation{
+    color: #6DC01E;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+    margin-top:15px;
+}
+
+.definition{
+    font-size:25px;
+    width:1500px
+
+}

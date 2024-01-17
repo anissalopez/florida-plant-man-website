@@ -13,14 +13,12 @@ import image from '../images/logo.png'
 
 
 
-export default function TemporaryDrawer({toggleDrawer, state, setState, handlePlantNav}) {
-    const [open, setOpen] = React.useState(true);
+export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
+   
     const navigate = useNavigate()
 
 
-    // const handleClick = () => {
-    // setOpen(!open);
-    // };
+
 
     const handleNav = (e) => {
         if (e.target.textContent === "Admin"){
@@ -28,6 +26,8 @@ export default function TemporaryDrawer({toggleDrawer, state, setState, handlePl
         }
        
     }
+   
+      
    
 
 
