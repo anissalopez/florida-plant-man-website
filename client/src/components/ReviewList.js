@@ -12,6 +12,7 @@ const ReviewList = () => {
               const response = await fetch("/reviews")
               if (!response.ok) throw Error('Error receiving data')
               const reviewList = await response.json()
+            console.log(reviewList)
               setReviews(reviewList)
               // setFetchError(null)
           }catch(err){

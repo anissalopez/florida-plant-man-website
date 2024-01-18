@@ -6,19 +6,21 @@ section{
 
 table{ 
     margin-top:60px;
-    width: 90vw;
+    width: 85vw;
 } 
 
 .thead{
     background-Color: #6DC01E;
     font-size: 18px;
-    height: 35px;
+    height: 34px;
     text-align: center;
     color:white;
+    width:300px;
 }
 
 .thead tr td{
     border-radius: 3px;
+    width: 350px;
 } 
 
 .tbody tr td{

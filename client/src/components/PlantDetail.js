@@ -55,7 +55,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
     {!fetchError && !isLoading &&
     <div>
     <div>
-      <Grid sx={{height:"600px",justifyContent:"center", alignItems:"center", marginTop:"150px"}} 
+      <Grid sx={{height:"600px",justifyContent:"center", alignItems:"center", mt:"150px"}} 
       container> 
        <Grid  item xs={2}>
           <Box className={styles.sideimgs}>
@@ -96,40 +96,10 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
               <h3>$ {plant.price}</h3>
               <Button className={styles.button}>Add to Cart</Button>
             </Box>
-        </Grid> */}
+        </Grid>
      </Grid> 
       </div>
       <PlantBanner plant={plant}/>
-      {/* <section className={styles.container}>
-        <div className={styles.sideimgs}>
-            <div><img  onClick={handleClick} src={plant.image1} alt="displayPlant1"/></div>
-            <div><img  onClick={handleClick} src={plant.image2} alt="displayPlant2"/></div>
-            <div><img  onClick={handleClick} src={plant.image3} alt="displayPlant3"/></div>
-        </div>
-        <div className={styles["main-plant-image"]}>
-            <div>
-            <img  alt="displayPlant1" src={mainImg} />
-            </div> 
-        </div>
-        <div className={styles["plant-info"]}>
-            <h2>{plant.name}</h2>
-            <div>
-              <WbSunnyIcon />
-              <p>{plant.sun}</p>
-            </div>
-           <div>
-              <WaterDropIcon />
-              <p>{plant.water}</p>
-          </div>
-          <div>
-              <StraightenIcon />
-              <p>4 inch pot</p>
-          </div>
-            <h3>$ {plant.price}</h3>
-            <button>Add to Cart</button>
-          </div>
-      </section>
-      <PlantBanner plant={plant}/> */}
     </div>
     }
     </>

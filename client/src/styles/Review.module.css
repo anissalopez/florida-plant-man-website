@@ -1,0 +1,19 @@
+.container{
+    /* display:flex;
+    flex-direction:column; */
+
+    text-align:center;
+    height:350px;
+    border: solid 2px #377E30;
+    border-radius:10px;
+    line-height: 35px;
+    padding:20px;
+    margin-bottom:60px
+}
+
+.name{
+    margin-top:20px;
+    font-style:italic;
+}
+
+

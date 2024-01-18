@@ -38,15 +38,11 @@
 .main-plant-image div{
     height:100%;
     width:100%;
-  
-    border-radius:5px;
-    object-fit: cover;
 }
 
 .main-plant-image img{
     height:100%;
     width:90%;
-  
     border-radius:5px;
     object-fit: cover;
 }
@@ -56,14 +52,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height:500px ;
-    border:1px solid black
+   
+    height:600px ;
+  
 }
 
-h2{
-    color: #377E30;
-    font-family: Flower;
-}
+
 
 
 .plant-info div{
@@ -73,20 +67,32 @@ h2{
   
  }
 
+ .plant-info h2{
+    color: #377E30;
+    font-family: Flower;
+  
+ }
+
 
 .plant-info p{
     color: black;
     font-size: 1.2rem;
     margin-left: 1.2rem;
-    margin-top:1.5rem;
+ 
 }
 
 .plant-info button{
     background-color: #BED500;
-    color: white;
-    width: 60%;
+    color: black;
+    width: 40%;
     height: 40px;
     font-family: Flower;
     border-radius: 3px; 
 
 } 
+
+.plant-info button:hover{
+    background-color:#377E30;
+    color:white;
+
+}

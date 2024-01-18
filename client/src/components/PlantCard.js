@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography';
-
 import Grid from "@mui/material/Grid";
+
+
+import styles from "../styles/PlantCard.module.css"
 
 export default function PlantCard({ plant, xs }){
     return (
@@ -19,8 +20,7 @@ export default function PlantCard({ plant, xs }){
                     backgroundColor: "#f1f1f1",
                     boxShadow: 0,
                     height: "800px",
-                   
-                 
+       
                 }}>
              
                 <Link style={{textDecoration:'none', color: 'black'}} 
@@ -46,18 +46,12 @@ export default function PlantCard({ plant, xs }){
                             </CardContent>
                         </Box>
                 </Link>
-                <Box sx={{textAlign:"center"}}>
+                <div sx={{textAlign:"center"}} className={styles['button-container']}>
                             <div style={{fontSize:"20px"}}>${plant.price}</div>
-                            <Button sx={{
-                                backgroundColor: "#BED500",
-                                border: "#BED500",
-                                color:"black",
-                                fontFamily: "Flower",
-                                marginTop:"20px"
-                               }}>
+                            <Button className={styles["add-to-cart"]}>
                                 Add to Cart
                             </Button>
-                        </Box>
+                        </div>
             </Card>  
         </Grid>
     )};
