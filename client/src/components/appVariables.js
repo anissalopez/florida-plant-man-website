@@ -21,4 +21,26 @@ export const categories = [{
         house plants especially for their velvety foliage.`
          } ]
 
+export const handleClick = (e, open, setOpen, navigate) =>{
+            if (e.target.textContent === 'Plants'){
+                console.log(e)
+              setOpen({...open, plants:!(open.plants)})
+            }
+            if (e.target.textContent === 'Customers'){
+              setOpen({...open, customers:!(open.customers)})
+            }
+            if (e.target.textContent === "Add Plants"){
+              navigate("/admin/plantform")
+            }
+            if (e.target.textContent === 'View Plants') {
+              navigate("/admin/planttable");
+            }
+            if (e.target.textContent === 'View Customers') {
+              navigate("/admin/customertable");
+            }
+            if (e.target.textContent === 'Add Customers') {
+              navigate("/admin/customerform");
+            }
+          }
+
 

@@ -17,10 +17,7 @@ const formSchema = yup.object().shape({
     image3:yup.mixed()
         .required("Required"),
       
-    description:yup.string().min(5).required("Description must be min of 5 characters")
-        
+    description:yup.string().min(5).required("Description must be min of 5 characters")   
     });
-
-   
 
 export default formSchema;

@@ -38,8 +38,6 @@ const PlantBanner = ({ plant }) => {
                 </tbody>
             </table>
             </section>
-
-     
     )
 
 }

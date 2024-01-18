@@ -14,15 +14,11 @@ export default function AllPlants({ plants }){
     const [sort, setSort] = useState("")
     const [filtered_plant, setFilter] = useState("")
    
-    
-
-
     const HeaderComponent = styled('h1')({
         color:"#000",
         fontFamily:"Flower",   
         marginTop:"175px",
         marginBottom:"60px",
-    
     })
 
     const ButtonComponent = styled(Button)({
@@ -30,8 +26,11 @@ export default function AllPlants({ plants }){
         backgroundColor: "#BED500",
         fontFamily: "Flower",
         border: "solid 1px #BED500",
-        width:"130px"
-
+        width:"130px",
+        '&:hover':{
+            backgroundColor:"#377E30",
+            border: "solid #377E30"
+        }
     })
 
 

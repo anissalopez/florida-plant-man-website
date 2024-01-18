@@ -14,14 +14,11 @@ import Loading from "./Loading"
 import styles from "../styles/PlantDetail.module.css";
 
 
-
-
-
 function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   const { id } = useParams();
   const [plant, setPlant] = useState('');
   const [mainImg, setMainImg] = useState('')
-  const [img, setImg] = useState('')
+
   
   
   useEffect(() => {
@@ -44,7 +41,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   }, [id]);
 
  const handleClick = (e) => {
-   console.log(e.target.src)
+   
     setMainImg(e.target.src)
  }
 

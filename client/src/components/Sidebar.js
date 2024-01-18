@@ -11,11 +11,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import image from '../images/logo.png'
 
-
-
-
 export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
-   
     const navigate = useNavigate()
 
     const handleNav = (e) => {
@@ -24,17 +20,10 @@ export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
         }
     }
 
-    
-   
-      
-   
-
-
-  
   const list = (anchor) => (
     <Box sx={{display:"flex-column"}}>
         <Box sx={{display:"flex", justifyContent:"center"}}>
-            <img src={image} width="70px" height="100%" />
+            <img alt="florida plant man logo" src={image} width="70px" height="100%" />
         </Box>
     <Divider  />
 
