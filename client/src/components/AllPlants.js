@@ -1,86 +1,56 @@
 import React, { useState } from 'react';
 
-import PlantCard from "./PlantCard";
 
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import styles from "../styles/AllPlants.module.css";
+import { styled } from '@mui/system';
+import FilteredPlants from './FilteredPlants';
 
 
-export default function AllPlants({plants, handlePlantDetail}){
+export default function AllPlants({ plants }){
     const [sort, setSort] = useState("")
     const [filtered_plant, setFilter] = useState("")
    
-    const filtered_plants = plants.sort(function(a,b){       
-        if (sort === 'Alphabetically, A-Z'){
-            if(a.name > b.name){
-                        return 1
-                    }
-                    if(a.name < b.name){
-                        return -1
-                    }
-                    return 0}
-        if(sort === "Price, low to high"){
-                return a.price - b.price
-            }
-        if(sort === 'Price, high to low'){
-            return b.price - a.price
-            }
     
-        if (sort === 'Alphabetically, Z-A'){
-            if(a.name > b.name){
-                return -1
-                }
-            if(a.name < b.name){
-                return 1
-                }
-            return 0
-            }
-    }).filter((plant)=>{
-        if(plant.name.toLowerCase().includes(filtered_plant.toLowerCase())){
- 
-            return plant
-        }
-        if(filtered_plant === 'All Plants'){
-            return true
-        }
-      
+
+
+    const HeaderComponent = styled('h1')({
+        color:"#000",
+        fontFamily:"Flower",   
+        marginTop:"175px",
+        marginBottom:"60px",
+    
+    })
+
+    const ButtonComponent = styled(Button)({
+        color:"#fff",
+        backgroundColor: "#BED500",
+        fontFamily: "Flower",
+        border: "solid 1px #BED500",
+        width:"130px"
 
     })
 
-    
 
-
-     
-    const featured_plants = filtered_plants.map((plant) => (
-            <PlantCard  xs={4}  plant={plant} key={plant.id}/>
-       ));
     return(
-        <Container className={styles.container}>
-            <h1  className={styles.header}>All Plants</h1>
-            <div className={styles['button-container']}>
+        <Container sx={{textAlign:"center"}}>
+            <HeaderComponent>All Plants</HeaderComponent>
+            <Box sx={{display:"flex", justifyContent:"center", gap:"40px"}}>
                 {
                 ['All Plants','Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium'].map((category)=>{
-                    return(<Button key={category} onClick={(e)=>setFilter(e.target.textContent)}>{category}</Button>
-
-                
-                    
-                    )}
-                        
-                 
+                    return(<ButtonComponent key={category} onClick={(e)=>setFilter(e.target.textContent)}>{category}</ButtonComponent>
+                    )} 
                 )}
              
-             </div>
+            </Box>
             <Divider sx={{marginTop:"40px"}}/>
-            <Box className={styles["sort-container"]}>
-
-                <div>
+            <Box sx={{display:"flex", gap:"30px", justifyContent:"right", fontSize:"20px"}}>
+                <Box>
                     <label>
-                        <span>sortBy</span>
+                        <span style={{marginRight:"5px"}}>sortBy</span>
                         <span></span>
                         <select onChange={(e)=>setSort(e.target.value)}>
                             <option >Featured</option>
@@ -90,12 +60,9 @@ export default function AllPlants({plants, handlePlantDetail}){
                             <option>Price, high to low</option>
                         </select>
                     </label>
-                </div>
-
+                </Box>
             </Box>
-            <Grid sx={{marginTop:"50px"}} container spacing={3} >
-                    {featured_plants}      
-            </Grid>
+        <FilteredPlants filtered_plant={filtered_plant} plants={plants} sort={sort} />
         </Container>
     )};
 

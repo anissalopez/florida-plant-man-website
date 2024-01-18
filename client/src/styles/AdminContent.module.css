@@ -19,8 +19,6 @@
 }
 
 .box-elements{
-  
-   
     height: 150px;
     width: 175px;
     border-radius: 5px;
@@ -29,3 +27,10 @@
     margin: 0 60px;
 }
 
+.icon-display{
+    display:flex;
+    align-items: center;
+    gap:90px;
+    margin-left: 10px;
+
+}

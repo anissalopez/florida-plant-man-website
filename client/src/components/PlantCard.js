@@ -8,21 +8,26 @@ import CardMedia from '@mui/material/CardMedia';
 import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Grid";
+import { styled } from '@mui/system';
 
+const CardComponent = styled(Card)({
+    backgroundColor:"#f1f1f1",
+    boxShadow:"none",
 
-import styles from "../styles/PlantCard.module.css"
+})
+
+const ButtonComponent = styled(Button)({
+    backgroundColor: "#BED500",
+    border: "#BED500", 
+    color:"#000",
+    fontFamily:"Flower", marginTop:"20px"
+
+})
 
 export default function PlantCard({ plant, xs }){
     return (
         <Grid item xs={xs}>
-            <Card
-                sx={{
-                    backgroundColor: "#f1f1f1",
-                    boxShadow: 0,
-                    height: "800px",
-       
-                }}>
-             
+            <CardComponent>
                 <Link style={{textDecoration:'none', color: 'black'}} 
                         to={`/plants/${plant.id}`} 
                         key={plant.id}> 
@@ -30,29 +35,32 @@ export default function PlantCard({ plant, xs }){
                         component="img"
                         alt="featured plant"
                         image={plant.image1}
-                        sx={{
-                            borderRadius: 3,
-                            height:"500px"
-                        }}
+                        sx={{borderRadius: 3, height:"500px"}}
                     />
                         <Box sx={{display:"flex", flexDirection:"row", 
                             justifyContent:"center",
-                            height:"90px"
+                            height:"74px"
                             }}>
                             <CardContent sx={{marginBottom:"20px"}}>
-                                    <Typography sx={{fontSize:"larger", fontFamily: "Flower"}}>
+                                <Typography sx={{fontSize:"larger", fontFamily: "Flower"}}>
                                         {plant.name}
-                                    </Typography>   
+                                </Typography>   
                             </CardContent>
                         </Box>
                 </Link>
-                <div sx={{textAlign:"center"}} className={styles['button-container']}>
-                            <div style={{fontSize:"20px"}}>${plant.price}</div>
-                            <Button className={styles["add-to-cart"]}>
+                <Box sx={{display:"flex", flexDirection:"row", 
+                            justifyContent:"center",textAlign:"center"
+                            }}>
+                        <CardContent sx={{marginBottom:"20px"}}>
+                            <Typography sx={{fontSize:"larger"}}>
+                                ${plant.price}
+                            </Typography>   
+                            <ButtonComponent >
                                 Add to Cart
-                            </Button>
-                        </div>
-            </Card>  
+                            </ButtonComponent>
+                        </CardContent>
+                </Box>
+            </CardComponent>
         </Grid>
     )};
 

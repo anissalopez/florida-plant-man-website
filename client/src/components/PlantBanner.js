@@ -1,5 +1,5 @@
 import styles from "../styles/PlantBanner.module.css";
-import Box from "@mui/material/Box";
+
 
 const PlantBanner = ({ plant }) => {
 
@@ -29,7 +29,7 @@ const PlantBanner = ({ plant }) => {
                     </tr>
                 </thead>
                 <tbody className={styles.tbody}>
-                    <tr>
+                    <tr >
                         <td>{plant.description}</td>
                         <td>{shopGuarantee}</td>
                         <td>{shippingPolicy}</td>

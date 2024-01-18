@@ -76,7 +76,7 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
        
         </Grid> 
         <Grid  item xs={4}>
-          <Box className={styles["plant-info"]} >
+          <Box className={styles["plant-info"]} sx={{justifyContent:"space-evenly"}} >
             <Box>
               <h2>{plant.name}</h2>
             </Box>

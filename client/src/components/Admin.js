@@ -10,7 +10,6 @@ export default function Admin({plants}){
   
 
     useEffect(()=>{
-
         const fetchCustomers = async() =>{
             const response = await fetch("/customers")
             const data = await response.json()
@@ -22,8 +21,6 @@ export default function Admin({plants}){
         fetchCustomers()
 
     }, [])
-
-    
 
     return(
         <Box sx={{display:"flex"}}>

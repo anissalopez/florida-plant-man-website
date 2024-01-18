@@ -20,3 +20,5 @@ export const categories = [{
         definition: `a genus of climbing shrubs (family Araceae) native to Central and South America and used as ornamental 
         house plants especially for their velvety foliage.`
          } ]
+
+

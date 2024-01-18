@@ -28,3 +28,7 @@ table{
     vertical-align: top;
     line-height:1.2rem;
 } 
+
+.thead tr td:hover{
+    background-color: #377E30;
+}
