@@ -2,16 +2,89 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import StraightenIcon from '@mui/icons-material/Straighten';
+import { styled } from '@mui/system';
 
 import PlantBanner from "./PlantBanner";
 import Loading from "./Loading"
 
-import styles from "../styles/PlantDetail.module.css";
+
+
+const ImageContainer1 = styled(Box)({
+    height:"600px",
+    width:"100%",
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"space-around"
+})
+
+const ImageDiv = styled(Box)({
+     display: "flex",
+     justifyContent:"center",
+     alignItems: "center",
+     height:"33%",
+     width:"70%",
+     "img":{
+      height:"90%"
+     }
+
+})
+
+const ImageContainer2 = styled(Box)({
+  height:"600px",
+  width:"100%",
+
+  "div":{
+    height:"100%",
+    "img":{
+      height:"100%"
+    }
+  }
+})
+
+const PlantContent = styled(Box)({
+      display: "flex",
+      height: "600px",
+      width:"100%",
+     flexDirection: "column",
+     justifyContent: "space-between",
+     marginLeft:"25%",
+     border: "solid 1px #000",
+     "div":{
+      width:"90%",
+      color: "#6DC01E",
+      display: "flex",
+      alignItems: "center",
+     },
+     "h2":{
+      color: "#377E30",
+      fontFamily: "Flower"
+
+     },
+     "p":{
+      color: "black",
+      fontSize: "1.2rem",
+      marginLeft: "1.2rem"
+     },
+     "h3":{
+      color:"#000"
+     },
+     "button":{
+      backgroundColor: "#BED500",
+         color: "#000",
+         width: "40%",
+         height: "40px",
+         fontFamily: "Flower",
+         borderRadius: "3px",
+         "&:hover":{
+          backgroundColor:"#"
+         }
+     }})
 
 
 function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
@@ -19,8 +92,6 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   const [plant, setPlant] = useState('');
   const [mainImg, setMainImg] = useState('')
 
-  
-  
   useEffect(() => {
     const fetchPlant = async () => {
         try{
@@ -41,7 +112,6 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
   }, [id]);
 
  const handleClick = (e) => {
-   
     setMainImg(e.target.src)
  }
 
@@ -50,57 +120,50 @@ function PlantDetail({ setFetchError, setIsLoading, isLoading, fetchError}) {
     <>
     {isLoading && <Loading />}
     {!fetchError && !isLoading &&
-    <div>
-    <div>
+    <Container>
       <Grid sx={{height:"600px",justifyContent:"center", alignItems:"center", mt:"150px"}} 
       container> 
-       <Grid  item xs={2}>
-          <Box className={styles.sideimgs}>
-              <Box><img  onClick={handleClick} src={plant.image1} alt={plant.name}/></Box>
-              <Box><img  onClick={handleClick} src={plant.image2} alt={plant.name}/></Box>
-              <Box><img  onClick={handleClick} src={plant.image3} alt={plant.name}/></Box>
-              
-          </Box>
-      
-        </Grid> 
-        <Grid item xs={4}>
-          <Box className={styles["main-plant-image"]}>
-            <Box >
-              <img  alt="displayPlant" src={mainImg} />
-            </Box>
-
-          </Box>
-       
-        </Grid> 
-        <Grid  item xs={4}>
-          <Box className={styles["plant-info"]} sx={{justifyContent:"space-evenly"}} >
-            <Box>
-              <h2>{plant.name}</h2>
-            </Box>
-           
-            <Box>
-                <WbSunnyIcon />
-                <p>{plant.sun}</p>
-            </Box>
-            <Box>
-                <WaterDropIcon />
-                <p>{plant.water}</p>
-            </Box>
-            <Box>
-                <StraightenIcon />
-                <p>4 inch pot</p>
-            </Box>
-              <h3>$ {plant.price}</h3>
-              <Button className={styles.button}>Add to Cart</Button>
-            </Box>
-        </Grid>
+        <Grid  item xs={2}>
+            <ImageContainer1 >
+                <ImageDiv><img  onClick={handleClick} src={plant.image1} alt={plant.name}/></ImageDiv>
+                <ImageDiv><img  onClick={handleClick} src={plant.image2} alt={plant.name}/></ImageDiv>
+                <ImageDiv><img  onClick={handleClick} src={plant.image3} alt={plant.name}/></ImageDiv>   
+            </ImageContainer1>
+          </Grid> 
+          <Grid item xs={4}>
+            <ImageContainer2>
+              <Box >
+                <img  alt="displayPlant" src={mainImg} />
+              </Box>
+            </ImageContainer2>
+          </Grid> 
+          <Grid  item xs={4}>
+            <PlantContent >
+              <Box> 
+                <h2>{plant.name}</h2>
+              </Box>
+              <Box>
+                  <WbSunnyIcon />
+                  <p>{plant.sun}</p>
+              </Box>
+              <Box>
+                  <WaterDropIcon />
+                  <p>{plant.water}</p>
+              </Box>
+              <Box>
+                  <StraightenIcon />
+                  <p>4 inch pot</p>
+              </Box>
+              <Box>
+              <h3> ${plant.price}</h3>
+              </Box>
+              <Box><Button >Add to Cart</Button></Box>  
+            </PlantContent>
+          </Grid>
      </Grid> 
-      </div>
       <PlantBanner plant={plant}/>
-    </div>
-    }
+     </Container>}
     </>
-  );
-}
+  )}
 
 export default PlantDetail;
