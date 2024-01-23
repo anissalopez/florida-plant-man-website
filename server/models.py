@@ -82,6 +82,20 @@ class Review(db.Model, SerializerMixin):
         if len(value) < 5:
             raise ValueError('Comment must be at least 5 characters')
         return value
+    
+    @validates('customer_id')
+    def validate_comment(self, key, value):
+        customer = Customer.query.get(value)
+        if customer is None:
+            raise ValueError('Customer Id does not exist')
+        return value
+
+    @validates('plant_id')
+    def validate_comment(self, key, value):
+        plant = Plant.query.get(value)
+        if plant is None:
+            raise ValueError('Plant Id does not exist')
+        return value
 
     def __repr__(self):
         return f'Id: {self.id} - Plant_Info <{self.plant_id}> - PlantName: {self.plant} - Rating: {self.rating}'

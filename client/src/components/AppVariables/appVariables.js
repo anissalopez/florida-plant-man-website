@@ -23,7 +23,7 @@ export const categories = [{
 
 export const handleClick = (e, open, setOpen, navigate) =>{
             if (e.target.textContent === 'Plants'){
-                console.log(e)
+   
               setOpen({...open, plants:!(open.plants)})
             }
             if (e.target.textContent === 'Customers'){
@@ -42,5 +42,7 @@ export const handleClick = (e, open, setOpen, navigate) =>{
               navigate("/admin/customerform");
             }
           }
+
+
 
 

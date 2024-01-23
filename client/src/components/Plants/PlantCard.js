@@ -1,40 +1,17 @@
 import * as React from 'react';
 import { Link } from "react-router-dom";
 
-import Card from "@mui/material/Card";
-import Button from "@mui/material/Button";
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography';
 import Grid from "@mui/material/Grid";
-import { styled } from '@mui/system';
 
-const CardComponent = styled(Card)({
-    backgroundColor:"#f1f1f1",
-    boxShadow:"none",
-    "&:hover": { transform: "scale3d(1.05, 1.05, 1)"}
-})
+import {CardComponent, ButtonComponent} from "../../styles/PlantCard.style"
 
-const ButtonComponent = styled(Button)({
-    backgroundColor: "#BED500",
-    border: "#BED500", 
-    color:"#000",
-    fontFamily:"Flower", 
-    marginTop:"20px",
-    '&:hover':{
-        backgroundColor:"#377E30",
-        border: "solid #377E30",
-        color:"#fff"
-    }
-    
-
-
-})
-
-export default function PlantCard({ plant, xs }){
+export default function PlantCard({ plant }){
     return (
-        <Grid item xs={xs}>
+        <Grid item xs={12} sm={4}>
             <CardComponent>
                 <Link style={{textDecoration:'none', color: 'black'}} 
                         to={`/plants/${plant.id}`} 

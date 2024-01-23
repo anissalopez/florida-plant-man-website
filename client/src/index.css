@@ -4,8 +4,14 @@
     url("./fonts/Flowers-Sunday.otf") format("truetype");
 }
 
+
+
+:root {
+  --bodyColor: "#f1f1f1";
+}
+
 body{
-  background-color: #f1f1f1; 
+  background-color: var(--bodyColor);
   margin:0;
   padding:0;
   font-family: 'Sometype Mono', monospace;
@@ -22,34 +28,11 @@ body{
 
 }
 
-.image-container{
-  position: relative;
-}
 
-.image-container img{
-  display: block;
-  width:100%;
-  object-fit: cover;
-}
 
-.overlay-text {
-  position: absolute;
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  background-color: #000000; 
-  color: #fff; 
-  padding: 10px 20px; 
-  font-size: 20px; 
-  text-align: center;
-}
 
-.cardContentDiv{
-    display: flex;
-    flex-direction: row;
-    justify-content: center
 
-}
+
 
 .material-icons{
   vertical-align: middle;

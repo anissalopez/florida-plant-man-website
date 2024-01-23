@@ -172,12 +172,17 @@ class Reviews(Resource):
         data = request.get_json()
 
         try:
-            rating = data['rating']
+            rating = int(data['rating'])
+     
             comment = data['comment']
+            customer_id = data['customer_id']
+            plant_id = data['plant_id']
         
             new_rating = Review(
                 rating=rating,
-                comment=comment
+                comment=comment,
+                plant_id = plant_id,
+                customer_id = customer_id
             )
 
             db.session.add(new_rating)

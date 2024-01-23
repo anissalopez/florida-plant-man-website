@@ -1,32 +1,25 @@
-import * as React from 'react';
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import image from '../images/logo.png'
+import Box from '@mui/material/Box';
 
-export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
-    const navigate = useNavigate()
+import { Link } from "react-router-dom";
 
-    const handleNav = (e) => {
-        if (e.target.textContent === "Admin"){
-            navigate("/admin")
-        }
-    }
+import image from "../../images/logo.png"
 
-  const list = (anchor) => (
+
+
+
+
+
+export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
     <Box sx={{display:"flex-column"}}>
         <Box sx={{display:"flex", justifyContent:"center"}}>
             <img alt="florida plant man logo" src={image} width="70px" height="100%" />
         </Box>
-    <Divider  />
-
+        <Divider  />
         <Box sx={{width: 250, pt:"10px",}}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
@@ -46,7 +39,6 @@ export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
                     </ListItemButton>
                 </ListItem>
                 </Link>
-          
                 {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
                 <Link key={text} to={`/${text.toLowerCase()}`} style={{textDecoration:'none', color: 'black'}} >
                 <ListItem onClick={handlePlantNav} disablePadding>
@@ -69,23 +61,3 @@ export default function TemporaryDrawer({toggleDrawer, state, handlePlantNav}) {
         </Box>
     </Box>
   );
-
-  return (
-    <div >
-        <React.Fragment key="left">
-            <Drawer
-            anchor="left"
-            open={state["left"]}
-            onClose={toggleDrawer("left", false)}
-            PaperProps={{
-                sx: {
-                  backgroundColor: "#f1f1f1",
-                }
-              }}
-          >
-            {list("left")}
-            </Drawer>
-        </React.Fragment>
-    </div>
-  );
-}

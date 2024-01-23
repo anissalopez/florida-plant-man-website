@@ -2,45 +2,39 @@ import React, {useEffect, useState } from "react";
 import Review from "./Review";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import AddReview from "./AddReview";
 
 const ReviewList = () => {
+    const [reviews, setReviews] = useState([]);
 
-    const [reviews, setReviews] = useState([])
     useEffect(()=> {
         const fetchReviews = async () => {
           try{
               const response = await fetch("/reviews")
               if (!response.ok) throw Error('Error receiving data')
               const reviewList = await response.json()
-            console.log(reviewList)
               setReviews(reviewList)
-              // setFetchError(null)
+              console.log(reviewList)
           }catch(err){
-              // setFetchError(err.message)
               console.log(err.message)
           }finally{
-              // setIsLoading(false);
           }
         }
         fetchReviews()
       }, [])
-      const reviewList = reviews.map((review) => (
-        <Review xs={4} review={review} key={review.id}/>
+
+      const reviewList = reviews.slice(-3).map((review) => (
+        <Review review={review} key={review.id}/>
       ));
 
-      console.log(reviews)
-      
-
       return (
-        <Container>
-            <h2 className="homepage-headers">Reviews</h2>
+        <Container sx={{marginTop:"100px"}}>
+            <h2 className="homepage-headers">What our customers think about us</h2>
         <Grid container spacing={4}>
             {reviewList}
         </Grid>
+        <AddReview />
         </Container>
-      )
-      
-
-}
+      )}
 
 export default ReviewList;

@@ -102,7 +102,6 @@ export default function PlantForm({ plants, setPlants}){
                       name={value}
                       onChange={(event) => {
                         formik.setFieldValue(value, event.currentTarget.files[0])
-                        console.log(value)
                       }}
                       type="file"
                       accept=".jpg, .jpeg, .png, .svg, .webp"

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { DataGrid } from '@mui/x-data-grid';
 
-import styles from "../styles/CustomerTable.module.css";
+import styles from "../../styles/CustomerTable.module.css";
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },

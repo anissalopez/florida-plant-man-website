@@ -7,7 +7,6 @@ function PlantList({plants}){
     })
     return(
         <div>{plantList}</div>
-    )
-}
+    )};
 
 export default PlantList;

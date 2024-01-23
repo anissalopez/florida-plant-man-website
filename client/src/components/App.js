@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useNavigate } from "react-router-dom"
+
 
 import HomePage from "./HomePage";
-
-import PlantDetail from "./PlantDetail";
-import Nav from "./Nav";
-import Admin from "./Admin";
-import PlantForm from "./PlantForm";
-import PlantTable from "./PlantTable";
-import CustomerTable from "./CustomerTable";
-import CustomerForm from "./CustomerForm";
-import AllPlants from "./AllPlants";
-import PlantCategory from "./PlantCategory";
+import PlantDetail from "./Plants/PlantDetail";
+import Nav from "./Nav/Nav";
+import Admin from "./Admin/Admin";
+import PlantForm from "./Admin/PlantForm";
+import PlantTable from "./Admin/PlantTable";
+import CustomerTable from "./Customers/CustomerTable";
+import CustomerForm from "./Customers/CustomerForm";
+import PlantContainer from "./Plants/PlantContainer";
+import PlantCategory from "./Plants/PlantCategory";
+import PostReview from "./Reviews/PostReview";
 
 export default function App(){
   const [plants, setPlants] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [fetchError, setFetchError] = useState(null)
-  const [plantCategory, setCategory] = useState("")
-  const [plantFilter, setPlantFilter] = useState([])
   
   const plant_url = '/plants'
-
-  const navigate = useNavigate()
 
   useEffect(()=> {
     const fetchPlants = async () => {
@@ -43,22 +39,8 @@ export default function App(){
     fetchPlants()
   }, [])
 
-  const handlePlantNav = (e) =>{
-     
-    if (e.target.textContent === 'All Plants'){
-        console.log(e)
-        navigate("/allplants")
-    }
 
-    if (e.target.textContent === 'Alocasia'){
-            setCategory('Alocasia')
-            const filteredPlants = plants.filter((plant)=>{
-              return plant.name.toLowerCase().includes('alocasia')
-            })
-            setPlantFilter(filteredPlants)
-            navigate("/alocasia")
-        }
-}
+  
 
  
 
@@ -68,8 +50,7 @@ export default function App(){
       {fetchError && <h1>{fetchError}</h1>}
       {!fetchError && !isLoading &&
       <div>
-          <Nav handlePlantNav={handlePlantNav}/>
-        
+          <Nav /> 
           <Routes>
             <Route exact path="/" element={<HomePage plants={plants}/>} />
             <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} setIsLoading={setIsLoading} fetchError={fetchError} isLoading={isLoading}/>} />
@@ -78,8 +59,9 @@ export default function App(){
             <Route exact path="/admin/planttable" element={<PlantTable setPlants={setPlants} plants={plants}/>} />
             <Route exact path="/admin/customertable" element={<CustomerTable />} />
             <Route exact path="/admin/customerform" element={<CustomerForm />} />
-            <Route exact path="/plants/AllPlants" element={<AllPlants plants={plants} setPlants={setPlants} />} />
+            <Route exact path="/plants/AllPlants" element={<PlantContainer plants={plants} setPlants={setPlants} />} />
             <Route exact path="/:category" element={<PlantCategory plants={plants} />} />
+            <Route exact path="/reviews" element={<PostReview plants={plants} />} />
           </Routes>
         </div>
       }
