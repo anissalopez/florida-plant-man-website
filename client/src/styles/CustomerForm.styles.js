@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import  TextField  from '@mui/material/TextField';
 
 export const FormContainer = styled(Box)({
-     
     display:"flex", 
     gap:"20px", 
     justifyContent:"center", 
@@ -40,9 +39,19 @@ export const FormInput= styled(TextField)({
     //     fontFamily:"Flowers",
     //     color:"#6DC01E"
     //    },
-       '& .label':{
+       '& .label.MuiFormLabel-root':{
         color:'#377E30',
         fontFamily:'Flower',
+        '&:shrink':{
+            color:'#377E30'
+        },
+        '&:focused':
+        {
+            color:'#377E30'
+        },
+        '&:active':{
+            color:'#377E30'
+        },
        },
        '& .MuiOutlinedInput-root': {
             '& fieldset': {
