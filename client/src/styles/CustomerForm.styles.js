@@ -11,7 +11,7 @@ export const FormContainer = styled(Box)({
     alignItems:"center",
     alignContent:"center",
     width:"75vw",
-    color:"#377E30",
+    color:"#000",
     fontFamily:"Flower",
     "& .form-components":{
         display:"flex", 
@@ -40,28 +40,28 @@ export const FormInput= styled(TextField)({
     //     color:"#6DC01E"
     //    },
        '& .label.MuiFormLabel-root':{
-        color:'#377E30',
+        color:'#000',
         fontFamily:'Flower',
-        '&:shrink':{
-            color:'#377E30'
-        },
-        '&:focused':
-        {
-            color:'#377E30'
-        },
-        '&:active':{
-            color:'#377E30'
-        },
+            '&:shrink':{
+                color:'#377E30'
+            },
+            '&:focused':
+            {
+                color:'#377E30'
+            },
+            '&:active':{
+                color:'#377E30'
+            },
        },
        '& .MuiOutlinedInput-root': {
             '& fieldset': {
-            borderColor: '#BED500'
+            borderColor: '#377E30'
             },
             '&:hover fieldset': {
-                borderColor: '#6DC01E',
+                borderColor: '#BED500',
             },
             '&.Mui-focused fieldset': {
-            borderColor: '#6DC01E',
+            borderColor: '#BED500',
             color:'white'
             }
     }

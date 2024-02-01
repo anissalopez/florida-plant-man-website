@@ -10,7 +10,8 @@ import DrawerAppBar from "./Nav/Nav";
 export default function HomePage ({ plants, handlePlantDetail}) {
     return(
             <main>
-                <Header />
+                {/* <div className='container'>hello</div> */}
+                <Header /> 
                 <Link to="/plants">Plants</Link>
                 <FeaturedPlantList plants={plants} handlePlantDetail={handlePlantDetail}/>
                 <ReviewList />

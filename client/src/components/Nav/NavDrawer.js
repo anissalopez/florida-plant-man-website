@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Drawer from '@mui/material/Drawer';
 import { list } from "../AppVariables/navbarVariables"
+import { MainDiv } from '../../styles/Header.styles';
 
 
 
@@ -23,6 +24,7 @@ export default function NavDrawer({toggleDrawer, state}) {
   return (
     <div >
         <React.Fragment key="left">
+
             <Drawer
             anchor="left"
             open={state["left"]}

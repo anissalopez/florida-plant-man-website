@@ -2,14 +2,15 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormHelperText from '@mui/material/FormHelperText';
+
 import React, { useState } from "react";
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import { FormBox } from '../../styles/ReviewForm.styles';
+
+import { FormBox, SelectMenu } from '../../styles/ReviewForm.styles';
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -57,29 +58,32 @@ export default function ReviewForm({ plants, customerId }){
 
     return(
             <FormBox component="form" onSubmit={formik.handleSubmit}>
-                <InputLabel id="select-plant">Please select a plant</InputLabel>
+                <h2>Which of our Plant Companions did you take home?</h2>
+                <InputLabel className="label" id="select-plant">select</InputLabel>
                     <Select
+                    className="menu"
                     labelId="select-plant"
                     id="plant_id"
                     name="plant_id"
                     onChange={formik.handleChange}
                     value={formik.values["plant_id"]}
                     label="plantselection"
-                    helperText ={formik.errors['plant_id']}
+                  
                     >
                       {plants.map((plant) =>{
-                        return(<MenuItem key={plant.id}
+                        return(<MenuItem className="items" key={plant.id} sx={{fontFamily:"Sometype Mono", color:"green"}}
                                 value={plant.id}>
                                     {plant.name}
                                 </MenuItem>)})}
                     </Select>
-                <h2>We strive for 5 star reviews, tell us what you think</h2>
+                <h2>We aim to earn your 5-star rating, please share your thoughts with us!</h2>
                 <Rating sx={{marginTop:"50px"}}
                     id="rating"
                    name="rating"
                    type="number"
                    value={Number(formik.values["rating"])}
                    onChange={formik.handleChange}
+                   className="rating"
                    
                    
                 />
