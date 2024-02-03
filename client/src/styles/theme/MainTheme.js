@@ -6,7 +6,7 @@ export const Colors = {
     // secondary:"#6DC01E",
     secondary: "#377E30",
     third:"#E4DCCD",
-    success:"#BED500",
+    fourth:"#BED500",
     danger:"#FF5722",
     warning:"#FFC107",
     dark:"#233017",
@@ -38,7 +38,10 @@ const theme = createTheme({
         }
     },
     typography:{
-        fontFamily:`'Sometype Mono', monospace`
+        fontFamily:`'Sometype Mono', monospace`,
+        larger:{
+            fontSize:"24px"
+        }
     }
 
 });

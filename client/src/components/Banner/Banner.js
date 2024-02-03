@@ -1,4 +1,4 @@
-import { BannerContainer, BannerContent, BannerTitle, BannerDescription, BannerImage } from "../../styles/Banner.styles"
+import { BannerContainer, BannerContent, BannerTitle, BannerDescription, BannerImage } from "../../styles/Banner/Banner.styles"
 import Typography from '@mui/material/Typography';
 import image from "../../images/background_image.webp"
 

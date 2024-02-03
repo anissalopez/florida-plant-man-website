@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 export const CardComponent = styled(Card)({
     backgroundColor:"#f1f1f1",
     boxShadow:"none",
-    "&:hover": { transform: "scale3d(1.05, 1.05, 1)"}
+    "&:hover": { transform: "scaled(1.05, 1.05, 1)"}
 })
 
 export const ButtonComponent = styled(Button)({

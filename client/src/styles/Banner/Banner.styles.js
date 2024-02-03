@@ -1,8 +1,8 @@
 import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
-import { Colors } from "../styles/theme/MainTheme";
-import theme from "../styles/theme/MainTheme";
+import { Colors } from "../theme/MainTheme";
+import theme from "../theme/MainTheme";
 
 
 export const BannerContainer = styled(Box)(({theme})=>({
@@ -27,8 +27,11 @@ export const BannerContent = styled(Box)({
     display:"flex",
     flexDirection:"column",
     justifyContent:"center",
-    // maxWidth:"420px",
     maxWidth:"600px",
+    [theme.breakpoints.down('md')]:{
+        maxWidth:"420px"
+    },
+    // maxWidth:"600px",
     padding:"30px"
 
 })
@@ -40,6 +43,9 @@ export const BannerTitle = styled(Typography)(({theme})=>({
     marginBottom:'20px',
     fontFamily:"Flower",
     [theme.breakpoints.down('sm')]:{
+        fontSize:'42px'
+    },
+    [theme.breakpoints.down('md')]:{
         fontSize:'42px'
     }
 }));

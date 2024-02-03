@@ -1,7 +1,7 @@
 import IconButton from "@mui/material/IconButton";
 import ListItemButton  from "@mui/material/ListItemButton";
 import ListItemIcon  from "@mui/material/ListItemIcon";
-import { NavList, NavHeader } from "../../styles/Nav.styles";
+import { NavList, NavHeader } from "../../styles/Nav/Nav.styles";
 
 import Actions from "./Actions";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';

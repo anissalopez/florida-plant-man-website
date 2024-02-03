@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import PlantDetail from "./Plants/PlantDetail";
 import Nav from "./Nav/Nav";
+import Promotions from "./Promotions/Promotions"
+import Products from "./Products/Products";
 import Admin from "./Admin/Admin";
 import PlantForm from "./Admin/PlantForm";
 import PlantTable from "./Admin/PlantTable";
@@ -54,6 +56,8 @@ export default function App(){
     <Container maxWidth="xl" >
       <Nav></Nav>
       <Banner />
+      <Promotions />
+      <Products plants={plants}/>
       
 
     </Container>

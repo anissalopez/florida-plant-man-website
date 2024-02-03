@@ -1,4 +1,4 @@
-import { NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav.styles";
+import { NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav/Nav.styles";
 import { Colors } from "../../styles/theme/MainTheme";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';

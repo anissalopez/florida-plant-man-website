@@ -1,22 +1,21 @@
-
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from "@mui/material/ListItemButton";
-import { NavContainer, NavHeader, NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav.styles";
+import { NavContainer, NavHeader, NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav/Nav.styles";
 
 import SearchIcon from '@mui/icons-material/Search';
 
 import {Colors} from "../../styles/theme/MainTheme"
 
 import { Link } from "react-router-dom";
-import { List } from "@mui/material";
+
 import Actions from "./Actions";
 
 
 
 export default function NavDesktop({matches}){
-    const Component = matches ? ActionsMobile : ActionsDesktop
+
  
     return(
      
@@ -27,18 +26,18 @@ export default function NavDesktop({matches}){
         <NavList type="row" >
             <Link key="home" to={`/`}  >
                 <ListItem >
-                    <ListItemText primaryTypographyProps={{fontSize: '18px'}}primary="Home" />
+                    <ListItemText primaryTypographyProps={{fontSize: '24px'}}primary="Home" />
                 </ListItem>
             </Link>
             <Link key="All Plants" to={"/plants/AllPlants"}  >
                 <ListItem>
-                    <ListItemText primary="All" primaryTypographyProps={{fontSize: '18px'}} />
+                    <ListItemText primary="All" primaryTypographyProps={{fontSize: '24px'}} />
                 </ListItem>
             </Link>
                 {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
             <Link key={text} to={`/${text.toLowerCase()}`}  >
                     <ListItem>
-                    <ListItemText primary={text} primaryTypographyProps={{fontSize: '18px'}} />
+                    <ListItemText primary={text} primaryTypographyProps={{fontSize: '24px'}} />
                     </ListItem>
             </Link>
                 ))}
