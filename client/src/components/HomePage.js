@@ -11,9 +11,9 @@ export default function HomePage ({ plants, handlePlantDetail}) {
     return(
             <main>
                 {/* <div className='container'>hello</div> */}
-                <Header /> 
+                {/* <Header /> 
                 <Link to="/plants">Plants</Link>
-                <FeaturedPlantList plants={plants} handlePlantDetail={handlePlantDetail}/>
+                <FeaturedPlantList plants={plants} handlePlantDetail={handlePlantDetail}/> */}
                 <ReviewList />
             </main>
     )};

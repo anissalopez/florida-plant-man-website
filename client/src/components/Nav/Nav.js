@@ -21,7 +21,7 @@ export default function Nav() {
       });
 
       const theme = useTheme();
-      const matches = useMediaQuery(theme.breakpoints.down('md'))
+      const matches = useMediaQuery(theme.breakpoints.down('xl'))
     
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -31,11 +31,12 @@ export default function Nav() {
       };
 
   return (
-    <div>
+    <div >
 
-      {matches ? <NavMobile matches={matches}/> : <NavDesktop matches={matches} />}
+      {matches ? <NavMobile matches={matches} toggleDrawer={toggleDrawer}/> : <NavDesktop matches={matches}  />}
 
-      {/* <AppBar sx={{backgroundColor:"#233017", height:"100px", boxShawdow:"0", justifyContent:"center"}}>
+      {
+       <NavDrawer  toggleDrawer={toggleDrawer} state={state} setState={setState}></NavDrawer>/* <AppBar sx={{backgroundColor:"#233017", height:"100px", boxShawdow:"0", justifyContent:"center"}}>
         <Toolbar>
             <Box sx={{flexGrow:1}}>
               <IconButton
@@ -53,7 +54,7 @@ export default function Nav() {
             <IconButton  sx={{color:"#f1f1f1" }}>
               <ShoppingCartIcon />
             </IconButton>
-            <NavDrawer  toggleDrawer={toggleDrawer} state={state} setState={setState}></NavDrawer>
+           
         </Toolbar>
       </AppBar> */}
       </div>

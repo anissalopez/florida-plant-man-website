@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
 
 import image from "../../images/logo.png"
+import { Colors } from '../../styles/theme/MainTheme';
 
 
 
@@ -25,14 +26,14 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}>
               <List >
-                <Link key="home" to={`/`} style={{textDecoration:'none', color: 'black'}} >
+                <Link key="home" to={`/`} style={{textDecoration:'none',color:Colors.primary}} >
                 <ListItem onClick={handlePlantNav} disablePadding>
                     <ListItemButton>
                     <ListItemText primary="Home" />
                     </ListItemButton>
                 </ListItem>
                 </Link>
-                <Link key="All Plants" to={"/plants/AllPlants"} style={{textDecoration:'none', color: 'black'}} >
+                <Link key="All Plants" to={"/plants/AllPlants"} style={{textDecoration:'none', color:Colors.primary}} >
                 <ListItem onClick={handlePlantNav} disablePadding>
                     <ListItemButton>
                     <ListItemText primary="All Plants" />
@@ -40,7 +41,7 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                 </ListItem>
                 </Link>
                 {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
-                <Link key={text} to={`/${text.toLowerCase()}`} style={{textDecoration:'none', color: 'black'}} >
+                <Link key={text} to={`/${text.toLowerCase()}`} style={{textDecoration:'none', color:Colors.primary}} >
                 <ListItem onClick={handlePlantNav} disablePadding>
                     <ListItemButton>
                     <ListItemText primary={text} />
@@ -49,11 +50,14 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                 </Link>
                 ))}
             </List>
-            <List>
+            <List >
                 {['Admin', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
                 <ListItem  onClick={handleNav} key={text} disablePadding>
-                    <ListItemButton >
-                    <ListItemText  secondary={text} />
+                    <ListItemButton sx={{  "&:hover":{
+                    backgroundColor:Colors.fourth,
+                    
+                },'& .MuiTypography-root':{color:Colors.secondary}}} >
+                    <ListItemText   secondary={text} />
                     </ListItemButton>
                 </ListItem>
                 ))}

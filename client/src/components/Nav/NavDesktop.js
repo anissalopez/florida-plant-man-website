@@ -11,7 +11,7 @@ import {Colors} from "../../styles/theme/MainTheme"
 import { Link } from "react-router-dom";
 
 import Actions from "./Actions";
-
+import { useMediaQuery } from '@mui/material';
 
 
 export default function NavDesktop({matches}){
@@ -20,9 +20,15 @@ export default function NavDesktop({matches}){
     return(
      
        <NavContainer >
+        {/* {useMediaQuery('(min-width:1600px)') ?   <NavHeader>
+            The Florida Plant Man
+            </NavHeader>: null } */}
             <NavHeader>
             The Florida Plant Man
             </NavHeader>
+      
+      
+         
         <NavList type="row" >
             <Link key="home" to={`/`}  >
                 <ListItem >
@@ -34,19 +40,19 @@ export default function NavDesktop({matches}){
                     <ListItemText primary="All" primaryTypographyProps={{fontSize: '24px'}} />
                 </ListItem>
             </Link>
-                {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
+                {['Alocasia', 'Anthurium', 'Monstera','Philodendron', 'Syngonium' ].map((text) => (
             <Link key={text} to={`/${text.toLowerCase()}`}  >
                     <ListItem>
                     <ListItemText primary={text} primaryTypographyProps={{fontSize: '24px'}} />
                     </ListItem>
             </Link>
                 ))}
-            <ListItemButton>
+            {/* <ListItemButton>
                 <ListItemIcon  >
-                    <SearchIcon sx={{color:Colors.primary}}/>
+                <SearchIcon sx={{color:Colors.primary}}/>
                 </ListItemIcon>
-            </ListItemButton>
-            <Actions matches={matches}/>
+            </ListItemButton> */}
+     
             {/* <Component>
             <ListItemButton sx={{justifyContent:"center"}}>
                 <ListItemIcon  sx={{display:'flex', justifyContent:'center'}}>
@@ -61,6 +67,7 @@ export default function NavDesktop({matches}){
             </ListItemButton>
             </Component> */}
         </NavList>
+        <Actions matches={matches}/>
       
 
        </NavContainer>

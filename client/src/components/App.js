@@ -7,6 +7,8 @@ import PlantDetail from "./Plants/PlantDetail";
 import Nav from "./Nav/Nav";
 import Promotions from "./Promotions/Promotions"
 import Products from "./Products/Products";
+import Footer from "./Footer/Footer";
+
 import Admin from "./Admin/Admin";
 import PlantForm from "./Admin/PlantForm";
 import PlantTable from "./Admin/PlantTable";
@@ -59,7 +61,8 @@ export default function App(){
       <Promotions />
       <Products plants={plants}/>
       
-
+    <Footer></Footer>
+   
     </Container>
     </ThemeProvider>
     // <div>

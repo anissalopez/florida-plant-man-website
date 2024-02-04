@@ -32,9 +32,7 @@ export const ProductImage = styled('img')(({src, theme})=>({
     marginBottom:"10px",
     // transform: "scale3d(1.05, 1.05, 1)",
     [theme.breakpoints.up('md')]:{
-        '&:hover':{       
-      
-        },
+   
         width:'80%',
         // padding:'10px',
         // border:`1px solid ${Colors.primary}`,
@@ -42,25 +40,33 @@ export const ProductImage = styled('img')(({src, theme})=>({
     }
 }))
 
-export const ProductActionButton = styled(IconButton)(()=>({
-    background:"transparent",
-    margin:4
+export const ProductActionButton = styled(IconButton)(({theme})=>({
+ 
+    margin:4,
+    [theme.breakpoints.up("md")]: {
+   
+        color:"white",
+        background:Colors.fourth,
+
+        '&:hover':{       
+            background:Colors.primary
+          
+        }
+
+    }
+    
+ 
+ 
+    
 }))
 
 export const ProductFavButton = styled(ProductActionButton, {
     shouldForwardProp: (prop) => prop !== 'isfav'
 })(({isfav, theme})=>({
-    backgroundColor:"transparent",
-    color: isfav ? Colors.primary : Colors.third,
+  
+    color: isfav ? Colors.secondary : Colors.third,
     [theme.breakpoints.up("md")]: {
-        // marginRight:"40px",
-        color:"white",
-     
-        
-        // // position:"absolute",
-        // right:0,
-        // top:0,
-
+       
     }
 }))
 
@@ -69,7 +75,7 @@ export const ProductAddToCart = styled(Button,{
     })(({show, theme})=>({
     "&:hover":{
         background:Colors.fourth,
-        color:Colors.black,
+        color:Colors.primary,
         transform: "scale3d(1.05, 1.05, 1)"
     },
     width:'120px',
@@ -89,7 +95,7 @@ export const ProductAddToCart = styled(Button,{
         animation: show && `${slideInBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`
     },
 
-    background: Colors.secondary,
+    background: Colors.fourth,
     opacity:0.9
 }))
 
@@ -109,6 +115,6 @@ export const ProductActionsWrapper = styled(Box,{
         position:'absolute',
         right:"10%",
         top:'3%',
-        animation: show && `${slideInRight} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`
+        // animation: show && `${slideInRight} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`
     }
 }))

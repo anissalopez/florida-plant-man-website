@@ -20,8 +20,8 @@ export const NavContainer = styled(Box)({
 
 
 export const NavHeader = styled(Typography)({
-    padding:"4px",
-    flexGrow:1,
+    // padding:"4px",
+    flexGrow:0,
     fontSize:"18px",
     fontFamily:'Flower',
     textAlign:"center",
@@ -31,7 +31,7 @@ export const NavHeader = styled(Typography)({
 export const NavList = styled(List)(({type}) => ({
     display: type === 'row' ? 'flex' : 'block',
     flexGrow: 3,
-    justifyContent:'center',
+    justifyContent:'space-between',
 
     alignItems:'center',
  
@@ -42,10 +42,12 @@ export const NavList = styled(List)(({type}) => ({
 
 export const ActionsDesktop = styled(Box)({
     flexGrow:0,
+    
 })
 
 export const ActionsMobile = styled(Box)({
     display:"flex",
+    justifyContent:"center",
 
     // height:"50px",
     background:Colors.secondary,

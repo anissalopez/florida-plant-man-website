@@ -5,6 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonIcon from '@mui/icons-material/Person';
 import ListItemIcon  from "@mui/material/ListItemIcon";
 import ListItemButton  from "@mui/material/ListItemButton";
+import { ListItem } from "@mui/material";
 
 
 export default function Actions({matches}){
@@ -12,17 +13,21 @@ export default function Actions({matches}){
     const Component = matches ? ActionsMobile : ActionsDesktop
     return(
         <Component>
-            <NavList>
+            <NavList type="row" sx={{ color:matches ? Colors.white : Colors.secondary}}>
                 <ListItemButton sx={{justifyContent:"center"}}>
-                    <ListItemIcon  sx={{display:'flex', justifyContent:'center', color:matches ? Colors.white : Colors.secondary}}>
+                    
                         <ShoppingCartIcon></ShoppingCartIcon>
-                    </ListItemIcon>
-                    <ListItemIcon  sx={{display:'flex', justifyContent:'center', color:matches ? Colors.white : Colors.secondary}}>
+              
+               </ListItemButton>
+               <ListItemButton sx={{justifyContent:"center"}}>
+                   
                         <FavoriteIcon></FavoriteIcon>
-                    </ListItemIcon>
-                    <ListItemIcon  sx={{display:'flex', justifyContent:'center', color:matches ? Colors.white : Colors.secondary}}>
+                   
+                </ListItemButton>
+                <ListItemButton sx={{justifyContent:"center"}}>
+                   
                         <PersonIcon></PersonIcon>
-                    </ListItemIcon>
+
                 </ListItemButton>
             </NavList>
         </Component>

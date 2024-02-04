@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 
 import Drawer from '@mui/material/Drawer';
-import { list } from "../AppVariables/navbarVariables"
+import { list } from "./navbarVariables"
 import { MainDiv } from '../../styles/Header.styles';
+import { Colors } from '../../styles/theme/MainTheme';
+
 
 
 
@@ -22,19 +24,20 @@ export default function NavDrawer({toggleDrawer, state}) {
     }
 
   return (
-    <div >
+    <div>
         <React.Fragment key="left">
 
             <Drawer
-            anchor="left"
-            open={state["left"]}
-            onClose={toggleDrawer("left", false)}
-            PaperProps={{
-                sx: {
-                  backgroundColor: "#f1f1f1",
+             sx={{
+                "& .MuiPaper-root": {
+                 backgroundColor:Colors.white2,
+                 color:Colors.fourth,
+               
                 }
               }}
-          >
+            anchor="left"
+            open={state["left"]}
+            onClose={toggleDrawer("left", false)}>
             {list("left", toggleDrawer, handleAdminNav, handlePlantNav )}
             </Drawer>
         </React.Fragment>

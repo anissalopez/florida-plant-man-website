@@ -11,11 +11,11 @@ import {Colors} from "../../styles/theme/MainTheme"
 
 
 
-export default function NavMobile({matches}){
+export default function NavMobile({matches, toggleDrawer}){
 
     return(
         <NavList type="row" >
-            <IconButton  sx={{color:Colors.primary}}>
+            <IconButton  sx={{color:Colors.primary}}  onClick={toggleDrawer("left", true)}>
                 <MenuRoundedIcon sx={{color:Colors.primary}}/>
             </IconButton>
             <NavHeader textAlign={"center"} variant="h2">
