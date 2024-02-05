@@ -1,12 +1,13 @@
 import { NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav/Nav.styles";
 import { Colors } from "../../styles/theme/MainTheme";
+
+import ListItemButton  from "@mui/material/ListItemButton";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonIcon from '@mui/icons-material/Person';
-import ListItemIcon  from "@mui/material/ListItemIcon";
-import ListItemButton  from "@mui/material/ListItemButton";
-import { ListItem } from "@mui/material";
 
+import ListItemIcon  from "@mui/material/ListItemIcon";
+import { ListItem } from "@mui/material";
 
 export default function Actions({matches}){
 
@@ -15,19 +16,13 @@ export default function Actions({matches}){
         <Component>
             <NavList type="row" sx={{ color:matches ? Colors.white : Colors.secondary}}>
                 <ListItemButton sx={{justifyContent:"center"}}>
-                    
-                        <ShoppingCartIcon></ShoppingCartIcon>
-              
+                    <ShoppingCartIcon></ShoppingCartIcon>
                </ListItemButton>
                <ListItemButton sx={{justifyContent:"center"}}>
-                   
-                        <FavoriteIcon></FavoriteIcon>
-                   
+                    <FavoriteIcon></FavoriteIcon>
                 </ListItemButton>
                 <ListItemButton sx={{justifyContent:"center"}}>
-                   
-                        <PersonIcon></PersonIcon>
-
+                    <PersonIcon></PersonIcon>
                 </ListItemButton>
             </NavList>
         </Component>

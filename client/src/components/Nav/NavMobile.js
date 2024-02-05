@@ -1,15 +1,12 @@
-import IconButton from "@mui/material/IconButton";
-import ListItemButton  from "@mui/material/ListItemButton";
-import ListItemIcon  from "@mui/material/ListItemIcon";
-import { NavList, NavHeader } from "../../styles/Nav/Nav.styles";
-
 import Actions from "./Actions";
+
+import IconButton from "@mui/material/IconButton";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import SearchIcon from '@mui/icons-material/Search';
+
+import { NavList, NavHeader } from "../../styles/Nav/Nav.styles";
+
 import {Colors} from "../../styles/theme/MainTheme"
-
-
-
 
 export default function NavMobile({matches, toggleDrawer}){
 
@@ -26,5 +23,4 @@ export default function NavMobile({matches, toggleDrawer}){
             </IconButton>
             <Actions matches={matches}></Actions>
         </NavList>
-    )
-}
+    )};
