@@ -16,7 +16,7 @@ export const NavContainer = styled(Box)({
         textDecoration:"none",
         color:Colors.primary,
     }
-})
+});
 
 
 export const NavHeader = styled(Typography)({
@@ -26,7 +26,7 @@ export const NavHeader = styled(Typography)({
     fontFamily:'Flower',
     textAlign:"center",
     color:Colors.secondary
-})
+});
 
 export const NavList = styled(List)(({type}) => ({
     display: type === 'row' ? 'flex' : 'block',
@@ -34,16 +34,13 @@ export const NavList = styled(List)(({type}) => ({
     justifyContent:'space-between',
 
     alignItems:'center',
- 
-   
-
-}))
+}));
 
 
 export const ActionsDesktop = styled(Box)({
     flexGrow:0,
     
-})
+});
 
 export const ActionsMobile = styled(Box)({
     display:"flex",
@@ -58,9 +55,8 @@ export const ActionsMobile = styled(Box)({
     alignItems:"center",
     zIndex:99,
     // marginTop:"50px",
-  
     borderTop:`1px solid ${Colors.secondary}`
-})
+});
 
 
 

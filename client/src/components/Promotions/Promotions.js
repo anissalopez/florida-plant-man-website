@@ -5,34 +5,29 @@ import {useState, useEffect, useRef} from "react";
 
 const messages = [
     "20% off on your first order", "Summer sale starts now!", "Please like and subscribe"
-]
+];
 
 export default function Promotions(){
     const containerRef = useRef();
     const [messageIndex, setMessageIndex] = useState(0);
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(true);
 
     useEffect(()=>{
         setTimeout(()=>{
-            setShow(false)
-
-        }, 3000)
+            setShow(false);
+        }, 3000);
         const intervalId = setInterval(()=>{
-            setMessageIndex(i => (i + 1) % messages.length)
-            setShow(true)
+            setMessageIndex(i => (i + 1) % messages.length);
+            setShow(true);
             setTimeout(()=>{
-                setShow(false)
-    
-            }, 3000)
-
-        }, 4000)
+                setShow(false);
+            }, 3000);
+        }, 4000);
         return () =>{
-            clearInterval(intervalId)
-        }
-
-    },[])
+            clearInterval(intervalId);
+        };
+    },[]);
     return(
-   
         <PromotionsContainer ref={containerRef}>
             <Slide 
                 container={containerRef.current}
@@ -50,5 +45,4 @@ export default function Promotions(){
                 </Box>
             </Slide>
         </PromotionsContainer>
-    )
-}
+    )};

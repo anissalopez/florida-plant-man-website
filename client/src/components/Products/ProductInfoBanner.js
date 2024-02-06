@@ -1,4 +1,4 @@
-import { InfoContainer, ShopInfo } from "../../styles/PlantInfoBanner.styles";
+import { InfoContainer, ShopInfo } from "../../styles/Products/Products.styles";
 import Box from "@mui/material/Box";
 import { shopGuarantee, shippingPolicy, returnPolicy } from "../AppVariables/infoBannerVariables";
 
@@ -19,8 +19,7 @@ const PlantInfoBanner = () => {
                         <Box className="headers">Return Policy</Box>
                         <Box className="content">{returnPolicy}</Box>
                     </Box>
-                </ShopInfo>
-              
+                </ShopInfo>   
             </InfoContainer>
     )};
 

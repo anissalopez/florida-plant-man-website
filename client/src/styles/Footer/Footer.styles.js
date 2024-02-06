@@ -6,4 +6,4 @@ export const FooterTitle =styled(Typography)(()=>({
     marginBottom:'1em',
     fontFamily:"Flower",
     fontSize:"30px"
-}))
+}));

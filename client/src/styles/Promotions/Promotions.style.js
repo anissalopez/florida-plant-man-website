@@ -11,7 +11,7 @@ export const PromotionsContainer = styled(Box)(({ theme })=>({
     padding:'20px 0px 20px 0px',
     overflow:'hidden',
     background: Colors.secondary
-}))
+}));
 
 export const Message = styled(Typography)(({theme}) => ({
     [theme.breakpoints.up('md')]:{
@@ -19,4 +19,4 @@ export const Message = styled(Typography)(({theme}) => ({
     },
     color: Colors.white,
     fontSize:"1.5rem"
-}))
+}));

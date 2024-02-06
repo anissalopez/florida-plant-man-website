@@ -9,9 +9,6 @@ import { NavContainer, NavHeader, NavList} from "../../styles/Nav/Nav.styles";
 export default function NavDesktop({matches}){
     return(
        <NavContainer >
-        {/* {useMediaQuery('(min-width:1600px)') ?   <NavHeader>
-            The Florida Plant Man
-            </NavHeader>: null } */}
             <NavHeader>
             The Florida Plant Man
             </NavHeader>
@@ -32,25 +29,6 @@ export default function NavDesktop({matches}){
                         <ListItemText primary={text} primaryTypographyProps={{fontSize: '24px'}} />
                         </ListItem>
                 </Link>))}
-                {/* <ListItemButton>
-                    <ListItemIcon  >
-                    <SearchIcon sx={{color:Colors.primary}}/>
-                    </ListItemIcon>
-                </ListItemButton> */}
-        
-                {/* <Component>
-                <ListItemButton sx={{justifyContent:"center"}}>
-                    <ListItemIcon  sx={{display:'flex', justifyContent:'center'}}>
-                        <ShoppingCartIcon></ShoppingCartIcon>
-                    </ListItemIcon>
-                    <ListItemIcon  sx={{display:'flex', justifyContent:'center'}}>
-                        <FavoriteIcon></FavoriteIcon>
-                    </ListItemIcon>
-                    <ListItemIcon  sx={{display:'flex', justifyContent:'center'}}>
-                        <PersonIcon></PersonIcon>
-                    </ListItemIcon>
-                </ListItemButton>
-                </Component> */}
             </NavList>
                 <Actions matches={matches}/>
        </NavContainer>

@@ -14,12 +14,12 @@ import { Colors } from '../../styles/theme/MainTheme';
 export default function Footer(){
     return(
         <Box sx={{background:Colors.third, color:Colors.primary,
-                p:{xs:4, md:10},
                 pt:12, 
                 pb:12,
                 opacity:.8}}>
+            <Container>
             <Grid container spacing={6} sx={{display:"flex",justifyContent:"center"}}>
-                <Grid item md={12} xl={6} xs={12} sx={{textAlign:"left"}}>
+                <Grid item md={12}  xs={12} sx={{textAlign:"left"}}>
                     <FooterTitle variant="body1">About Us</FooterTitle>
                     <Typography sx={{fontFamily:'Monaco', fontSize:{xs:"16px", md:"18px", lg:"20px"}, pr:3}}>
                         We are a small Green House located in sunny South FLorida 
@@ -32,7 +32,7 @@ export default function Footer(){
                         always ready to assist with your questions or concerns. 
                     </Typography>
                 </Grid>
-                <Grid item md={6} xl={3} xs={12} >
+                <Grid item md={6}  xs={12} >
                     <FooterTitle variant='body1'>
                         Information
                     </FooterTitle>
@@ -54,7 +54,7 @@ export default function Footer(){
                         </ListItemText>
                     </List>
                 </Grid>
-                <Grid item  xl={3} md={6} xs={12} >
+                <Grid item   md={6} xs={12} >
                     <FooterTitle>Contact Us</FooterTitle>
                         <List sx={{pt:0}}>
                             <ListItemText>
@@ -75,5 +75,6 @@ export default function Footer(){
                         </Box>
                 </Grid>
                 </Grid>
+                </Container>
             </Box>
     )};

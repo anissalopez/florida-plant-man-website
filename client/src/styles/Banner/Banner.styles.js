@@ -18,11 +18,8 @@ export const BannerContainer = styled(Box)(({theme})=>({
         flexDirection:"column",
         alignItems:"center",
         background: Colors.light_gray
-    
-
     }
-
-}))
+}));
 
 export const BannerContent = styled(Box)({
     display:"flex",
@@ -35,8 +32,7 @@ export const BannerContent = styled(Box)({
     },
     // maxWidth:"600px",
     padding:"30px"
-
-})
+});
 
 export const BannerTitle = styled(Typography)(({theme})=>({
     lineHeight:1.25,
@@ -78,8 +74,7 @@ export const BannerImage = styled('img')(({src, theme}) => ({
         objectFit:"cover",
         height:"300px"
     }
-
-}))
+}));
 
 export const BannerShopButton = styled(Button, {
     shouldForwardProp: (prop) => prop !== 'color',
@@ -99,4 +94,4 @@ export const BannerShopButton = styled(Button, {
         padding: "10px 0px",
         fontSize:"14px"
     }
-}))
+}));

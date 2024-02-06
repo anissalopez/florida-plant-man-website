@@ -31,7 +31,7 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link key="All Plants" to={"/plants/AllPlants"} style={{textDecoration:'none', color:Colors.primary}} >
+                <Link key="All Plants" to={"/plants/all"} style={{textDecoration:'none', color:Colors.primary}} >
                     <ListItem disablePadding>
                         <ListItemButton>
                         <ListItemText primary="All Plants" />
@@ -48,7 +48,10 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                 </Link>
                 ))}
             </List>
-            <List >
+            <List sx={{'& .MuiListItemButton-root':{
+                        '&:hover':{
+                            backgroundColor:Colors.fourth
+                    }}}}>
                 {['Admin', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
                 <ListItem  onClick={handlePlantNav} key={text} disablePadding>
                     <ListItemButton sx={{'& .MuiTypography-root':{color:Colors.secondary}}} >
