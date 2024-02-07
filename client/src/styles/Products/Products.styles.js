@@ -1,38 +1,30 @@
 import {styled } from '@mui/system';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import IconButton  from '@mui/material/IconButton';
 import {slideInBottom, slideInRight} from '../../animations/animations'
 import { Colors} from '../theme/MainTheme';
 
-export const Product = styled(Box)(({theme})=>({
+export const Product = styled(Box)(({ theme })=>({
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
     flexDirection:'column',
-    
-  
     [theme.breakpoints.up('md')]:{
         position:'relative',
    
     }
 }));
 
-export const ProductImage = styled('img')(({src, theme})=>({
+export const ProductImage = styled('img')(({ src, theme })=>({
     src:`url(${src})`,
     width:'100%',
-    // border:`1px solid ${Colors.primary}`,
     borderRadius:"25px",
-    //boxShadow: `rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;`,
     boxShadow: `rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px`,
-    // background: Colors.primary,
-    // padding:"10px",
     marginBottom:"10px",
-    // transform: "scale3d(1.05, 1.05, 1)",
     [theme.breakpoints.up('md')]:{
         width:'80%',
-        // padding:'10px',
-        // border:`1px solid ${Colors.primary}`,
     }
 }));
 
@@ -47,7 +39,7 @@ export const ProductActionButton = styled(IconButton)(({theme})=>({
             background:Colors.primary
           
         }
-    }  
+    }
 }));
 
 export const ProductFavButton = styled(ProductActionButton, {
@@ -76,8 +68,6 @@ export const ProductAddToCart = styled(Button,{
     [theme.breakpoints.up('md')]:{
         borderBottomLeftRadius:"25px",
         borderBottomRightRadius:"25px",
-     
-       
         position:'absolute',
         bottom:'2%',
         width:'300px',
@@ -115,8 +105,6 @@ export const PlantContent = styled(Box)({
     width:"100%",
     flexDirection: "column",
     justifyContent:"space-between",
-    
-    // justifyContent: {lg:"space-between", md:"center"},
     marginLeft:"20px",
     "div":{
       width:"100%",
@@ -174,3 +162,46 @@ export const ShopInfo = styled(Box)({
     }
 
 });
+
+export const HeaderContainer = styled('div')({
+    marginTop:"25px",
+    marginBottom:"25px",
+
+     
+    '& .main-content':{
+        marginTop:"50px",
+        display: "inline-flex",
+        gap: "15px",
+        alignItems: "baseline" 
+
+    },
+    '& .category':{
+        color: "fff",
+        fontSize:"50px",
+        height:"50px"
+
+    },
+    '& .noun':{
+        color: "#377E30",
+        fontSize: "40px",
+        fontWeight: "bold",
+        height:"50px"
+    },
+    '& .definition':{
+        fontSize:"25px",
+        width:"75vw"
+    },
+    '& .pronunciation':{
+        color: "#6DC01E",
+        fontSize:"20px",
+        fontWeight:"bold",
+        marginBottom:"15px",
+        marginTop:"15px"
+
+    },
+    '& .client-alert':{
+        textAlign:'center',
+
+    }
+})
+

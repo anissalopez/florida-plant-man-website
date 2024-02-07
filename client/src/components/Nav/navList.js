@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 
 import { Colors } from '../../styles/theme/MainTheme';
-import image from "../../images/logo.png"
+import image from "../../images/shade4.png"
 
 export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
     <Box sx={{display:"flex-column"}}>
@@ -22,24 +22,29 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                 onKeyDown={toggleDrawer(anchor, false)}>
             <List sx={{'& .MuiListItemButton-root':{
                         '&:hover':{
-                            backgroundColor:Colors.fourth
-                    }}}}>
-                <Link key="home" to={`/`} style={{textDecoration:'none',color:Colors.primary}} >
+                            backgroundColor:Colors.fourth,
+                            color:Colors.primary
+                        },
+                        },
+                        '& a':{
+                            textDecoration:"none",
+                            color:Colors.white2}}}>
+                <Link key="home" to={`/`}>
                     <ListItem disablePadding>
                         <ListItemButton>
                         <ListItemText primary="Home" />
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link key="All Plants" to={"/plants/all"} style={{textDecoration:'none', color:Colors.primary}} >
+                <Link key="All Plants" to={"/plants/all"}  >
                     <ListItem disablePadding>
                         <ListItemButton>
                         <ListItemText primary="All Plants" />
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium' ].map((text) => (
-                <Link key={text} to={`/${text.toLowerCase()}`} style={{textDecoration:'none', color:Colors.primary}}>
+                {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium'].map((text) => (
+                <Link key={text} to={`/${text.toLowerCase()}`} >
                     <ListItem onClick={handlePlantNav} disablePadding>
                         <ListItemButton>
                         <ListItemText primary={text} />
@@ -50,11 +55,16 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
             </List>
             <List sx={{'& .MuiListItemButton-root':{
                         '&:hover':{
-                            backgroundColor:Colors.fourth
+                            backgroundColor:Colors.fourth,
+                            "& .MuiTypography-root":{
+                                color:Colors.primary
+                            }
                     }}}}>
                 {['Admin', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
                 <ListItem  onClick={handlePlantNav} key={text} disablePadding>
-                    <ListItemButton sx={{'& .MuiTypography-root':{color:Colors.secondary}}} >
+                    <ListItemButton sx={{'& .MuiTypography-root':{
+                        color:Colors.white2,
+                            }}}>
                         <ListItemText secondary={text} />
                     </ListItemButton>
                 </ListItem>

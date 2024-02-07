@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { useMediaQuery } from "@mui/material";
+import useMediaQuery  from "@mui/material/useMediaQuery";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import FitScreenIcon from '@mui/icons-material/FitScreen';
@@ -9,8 +9,9 @@ import Stack from "@mui/material/Stack";
 import { Product, ProductActionButton, ProductActionsWrapper, ProductAddToCart, ProductFavButton, ProductImage } from "../../styles/Products/Products.styles";
 import ProductMeta from "./ProductMeta";
 import { handleClick } from "../AppVariables/appVariables";
+import { Colors } from "../../styles/theme/MainTheme";
 
-export default function SingleProduct({plant, mediaQuery, matches}){
+export default function SingleProduct({plant, matches}){
     function handleClic(e){
         console.log(e)
     }

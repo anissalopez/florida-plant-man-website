@@ -53,6 +53,14 @@ const theme = createTheme({
                 disableElevation:true
             }
         },
+        MuiDrawer:{
+            styleOverrides:{
+                paper:{
+                    color:Colors.primary
+                }
+            }
+
+        },
         MyShopButton:{
             styleOverrides:{
                 root:{

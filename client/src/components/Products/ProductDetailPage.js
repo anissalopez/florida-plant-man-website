@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import {ThreeDots} from 'react-loading-icons';
 import SimpleImageSlider from "react-simple-image-slider";
 
+
+import { useLoadingContenxt } from "../../context";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -64,7 +66,7 @@ function PlantDetail({ setFetchError}) {
 
       <Grid sx={{ mt:"70px", alignItems:"center", justifyContent:"center"}}  
       container> 
-          <Grid item md={12} lg={6} sx={{display:"flex", justifyContent:"center"}} >
+          <Grid item md={12} lg={6} sx={{display:"flex", justifyContent:"center", p:4}} >
             {loading?  <ThreeDots stroke={Colors.secondary} /> : 
             <SimpleImageSlider
                 width={sliderWidth}

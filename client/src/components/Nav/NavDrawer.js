@@ -23,8 +23,7 @@ export default function NavDrawer({toggleDrawer, state}) {
             <Drawer
              sx={{
                 "& .MuiPaper-root": {
-                 backgroundColor:Colors.white2,
-                 color:Colors.fourth,
+                  backgroundColor:Colors.primary,
                 }
               }}
                 anchor="left"

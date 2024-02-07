@@ -18,7 +18,7 @@ export default function NavDesktop({matches}){
                         <ListItemText primaryTypographyProps={{fontSize: '24px'}}primary="Home" />
                     </ListItem>
                 </Link>
-                <Link key="All Plants" to={"/plants/AllPlants"}  >
+                <Link key="all" to={"/plants/all"}  >
                     <ListItem>
                         <ListItemText primary="All" primaryTypographyProps={{fontSize: '24px'}} />
                     </ListItem>

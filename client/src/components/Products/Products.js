@@ -1,8 +1,7 @@
 import SingleProduct from "./SingleProduct";
 import SingleProductDesktop from "./SingleProductDesktop";
 
-import { useTheme } from "@mui/material/styles";
-import { useMediaQuery } from "@mui/material";
+
 import { Colors } from "../../styles/theme/MainTheme";
 
 import Grid from '@mui/material/Grid';
@@ -10,11 +9,14 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 
 
-export default function Products({plants}){
 
-    console.log(plants)
+export default function Products({ plants }){
+
+   
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
 

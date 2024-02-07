@@ -3,7 +3,7 @@ import LocalShippingRoundedIcon from '@mui/icons-material/LocalShippingRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import { RiPlantFill } from "react-icons/ri";
 
-import {MainContent, IconContainer, BoxBackground, BoxContent, Header} from "../../styles/AdminContent.styles"
+import {MainContent, IconContainer, BoxBackground, BoxContent, Header} from "../../styles/Admin/AdminContent.styles"
 
 export default function AdminContent({customers, plants}){
     return(

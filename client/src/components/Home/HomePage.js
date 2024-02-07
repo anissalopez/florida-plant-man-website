@@ -13,13 +13,15 @@ import { Link } from "react-router-dom";
 
 
 
-export default function HomePage ({ plants, handlePlantDetail}) {
+export default function HomePage ({ plants, matches}) {
     return(
+          
             <Container maxWidth="xl" >
                 <Banner />
                 <Promotions />
-                <Products plants={plants}/>
+                <Products plants={plants} matches={matches} theme={theme}/>
             </Container>
+
      
          
    

@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
 
 import { handleClick } from "../AppVariables/appVariables";
-import { AdminContainer } from "../../styles/AdminPanel.styles"
+import { AdminContainer } from "../../styles/Admin/AdminPanel.styles"
 
 
 export default function AdminPanel(){
