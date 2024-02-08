@@ -203,5 +203,25 @@ export const HeaderContainer = styled('div')({
         textAlign:'center',
 
     }
+});
+
+
+export const FilterHeader = styled('h1')({
+    color:"#000",
+    fontFamily:"Flower",   
+    marginTop:"75px",
+    marginBottom:"60px",
+})
+
+export const ButtonFilter = styled(Button)({
+    color:"#fff",
+    backgroundColor: "#BED500",
+    fontFamily: "Flower",
+    border: "solid 1px #BED500",
+    width:"130px",
+    '&:hover':{
+        backgroundColor:"#377E30",
+        border: "solid #377E30"
+    }
 })
 

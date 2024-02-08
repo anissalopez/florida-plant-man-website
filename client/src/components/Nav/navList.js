@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import { Colors } from '../../styles/theme/MainTheme';
 import image from "../../images/shade4.png"
 
-export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
+export const list = (anchor, toggleDrawer, handleNav) => (
     <Box sx={{display:"flex-column"}}>
         <Box sx={{display:"flex", justifyContent:"center"}}>
             <img alt="florida plant man logo" src={image} width="70px" height="100%" />
@@ -36,16 +36,9 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                         </ListItemButton>
                     </ListItem>
                 </Link>
-                <Link key="All Plants" to={"/plants/all"}  >
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                        <ListItemText primary="All Plants" />
-                        </ListItemButton>
-                    </ListItem>
-                </Link>
-                {['Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium'].map((text) => (
-                <Link key={text} to={`/${text.toLowerCase()}`} >
-                    <ListItem onClick={handlePlantNav} disablePadding>
+                {['All', 'Alocasia', 'Anthurium', 'Monstera', 'Philodendron', 'Syngonium'].map((text) => (
+                <Link key={text} to={`/plants/category/${text.toLowerCase()}`} >
+                    <ListItem onClick={handleNav} disablePadding>
                         <ListItemButton>
                         <ListItemText primary={text} />
                         </ListItemButton>
@@ -61,7 +54,7 @@ export const list = (anchor, toggleDrawer, handleNav, handlePlantNav) => (
                             }
                     }}}}>
                 {['Admin', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
-                <ListItem  onClick={handlePlantNav} key={text} disablePadding>
+                <ListItem  onClick={handleNav} key={text} disablePadding>
                     <ListItemButton sx={{'& .MuiTypography-root':{
                         color:Colors.white2,
                             }}}>

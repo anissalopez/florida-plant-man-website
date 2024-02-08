@@ -8,15 +8,12 @@ import { Colors } from '../../styles/theme/MainTheme';
 export default function NavDrawer({toggleDrawer, state}) {
     const navigate = useNavigate();
    
-    const handlePlantNav = (e) =>{  
-        if (e.target.textContent === "Admin"){
+    const handleNav = (e) =>{  
+        if (e.target.textContent === "Admin" || "Admin Portal"){
             navigate("/admin")
         };
-        if (e.target.textContent === 'All Plants'){
-          navigate("/allplants")
-        };
+     
     };
-
   return (
     <div>
         <React.Fragment key="left">
@@ -29,7 +26,7 @@ export default function NavDrawer({toggleDrawer, state}) {
                 anchor="left"
                 open={state["left"]}
                 onClose={toggleDrawer("left", false)}>
-                {list("left", toggleDrawer, handlePlantNav )}
+                {list("left", toggleDrawer, handleNav )}
             </Drawer>
         </React.Fragment>
     </div>

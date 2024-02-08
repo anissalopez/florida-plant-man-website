@@ -8,12 +8,17 @@ import PlantDetail from "../Products/ProductDetailPage";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import Admin from "../Admin/Admin";
+import Dashboard from "../Admin/Dashboard";
+import Products from "../Admin/Products";
+import Settings from "../Admin/Settings";
+
+
 import PlantForm from "../Admin/PlantForm";
 import PlantTable from "../Admin/PlantTable";
 import CustomerTable from "../Customers/CustomerTable";
 import CustomerForm from "../Customers/CustomerForm";
-import PlantContainer from "../Plants/PlantContainer";
-import PlantCategory from "../Products/ProductCategoryList";
+import PlantContainer from "../Products/ProductFilterContainer";
+import ProductCategoryList from "../Products/ProductCategoryList";
 import PostReview from "../Reviews/PostReview";
 
 import {ThreeDots} from 'react-loading-icons';
@@ -22,11 +27,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import  theme  from "../../styles/theme/MainTheme";
 import Container from "@mui/material/Container";
 import { Colors } from "../../styles/theme/MainTheme";
+import AdminApp from "../Admin/AdminApp";
+
 
 export default function App(){
   const [plants, setPlants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
+  const [hide, setHide] = useState(false)
   
   const plant_url = '/plants';
 
@@ -39,6 +47,7 @@ export default function App(){
           if (!response.ok) throw Error('Error receiving data')
           const plantList = await response.json()
           setPlants(plantList)
+          setHide(false)
           setFetchError(null)
       }catch(err){
           setFetchError(err.message)
@@ -64,21 +73,21 @@ export default function App(){
   {!fetchError && !loading && 
     <ThemeProvider theme={theme}>
           <Container maxWidth="xl"> 
-            <Nav></Nav>
+            <Nav  ></Nav>
           </Container>
                 <Routes>
                   <Route exact path="/" element={<HomePage plants={plants}  theme={theme}/>} />
                   <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} />} />
-                  <Route exact path="/admin" element={<Admin plants={plants}/>} />
-                  <Route exact path="/admin/plantform" element={<PlantForm setPlants={setPlants} plants={plants}/>} />
-                  <Route exact path="/admin/planttable" element={<PlantTable setPlants={setPlants} plants={plants}/>} />
-                  <Route exact path="/admin/customertable" element={<CustomerTable />} />
-                  <Route exact path="/admin/customerform" element={<CustomerForm />} />
-                  <Route exact path="/plants/all" element={<PlantContainer plants={plants} setPlants={setPlants} />} />
-                  <Route exact path="/:category" element={<PlantCategory plants={plants}  />} />
+                  <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
                   <Route exact path="/reviews" element={<PostReview plants={plants} />} /> 
+                  <Route  exact path="/admin" element={<AdminApp plants={plants}/>}>
+                    <Route exact path="products" element={<Products />} />
+                 
+                    
+                  </Route> 
+                  {/* <Route  path="/products" element={<Products />} /> */}
                 </Routes>
-                <Footer></Footer> 
+                <Footer hide={hide} setHide={setHide} />          
     </ThemeProvider>
  }
  </>)};

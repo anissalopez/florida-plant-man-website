@@ -18,13 +18,13 @@ export default function NavDesktop({matches}){
                         <ListItemText primaryTypographyProps={{fontSize: '24px'}}primary="Home" />
                     </ListItem>
                 </Link>
-                <Link key="all" to={"/plants/all"}  >
+                {/* <Link key="all" to={"/plants/all"}  >
                     <ListItem>
                         <ListItemText primary="All" primaryTypographyProps={{fontSize: '24px'}} />
                     </ListItem>
-                </Link>
-                    {['Alocasia', 'Anthurium', 'Monstera','Philodendron', 'Syngonium' ].map((text) => (
-                <Link key={text} to={`/${text.toLowerCase()}`}  >
+                </Link> */}
+                    {['All','Alocasia', 'Anthurium', 'Monstera','Philodendron', 'Syngonium' ].map((text) => (
+                <Link key={text} to={`/plants/category/${text.toLowerCase()}`}  >
                         <ListItem>
                         <ListItemText primary={text} primaryTypographyProps={{fontSize: '24px'}} />
                         </ListItem>

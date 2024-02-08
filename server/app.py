@@ -159,7 +159,7 @@ class PlantById(Resource):
             return response
         except Exception as exc:
             response = make_response({"Error": exc}, 500)
-            
+
 
 class Reviews(Resource):
     def get(self):

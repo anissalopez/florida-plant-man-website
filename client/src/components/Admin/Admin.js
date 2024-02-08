@@ -3,10 +3,12 @@ import React, {useEffect, useState} from "react";
 import AdminPanel from "./AdminPanel";
 import AdminContent from "./AdminContent";
 import Box from "@mui/material/Box";
+import AdminApp from "./AdminApp";
 
 
-export default function Admin({plants}){
+export default function Admin({ plants }){
     const [customers, setCustomers] = useState("")
+  
   
 
     useEffect(()=>{
@@ -23,9 +25,11 @@ export default function Admin({plants}){
     }, [])
 
     return(
-        <Box sx={{display:"flex"}}>
-          <AdminPanel />
-          <AdminContent customers={customers} plants={plants}/>
-        </Box>
+
+        <AdminApp></AdminApp>
+        // <Box sx={{display:"flex"}}>
+        //   <AdminPanel />
+        //   <AdminContent customers={customers} plants={plants}/>
+        // </Box>
     )
 }
