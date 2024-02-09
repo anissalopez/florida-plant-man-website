@@ -11,10 +11,10 @@ import Admin from "../Admin/Admin";
 import Dashboard from "../Admin/Dashboard";
 import Products from "../Admin/Products";
 import Settings from "../Admin/Settings";
-
+import Sidebar from "../Admin/Sidebar";
 
 import PlantForm from "../Admin/PlantForm";
-import PlantTable from "../Admin/PlantTable";
+import PlantTable from "../Admin/ProductTable";
 import CustomerTable from "../Customers/CustomerTable";
 import CustomerForm from "../Customers/CustomerForm";
 import PlantContainer from "../Products/ProductFilterContainer";
@@ -58,6 +58,12 @@ export default function App(){
     fetchPlants();
   }, []);
 
+  const updatePlantList = (newPlant) =>{
+    console.log(newPlant)
+    const updatedPlants = [...plants, newPlant]
+    setPlants(updatedPlants)
+  }
+
   return(
   
  <>
@@ -81,7 +87,12 @@ export default function App(){
                   <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
                   <Route exact path="/reviews" element={<PostReview plants={plants} />} /> 
                   <Route  exact path="/admin" element={<AdminApp plants={plants}/>}>
-                    <Route exact path="products" element={<Products />} />
+                    <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
+                    <Route exact path="dashboard" element={<Dashboard />} />
+                    <Route exact path="settings" element={<Settings />} />
+                    <Route exact path="sidebar" element={<Sidebar/>} />
+                 
+                    {/* <Route exact path="addproduct" element={<PlantForm/>} /> */}
                  
                     
                   </Route> 

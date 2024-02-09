@@ -23,7 +23,7 @@ export default function NavMenu(){
 
     return (
         <List> 
-          <ListItem  disablePadding onClick={()=>{navigate('/admin')}}>
+          <ListItem  disablePadding onClick={()=>{navigate('/admin/dashboard')}}>
             <MenuItemBtn text='dashboard' handleNav={handleNav}
                   selected={selectedItem.includes('dashboard')}
                   icon={<DashboardIcon />}/>

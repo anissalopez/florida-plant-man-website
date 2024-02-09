@@ -27,8 +27,9 @@ export default function Nav() {
 
     if (pathname === "/admin" || pathname === "/admin/messages" 
     || pathname === "/admin/customers" || pathname === "/admin/settings" 
-    || pathname === "/admin/products") 
+    || pathname === "/admin/products" || pathname === "/admin/dashboard") 
     return null;
+
 
     return (
       <div >

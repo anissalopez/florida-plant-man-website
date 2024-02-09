@@ -17,7 +17,8 @@ export default function Footer(){
     const { pathname } = useLocation();
     if (pathname === "/admin" || pathname === "/admin/messages" 
     || pathname === "/admin/customers" || pathname === "/admin/settings" 
-    || pathname === "/admin/products") 
+    || pathname === "/admin/products" || pathname === "admin/dashboard"
+    || '/admin/addproduct') 
     return null;
 
     return(

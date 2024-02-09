@@ -1,18 +1,22 @@
+import {useState} from 'react';
+import { Outlet } from "react-router-dom";
+
 import Box from '@mui/material/Box';
 import { Colors } from '../../styles/theme/MainTheme';
-import {useState} from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled,  } from '@mui/material/styles';
 import { DrawerWidth } from '../../styles/theme/MainTheme';
-import AdminDrawer from './AdminDrawer';
-import Products from './Products';
-import { Outlet } from "react-router-dom"
 
-import { Routes, Route } from "react-router-dom";
+import AdminDrawer from './AdminDrawer';
+
+
+
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
       padding: theme.spacing(3),
+  
+ 
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -29,26 +33,15 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   );
 
 
-export default function AdminApp(){
+export default function AdminApp({ plants }){
     const [open, setOpen] = useState(true)
     return(
                 
-        <Box sx={{display:"flex", background:Colors.admingray, height:'100vh' }}>
-            <AdminDrawer open={open} setOpen={setOpen}>
-           
-            
-
-            </AdminDrawer>
-            
-                 
-                
-             
-            <Main open={open}>
+        <Box sx={{display:"flex"}}>
+            <AdminDrawer open={open} setOpen={setOpen} />
+            <Main open={open} >
+                {/* <div style={{height:"50px", backgroundColor:Colors.dove_gray}}/> */}
                 <Outlet />
-            
-          
-
             </Main>
-
         </Box>
      )}
