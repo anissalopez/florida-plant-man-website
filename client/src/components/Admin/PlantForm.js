@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -14,8 +15,8 @@ import Button from '@mui/material/Button'
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function PlantForm({ newProduct, initialValues, setOpen, open, handleClose, updatePlantList }) {
-  
+export default function PlantForm({ newProduct, setInitialValues, initialValues, setOpen, open, handleClose, updatePlantList }) {
+  const [preview, setPreview] = useState(null)
 
 
   const formSchema = yup.object().shape({
@@ -53,7 +54,7 @@ export default function PlantForm({ newProduct, initialValues, setOpen, open, ha
           formData.append(value, values[value]);
         }
   
-        const method = newProduct === null ? "POST" : "PATCH";
+        const method = initialValues === null ? "POST" : "PATCH";
       
         let url = "/plants";
         if (method === "PATCH") {
@@ -72,15 +73,20 @@ export default function PlantForm({ newProduct, initialValues, setOpen, open, ha
           }
       
           const data = await response.json();
+          console.log(data)
           updatePlantList(method, data);
           setOpen(false);
+          setPreview(null)
           alert("Product " + (method === "PATCH" ? "updated" : "added") + " successfully");
           resetForm({ values: '' })
+          setInitialValues(null)
         } catch (error) {
           throw new Error('HTTP error: ' + error);
         }
     }
   })
+
+
 
   return (
     <Dialog open={open} fullWidth maxWidth="lg">
@@ -88,19 +94,92 @@ export default function PlantForm({ newProduct, initialValues, setOpen, open, ha
       <form onSubmit={formik.handleSubmit}>
         <DialogContent>
           <Grid container spacing={2}>
-          {['image1', 'image2', 'image3'].map((value, index) => (
-              <Grid item lg={4} xs={12} key={value}>
-                <InputLabel>{`Image ${index + 1}`}</InputLabel>
+            <Grid item lg={4} xs={12} key="image1">
+                <InputLabel>Image 1</InputLabel>
                 <input
-                  id={value}
-                  name={value}
-                  // onChange={handleFileChange}
+                  id="image1"
+                  name="image1"
+                  onChange={(e)=>{
+                    formik.setFieldValue("image1", e.currentTarget.files[0]);
+                    setPreview((prevState) => ({
+                      ...prevState,
+                      image1: URL.createObjectURL(e.target.files[0]),
+                    }));
+                    
+                    
+                  }}
                   type="file"
                   accept=".jpg, .jpeg, .png, .svg, .webp"
                 />
-                <p style={{ color: 'red' }}>{formik.errors[value]}</p>
+
+               
+              {
+                initialValues && !preview &&
+                <img style={{height:"200px", width:"200px"}}
+                src={initialValues.image1} /> 
+             
+
+              } 
+              {
+                preview &&
+                <img 
+                 
+                style={{height:"200px", width:"200px"}}
+                src={preview.image1} /> 
+              }
               </Grid>
-              ))} 
+            <Grid item lg={4} xs={12} key="image2">
+                <InputLabel>Image 2</InputLabel>
+                <input
+                  id="image2"
+                  name="image2"
+                  onChange={(e)=>{
+                    formik.setFieldValue("image2", e.currentTarget.files[0]);
+                    setPreview((prevState) => ({
+                      ...prevState,
+                      image2: URL.createObjectURL(e.target.files[0]),
+                    }));
+                  }}
+                  type="file"
+                  accept=".jpg, .jpeg, .png, .svg, .webp"
+                />
+              {/* {
+                initialValues  &&
+                <img 
+                 
+                style={{height:"200px", width:"200px"}}
+                src={preview.image2 ? preview.image2 : initialValues.image2} /> 
+             
+              } */}
+            </Grid>
+            <Grid item lg={4} xs={12} key="image3">
+                <InputLabel>Image 3</InputLabel>
+                <input
+                  id="image3"
+                  name="image3"
+                  onChange={(e)=>{
+                    formik.setFieldValue("image3", e.currentTarget.files[0]);
+                    setPreview((prevState) => ({
+                      ...prevState,
+                      image3: URL.createObjectURL(e.target.files[0]),
+                    }));
+                    
+                    
+                  }}
+                  type="file"
+                  accept=".jpg, .jpeg, .png, .svg, .webp"
+                />
+              {/* {
+                initialValues &&
+                <img 
+                 
+                style={{height:"200px", width:"200px"}}
+                src={preview.image3 ? preview.image3 : initialValues.image3} /> 
+             
+              } */}
+                <p style={{ color: 'red' }}>{formik.errors["image3"]}</p>
+              </Grid>
+         
             {['name', 'price', 'description', 'water', 'sun', 'qty'].map((value, index) => (
               <Grid item xs={12} key={value}>
                 <InputLabel htmlFor={value}>{`${value.charAt(0).toUpperCase()}${value.slice(1)}`}</InputLabel>
@@ -119,7 +198,14 @@ export default function PlantForm({ newProduct, initialValues, setOpen, open, ha
         </DialogContent>
         <DialogActions>
           <Button sx={{ backgroundColor: Colors.admingreen3, fontWeight: "bold" }} type="submit">Submit</Button>
-          <Button sx={{ backgroundColor: Colors.adminorange, fontWeight: "bold" }} onClick={handleClose}>Cancel</Button>
+          <Button sx={{ backgroundColor: Colors.adminorange, fontWeight: "bold" }} 
+          onClick={()=>{
+            setOpen(false)
+            setInitialValues(null)
+            setPreview(null)
+         
+          }
+          }>Cancel</Button>
         </DialogActions>
       </form>
     </Dialog>

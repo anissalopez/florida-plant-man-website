@@ -21,23 +21,24 @@ export default function Products({ plants, updatePlantList }){
     const [initialValues, setInitialValues] = useState(null)
     const [newProduct, setNewProduct] = useState(false) 
     const [open, setOpen] = useState(false);
-
+  
     const handleAddProduct = () => {
       setOpen(true);
-      setNewProduct(true)
-      setInitialValues( 
-        {
-          name: '',
-          price: '',
-          description: '',
-          image1: '',
-          image2: '',
-          image3: '',
-          water: '',
-          sun: '',
-          qty: ''
-        }
-      )
+      setNewProduct(true);
+      setInitialValues(null)
+      // setInitialValues( 
+      //   {
+      //     name: '',
+      //     price: '',
+      //     description: '',
+      //     image1: '',
+      //     image2: '',
+      //     image3: '',
+      //     water: '',
+      //     sun: '',
+      //     qty: ''
+      //   }
+      // )
       
 
     };
@@ -46,9 +47,10 @@ export default function Products({ plants, updatePlantList }){
     };
 
     const editProduct =(plant) =>{
+      setInitialValues(plant)
       setNewProduct(false)
       setOpen(true)
-      setInitialValues(plant)
+  
     }
 
     return(
@@ -69,7 +71,7 @@ export default function Products({ plants, updatePlantList }){
             Add Product
           </Button> 
           <ProductTable editProduct={editProduct} plants={plants} updatePlantList={updatePlantList} />
-          <PlantForm newProduct={newProduct} initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} open={open}/>  
+          <PlantForm setInitialValues={setInitialValues} newProduct={newProduct} initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} setOpen={setOpen} open={open}/>  
         </Container>
    
     )

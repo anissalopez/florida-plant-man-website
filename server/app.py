@@ -123,9 +123,26 @@ class Plants(Resource):
                 sun=sun
             )   
         db.session.add(new_plant)
+
+        #convert image back to bt
+
+        encoded_images = encode_imgage_directory()
+
+        new_plant_dict = {
+                "id": new_plant.id,
+                "name": new_plant.name,
+                "description": new_plant.description,
+                "price": new_plant.price,
+                "qty": new_plant.qty,
+                "sun": new_plant.sun,
+                "water": new_plant.water, 
+                "image1": encoded_images[new_plant.image1], 
+                "image2": encoded_images[new_plant.image2], 
+                "image3": encoded_images[new_plant.image3],  
+            }
         try:
             db.session.commit()
-            return make_response(new_plant.to_dict(), 201)
+            return make_response(new_plant_dict, 201)
         except Exception as exc:
                 db.session.rollback()  
                 return make_response({"An error occurred": str(exc)}, 400)
@@ -160,6 +177,61 @@ class PlantById(Resource):
         except Exception as exc:
             response = make_response({"Error": exc}, 500)
 
+    # def patch(self, id):
+    #     plant = Plant.query.filter(Plant.id == id).first()
+
+    #     default_value = '0'
+
+    #     if not plant:
+    #         return make_response({"Error": "Plant not found"}, 404)
+
+    #     image_directory = app.config["Images"]
+    #     images = []
+
+    #     uploaded_files = [
+    #         request.files.get('image1', default_value),
+    #         request.files.get('image2', default_value),
+    #         request.files.get('image3', default_value)
+    #     ]
+
+    #     unique_str = str(uuid.uuid4())[:8]
+
+    #     for image in uploaded_files:
+    #         try:
+    #             if image != default_value:
+    #                 filename = f"{unique_str}_{secure_filename(image.filename)}"
+    #                 images.append(filename)
+    #                 image_path = os.path.join(image_directory, filename)
+    #                 image.save(image_path)
+    #         except Exception as exc:
+    #             return make_response({"An error occurred saving image": str(exc)}, 400)
+
+    #     # for attr in request.form:
+    #     #     if 'image' not in attr:
+    #     #         setattr(plant, attr, request.form[attr])
+
+    #     # Update specific attributes
+    #     plant.name = request.form.get('name', plant.name)
+    #     plant.price = request.form.get('price', plant.price)
+    #     plant.description = request.form.get('description', plant.description)
+    #     plant.water = request.form.get('water', plant.water)
+    #     plant.sun = request.form.get('sun', plant.sun)
+    #     plant.qty = request.form.get('qty', plant.qty)
+
+    #     # Update image paths if new images were uploaded
+    #     if images:
+    #         plant.image1 = images[0]
+    #         plant.image2 = images[1]
+    #         plant.image3 = images[2]
+
+    #     try:
+    #         db.session.add(plant)
+    #         db.session.commit()
+    #         response_dict = plant.to_dict()
+    #         return make_response(response_dict, 200)
+    #     except Exception as exc:
+    #         db.session.rollback()
+    #         return make_response({"Error": str(exc)}, 500)
     def patch(self, id):
         plant = Plant.query.filter(Plant.id == id).first()
 
@@ -176,24 +248,30 @@ class PlantById(Resource):
             request.files.get('image2', default_value),
             request.files.get('image3', default_value)
         ]
+     
 
         unique_str = str(uuid.uuid4())[:8]
 
-        for image in uploaded_files:
+        # for image in uploaded_files:
+        #     try:
+        #         if image != default_value:
+        #             filename = f"{unique_str}_{secure_filename(image.filename)}"
+        #             images.append(filename)
+        #             image_path = os.path.join(image_directory, filename)
+        #             image.save(image_path)
+        #     except Exception as exc:
+        #         return make_response({"An error occurred saving image": str(exc)}, 400)
+        for index, image in enumerate(uploaded_files):
             try:
                 if image != default_value:
                     filename = f"{unique_str}_{secure_filename(image.filename)}"
-                    images.append(filename)
+                    images.append((index, filename))  # Append a tuple containing the index and filename
                     image_path = os.path.join(image_directory, filename)
                     image.save(image_path)
             except Exception as exc:
                 return make_response({"An error occurred saving image": str(exc)}, 400)
 
-        # for attr in request.form:
-        #     if 'image' not in attr:
-        #         setattr(plant, attr, request.form[attr])
 
-        # Update specific attributes
         plant.name = request.form.get('name', plant.name)
         plant.price = request.form.get('price', plant.price)
         plant.description = request.form.get('description', plant.description)
@@ -201,21 +279,45 @@ class PlantById(Resource):
         plant.sun = request.form.get('sun', plant.sun)
         plant.qty = request.form.get('qty', plant.qty)
 
+
         # Update image paths if new images were uploaded
-        if images:
-            plant.image1 = images[0]
-            plant.image2 = images[1]
-            plant.image3 = images[2]
+        for index, image_info in images:
+            if index == 0:
+                plant.image1 = image_info if image_info else plant.image1
+            elif index == 1:
+                plant.image2 = image_info if image_info else plant.image2
+            elif index == 2:
+                plant.image3 = image_info if image_info else plant.image3
+
+      
+        
+        print(images)
+        encoded_images = encode_imgage_directory()
+
+        updated_plant = {
+                "id": plant.id,
+                "name": plant.name,
+                "description": plant.description,
+                "price": plant.price,
+                "qty": plant.qty,
+                "sun": plant.sun,
+                "water": plant.water, 
+                "image1": encoded_images[plant.image1], 
+                "image2": encoded_images[plant.image2], 
+                "image3": encoded_images[plant.image3],  
+            }
 
         try:
             db.session.add(plant)
             db.session.commit()
-            response_dict = plant.to_dict()
-            return make_response(response_dict, 200)
+
+
+            
+            return make_response(updated_plant, 200)
         except Exception as exc:
             db.session.rollback()
             return make_response({"Error": str(exc)}, 500)
-        
+
     def delete(self, id):
 
         record = Plant.query.filter(Plant.id == id).first()
