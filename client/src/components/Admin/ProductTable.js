@@ -1,43 +1,3 @@
-// import * as React from 'react';
-// import { DataGrid } from '@mui/x-data-grid';
-
-// const columns = [
-//   { field: 'id', headerName: 'ID', width: 70 },
-//   { field: 'name', headerName: 'Name', width: 130 },
-//   { field: 'qty', headerName: 'Quantity', width: 130 },
-//   { field: 'water', headerName: 'Water Req.', width: 130 },
-//   { field: 'sun', headerName: 'Sun Req.', width: 130 },
-//   { field: 'image1', headerName: 'Image URL', width: 130 },
-//   { field: 'image2', headerName: 'Image URL', width: 130 },
-//   { field: 'image3', headerName: 'Image URL', width: 130 },
-  
-// ];
-
-
-// export default function PlantTable({plants}) {
-
-//   return (
-
-
-//     <div style={{ height: 400, width: '100%', marginTop:"200px" }}>
-//       <DataGrid
-//         rows={plants}
-//         columns={columns}
-//         initialState={{
-//           pagination: {
-//             paginationModel: { page: 0, pageSize: 5 },
-//           },
-//         }}
-//         pageSizeOptions={[5, 10]}
-//         checkboxSelection
-//       />
-//     </div>
-
-//   );
-// }
-
-
-import { useState } from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -48,20 +8,25 @@ import Paper from '@mui/material/Paper';
 import  IconButton  from "@mui/material/IconButton";
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
 import ShowMoreText from "react-show-more-text";
-import { Icon } from "@mui/material";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductTable({ plants, editProduct }) {
-    
-   
+export default function ProductTable({ plants, editProduct, updatePlantList }) {
 
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure?")) {
+      fetch(`/plants/${id}`, {
+          method: "DELETE"
+        })
+          .then(resp => resp.json())
+          .then(() => updatePlantList('DELETE', id))
+    };
+  };
+    
   return (
     <TableContainer component={Paper}>
       <Table >
@@ -76,7 +41,7 @@ export default function ProductTable({ plants, editProduct }) {
         </TableHead>
         <TableBody>
         {plants.map((plant) => (
-            <TableRow
+        <TableRow
               key={plant.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
             >
@@ -101,8 +66,6 @@ export default function ProductTable({ plants, editProduct }) {
                         more={<ExpandMoreIcon />}
                         less={"view less" }
                         expanded={false}
-                      
-                      
                         >
                      {plant.description}
                     </ShowMoreText>
@@ -116,18 +79,13 @@ export default function ProductTable({ plants, editProduct }) {
                          >
                         <EditIcon />
                     </IconButton>
-                    <IconButton>
-                        <DeleteIcon sx={{color:"red"}} />
-                    </IconButton>
-                 
-
-                  
-                    
-                   
-                </TableCell>
-
-                
-            </TableRow>
+                    <IconButton
+                     onClick={()=>handleDelete(plant.id)}>
+                        <DeleteIcon 
+                        sx={{color:"red"}} />
+                    </IconButton>   
+                </TableCell> 
+        </TableRow>
           ))} 
         </TableBody>
       </Table>

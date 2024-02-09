@@ -18,51 +18,58 @@ import PlantForm from './PlantForm';
 
 
 export default function Products({ plants, updatePlantList }){
-    const navigate = useNavigate()
-
+    const [initialValues, setInitialValues] = useState(null)
+    const [newProduct, setNewProduct] = useState(false) 
     const [open, setOpen] = useState(false);
 
-    const handleClickOpen = () => {
+    const handleAddProduct = () => {
       setOpen(true);
+      setNewProduct(true)
+      setInitialValues( 
+        {
+          name: '',
+          price: '',
+          description: '',
+          image1: '',
+          image2: '',
+          image3: '',
+          water: '',
+          sun: '',
+          qty: ''
+        }
+      )
+      
+
     };
     const handleClose = () => {
       setOpen(false);
     };
 
-   
-
-    const [initialValues, setInitialValues] = useState(null)
-
     const editProduct =(plant) =>{
-      console.log(plant)
+      setNewProduct(false)
       setOpen(true)
-      
-     
       setInitialValues(plant)
-
     }
 
     return(
         <Container>
         <Typography sx={{mb: 1}} variant='h4'>Products</Typography>
-        <Button startIcon={<AddIcon />} 
-          onClick={handleClickOpen}
-            sx={{
-                backgroundColor:Colors.adminorange,
-                color:Colors.white,
-                fontFamily:"Verdana",
-                fontWeight:"bold",
-                "&:hover":{
-                    backgroundColor:Colors.adminlightblue,
+          <Button startIcon={<AddIcon />} 
+            onClick={handleAddProduct}
+              sx={{
+                  backgroundColor:Colors.adminorange,
+                  color:Colors.white,
+                  fontFamily:"Verdana",
+                  fontWeight:"bold",
+                  "&:hover":{
+                      backgroundColor:Colors.adminlightblue,
 
-                }
-            }}>
+                  }
+              }}>
             Add Product
-        </Button>
-        
-          <ProductTable editProduct={editProduct} plants={plants}/>
-          <PlantForm initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} open={open}/>
-         
+          </Button> 
+          <ProductTable editProduct={editProduct} plants={plants} updatePlantList={updatePlantList} />
+          <PlantForm newProduct={newProduct} initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} open={open}/>  
         </Container>
    
     )

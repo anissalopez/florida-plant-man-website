@@ -160,6 +160,79 @@ class PlantById(Resource):
         except Exception as exc:
             response = make_response({"Error": exc}, 500)
 
+    def patch(self, id):
+        plant = Plant.query.filter(Plant.id == id).first()
+
+        default_value = '0'
+
+        if not plant:
+            return make_response({"Error": "Plant not found"}, 404)
+
+        image_directory = app.config["Images"]
+        images = []
+
+        uploaded_files = [
+            request.files.get('image1', default_value),
+            request.files.get('image2', default_value),
+            request.files.get('image3', default_value)
+        ]
+
+        unique_str = str(uuid.uuid4())[:8]
+
+        for image in uploaded_files:
+            try:
+                if image != default_value:
+                    filename = f"{unique_str}_{secure_filename(image.filename)}"
+                    images.append(filename)
+                    image_path = os.path.join(image_directory, filename)
+                    image.save(image_path)
+            except Exception as exc:
+                return make_response({"An error occurred saving image": str(exc)}, 400)
+
+        # for attr in request.form:
+        #     if 'image' not in attr:
+        #         setattr(plant, attr, request.form[attr])
+
+        # Update specific attributes
+        plant.name = request.form.get('name', plant.name)
+        plant.price = request.form.get('price', plant.price)
+        plant.description = request.form.get('description', plant.description)
+        plant.water = request.form.get('water', plant.water)
+        plant.sun = request.form.get('sun', plant.sun)
+        plant.qty = request.form.get('qty', plant.qty)
+
+        # Update image paths if new images were uploaded
+        if images:
+            plant.image1 = images[0]
+            plant.image2 = images[1]
+            plant.image3 = images[2]
+
+        try:
+            db.session.add(plant)
+            db.session.commit()
+            response_dict = plant.to_dict()
+            return make_response(response_dict, 200)
+        except Exception as exc:
+            db.session.rollback()
+            return make_response({"Error": str(exc)}, 500)
+        
+    def delete(self, id):
+
+        record = Plant.query.filter(Plant.id == id).first()
+
+        db.session.delete(record)
+        db.session.commit()
+
+        response_dict = {"message": "record successfully deleted"}
+
+        response = make_response(
+            response_dict,
+            200
+        )
+
+        return response
+
+
 
 class Reviews(Resource):
     def get(self):

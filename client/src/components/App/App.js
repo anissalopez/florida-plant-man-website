@@ -58,10 +58,40 @@ export default function App(){
     fetchPlants();
   }, []);
 
-  const updatePlantList = (newPlant) =>{
-    console.log(newPlant)
-    const updatedPlants = [...plants, newPlant]
-    setPlants(updatedPlants)
+  const updatePlantList = (method, plantInfo) =>{
+    if(method === 'POST'){
+      const updatedPlants = [...plants, plantInfo]
+      setPlants(updatedPlants)
+
+    }
+
+    if(method === 'PATCH'){
+
+    
+      const newPlantArray = plants.map((plant) => {
+        if (plant.id === plantInfo.id) {
+          return {
+            ...plant,
+            ...plantInfo
+          };
+        } else {
+          return plant;
+        };
+      });
+
+   
+      setPlants(newPlantArray);
+    }
+
+    if(method === 'DELETE'){
+
+  
+      const updatedPlants = plants.filter((plant) => plant.id !== plantInfo);
+      setPlants(updatedPlants);
+    }
+
+
+    
   }
 
   return(
