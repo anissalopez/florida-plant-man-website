@@ -4,7 +4,7 @@ import Box from "@mui/material/Box"
 import Grid from "@mui/material/Grid";
 import Rating from "@mui/material/Rating";
 
-import { ReviewContainer, ReviewName} from '../../styles/Review.style';
+import { ReviewContainer, ReviewName} from '../../styles/Review/Review.styles';
 
 const Review = ({ review }) => {
     return (

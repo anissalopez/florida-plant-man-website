@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 import  TextField  from '@mui/material/TextField';
 
-export const FormContainer = styled(Box)({
+export const CustomerFormContainer = styled(Box)({
     display:"flex", 
     gap:"20px", 
     justifyContent:"center", 
@@ -37,13 +37,11 @@ export const FormContainer = styled(Box)({
         fontFamily: "Flower",
         letterSpacing:".2rem",
         marginTop:"20px",
-        width:"70px",
-
-      
+        width:"70px",   
     }
 })
 
-export const FormInput= styled(TextField)({
+export const CustomerFormInput= styled(TextField)({
        '& .label.MuiFormLabel-root':{
         color:'#000',
         fontFamily:'Flower',
@@ -70,13 +68,6 @@ export const FormInput= styled(TextField)({
             color:'white'
             }
     }
- 
-
-
-  
-
-
-
 })
 
 

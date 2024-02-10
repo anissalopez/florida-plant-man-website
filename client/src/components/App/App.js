@@ -19,7 +19,7 @@ import CustomerTable from "../Customers/CustomerTable";
 import CustomerForm from "../Reviews/CustomerForm";
 import PlantContainer from "../Products/ProductFilterContainer";
 import ProductCategoryList from "../Products/ProductCategoryList";
-import PostReview from "../Reviews/PostReview";
+
 
 import {ThreeDots} from 'react-loading-icons';
 
@@ -102,7 +102,6 @@ export default function App(){
                 <Route exact path="/" element={<HomePage plants={plants}  theme={theme}/>} />
                 <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} />} />
                 <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
-                <Route exact path="/reviews" element={<PostReview plants={plants} />} /> 
                 <Route  exact path="/admin" element={<AdminApp plants={plants}/>}>
                   <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
                   <Route exact path="dashboard" element={<Dashboard />} />

@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 import { FormBox, SelectMenu } from '../../styles/ReviewForm.styles';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { FormContainer } from '../../styles/Review/Review.styles';
 
 
 
@@ -58,19 +59,16 @@ export default function ReviewForm({ plants, customerId, setOpen }){
   }});
 
     return(
-            <FormBox component="form" onSubmit={formik.handleSubmit}>
-                <h2>Which of our Plant Companions did you take home?</h2>
-                <InputLabel className="label" id="select-plant">select</InputLabel>
+          <FormContainer component="form" onSubmit={formik.handleSubmit}>
+              <h2>Which of our Plant Companions did you take home?</h2>
                     <Select
+                    fullWidth
                     className="menu"
                     labelId="select-plant"
                     id="plant_id"
                     name="plant_id"
                     onChange={formik.handleChange}
-                    value={formik.values["plant_id"]}
-                    label="plantselection"
-                  
-                    >
+                    value={formik.values["plant_id"]}>
                       {plants.map((plant) =>{
                         return(<MenuItem className="items" key={plant.id} sx={{fontFamily:"Sometype Mono", color:"green"}}
                                 value={plant.id}>
@@ -78,17 +76,17 @@ export default function ReviewForm({ plants, customerId, setOpen }){
                                 </MenuItem>)})}
                     </Select>
                 <h2>We aim to earn your 5-star rating, please share your thoughts with us!</h2>
-                <Rating
+                  <Rating
                     id="rating"
-                   name="rating"
-                   type="number"
-                   value={Number(formik.values["rating"])}
-                   onChange={formik.handleChange}
-                   className="rating" 
-                />
+                    name="rating"
+                    type="number"
+                    value={Number(formik.values["rating"])}
+                    onChange={formik.handleChange}
+               
+                  />
                 <p>{formik.errors['rating']}</p>
-               <Box>
-                   <Box>Please tell us about your experience with your purchase</Box>
+              
+                   <h2>Please tell us about your experience with your purchase</h2>
                    <TextField
                         id="comment"
                         name="comment"
@@ -97,7 +95,14 @@ export default function ReviewForm({ plants, customerId, setOpen }){
                         onChange={formik.handleChange}     
                     />
                     <p>{formik.errors['comment']}</p>
-                    <Button type="submit">Submit</Button>
-              </Box>
-            </FormBox>
+                    <Box sx={{
+                      display:"flex", flexDirection:"row",
+                    
+                      }}>
+                      <Button className="cancel-button"
+                      type="submit">Cancel</Button>
+                      <Button className="next-button"
+                      type="submit">Submit</Button>
+                    </Box>
+            </FormContainer >
     )}

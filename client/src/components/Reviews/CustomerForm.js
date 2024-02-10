@@ -1,17 +1,13 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 
-import { FormContainer, FormInput } from '../../styles/CustomerForm.styles';
-import setBodyColor from '../AppVariables/bodyColor';
+import { FormContainer, CustomerFormInput } from '../../styles/Review/Review.styles';
 
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 
 export default function CustomerForm({ setDisplay, display, setOpen }){
- 
-    
     const formSchema = yup.object().shape({
       first_name: yup.string().min(2).max(100).required("Must enter first name"),
       last_name: yup.string().min(2).max(100).required("Must enter last name")
@@ -42,13 +38,13 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
         catch (error) {
             throw new Error('HTTP error: ', error)
         }  
-}});
+    }});
       
     return (
         <FormContainer >
           <h1>We're excited to hear from you! What can we call you while we celebrate your review? </h1>
           <Box component="form" onSubmit={formik.handleSubmit} className="form-components"  >
-            <FormInput
+            <CustomerFormInput
                 FormHelperTextProps={{className:"helper"}}
                 InputLabelProps={{className:"label"}}
                 className="input-fields"
@@ -59,7 +55,7 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
                 onChange={formik.handleChange}
                 value={formik.values["first_name"]}  
             />
-            <FormInput
+            <CustomerFormInput
                 FormHelperTextProps={{className:"helper"}}
                 InputLabelProps={{className:"label"}}
                 className="input-fields"
