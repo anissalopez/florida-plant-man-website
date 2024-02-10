@@ -10,7 +10,6 @@ export const FormContainer = styled(Box)({
     flexDirection:"column",
     alignItems:"center",
     alignContent:"center",
-    width:"75vw",
     color:"#000",
     fontFamily:"Flower",
     "& .form-components":{
@@ -26,19 +25,25 @@ export const FormContainer = styled(Box)({
         fontFamily: "Flower",
         letterSpacing:".2rem",
         marginTop:"20px",
+        width:"70px",
 
         "&:hover":{
             backgroundColor:"#377E30"
         }
+    },
+    "& .cancel-button":{
+        backgroundColor:"red",
+        color:"#fff",
+        fontFamily: "Flower",
+        letterSpacing:".2rem",
+        marginTop:"20px",
+        width:"70px",
+
+      
     }
 })
 
 export const FormInput= styled(TextField)({
-    //     "& .helper":{
-    //     letterSpacing:".3rem",
-    //     fontFamily:"Flowers",
-    //     color:"#6DC01E"
-    //    },
        '& .label.MuiFormLabel-root':{
         color:'#000',
         fontFamily:'Flower',
@@ -65,22 +70,7 @@ export const FormInput= styled(TextField)({
             color:'white'
             }
     }
-    //    "& .input-style.MuiTextField-root:focused":{
-    //     color:"#6DC01E",
-    //     border:"solid 1px #6DC01E"
-      
-        
-    //    },
-    //    "& .inputs.Mui-focused":{
-    //     border:"solid 1px #6DC01E",
-    //     color: "#6DC01E"
-
-    //    },
-    //    "& .label":{
-       
-    //     color: "#6DC01E"
-
-    //    }
+ 
 
 
   

@@ -9,9 +9,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 
-export default function CustomerForm({ setDisplay, display }){
+export default function CustomerForm({ setDisplay, display, setOpen }){
  
-    setBodyColor({color:"#f1f1f1"})
+    
     const formSchema = yup.object().shape({
       first_name: yup.string().min(2).max(100).required("Must enter first name"),
       last_name: yup.string().min(2).max(100).required("Must enter last name")
@@ -70,7 +70,10 @@ export default function CustomerForm({ setDisplay, display }){
                 onChange={formik.handleChange}
                 value={formik.values["last_name"]}
                     />
-            <Box sx={{display:"flex", justifyContent:'end'}}>
+            <Box sx={{display:"flex", justifyContent:'space-between'}}>
+              <Button className="cancel-button"
+                onClick={()=>{setOpen(false)}}
+              >Cancel</Button>
               <Button className="next-button" type="submit">Next</Button>
             </Box>
           </Box>

@@ -15,7 +15,6 @@ export default function AdminDrawer({open, setOpen}) {
     const handleDrawerOpen = () => {
         setOpen(true);
     };
-
     const handleDrawerClose = () => {
         setOpen(false);
     };

@@ -8,15 +8,10 @@ import { DrawerWidth } from '../../styles/theme/MainTheme';
 
 import AdminDrawer from './AdminDrawer';
 
-
-
-
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
       flexGrow: 1,
       padding: theme.spacing(3),
-  
- 
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -40,7 +35,7 @@ export default function AdminApp({ plants }){
         <Box sx={{display:"flex"}}>
             <AdminDrawer open={open} setOpen={setOpen} />
             <Main open={open} >
-                {/* <div style={{height:"50px", backgroundColor:Colors.dove_gray}}/> */}
+                <div style={{height:"20px"}}/>
                 <Outlet />
             </Main>
         </Box>

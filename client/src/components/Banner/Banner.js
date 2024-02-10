@@ -8,11 +8,8 @@ export default function Banner(){
         <BannerContainer>
           <BannerImage src={image} />
           <BannerContent>
-            {/* <Typography variant="h6">The Florida Plant Man</Typography> */}
-           
             <BannerTitle variant="h4">Welcome to our GreenHouse</BannerTitle>
-            <BannerDescription variant='subtitle'>Bringing Exotic Greenery to Your Home, One Leaf at a Time!</BannerDescription>
-            
+            <BannerDescription variant='subtitle'>Bringing Exotic Greenery to Your Home, One Leaf at a Time!</BannerDescription>     
             <BannerShopButton color="primary">Explore Plants</BannerShopButton>
           </BannerContent>
           

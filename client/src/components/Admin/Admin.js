@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from "react";
-
-import AdminPanel from "./AdminPanel";
-import AdminContent from "./AdminContent";
-import Box from "@mui/material/Box";
 import AdminApp from "./AdminApp";
-
 
 export default function Admin({ plants }){
     const [customers, setCustomers] = useState("")
   
   
-
     useEffect(()=>{
         const fetchCustomers = async() =>{
             const response = await fetch("/customers")

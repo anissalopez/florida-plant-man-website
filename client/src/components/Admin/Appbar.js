@@ -9,12 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Colors } from '../../styles/theme/MainTheme';
 import SearchAppBar from './SearchComponent';
 
-
-
-
-const drawerWidth = 240;
-
-
 export default function Appbar({ open, handleDrawerOpen }){
     const AppBarStyled = styled(MuiAppBar, {
         shouldForwardProp: (prop) => prop !== 'open',
@@ -24,8 +18,8 @@ export default function Appbar({ open, handleDrawerOpen }){
           duration: theme.transitions.duration.leavingScreen,
         }),
         ...(open && {
-          width: `calc(100% - ${drawerWidth}px)`,
-          marginLeft: `${drawerWidth}px`,
+          width: `calc(100% - 240px)`,
+          marginLeft: `240px`,
           transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -34,7 +28,6 @@ export default function Appbar({ open, handleDrawerOpen }){
       }));
 
         return(
-
             <AppBarStyled position="fixed" open={open} elevation={0}>
               <Toolbar  sx={{backgroundColor:Colors.admindarkblue}}>
                 <IconButton

@@ -16,7 +16,7 @@ import * as yup from "yup";
 
 
 
-export default function ReviewForm({ plants, customerId }){
+export default function ReviewForm({ plants, customerId, setOpen }){
 
     const formSchema = yup.object().shape({
         review: yup.number().required("Must select review"),
@@ -44,8 +44,9 @@ export default function ReviewForm({ plants, customerId }){
                   body: JSON.stringify(review)
                 });
                 if (response.ok) {
-                  console.log('review successfully submitted')
-
+                  alert('Your review was succesfully submitted.')
+                  setOpen(false)
+    
                 } else {
                   alert("Error creating review, please check form inputs and try again")   
               } 
@@ -77,15 +78,13 @@ export default function ReviewForm({ plants, customerId }){
                                 </MenuItem>)})}
                     </Select>
                 <h2>We aim to earn your 5-star rating, please share your thoughts with us!</h2>
-                <Rating sx={{marginTop:"50px"}}
+                <Rating
                     id="rating"
                    name="rating"
                    type="number"
                    value={Number(formik.values["rating"])}
                    onChange={formik.handleChange}
-                   className="rating"
-                   
-                   
+                   className="rating" 
                 />
                 <p>{formik.errors['rating']}</p>
                <Box>
@@ -93,15 +92,11 @@ export default function ReviewForm({ plants, customerId }){
                    <TextField
                         id="comment"
                         name="comment"
-                        label="Multiline"
-                        multiline
-                                                
+                        fullWidth                    
                         value={formik.values["comment"]}
-                        onChange={formik.handleChange}
-                        
+                        onChange={formik.handleChange}     
                     />
                     <p>{formik.errors['comment']}</p>
-                    
                     <Button type="submit">Submit</Button>
               </Box>
             </FormBox>

@@ -2,10 +2,12 @@ import React, {useEffect, useState } from "react";
 import Review from "./Review";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import AddReview from "./AddReview";
 
-const ReviewList = () => {
+const ReviewList = ({plants}) => {
     const [reviews, setReviews] = useState([]);
+    const [open, setOpen ] = useState(false);
 
     useEffect(()=> {
         const fetchReviews = async () => {
@@ -14,7 +16,6 @@ const ReviewList = () => {
               if (!response.ok) throw Error('Error receiving data')
               const reviewList = await response.json()
               setReviews(reviewList)
-              console.log(reviewList)
           }catch(err){
               console.log(err.message)
           }finally{
@@ -33,7 +34,10 @@ const ReviewList = () => {
         <Grid container spacing={4}>
             {reviewList}
         </Grid>
-        <AddReview />
+        <Button 
+          onClick={()=>{setOpen(true)}}
+        >Add Review</Button>
+        <AddReview plants={plants} open={open} setOpen={setOpen}/>
         </Container>
       )}
 

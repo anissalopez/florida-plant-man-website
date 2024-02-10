@@ -27,29 +27,7 @@ def encode_imgage_directory():
                 images[filename] = image_url
     return images
 
-# @app.route('/test')
-# def index():
-        # image_path = os.path.join(app.config["Images"], "ant1.jpg")
-        # image_directory = os.path.join(app.config["Images"])
-        # image_files = os.listdir(image_directory)
 
-        # images = {}
-        # for filename in image_files:
-        #     file_path = os.path.join(image_directory, filename)
-        #     with open(file_path, 'rb') as f:
-                # Read the binary image data and encode it as a base64 string
-                # image = f.read()
-                # images[filename] = image
-                # encoded_image = base64.b64encode(f.read()).decode('utf-8')
-                # encoded_image = encoded_image.replace('\n', '')
-                # image_url = 'data:image/jpg;base64,' + encoded_image
-               
-        #         images[filename] = image 
-        # return make_response(jsonify(images), 200)
-        # breakpoint()
-        # return send_from_directory(app.config['Images'], "ant1.jpg")
-    
-    
 class Plants(Resource):
     def get(self):
         encoded_images = encode_imgage_directory()

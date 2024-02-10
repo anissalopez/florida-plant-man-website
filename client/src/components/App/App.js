@@ -16,7 +16,7 @@ import Sidebar from "../Admin/Sidebar";
 import PlantForm from "../Admin/PlantForm";
 import PlantTable from "../Admin/ProductTable";
 import CustomerTable from "../Customers/CustomerTable";
-import CustomerForm from "../Customers/CustomerForm";
+import CustomerForm from "../Reviews/CustomerForm";
 import PlantContainer from "../Products/ProductFilterContainer";
 import ProductCategoryList from "../Products/ProductCategoryList";
 import PostReview from "../Reviews/PostReview";
@@ -28,16 +28,15 @@ import  theme  from "../../styles/theme/MainTheme";
 import Container from "@mui/material/Container";
 import { Colors } from "../../styles/theme/MainTheme";
 import AdminApp from "../Admin/AdminApp";
+import Review from "../Reviews/Review";
+import ReviewList from "../Reviews/ReviewList";
 
 
 export default function App(){
   const [plants, setPlants] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
-  const [hide, setHide] = useState(false)
-  
+ 
   const plant_url = '/plants';
-
   const { loading, setLoading } = useLoadingContext();
 
   useEffect(()=> {
@@ -47,7 +46,6 @@ export default function App(){
           if (!response.ok) throw Error('Error receiving data')
           const plantList = await response.json()
           setPlants(plantList)
-          setHide(false)
           setFetchError(null)
       }catch(err){
           setFetchError(err.message)
@@ -62,12 +60,9 @@ export default function App(){
     if(method === 'POST'){
       const updatedPlants = [...plants, plantInfo]
       setPlants(updatedPlants)
-
     }
 
     if(method === 'PATCH'){
-
-    
       const newPlantArray = plants.map((plant) => {
         if (plant.id === plantInfo.id) {
           return {
@@ -78,21 +73,13 @@ export default function App(){
           return plant;
         };
       });
-
-   
       setPlants(newPlantArray);
     }
-
     if(method === 'DELETE'){
-
-  
-      const updatedPlants = plants.filter((plant) => plant.id !== plantInfo);
-      setPlants(updatedPlants);
-    }
-
-
-    
-  }
+        const updatedPlants = plants.filter((plant) => plant.id !== plantInfo);
+        setPlants(updatedPlants);
+    };
+  };
 
   return(
   
@@ -108,27 +95,28 @@ export default function App(){
   }
   {!fetchError && !loading && 
     <ThemeProvider theme={theme}>
-          <Container maxWidth="xl"> 
-            <Nav  ></Nav>
-          </Container>
-                <Routes>
-                  <Route exact path="/" element={<HomePage plants={plants}  theme={theme}/>} />
-                  <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} />} />
-                  <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
-                  <Route exact path="/reviews" element={<PostReview plants={plants} />} /> 
-                  <Route  exact path="/admin" element={<AdminApp plants={plants}/>}>
-                    <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
-                    <Route exact path="dashboard" element={<Dashboard />} />
-                    <Route exact path="settings" element={<Settings />} />
-                    <Route exact path="sidebar" element={<Sidebar/>} />
+        <Container maxWidth="xl"> 
+          <Nav  ></Nav>
+        </Container>
+              <Routes>
+                <Route exact path="/" element={<HomePage plants={plants}  theme={theme}/>} />
+                <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} />} />
+                <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
+                <Route exact path="/reviews" element={<PostReview plants={plants} />} /> 
+                <Route  exact path="/admin" element={<AdminApp plants={plants}/>}>
+                  <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
+                  <Route exact path="dashboard" element={<Dashboard />} />
+                  <Route exact path="settings" element={<Settings />} />
+                  <Route exact path="sidebar" element={<Sidebar/>} />
                  
                     {/* <Route exact path="addproduct" element={<PlantForm/>} /> */}
                  
                     
-                  </Route> 
+                </Route> 
                   {/* <Route  path="/products" element={<Products />} /> */}
-                </Routes>
-                <Footer hide={hide} setHide={setHide} />          
+              </Routes>
+              <ReviewList plants={plants}/>
+              <Footer />          
     </ThemeProvider>
  }
  </>)};

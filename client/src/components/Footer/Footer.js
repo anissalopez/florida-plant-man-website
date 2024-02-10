@@ -15,24 +15,30 @@ import { Colors } from '../../styles/theme/MainTheme';
 
 export default function Footer(){
     const { pathname } = useLocation();
-    if (pathname === "/admin" || pathname === "/admin/messages" 
-    || pathname === "/admin/customers" || pathname === "/admin/settings" 
-    || pathname === "/admin/products" || pathname === "admin/dashboard"
-    || '/admin/addproduct') 
-    return null;
+    if (
+        pathname === "/admin" ||
+        pathname === "/admin/messages" ||
+        pathname === "/admin/customers" ||
+        pathname === "/admin/settings" ||
+        pathname === "/admin/products" ||
+        pathname === "/admin/dashboard" || // Corrected pathname
+        pathname === "/admin/addproduct"
+    ) {
+        return null;
+    }
+
 
     return(
        
-                <Box sx={{background:Colors.third, color:Colors.primary,
-                    pt:12, 
-                    pb:12,
-                    opacity:.8,
-                    '& a':{
+        <Box sx={{background:Colors.third, color:Colors.primary,
+                pt:12, 
+                pb:12,
+                opacity:.8,
+                '& a':{
                         textDecoration:"none",
                         color:Colors.primary
-
                     }}}>
-                <Container>
+            <Container>
                 <Grid container spacing={6} sx={{display:"flex",justifyContent:"center"}}>
                     <Grid item md={12}  xs={12} sx={{textAlign:"left"}}>
                         <FooterTitle variant="body1">About Us</FooterTitle>
@@ -96,12 +102,9 @@ export default function Footer(){
                                 <TwitterIcon sx={{mr:1}}/>
                             </Box>
                     </Grid>
-                    </Grid>
+                </Grid>
             
-                    </Container>
-                </Box>
+            </Container>
+        </Box>
 
-            
-           
-    
     )};

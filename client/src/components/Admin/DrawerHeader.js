@@ -6,9 +6,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { Colors } from '../../styles/theme/MainTheme';
 
-
-
-
 export const DrawerHeaderComponent = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',

@@ -71,7 +71,7 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
           if (!response.ok) {
             throw new Error('HTTP error: ' + response.status);
           }
-      
+
           const data = await response.json();
           console.log(data)
           updatePlantList(method, data);
@@ -80,13 +80,12 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
           alert("Product " + (method === "PATCH" ? "updated" : "added") + " successfully");
           resetForm({ values: '' })
           setInitialValues(null)
+
         } catch (error) {
           throw new Error('HTTP error: ' + error);
         }
     }
-  })
-
-
+  });
 
   return (
     <Dialog open={open} fullWidth maxWidth="lg">
@@ -104,21 +103,15 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
                     setPreview((prevState) => ({
                       ...prevState,
                       image1: URL.createObjectURL(e.target.files[0]),
-                    }));
-                    
-                    
+                    }));  
                   }}
                   type="file"
                   accept=".jpg, .jpeg, .png, .svg, .webp"
-                />
-
-               
+                />    
               {
                 initialValues && !preview &&
                 <img style={{height:"200px", width:"200px"}}
                 src={initialValues.image1} /> 
-             
-
               } 
               {
                 preview &&
@@ -143,14 +136,17 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
                   type="file"
                   accept=".jpg, .jpeg, .png, .svg, .webp"
                 />
-              {/* {
-                initialValues  &&
-                <img 
-                 
+                {
+                  initialValues && !preview &&
+                  <img style={{height:"200px", width:"200px"}}
+                  src={initialValues.image2} /> 
+                } 
+              {
+                preview &&
+                <img  
                 style={{height:"200px", width:"200px"}}
-                src={preview.image2 ? preview.image2 : initialValues.image2} /> 
-             
-              } */}
+                src={preview.image2} /> 
+              }
             </Grid>
             <Grid item lg={4} xs={12} key="image3">
                 <InputLabel>Image 3</InputLabel>
@@ -169,15 +165,18 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
                   type="file"
                   accept=".jpg, .jpeg, .png, .svg, .webp"
                 />
-              {/* {
-                initialValues &&
-                <img 
-                 
+              {
+                initialValues && !preview &&
+                <img style={{height:"200px", width:"200px"}}
+                src={initialValues.image3} /> 
+              } 
+              {
+                preview &&
+                <img  
                 style={{height:"200px", width:"200px"}}
-                src={preview.image3 ? preview.image3 : initialValues.image3} /> 
-             
-              } */}
-                <p style={{ color: 'red' }}>{formik.errors["image3"]}</p>
+                src={preview.image3} /> 
+              }
+              <p style={{ color: 'red' }}>{formik.errors["image3"]}</p>
               </Grid>
          
             {['name', 'price', 'description', 'water', 'sun', 'qty'].map((value, index) => (
@@ -202,10 +201,11 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
           onClick={()=>{
             setOpen(false)
             setInitialValues(null)
-            setPreview(null)
-         
+            setPreview(null)  
           }
-          }>Cancel</Button>
+          }>
+          Cancel
+         </Button>
         </DialogActions>
       </form>
     </Dialog>
