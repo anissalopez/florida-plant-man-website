@@ -1,11 +1,10 @@
+import { useFormik } from "formik";
+import * as yup from "yup";
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 import { FormContainer, CustomerFormInput } from '../../styles/Review/Review.styles';
-
-import { useFormik } from "formik";
-import * as yup from "yup";
-
 
 export default function CustomerForm({ setDisplay, display, setOpen }){
     const formSchema = yup.object().shape({
@@ -21,19 +20,19 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
         validationSchema: formSchema, 
         onSubmit: async (values) => {
             try {
-              const response = await fetch('/customers', {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(values, null, 2)
-                });
-              if (response.ok) {
-                const customer = await response.json()
-                setDisplay({...display, screen:"review-form", customerId:customer.id})
-              } else {
-                alert("Error creating customer, please check form inputs and try again") 
-            } 
+                const response = await fetch('/customers', {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(values, null, 2)
+                  });
+                if (response.ok) {
+                  const customer = await response.json()
+                  setDisplay({...display, screen:"review-form", customerId:customer.id})
+                } else {
+                  alert("Error creating customer, please check form inputs and try again") 
+              } 
         }
         catch (error) {
             throw new Error('HTTP error: ', error)

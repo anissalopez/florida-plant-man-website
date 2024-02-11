@@ -27,7 +27,7 @@ export const Colors = {
     admindarkblue:'#233142',
     adminlightblue:'#455d7a',
     adminorange:'#e46161',
-    // adminorange:' #f95959',
+    adminpurple:'#8dc6ff',
     admingray:'#e3e3e3',
     admingreen1:'#9ab0a6',
     admingreen2:'#384b42',

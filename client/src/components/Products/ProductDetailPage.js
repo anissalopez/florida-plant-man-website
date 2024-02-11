@@ -5,7 +5,7 @@ import {ThreeDots} from 'react-loading-icons';
 import SimpleImageSlider from "react-simple-image-slider";
 
 
-import { useLoadingContenxt } from "../../context";
+import { useLoadingContenxt } from "../../context/Loading";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";

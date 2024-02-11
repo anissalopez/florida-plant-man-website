@@ -84,7 +84,6 @@ export const ReviewContainer = styled(Box)({
     display:"flex",
     justifyContent: "space-between",
     flexDirection:"column",
-    justifyContent:"space-between",
     textAlign:"center",
     alignItems: "center",
 

@@ -43,6 +43,11 @@ export default function NavMenu(){
                   selected={selectedItem.includes('customers')}
                   icon={<GroupsIcon />}/>
           </ListItem>
+          <ListItem  disablePadding onClick={()=>{navigate('/admin/reviews')}}>
+            <MenuItemBtn text='reviews' handleNav={handleNav}
+                  selected={selectedItem.includes('reviews')}
+                  icon={<ReviewsIcon />}/>
+          </ListItem>
           <ListItem  disablePadding onClick={()=>{navigate('/admin/settings')}}>
             <MenuItemBtn text='settings' handleNav={handleNav}
                   selected={selectedItem.includes('settings')}

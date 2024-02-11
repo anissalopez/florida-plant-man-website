@@ -1,11 +1,10 @@
-import Button from '@mui/material/Button';
 import { useState } from 'react';
+
 import ReviewForm from './ReviewForm';
 import CustomerForm from './CustomerForm';
 
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import { DialogContainer } from '../../styles/Review/Review.styles';
 
 export default function AddReview({ open, plants, setOpen, reviews, setReviews }){
     const [display, setDisplay] = useState({
@@ -13,7 +12,6 @@ export default function AddReview({ open, plants, setOpen, reviews, setReviews }
         customerId:null    
     });
     return(
-   
         <Dialog open={open} fullWidth maxWidth="lg"> 
           <DialogContent>
             {display.screen === 'customer-name' &&
@@ -32,5 +30,5 @@ export default function AddReview({ open, plants, setOpen, reviews, setReviews }
             }    
           </DialogContent>      
       </Dialog>
-   
-    )}
+  );
+};

@@ -15,17 +15,12 @@ import { Colors } from '../../styles/theme/MainTheme';
 
 export default function Footer(){
     const { pathname } = useLocation();
-    if (
-        pathname === "/admin" ||
-        pathname === "/admin/messages" ||
-        pathname === "/admin/customers" ||
-        pathname === "/admin/settings" ||
-        pathname === "/admin/products" ||
-        pathname === "/admin/dashboard" || // Corrected pathname
-        pathname === "/admin/addproduct"
-    ) {
-        return null;
-    }
+    if (pathname === "/admin" || pathname === "/admin/messages" 
+    || pathname === "/admin/customers" || pathname === "/admin/settings" 
+    || pathname === "/admin/products" || pathname === "/admin/dashboard"
+    || pathname === "/admin/reviews"
+    ) 
+    return null;
 
 
     return(

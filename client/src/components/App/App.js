@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { useLoadingContext }   from "../../context";
+import { useLoadingContext }   from "../../context/Loading";
 
 import HomePage from "../Home/HomePage";
 import PlantDetail from "../Products/ProductDetailPage";
@@ -12,6 +12,8 @@ import Dashboard from "../Admin/Dashboard";
 import Products from "../Admin/Products";
 import Settings from "../Admin/Settings";
 import Sidebar from "../Admin/Sidebar";
+import Reviews from "../Admin/Reviews";
+import Customers from "../Admin/Customers";
 
 import PlantForm from "../Admin/PlantForm";
 import PlantTable from "../Admin/ProductTable";
@@ -30,6 +32,8 @@ import { Colors } from "../../styles/theme/MainTheme";
 import AdminApp from "../Admin/AdminApp";
 import Review from "../Reviews/Review";
 import ReviewList from "../Reviews/ReviewList";
+import { useReviewsContext } from "../../context/Reviews";
+import { useCustomersContext } from "../../context/Customers";
 
 
 export default function App(){
@@ -38,6 +42,10 @@ export default function App(){
  
   const plant_url = '/plants';
   const { loading, setLoading } = useLoadingContext();
+  const { reviews, setReviews } = useReviewsContext();
+  const { customers, setCustomers } = useCustomersContext();
+
+  console.log(plants)
 
   useEffect(()=> {
     const fetchPlants = async () => {
@@ -80,6 +88,7 @@ export default function App(){
         setPlants(updatedPlants);
     };
   };
+  console.log(reviews)
 
   return(
   
@@ -104,6 +113,8 @@ export default function App(){
                 <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
                 <Route  exact path="/admin" element={<AdminApp plants={plants}/>}>
                   <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
+                  <Route exact path="reviews" element={<Reviews reviews={reviews} setReviews={setReviews} />} />
+                  <Route exact path="customers" element={<Customers customers={customers} setCustomers={setCustomers} />} />
                   <Route exact path="dashboard" element={<Dashboard />} />
                   <Route exact path="settings" element={<Settings />} />
                   <Route exact path="sidebar" element={<Sidebar/>} />
@@ -114,7 +125,7 @@ export default function App(){
                 </Route> 
                   {/* <Route  path="/products" element={<Products />} /> */}
               </Routes>
-              <ReviewList plants={plants}/>
+              <ReviewList reviews={reviews} setReviews={setReviews} plants={plants}/>
               <Footer />          
     </ThemeProvider>
  }

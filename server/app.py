@@ -351,6 +351,7 @@ class Reviews(Resource):
 class Customers(Resource):
     def get(self):
         customers = [customers.to_dict() for customers in Customer.query.all()]
+        print(customers)
 
         response = make_response(customers, 200)
         return response
