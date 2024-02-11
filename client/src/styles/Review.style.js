@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 export const ReviewContainer = styled(Box)({
     display:"flex",
     justifyContent: "space-between",
+    alignItems:"center",
     height:"350px",
     border: "solid 2px #377E30",
     borderRadius:"10px",

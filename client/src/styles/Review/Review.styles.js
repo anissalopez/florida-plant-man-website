@@ -8,22 +8,16 @@ import theme from "../theme/MainTheme";
 
 export const FormContainer = styled(Box)({
     display:"flex", 
-    gap:"20px", 
     justifyContent:"center", 
     flexDirection:"column",
-    alignItems:"center",
-    alignContent:"center",
-    color:"#000",
-    fontFamily:"Flower",
-    '& .MuiRating-root':{
-        fontSize:"40px"
-    },
+    gap:"10px",
+   
     "& .form-components":{
         display:"flex", 
         flexDirection:"column", 
         gap:"20px",
-        marginBottom:"50px",
-        marginTop:"50px"
+        // marginBottom:"50px",
+        // marginTop:"50px"
     },
     '& label':{
         fontFamily:"Flower",
@@ -60,15 +54,15 @@ export const FormContainer = styled(Box)({
 export const CustomerFormInput= styled(TextField)({
        '& .label.MuiFormLabel-root':{
         color:'#000',
-        fontFamily:'Flower',
-            '&:shrink':{
+        // fontFamily:'Flower',
+        '&:shrink':{
                 color:Colors.primary
             },
-            '&:focused':
+        '&:focused':
             {
                 color:Colors.primary
             },
-            '&:active':{
+        '&:active':{
                 color:Colors.primary
             },
        },
@@ -89,9 +83,14 @@ export const CustomerFormInput= styled(TextField)({
 export const ReviewContainer = styled(Box)({
     display:"flex",
     justifyContent: "space-between",
+    flexDirection:"column",
+    justifyContent:"space-between",
+    textAlign:"center",
+    alignItems: "center",
+
     height:"350px",
     border: "solid 2px #377E30",
-    borderRadius:"10px",
+    borderRadius:"20px",
     lineHeight: "35px",
     padding:"20px",
     marginBottom:"60px",
@@ -100,13 +99,7 @@ export const ReviewContainer = styled(Box)({
     ":hover":{ 
         transform: "scale3d(1.05, 1.05, 1)"
         },
-    "div":{
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"space-between",
-        textAlign:"center",
-        alignItems: "center"
-    } 
+ 
 });
 
 export const ReviewName = styled('h3')({

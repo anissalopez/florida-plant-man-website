@@ -47,7 +47,6 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
             <CustomerFormInput
                 FormHelperTextProps={{className:"helper"}}
                 InputLabelProps={{className:"label"}}
-                className="input-fields"
                 helperText ={formik.errors['first_name']}
                 label="First Name"
                 id="first_name"
@@ -58,7 +57,6 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
             <CustomerFormInput
                 FormHelperTextProps={{className:"helper"}}
                 InputLabelProps={{className:"label"}}
-                className="input-fields"
                 helperText ={formik.errors['last_name']}
                 label="Last Name"
                 id="last_name"
@@ -68,9 +66,11 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
                     />
             <Box sx={{display:"flex", justifyContent:'space-between'}}>
               <Button className="cancel-button"
-                onClick={()=>{setOpen(false)}}
-              >Cancel</Button>
-              <Button className="next-button" type="submit">Next</Button>
+                onClick={()=>{setOpen(false)}}>
+                  Cancel</Button>
+              <Button className="next-button" type="submit">
+                Next
+              </Button>
             </Box>
           </Box>
         </FormContainer>

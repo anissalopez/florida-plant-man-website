@@ -10,15 +10,14 @@ const Review = ({ review }) => {
     return (
         <Grid item xs={12} sm={4}>             
             <ReviewContainer>
-                <Box>
                     <Rating name="read-only" value={review.rating} size="large"
                                 sx={{color: "#6DC01E"}}
-                        readOnly />
+                                readOnly
+                         />
                     <h3 >{review.comment}</h3>
-                    <ReviewName>- {review.customer['first_name']}    {review.customer['last_name']}</ReviewName>
-                </Box>
+                    <ReviewName>- {review.customer['first_name']} {review.customer['last_name']}</ReviewName>
              </ReviewContainer>
         </Grid>
     )};
-  export default Review;
+export default Review;
   
