@@ -10,7 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import Container from '@mui/material/Container';
 
-import {FooterTitle} from '../../styles/Footer/Footer.styles';
+import { FooterTitle, ListItemTypography} from '../../styles/Footer/Footer.styles';
 import { Colors } from '../../styles/theme/MainTheme';
 
 export default function Footer(){
@@ -23,8 +23,7 @@ export default function Footer(){
     return null;
 
 
-    return(
-       
+    return(    
         <Box sx={{background:Colors.third, color:Colors.primary,
                 pt:12, 
                 pb:12,
@@ -32,7 +31,7 @@ export default function Footer(){
                 '& a':{
                         textDecoration:"none",
                         color:Colors.primary
-                    }}}>
+                }}}>
             <Container>
                 <Grid container spacing={6} sx={{display:"flex",justifyContent:"center"}}>
                     <Grid item md={12}  xs={12} sx={{textAlign:"left"}}>
@@ -53,27 +52,27 @@ export default function Footer(){
                             Information
                         </FooterTitle>
                         <List >
-                        <Link key='admin' to={`/admin`} >
+                            <Link key='admin' to={`/admin`} >
+                                <ListItemText>
+                                    <ListItemTypography>
+                                    Admin Portal
+                                    </ListItemTypography>   
+                                </ListItemText>
+                            </Link>
                             <ListItemText>
-                                <Typography lineHeight={2} sx={{fontFamily:'Monaco', fontSize:{xs:"16px", md:"18px", lg:"20px"}}}>
-                                   Admin Portal
-                                </Typography>   
-                            </ListItemText>
-                        </Link>
-                            <ListItemText>
-                                <Typography lineHeight={2} sx={{fontFamily:'Monaco', fontSize:{xs:"16px", md:"18px", lg:"20px"}}}>
+                                <ListItemTypography>
                                     Shipping Policy
-                                </Typography>   
+                                </ListItemTypography>   
                             </ListItemText>
                             <ListItemText>
-                                <Typography lineHeight={2} sx={{fontFamily:'Monaco', fontSize:{xs:"16px", md:"18px",lg:"20px" }}}>
+                                <ListItemTypography>
                                     Return Policy
-                                </Typography>  
+                                </ListItemTypography>  
                             </ListItemText>
                             <ListItemText>
-                                <Typography lineHeight={2} sx={{fontFamily:'Monaco', fontSize:{xs:"16px", md:"18px", lg:"20px"}}}>
-                                   FAQ
-                                </Typography>    
+                                <ListItemTypography>
+                                    FAQ
+                                </ListItemTypography>    
                             </ListItemText>
                         </List>
                     </Grid>
@@ -81,15 +80,15 @@ export default function Footer(){
                         <FooterTitle>Contact Us</FooterTitle>
                             <List sx={{pt:0}}>
                                 <ListItemText>
-                                        <Typography lineHeight={2} sx={{fontFamily:'Monaco', fontSize:{xs:"16px", md:"16px",lg:"20px"}}}>
+                                    <ListItemTypography>
                                         support@thefloridaplantman.com
-                                        </Typography>    
-                                    </ListItemText>
+                                    </ListItemTypography>    
+                                </ListItemText>
                                 <ListItemText>
-                                        <Typography lineHeight={2} sx={{fontFamily:'Monaco',  fontSize:{xs:"16px", md:"16px", lg:"20px"}}}>
+                                    <ListItemTypography>
                                         +1 777-777-7777
-                                        </Typography>    
-                                    </ListItemText>
+                                    </ListItemTypography>    
+                                </ListItemText>
                             </List>
                             <Box sx={{ color:Colors.primary}}>
                                 <InstagramIcon sx={{mr:1}}/>
@@ -97,9 +96,8 @@ export default function Footer(){
                                 <TwitterIcon sx={{mr:1}}/>
                             </Box>
                     </Grid>
-                </Grid>
-            
+                </Grid>     
             </Container>
         </Box>
-
-    )};
+    );
+};

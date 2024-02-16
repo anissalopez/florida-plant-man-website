@@ -74,7 +74,7 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
           </Box>
         </FormContainer>
       );
-    };
+};
 
 
 

@@ -6,13 +6,11 @@ import { list } from "./navList"
 import { Colors } from '../../styles/theme/MainTheme';
 
 export default function NavDrawer({toggleDrawer, state}) {
-    const navigate = useNavigate();
-   
+    const navigate = useNavigate();   
     const handleNav = (e) =>{  
-        if (e.target.textContent === "Admin" || "Admin Portal"){
+        if (e.target.textContent === "Admin Portal"){
             navigate("/admin")
-        };
-     
+        }; 
     };
   return (
     <div>
@@ -30,4 +28,5 @@ export default function NavDrawer({toggleDrawer, state}) {
             </Drawer>
         </React.Fragment>
     </div>
-  )};
+  );
+};

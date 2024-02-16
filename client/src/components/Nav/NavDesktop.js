@@ -21,11 +21,11 @@ export default function NavDesktop({matches}){
                     {['All','Alocasia', 'Anthurium', 'Monstera','Philodendron', 'Syngonium' ].map((text) => (
                 <Link key={text} to={`/plants/category/${text.toLowerCase()}`}  >
                         <ListItem>
-                        <ListItemText primary={text} primaryTypographyProps={{fontSize: '24px'}} />
+                            <ListItemText primary={text} primaryTypographyProps={{fontSize: '24px'}} />
                         </ListItem>
                 </Link>))}
             </NavList>
                 <Actions matches={matches}/>
        </NavContainer>
-
-    )};
+    );
+};

@@ -25,7 +25,6 @@ export default function Nav() {
       };
 
     
-
     if (pathname === "/admin" || pathname === "/admin/messages" 
     || pathname === "/admin/customers" || pathname === "/admin/settings" 
     || pathname === "/admin/products" || pathname === "/admin/dashboard"
@@ -33,18 +32,19 @@ export default function Nav() {
     ) 
     return null;
 
-
     return (
       <div >
         {
         matches ? 
           <NavMobile matches={matches} 
-          toggleDrawer={toggleDrawer}/> : 
+                    toggleDrawer={toggleDrawer}
+          /> : 
           <NavDesktop matches={matches}  />
         }
         <NavDrawer  toggleDrawer={toggleDrawer} 
-                 state={state} setState={setState} />
+                    state={state} setState={setState} />
       </div>
-    )};
+    );
+  };
 
 

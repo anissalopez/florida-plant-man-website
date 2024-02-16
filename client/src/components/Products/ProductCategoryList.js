@@ -22,8 +22,8 @@ export default function ProductCategoryList({ plants } ){
 
     useEffect(()=>{
         setFilter(category)
-    }, [category])
-    
+    }, [category]);
+
     const filteredPlants = plants.sort(function(a,b){       
         if (sort === 'Alphabetically, A-Z'){
             if(a.name > b.name){
@@ -60,30 +60,42 @@ export default function ProductCategoryList({ plants } ){
         if(filtered_plant === 'All Plants'){
             return true
         }
-        return null
-    }).map( plant => (
+        return null}).map( plant => (
         <Grid item xs={12} sm={6} md={4} key={plant.id} style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
-           {matches ? <SingleProduct plant={plant} matches={matches}/> : <SingleProductDesktop plant={plant} matches={matches} />} 
-        </Grid>
-    ));
+            { matches ? <SingleProduct plant={plant} 
+                            matches={matches}/> : 
+                        <SingleProductDesktop plant={plant} 
+                        matches={matches} />
+            } 
+        </Grid>))
+    
+
 
  
     return(
-    <Container sx={{ marginBottom:"200px", pr:5}}>{
-
-    }
-      {category === 'all' ? <ProductFilterContainer matches={matches} setFilter={setFilter} setSort={setSort} plants={plants}/> : <ProductCategoryHeaders plantCategory={category}/> }
+    <Container sx={{ marginBottom:"200px", pr:5}}>
+      {category === 'all' ? 
+        <ProductFilterContainer matches={matches} 
+                              setFilter={setFilter} 
+                              setSort={setSort} plants={plants}/> 
+                              : 
+        <ProductCategoryHeaders plantCategory={category}/> 
+      }
         <Grid container  sx={{marginTop:"10px",
                              '& .alert':{
                                 fontSize:"24px",
                                 marginLeft:"20px",
                                fontFamily:`Chalkduster`
                              }}}  spacing = {matches ? 6 : 3}>
-            {filteredPlants.length  ? filteredPlants : 
-            <div className='alert' >
-                Sorry we do not have any <span>{category} </span>
-                plants at this moment. Please check again next week.
-            </div>}
+            {
+            filteredPlants.length  ? 
+                 filteredPlants : 
+                <div className='alert' >
+                    Sorry we do not have any <span>{category} </span>
+                    plants at this moment. Please check again next week.
+                </div>
+           }
         </Grid>
    </Container>
-   )};
+   );
+};

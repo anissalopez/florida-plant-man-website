@@ -16,6 +16,7 @@ export default function Promotions(){
         setTimeout(()=>{
             setShow(false);
         }, 3000);
+
         const intervalId = setInterval(()=>{
             setMessageIndex(i => (i + 1) % messages.length);
             setShow(true);
@@ -23,10 +24,12 @@ export default function Promotions(){
                 setShow(false);
             }, 3000);
         }, 4000);
+
         return () =>{
             clearInterval(intervalId);
         };
     },[]);
+
     return(
         <PromotionsContainer ref={containerRef}>
             <Slide 
@@ -45,4 +48,5 @@ export default function Promotions(){
                 </Box>
             </Slide>
         </PromotionsContainer>
-    )};
+    );
+};

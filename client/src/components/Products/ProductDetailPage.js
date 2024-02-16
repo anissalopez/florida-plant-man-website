@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
+
 import {ThreeDots} from 'react-loading-icons';
 import SimpleImageSlider from "react-simple-image-slider";
 
-
-import { useLoadingContenxt } from "../../context/Loading";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -15,28 +13,25 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import StraightenIcon from '@mui/icons-material/Straighten';
 import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 
-import { PlantContent } from '../../styles/Products/Products.styles';
+import { useTheme } from "@mui/material/styles";
+import { PlantContent, ProductDetailGridItem } from '../../styles/Products/Products.styles';
+import { Colors } from "../../styles/theme/MainTheme";
 
 import PlantInfoBanner from "./ProductInfoBanner";
-import ReviewList from "../Reviews/ReviewList";
 
-import { Colors } from "../../styles/theme/MainTheme";
 
 function PlantDetail({ setFetchError}) {
   const { id } = useParams();
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [plant, setPlant] = useState('');
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
 
   const theme = useTheme();
 
-  const xlScreen = useMediaQuery(theme.breakpoints.down("xl"));
-  const lgScreen = useMediaQuery(theme.breakpoints.down('lg'))
   const smScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const sliderWidth = smScreen ? 350 : xlScreen ? 600 : 700
-  const sliderHeight = smScreen ? 400 : 800
+  const sliderWidth = smScreen ? 350 : 500
+  const sliderHeight = smScreen ? 400 : 600
 
 
   useEffect(() => {
@@ -62,71 +57,50 @@ function PlantDetail({ setFetchError}) {
   }, [id]);
 
  
-
   return (
-
     <Container maxWidth="xl">
-       {loading?  <ThreeDots stroke={Colors.secondary} /> :
-    
-      <Grid sx={{ mt:"70px",display:"flex", justifyContent:"center", alignItems:"center"}}  
-      gap={2}
-      container> 
-          <Grid item md={12} lg={5.5} 
-          sx={{display:"flex", justifyContent:"center", alignItems:"center"}}
-          
-          >
-            <SimpleImageSlider
-                width={sliderWidth}
-                height={sliderHeight}
-                images={images}
-                showBullets={true}
-                showNavs={true}
-                
-              />
-            
-          </Grid> 
-          <Grid item md={12} lg={5.5}
-            sx={{display:"flex",
-            justifyContent:"center", alignItems:"center"
-            }}
-          
-          >
-            <PlantContent >
-              <Box> 
-                <h2>{plant.name}</h2>
-              </Box>
-              <Box><h3>{plant.description}</h3></Box>  
-              <Divider></Divider> 
-              <Box>
-                  <WbSunnyIcon />
-                  <p>{plant.sun}</p>
-              </Box>
-              <Box>
-                  <WaterDropIcon />
-                  <p>{plant.water}</p>
-              </Box>
-              <Box>
-                  <StraightenIcon />
-                  <p>4 inch pot</p>
-              </Box>
-              <Box>
-                <h3> ${plant.price}</h3>
-              </Box>
-              <Box><Button >Add to Cart</Button></Box> 
-            </PlantContent>
-          </Grid>
-     </Grid> 
-    
-    
+       {
+          loading ?  <ThreeDots stroke={Colors.secondary} /> :
+                <ProductDetailGridItem sx={{mt:"70px"}} gap={2} container> 
+                  <ProductDetailGridItem item md={12} lg={5.5}>
+                      <SimpleImageSlider
+                          width={sliderWidth}
+                          height={sliderHeight}
+                          images={images}
+                          showBullets={true}
+                          showNavs={true}  
+                        /> 
+                    </ProductDetailGridItem> 
+                    <ProductDetailGridItem item md={12} lg={5.5}>
+                      <PlantContent>
+                        <Box> 
+                          <h2>{plant.name}</h2>
+                        </Box>
+                        <Box><h3>{plant.description}</h3></Box>  
+                        <Divider></Divider> 
+                        <Box>
+                            <WbSunnyIcon />
+                            <p>{plant.sun}</p>
+                        </Box>
+                        <Box>
+                            <WaterDropIcon />
+                            <p>{plant.water}</p>
+                        </Box>
+                        <Box>
+                            <StraightenIcon />
+                            <p>4 inch pot</p>
+                        </Box>
+                        <Box>
+                          <h3> ${plant.price}</h3>
+                        </Box>
+                        <Box><Button >Add to Cart</Button></Box> 
+                      </PlantContent>
+                  </ProductDetailGridItem>
+              </ProductDetailGridItem>     
       }
-      <PlantInfoBanner plant={plant}/>
-  
-     </Container>  
-
-
-       
-  
-      
-  )};
+        <PlantInfoBanner plant={plant}/>
+     </Container>   
+  );
+};
 
 export default PlantDetail;

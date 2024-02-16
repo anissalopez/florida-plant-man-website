@@ -1,5 +1,6 @@
 import {styled } from '@mui/system';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import IconButton  from '@mui/material/IconButton';
@@ -101,7 +102,7 @@ export const ProductActionsWrapper = styled(Box,{
 
 export const PlantContent = styled(Box)({
     display: "flex",
-    height: "800px",
+    height: "600px",
     width:"100%",
     flexDirection: "column",
     justifyContent:"space-between",
@@ -133,14 +134,13 @@ export const PlantContent = styled(Box)({
         fontFamily: "Flower",
         borderRadius: "3px",
        "&:hover":{
-          backgroundColor:Colors.primary,
+          backgroundColor:Colors.fifth,
           color:"#fff"
        }
    }});
 
 export const InfoContainer = styled(Box)({
     display: "flex",
-
     marginTop:"75px"
 
 });
@@ -152,12 +152,13 @@ export const ShopInfo = styled(Box)({
     ml:"80px",
     mr:"20px",
     mt:"75px",
+    mb:"75px",
 
     "& .headers":{
         display:"flex",
         alignItems:"center",
         justifyContent:"center",
-        backgroundColor: Colors.primary,
+        backgroundColor: Colors.fifth,
         borderRadius:"5px",
         fontSize: "18px",
         height: "34px",
@@ -216,7 +217,13 @@ export const FilterHeader = styled('h1')({
     fontFamily:"Flower",   
     marginTop:"75px",
     marginBottom:"60px",
-})
+});
+
+export const ProductDetailGridItem = styled(Grid)({
+    display:"flex",
+    justifyContent:"center", 
+    alignItems:"center"
+});
 
 export const ButtonFilter = styled(Button)({
     color:"#fff",
@@ -228,5 +235,5 @@ export const ButtonFilter = styled(Button)({
         backgroundColor:Colors.secondary,
         border: Colors.secondary
     }
-})
+});
 

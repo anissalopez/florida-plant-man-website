@@ -14,7 +14,7 @@ import ShowMoreText from "react-show-more-text";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductTable({ plants, editProduct }) {
+export default function ProductTable({ plants, editProduct, updatePlantList }) {
 
     
   return (
@@ -70,7 +70,7 @@ export default function ProductTable({ plants, editProduct }) {
                         <EditIcon />
                     </IconButton>
                     <IconButton
-                     onClick={()=>handleDelete(plant.id)}>
+                     onClick={()=>updatePlantList(plant.id)}>
                         <DeleteIcon 
                         sx={{color:"red"}} />
                     </IconButton>   

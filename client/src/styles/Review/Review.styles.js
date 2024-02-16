@@ -80,6 +80,13 @@ export const CustomerFormInput= styled(TextField)({
     }
 })
 
+export const ReviewHeader = styled('h1')({
+    fontFamily:"Flower",
+    color:Colors.primary,
+    textAlign:"center", marginBottom:"40px",
+    fontSize:"3rem"
+})
+
 export const ReviewContainer = styled(Box)({
     display:"flex",
     justifyContent: "space-between",

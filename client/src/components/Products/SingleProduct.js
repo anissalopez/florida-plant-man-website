@@ -10,14 +10,12 @@ import ProductMeta from "./ProductMeta";
 
 
 export default function SingleProduct({plant, matches}){
-
     return(
- 
      <>
        <Link style={{textDecoration:'none'}} 
                 to={`/plants/${plant.id}`} 
                 key={plant.id}
-                > 
+        > 
             <Product>
                 <ProductImage src={plant.image1}></ProductImage>
                 <ProductMeta matches={matches} product={plant} />
@@ -37,6 +35,6 @@ export default function SingleProduct({plant, matches}){
             </Product>   
         </Link>   
         <ProductAddToCart variant="contained">Add to Cart</ProductAddToCart>
-        </>
-    
-    )};
+    </>  
+    );
+};

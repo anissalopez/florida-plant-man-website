@@ -6,9 +6,9 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import { NavList, NavHeader } from "../../styles/Nav/Nav.styles";
 
-import {Colors} from "../../styles/theme/MainTheme"
+import { Colors } from "../../styles/theme/MainTheme"
 
-export default function NavMobile({matches, toggleDrawer}){
+export default function NavMobile({ matches, toggleDrawer }){
 
     return(
         <NavList type="row" >
@@ -23,4 +23,5 @@ export default function NavMobile({matches, toggleDrawer}){
             </IconButton>
             <Actions matches={matches}></Actions>
         </NavList>
-    )};
+    );
+};

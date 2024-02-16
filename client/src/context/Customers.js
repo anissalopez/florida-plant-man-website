@@ -4,8 +4,6 @@ export const CustomersContext = createContext();
 
 export const useCustomersContext = () => useContext(CustomersContext);
 
-
-
 export const CustomersProvider = ( { children } ) => {
         const [customers, setCustomers] = useState([]);
        
@@ -23,11 +21,11 @@ export const CustomersProvider = ( { children } ) => {
             }
         }
         fetchCustomers()
-        }, [])
+        }, []);
  
    
 
-    const value = { customers, setCustomers }
+    const value = { customers, setCustomers };
 
     return <CustomersContext.Provider value={value}>{children}</CustomersContext.Provider>
-}
+};

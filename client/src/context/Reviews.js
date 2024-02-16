@@ -25,9 +25,7 @@ export const ReviewsProvider = ( { children } ) => {
         fetchReviews()
         }, [])
  
-   
-
-    const value = { reviews, setReviews }
+    const value = { reviews, setReviews };
 
     return <ReviewsContext.Provider value={value}>{children}</ReviewsContext.Provider>
-}
+};

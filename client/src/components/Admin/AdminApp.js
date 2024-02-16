@@ -39,7 +39,7 @@ export default function AdminApp(){
                 {
                   pathname === '/admin' && <Dashboard />
                 }
-                <Outlet />
+                <Outlet/>
             </Main>
         </Box>
      );

@@ -1,30 +1,22 @@
 import Banner from "../Banner/Banner";
 import Promotions from "../Promotions/Promotions"
 import Products from "../Products/Products";
-import Footer from "../Footer/Footer";
+import ReviewList from "../Reviews/ReviewList";
 
-import { Container } from "@mui/material";
+import Container from "@mui/material/Container";
 
 import theme from "../../styles/theme/MainTheme";
 
+export default function HomePage ({ plants, matches, reviews, setReviews}) {
 
-import { Link } from "react-router-dom";
-
-
-
-
-export default function HomePage ({ plants, matches}) {
-    return(
-          
+    return(   
             <Container maxWidth="xl" >
                 <Banner />
                 <Promotions />
                 <Products plants={plants} matches={matches} theme={theme}/>
-            </Container>
-
-     
-         
-   
-    )};
+                <ReviewList reviews={reviews} setReviews={setReviews} plants={plants}/>
+            </Container>       
+    );
+};
 
     

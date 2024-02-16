@@ -19,7 +19,6 @@ import Footer from "../Footer/Footer";
 import Dashboard from "../Admin/Dashboard";
 import Products from "../Admin/Products";
 import Settings from "../Admin/Settings";
-import Sidebar from "../Admin/Sidebar";
 import Reviews from "../Admin/Reviews";
 import Customers from "../Admin/Customers";
 import AdminApp from "../Admin/AdminApp";
@@ -34,8 +33,8 @@ export default function App(){
  
   const plant_url = '/plants';
   const { loading, setLoading } = useLoadingContext();
-  const { reviews, setReviews } = useReviewsContext();
   const { customers, setCustomers } = useCustomersContext();
+  const { reviews, setReviews } = useReviewsContext();
 
 
   useEffect(()=> {
@@ -80,7 +79,6 @@ export default function App(){
   };
 
   return(
-  
     <>
       {
         loading &&  
@@ -97,19 +95,18 @@ export default function App(){
               <Nav  ></Nav>
             </Container>
                   <Routes>
-                    <Route exact path="/" element={<HomePage plants={plants}  theme={theme}/>} />
+                    <Route exact path="/" element={<HomePage plants={plants}  theme={theme} reviews={reviews} setReviews={setReviews}/>} />
                     <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} />} />
                     <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
-                    <Route  exact path="/admin" element={<AdminApp />}>
+                    <Route  exact path="/admin" element={<AdminApp updatePlantList={updatePlantList}/>}>
                       <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
                       <Route exact path="reviews" element={<Reviews reviews={reviews} setReviews={setReviews} />} />
                       <Route exact path="customers" element={<Customers customers={customers} setCustomers={setCustomers} />} />
                       <Route exact path="dashboard" element={<Dashboard />} />
-                      <Route exact path="settings" element={<Settings />} />
-                      <Route exact path="sidebar" element={<Sidebar/>} />     
+                      <Route exact path="settings" element={<Settings />} /> 
                     </Route>  
                   </Routes>
-                  <ReviewList reviews={reviews} setReviews={setReviews} plants={plants}/>
+                  
                   <Footer />          
         </ThemeProvider>
       }

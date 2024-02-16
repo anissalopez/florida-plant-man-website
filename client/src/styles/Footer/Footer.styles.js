@@ -7,3 +7,12 @@ export const FooterTitle =styled(Typography)(()=>({
     fontFamily:"Flower",
     fontSize:"30px"
 }));
+
+
+export const ListItemTypography =styled(Typography)(()=>({
+    fontFamily:'Monaco', 
+    fontSize:{xs:"16px", md:"16px",lg:"20px"},
+    lineHeight:2
+}));
+;
+

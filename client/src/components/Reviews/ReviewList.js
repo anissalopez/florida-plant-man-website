@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
 
 import AddReview from "./AddReview";
@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
 import { Colors } from "../../styles/theme/MainTheme";
+import { ReviewHeader } from "../../styles/Review/Review.styles";
 
 const ReviewList = ({plants, reviews, setReviews}) => {
     const [open, setOpen ] = useState(false);
@@ -27,27 +28,19 @@ const ReviewList = ({plants, reviews, setReviews}) => {
     ) 
     return null;
     
-
-  
-    
       return (
         <Container maxWidth="xl" sx={{marginTop:"50px", padding:"32px"}}>
-            <h1
-            style={{fontFamily:"Flower",
-                    color:Colors.primary,
-                  textAlign:"center", marginBottom:"40px",
-                  fontSize:"3rem"
-                }}
-            >What our customers think about us</h1>
+            <ReviewHeader>What our customers think about us
+            </ReviewHeader>
           <Grid container spacing={2}>
              {reviewList ? reviewList : <h2>Loading ...</h2>} 
           </Grid>
           <Box 
-          sx={{
-            display:"flex",
-            justifyContent:"flex-end",
-            marginBottom:"30px"
-          }}>
+              sx={{
+                display:"flex",
+                justifyContent:"flex-end",
+                marginBottom:"30px"
+              }}>
             <Button 
               onClick={()=>{setOpen(true)}}
               sx={{

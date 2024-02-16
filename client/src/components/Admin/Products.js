@@ -33,25 +33,24 @@ export default function Products({ plants, updatePlantList }){
 
     return(
         <Container>
-        <Typography sx={{mt:7,mb: 1}} variant='h4'>Products</Typography>
-          <Button startIcon={<AddIcon />} 
-            onClick={handleAddProduct}
-              sx={{
-                  mt:2,
-                  mb:2,
-                  backgroundColor:Colors.adminorange,
-                  color:Colors.white,
-                  fontFamily:"Verdana",
-                  fontWeight:"bold",
-                  "&:hover":{
-                      backgroundColor:Colors.adminlightblue,
-
-                  }
-              }}>
-            Add Product
-          </Button> 
-          <ProductTable editProduct={editProduct} plants={plants} updatePlantList={updatePlantList} />
-          <PlantForm setInitialValues={setInitialValues} newProduct={newProduct} initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} setOpen={setOpen} open={open}/>  
+          <Typography sx={{mt:7,mb: 1}} variant='h4'>Products</Typography>
+            <Button startIcon={<AddIcon />} 
+              onClick={handleAddProduct}
+                sx={{
+                    mt:2,
+                    mb:2,
+                    backgroundColor:Colors.adminorange,
+                    color:Colors.white,
+                    fontFamily:"Verdana",
+                    fontWeight:"bold",
+                    "&:hover":{
+                        backgroundColor:Colors.adminlightblue,
+                    }
+                }}>
+              Add Product
+            </Button> 
+            <ProductTable editProduct={editProduct} plants={plants} updatePlantList={updatePlantList} />
+            <PlantForm setInitialValues={setInitialValues} newProduct={newProduct} initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} setOpen={setOpen} open={open}/>  
         </Container>
     );
 };
