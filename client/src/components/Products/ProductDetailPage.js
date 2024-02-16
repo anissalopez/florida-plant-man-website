@@ -33,8 +33,10 @@ function PlantDetail({ setFetchError}) {
   const theme = useTheme();
 
   const xlScreen = useMediaQuery(theme.breakpoints.down("xl"));
-  const mdScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const sliderWidth = xlScreen ? 600 : mdScreen ? 400 : 700;
+  const lgScreen = useMediaQuery(theme.breakpoints.down('lg'))
+  const smScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const sliderWidth = smScreen ? 350 : xlScreen ? 600 : 700
+  const sliderHeight = smScreen ? 400 : 800
 
 
   useEffect(() => {
@@ -62,23 +64,33 @@ function PlantDetail({ setFetchError}) {
  
 
   return (
-    <Container maxWidth="xl">
 
-      <Grid sx={{ mt:"70px", alignItems:"center", justifyContent:"center"}}  
+    <Container maxWidth="xl">
+       {loading?  <ThreeDots stroke={Colors.secondary} /> :
+    
+      <Grid sx={{ mt:"70px",display:"flex", justifyContent:"center", alignItems:"center"}}  
+      gap={2}
       container> 
-          <Grid item md={12} lg={6} sx={{display:"flex", justifyContent:"center", p:4}} >
-            {loading?  <ThreeDots stroke={Colors.secondary} /> : 
+          <Grid item md={12} lg={5.5} 
+          sx={{display:"flex", justifyContent:"center", alignItems:"center"}}
+          
+          >
             <SimpleImageSlider
                 width={sliderWidth}
-                height={800}
+                height={sliderHeight}
                 images={images}
                 showBullets={true}
                 showNavs={true}
                 
               />
-            }
+            
           </Grid> 
-          <Grid item md={12} lg={6} >
+          <Grid item md={12} lg={5.5}
+            sx={{display:"flex",
+            justifyContent:"center", alignItems:"center"
+            }}
+          
+          >
             <PlantContent >
               <Box> 
                 <h2>{plant.name}</h2>
@@ -104,9 +116,17 @@ function PlantDetail({ setFetchError}) {
             </PlantContent>
           </Grid>
      </Grid> 
+    
+    
+      }
       <PlantInfoBanner plant={plant}/>
-      <ReviewList />
-     </Container>   
+  
+     </Container>  
+
+
+       
+  
+      
   )};
 
 export default PlantDetail;

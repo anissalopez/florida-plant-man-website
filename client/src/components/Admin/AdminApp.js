@@ -1,12 +1,12 @@
 import {useState} from 'react';
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import Box from '@mui/material/Box';
-import { Colors } from '../../styles/theme/MainTheme';
 import { styled,  } from '@mui/material/styles';
 import { DrawerWidth } from '../../styles/theme/MainTheme';
 
 import AdminDrawer from './AdminDrawer';
+import Dashboard from './Dashboard';
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -28,15 +28,19 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   );
 
 
-export default function AdminApp({ plants }){
-    const [open, setOpen] = useState(true)
-    return(
-                
+export default function AdminApp(){
+    const [open, setOpen] = useState(true);
+    const { pathname } = useLocation();
+    return(               
         <Box sx={{display:"flex"}}>
             <AdminDrawer open={open} setOpen={setOpen} />
             <Main open={open} >
                 <div style={{height:"20px"}}/>
+                {
+                  pathname === '/admin' && <Dashboard />
+                }
                 <Outlet />
             </Main>
         </Box>
-     )}
+     );
+};

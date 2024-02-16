@@ -6,7 +6,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import  IconButton  from "@mui/material/IconButton";
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,17 +14,8 @@ import ShowMoreText from "react-show-more-text";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductTable({ plants, editProduct, updatePlantList }) {
+export default function ProductTable({ plants, editProduct }) {
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure?")) {
-      fetch(`/plants/${id}`, {
-          method: "DELETE"
-        })
-          .then(resp => resp.json())
-          .then(() => updatePlantList('DELETE', id))
-    };
-  };
     
   return (
     <TableContainer component={Paper}>
@@ -61,17 +51,17 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
                 }
                 }
               }}>
-                    <ShowMoreText
-                        lines={2}
-                        more={<ExpandMoreIcon />}
-                        less={"view less" }
-                        expanded={false}
-                        >
-                     {plant.description}
-                    </ShowMoreText>
-                </TableCell >
-                <TableCell>
-                    <IconButton 
+                <ShowMoreText
+                  lines={2}
+                  more={<ExpandMoreIcon />}
+                  less={"view less" }
+                  expanded={false}
+                >
+                {plant.description}
+                </ShowMoreText>
+              </TableCell >
+              <TableCell>
+                  <IconButton 
                     sx={{color:Colors.adminlightblue, '&:hover':{
                             color:Colors.admingreen1
                         }}}
@@ -84,11 +74,11 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
                         <DeleteIcon 
                         sx={{color:"red"}} />
                     </IconButton>   
-                </TableCell> 
+              </TableCell> 
         </TableRow>
           ))} 
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};

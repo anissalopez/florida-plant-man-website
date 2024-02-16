@@ -28,7 +28,7 @@ export default function Products({ plants }){
 
 
     return(
-        <Container sx={{mb:10, mt:10}}>
+        <Container maxWidth="xl" sx={{mb:10, mt:10}}>
         <Box sx={{display:"flex", justifyContent:"center", p:4, mb:5}}>
             <Typography variant="h3" sx={{ textAlign:"center", fontFamily:"Flower", color:Colors.primary}}>Featured Plants</Typography>
         </Box>

@@ -11,6 +11,7 @@ export default function AddReview({ open, plants, setOpen, reviews, setReviews }
         screen:"customer-name",
         customerId:null    
     });
+    
     return(
         <Dialog open={open} fullWidth maxWidth="lg"> 
           <DialogContent>

@@ -11,14 +11,12 @@ import ReviewsIcon from '@mui/icons-material/Reviews';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
-import { Colors } from '../../styles/theme/MainTheme';
-
 export default function NavMenu(){
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem ] = useState('');
   
   const handleNav = (item) =>{
-      setSelectedItem(item)
+      setSelectedItem(item);
     };
 
     return (
@@ -53,5 +51,6 @@ export default function NavMenu(){
                   selected={selectedItem.includes('settings')}
                   icon={<SettingsIcon />}/>
           </ListItem>
-    </List>
-    )};
+        </List>
+    );
+};

@@ -6,17 +6,17 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-
-
-import InputLabel from "@mui/material/InputLabel";
-import TextField from "@mui/material/TextField";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button'
+
 import { Colors } from "../../styles/theme/MainTheme";
 
+import PlantFormImages from './PlantFormImages';
+import PlantFormItems from './PlantFormItems';
 
-export default function PlantForm({ newProduct, setInitialValues, initialValues, setOpen, open, handleClose, updatePlantList }) {
-  const [preview, setPreview] = useState(null)
+
+export default function PlantForm({ setInitialValues, initialValues, setOpen, open, updatePlantList }) {
+  const [preview, setPreview] = useState(null);
 
 
   const formSchema = yup.object().shape({
@@ -59,30 +59,30 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
 
         if (method === "PATCH") {
           url += `/${initialValues.id}`; 
-        }
+        };
       
         try {
           const response = await fetch(url, {
             method: method,
             mode: "same-origin",
             body: formData
-          })
+          });
       
           if (!response.ok) {
             throw new Error('HTTP error: ' + response.status);
-          }
+          };
 
           const data = await response.json();
      
           updatePlantList(method, data);
           setOpen(false);
-          setPreview(null)
+          setPreview(null);
           alert("Product " + (method === "PATCH" ? "updated" : "added") + " successfully");
-          resetForm({ values: '' })
-          setInitialValues(null)
+          resetForm({ values: '' });
+          setInitialValues(null);
         } catch (error) {
           throw new Error('HTTP error: ' + error);
-        }
+        };
     }
   });
 
@@ -90,121 +90,31 @@ export default function PlantForm({ newProduct, setInitialValues, initialValues,
     <Dialog open={open} fullWidth maxWidth="lg">
       <DialogTitle>{"Add Product"}</DialogTitle>
         <form onSubmit={formik.handleSubmit}>
-          <DialogContent>
-            <Grid container spacing={2}>
-              <Grid item lg={4} xs={12} key="image1">
-                  <InputLabel>Image 1</InputLabel>
-                  <input
-                    id="image1"
-                    name="image1"
-                    onChange={(e)=>{
-                      formik.setFieldValue("image1", e.currentTarget.files[0]);
-                      setPreview((prevState) => ({
-                        ...prevState,
-                        image1: URL.createObjectURL(e.target.files[0]),
-                      }));  
-                    }}
-                    type="file"
-                    accept=".jpg, .jpeg, .png, .svg, .webp"
-                  />    
-                {
-                  initialValues && !preview &&
-                  <img style={{height:"200px", width:"200px"}}
-                  src={initialValues.image1} /> 
-                } 
-                {
-                  preview &&
-                  <img 
-                  
-                  style={{height:"200px", width:"200px"}}
-                  src={preview.image1} /> 
-                }
-                </Grid>
-              <Grid item lg={4} xs={12} key="image2">
-                  <InputLabel>Image 2</InputLabel>
-                  <input
-                    id="image2"
-                    name="image2"
-                    onChange={(e)=>{
-                      formik.setFieldValue("image2", e.currentTarget.files[0]);
-                      setPreview((prevState) => ({
-                        ...prevState,
-                        image2: URL.createObjectURL(e.target.files[0]),
-                      }));
-                    }}
-                    type="file"
-                    accept=".jpg, .jpeg, .png, .svg, .webp"
-                  />
-                  {
-                    initialValues && !preview &&
-                    <img style={{height:"200px", width:"200px"}}
-                    src={initialValues.image2} /> 
-                  } 
-                {
-                  preview &&
-                  <img  
-                  style={{height:"200px", width:"200px"}}
-                  src={preview.image2} /> 
-                }
-              </Grid>
-              <Grid item lg={4} xs={12} key="image3">
-                  <InputLabel>Image 3</InputLabel>
-                  <input
-                    id="image3"
-                    name="image3"
-                    onChange={(e)=>{
-                      formik.setFieldValue("image3", e.currentTarget.files[0]);
-                      setPreview((prevState) => ({
-                        ...prevState,
-                        image3: URL.createObjectURL(e.target.files[0]),
-                      }));
-                      
-                      
-                    }}
-                    type="file"
-                    accept=".jpg, .jpeg, .png, .svg, .webp"
-                  />
-                {
-                  initialValues && !preview &&
-                  <img style={{height:"200px", width:"200px"}}
-                  src={initialValues.image3} /> 
-                } 
-                {
-                  preview &&
-                  <img  
-                  style={{height:"200px", width:"200px"}}
-                  src={preview.image3} /> 
-                }
-                <p style={{ color: 'red' }}>{formik.errors["image3"]}</p>
-                </Grid>
-              {['name', 'price', 'description', 'water', 'sun', 'qty'].map((value, index) => (
-                <Grid item xs={12} key={value}>
-                  <InputLabel htmlFor={value}>{`${value.charAt(0).toUpperCase()}${value.slice(1)}`}</InputLabel>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    id={value}
-                    name={value}
-                    onChange={formik.handleChange}
-                    value={formik.values[value]}
-                  />
-                  <p style={{ color: 'red' }}>{formik.errors[value]}</p>
-                </Grid>
-              ))}
+            <DialogContent>
+              <Grid container spacing={2}>
+                <PlantFormImages
+                  initialValues={initialValues}
+                  setPreview={setPreview}
+                  formiki={formik}
+                  preview={preview}
+
+                />
+                <PlantFormItems formik={formik} />
             </Grid>
-          </DialogContent>
-          <DialogActions>
-            <Button sx={{ backgroundColor: Colors.admingreen3, fontWeight: "bold" }} type="submit">Submit</Button>
-            <Button sx={{ backgroundColor: Colors.adminorange, fontWeight: "bold" }} 
-            onClick={()=>{
-              setOpen(false)
-              setInitialValues(null)
-              setPreview(null)  
-            }
-            }>
-            Cancel
-          </Button>
-          </DialogActions>
+            </DialogContent>
+            <DialogActions>
+              <Button sx={{ backgroundColor: Colors.admingreen3, fontWeight: "bold" }} type="submit">
+                Submit
+              </Button>
+              <Button sx={{ backgroundColor: Colors.adminorange, fontWeight: "bold" }} 
+                      onClick={()=>{
+                        setOpen(false)
+                        setInitialValues(null)
+                        setPreview(null)  
+                      }}>
+              Cancel
+            </Button>
+            </DialogActions>
         </form>
     </Dialog>
   );

@@ -31,10 +31,16 @@ const ReviewList = ({plants, reviews, setReviews}) => {
   
     
       return (
-        <Container sx={{marginTop:"50px"}}>
-            <h2 className="homepage-headers">What our customers think about us</h2>
+        <Container maxWidth="xl" sx={{marginTop:"50px", padding:"32px"}}>
+            <h1
+            style={{fontFamily:"Flower",
+                    color:Colors.primary,
+                  textAlign:"center", marginBottom:"40px",
+                  fontSize:"3rem"
+                }}
+            >What our customers think about us</h1>
           <Grid container spacing={2}>
-              {reviewList}
+             {reviewList ? reviewList : <h2>Loading ...</h2>} 
           </Grid>
           <Box 
           sx={{
@@ -46,7 +52,8 @@ const ReviewList = ({plants, reviews, setReviews}) => {
               onClick={()=>{setOpen(true)}}
               sx={{
                 backgroundColor:Colors.fourth,
-                color:Colors.primary
+                color:Colors.primary,
+                fontFamily:"Flower"
               }}
             >
               Add Review

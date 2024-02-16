@@ -56,21 +56,21 @@ export const ProductAddToCart = styled(Button,{
     shouldForwardProp: (prop) => prop !== 'show'
     })(({show, theme})=>({
     "&:hover":{
-        background:Colors.fourth,
-        color:Colors.primary,
+        background:Colors.primary,
+        // color:Colors.primary,
         transform: "scale3d(1.05, 1.05, 1)"
     },
-    width:'120px',
+    width:'50%',
     fontSize:'12px',
     color:Colors.white,
     fontFamily:"Flower",
     marginBottom:0,
     [theme.breakpoints.up('md')]:{
-        borderBottomLeftRadius:"25px",
-        borderBottomRightRadius:"25px",
+        // borderBottomLeftRadius:"25px",
+        // borderBottomRightRadius:"25px",
         position:'absolute',
         bottom:'2%',
-        width:'300px',
+        width:'50%',
         padding:'10px 5px',
         animation: show && `${slideInBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`
     },
@@ -108,12 +108,12 @@ export const PlantContent = styled(Box)({
     marginLeft:"20px",
     "div":{
       width:"100%",
-      color: "#6DC01E",
+      color: Colors.fifth,
       display: "flex",
       alignItems: "center",    
    },
    "h2":{
-      color: "#377E30",
+      color: Colors.secondary,
       fontFamily: "Flower"
 
    },
@@ -127,32 +127,38 @@ export const PlantContent = styled(Box)({
       
    },
    "button":{
-        backgroundColor: "#BED500",
+        backgroundColor: Colors.fourth,
         color: Colors.primary,
         width: "40%",
         fontFamily: "Flower",
         borderRadius: "3px",
        "&:hover":{
-          backgroundColor:"#377E30",
+          backgroundColor:Colors.primary,
           color:"#fff"
        }
    }});
 
 export const InfoContainer = styled(Box)({
     display: "flex",
-    marginTop:"150px",
+
+    marginTop:"75px"
 
 });
 
 export const ShopInfo = styled(Box)({
     display: "flex",
     gap:"10px", 
+    marginTop:"75px",
+    ml:"80px",
+    mr:"20px",
+    mt:"75px",
 
     "& .headers":{
         display:"flex",
         alignItems:"center",
         justifyContent:"center",
-        backgroundColor: "#6DC01E",
+        backgroundColor: Colors.primary,
+        borderRadius:"5px",
         fontSize: "18px",
         height: "34px",
         color:"white",
@@ -176,13 +182,12 @@ export const HeaderContainer = styled('div')({
 
     },
     '& .category':{
-        color: "fff",
         fontSize:"50px",
         height:"50px"
 
     },
     '& .noun':{
-        color: "#377E30",
+        color: Colors.secondary,
         fontSize: "40px",
         fontWeight: "bold",
         height:"50px"
@@ -192,7 +197,7 @@ export const HeaderContainer = styled('div')({
         width:"75vw"
     },
     '& .pronunciation':{
-        color: "#6DC01E",
+        color: Colors.fifth,
         fontSize:"20px",
         fontWeight:"bold",
         marginBottom:"15px",
@@ -215,13 +220,13 @@ export const FilterHeader = styled('h1')({
 
 export const ButtonFilter = styled(Button)({
     color:"#fff",
-    backgroundColor: "#BED500",
+    backgroundColor: Colors.fourth,
     fontFamily: "Flower",
-    border: "solid 1px #BED500",
+    border: `solid 1px ${Colors.fourth}`,
     width:"130px",
     '&:hover':{
-        backgroundColor:"#377E30",
-        border: "solid #377E30"
+        backgroundColor:Colors.secondary,
+        border: Colors.secondary
     }
 })
 

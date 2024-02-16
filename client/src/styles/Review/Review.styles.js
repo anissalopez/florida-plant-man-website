@@ -94,6 +94,9 @@ export const ReviewContainer = styled(Box)({
     padding:"20px",
     marginBottom:"60px",
     overflow:"hidden",
+    [theme.breakpoints.down('md')]:{
+       fontSize:"14px",
+    },
 
     ":hover":{ 
         transform: "scale3d(1.05, 1.05, 1)"

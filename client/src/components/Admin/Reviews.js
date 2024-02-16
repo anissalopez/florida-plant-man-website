@@ -6,24 +6,9 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import  IconButton  from "@mui/material/IconButton";
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-
-import ShowMoreText from "react-show-more-text";
-import { Colors } from "../../styles/theme/MainTheme";
-
-
-
-
-export default function Reviews({ reviews, setReviews }){
-    console.log(reviews)
-  
-
+export default function Reviews({ reviews }){
     return(
         <div>
         <Typography sx={{mt:7,mb: 4}} variant='h4'>Reviews</Typography>
@@ -44,22 +29,19 @@ export default function Reviews({ reviews, setReviews }){
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell
-                        sx={{width:"30%"}}
-                        >
-                            
-                        {`${review.customer['first_name']} ${review.customer['last_name']}`}    
+                            sx={{width:"30%"}}
+                            >
+                                
+                            {`${review.customer['first_name']} ${review.customer['last_name']}`}    
                         </TableCell>
                         <TableCell>{review.rating}</TableCell>
                         <TableCell >{review.comment}</TableCell>
-                        <TableCell >{review.plant['name']}</TableCell>
-                       
+                        <TableCell >{review.plant['name']}</TableCell>      
                     </TableRow>
                     ))} 
                     </TableBody>
                 </Table>
-            </TableContainer>
-         
+            </TableContainer>  
         </div>
-   
-    )
-}
+    );
+};

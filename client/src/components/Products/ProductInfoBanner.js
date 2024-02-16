@@ -1,11 +1,12 @@
 import { InfoContainer, ShopInfo } from "../../styles/Products/Products.styles";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import { shopGuarantee, shippingPolicy, returnPolicy } from "../AppVariables/infoBannerVariables";
 
 
 const PlantInfoBanner = () => {
     return(
-            <InfoContainer>
+      
                 <ShopInfo sx={{flexDirection:{xs:"column", md:"row"}}}>
                     <Box className="info-container">
                         <Box className="headers">Shop Guarantee</Box>
@@ -20,7 +21,7 @@ const PlantInfoBanner = () => {
                         <Box className="content">{returnPolicy}</Box>
                     </Box>
                 </ShopInfo>   
-            </InfoContainer>
+     
     )};
 
 export default PlantInfoBanner;

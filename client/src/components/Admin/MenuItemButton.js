@@ -19,10 +19,10 @@ export default function MenuItemBtn({selected, icon, text, handleNav}){
                     color:Colors.black
                 })
             }}>
-        <ListItemIcon sx={{color: selected && Colors.adminorange}}>
-            {icon}
-        </ListItemIcon>
-        <ListItemText primary={text} />
+            <ListItemIcon sx={{color: selected && Colors.adminorange}}>
+                {icon}
+            </ListItemIcon>
+            <ListItemText primary={text} />
       </ListItemButton>
-    )
+    );
   };

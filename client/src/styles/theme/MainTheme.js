@@ -11,13 +11,14 @@ export const Colors = {
     secondary: "#377E30",
     third:"#E4DCCD",
     fourth:"#BED500",
+    fifth:"#6DC01E",
     
 
     //grays
     // dim_gray:"#696969",
     dove_gray:"#d5d5d5",
     // body_bg:"#f1f1f1",
-        light_gray:	"#D9DDDC",
+    light_gray:	"#D9DDDC",
 
     white:"#fff",
     white2:'#F5F5F5',

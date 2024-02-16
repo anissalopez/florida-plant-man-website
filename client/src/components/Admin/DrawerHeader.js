@@ -16,16 +16,16 @@ export const DrawerHeaderComponent = styled('div')(({ theme }) => ({
    
   }));
 
-  export default function DrawerHeader({ handleDrawerClose} ){
+  export default function DrawerHeader({ setOpen } ){
     const theme = useTheme();
     return (
         <DrawerHeaderComponent>
           <p style={{fontFamily:"Flower", color:Colors.admingreen3, marginRight:"5px"}}>The Florida Plant Man</p>
-          <IconButton sx={{backgroundColor:Colors.admingreen1}}onClick={handleDrawerClose}>
+          <IconButton sx={{backgroundColor:Colors.admingreen1}}onClick={()=>setOpen(false)}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeaderComponent>
-    )
+    );
   };
 
 

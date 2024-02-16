@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Box from '@mui/material/Box';
 
 import { Colors } from '../../styles/theme/MainTheme';
-import image from "../../images/shade4.png"
+import image from "../../images/logo.png"
 
 export const list = (anchor, toggleDrawer, handleNav) => (
     <Box sx={{display:"flex-column"}}>
@@ -28,7 +28,7 @@ export const list = (anchor, toggleDrawer, handleNav) => (
                         },
                         '& a':{
                             textDecoration:"none",
-                            color:Colors.white2}}}>
+                            color:Colors.primary}}}>
                 <Link key="home" to={`/`}>
                     <ListItem disablePadding>
                         <ListItemButton>
@@ -56,7 +56,7 @@ export const list = (anchor, toggleDrawer, handleNav) => (
                 {['Admin', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
                 <ListItem  onClick={handleNav} key={text} disablePadding>
                     <ListItemButton sx={{'& .MuiTypography-root':{
-                        color:Colors.white2,
+                        color:Colors.primary
                             }}}>
                         <ListItemText secondary={text} />
                     </ListItemButton>
