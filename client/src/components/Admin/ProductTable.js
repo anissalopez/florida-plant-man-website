@@ -15,7 +15,15 @@ import { Colors } from "../../styles/theme/MainTheme";
 
 
 export default function ProductTable({ plants, editProduct, updatePlantList }) {
-
+  const handleDelete = (plant) => {
+    if (window.confirm("Are you sure?")) {
+      fetch(`http://localhost:3000/plants/${plant.id}`, {
+          method: "DELETE"
+        })
+          .then(resp => resp.json())
+          .then(() => updatePlantList('DELETE', plant))
+    };
+  };
     
   return (
     <TableContainer component={Paper}>
@@ -70,7 +78,12 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
                         <EditIcon />
                     </IconButton>
                     <IconButton
-                     onClick={()=>updatePlantList('DELETE',plant)}>
+                     onClick={()=>{
+                      // updatePlantList('DELETE',plant)
+                      handleDelete(plant)
+                    }}
+                    
+                     >
                         <DeleteIcon 
                         sx={{color:"red"}} />
                     </IconButton>   
