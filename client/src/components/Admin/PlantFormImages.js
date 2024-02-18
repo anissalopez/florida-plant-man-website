@@ -19,16 +19,17 @@ export default function PlantFormImages({formik, setPreview, preview, initialVal
                             type="file"
                             accept=".jpg, .jpeg, .png, .svg, .webp"
                         />    
-                    {
-                        initialValues && !preview &&
-                        <img style={{height:"200px", width:"200px"}}
-                        src={initialValues.image1} /> 
-                    } 
-                    {
-                        preview &&
-                        <img style={{height:"200px", width:"200px"}}
-                        src={preview.image1} /> 
-                    }
+                        {
+                            initialValues && !preview &&
+                            <img alt="previewimage"style={{height:"200px", width:"200px"}}
+                            src={initialValues.image1} /> 
+                        } 
+                        {
+                            preview &&
+                            <img alt="previewimage" style={{height:"200px", width:"200px"}}
+                            src={preview.image1} /> 
+                        }
+                    <p style={{ color: 'red' }}>{formik.errors['image1']}</p>
                 </Grid>
                 <Grid item lg={4} xs={12} key="image2">
                     <InputLabel>Image 2</InputLabel>
@@ -46,16 +47,18 @@ export default function PlantFormImages({formik, setPreview, preview, initialVal
                             accept=".jpg, .jpeg, .png, .svg, .webp"
                         />
                         {
-                        initialValues && !preview &&
-                        <img style={{height:"200px", width:"200px"}}
-                        src={initialValues.image2} /> 
+                            initialValues && !preview &&
+                            <img alt="previewimage" style={{height:"200px", width:"200px"}}
+                            src={initialValues.image2} /> 
                         } 
-                    {
-                        preview &&
-                        <img  
-                        style={{height:"200px", width:"200px"}}
-                        src={preview.image2} /> 
-                    }
+                        {
+                            preview &&
+                            <img  
+                            alt="previewimage" 
+                            style={{height:"200px", width:"200px"}}
+                            src={preview.image2} /> 
+                        }
+                        <p style={{ color: 'red' }}>{formik.errors['image2']}</p>
                 </Grid>
                 <Grid item lg={4} xs={12} key="image3">
                     <InputLabel>Image 3</InputLabel>
@@ -74,16 +77,19 @@ export default function PlantFormImages({formik, setPreview, preview, initialVal
                         />
                     {
                         initialValues && !preview &&
-                        <img style={{height:"200px", width:"200px"}}
+                        <img 
+                            alt="previewimage" 
+                            style={{height:"200px", width:"200px"}}
                             src={initialValues.image3} /> 
                     } 
                     {
                         preview &&
                         <img  
+                            alt="previewimage" 
                             style={{height:"200px", width:"200px"}}
                             src={preview.image3} /> 
                     }
-                    <p style={{ color: 'red' }}>{formik.errors["image3"]}</p>
+                     <p style={{ color: 'red' }}>{formik.errors['image3']}</p>
                 </Grid>
             </>
     );

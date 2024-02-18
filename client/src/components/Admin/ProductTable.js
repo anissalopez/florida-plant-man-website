@@ -70,7 +70,7 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
                         <EditIcon />
                     </IconButton>
                     <IconButton
-                     onClick={()=>updatePlantList(plant.id)}>
+                     onClick={()=>updatePlantList('DELETE',plant)}>
                         <DeleteIcon 
                         sx={{color:"red"}} />
                     </IconButton>   

@@ -30,7 +30,8 @@ export default function Footer(){
                 opacity:.8,
                 '& a':{
                         textDecoration:"none",
-                        color:Colors.primary
+                        color:Colors.primary,
+                width:"100%"
                 }}}>
             <Container>
                 <Grid container spacing={6} sx={{display:"flex",justifyContent:"center"}}>

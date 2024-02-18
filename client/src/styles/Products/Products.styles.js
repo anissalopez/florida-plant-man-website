@@ -1,11 +1,10 @@
 import {styled } from '@mui/system';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import IconButton  from '@mui/material/IconButton';
-import {slideInBottom, slideInRight} from '../../animations/animations'
+import { slideInBottom } from '../../animations/animations'
 import { Colors} from '../theme/MainTheme';
 
 export const Product = styled(Box)(({ theme })=>({
@@ -194,7 +193,7 @@ export const ShopInfo = styled(Box)({
 
 });
 
-export const HeaderContainer = styled('div')({
+export const HeaderContainer = styled(Container)({
     marginTop:"75px",
     marginBottom:"75px",
     
@@ -230,12 +229,7 @@ export const HeaderContainer = styled('div')({
         marginTop:"15px"
 
     },
-    '& .client-alert':{
-        textAlign:'center',
-        padding:"32px",
-        color:"red"
-
-    }
+  
 });
 
 

@@ -95,7 +95,7 @@ export default function PlantForm({ setInitialValues, initialValues, setOpen, op
                 <PlantFormImages
                   initialValues={initialValues}
                   setPreview={setPreview}
-                  formiki={formik}
+                  formik={formik}
                   preview={preview}
 
                 />

@@ -90,10 +90,10 @@ export default function ProductCategoryList({ plants } ){
             {
             filteredPlants.length  ? 
                  filteredPlants : 
-                <div className='alert' >
+                <Grid item xs={12} className='alert' >
                     Sorry we do not have any <span>{category} </span>
                     plants at this moment. Please check again next week.
-                </div>
+                </Grid>
            }
         </Grid>
    </Container>

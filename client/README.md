@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Project Name
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is a full-stack application built for a company that sells plants online. The front-end was developed using React, while the backend utilizes Flask, Python, and SQLite for the database. Object-oriented design principles were employed to create three database models: Plant, Reviews, and Customers.
 
-In the project directory, you can run:
+- **Plant Model**: Represents the plant products available for sale.
+- **Reviews Model**: Represents customer reviews left on the products.
+- **Customers Model**: Represents the customers.
 
-### `npm start`
+The relationships between these models are as follows:
+- Plants and Shoppers have a many-to-many relationship through reviews.
+- Plants and Reviews have a one-to-many relationship.
+- Customers and Reviews have a one-to-many relationship.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The application includes various features:
+- View all plants.
+- Filter plants by category.
+- Admin portal for CRUD actions on plants.
+- Ability to create reviews and customers through the review creation process.
+- Admin portal to view all customers and reviews.
+- Planned features include customer login, viewing saved plants, checkout functionality, About Us, Shipping, FAQ, and Returns Policy pages.
+- Additionally, there are plans to implement a messages panel and support channels in the backend for administrators.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Dependencies
 
-### `npm test`
+- **Frontend Dependencies**:
+  - "@emotion/react": "^11.11.1"
+  - "@emotion/styled": "^11.11.0"
+  - "@fontsource/roboto": "^5.0.8"
+  - "@mui/icons-material": "^5.15.1"
+  - "@mui/material": "^5.15.1"
+  - "@testing-library/jest-dom": "^5.17.0"
+  - "@testing-library/react": "^13.4.0"
+  - "@testing-library/user-event": "^13.5.0"
+  - "formik": "^2.4.5"
+  - "react-burger-menu": "^3.0.9"
+  - "react-dom": "^18.2.0"
+  - "react-icons": "^4.12.0"
+  - "react-router-dom": "^6.21.0"
+  - "react-scripts": "^5.0.1"
+  - "react-simple-image-slider": "^2.4.1"
+  - "web-vitals": "^2.1.4"
+  - "yup": "^1.3.3"
+  - "polished": "^4.3.1"
+  - "react-loading-icons": "^1.1.0"
+  - "react-show-more-text": "^1.7.1"
+  - "react-toastify": "^10.0.4"
+  - "save": "^2.9.0"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. **Backend Installation**:
+   - Run `pipenv install` to install all backend dependencies.
+   - Enter the shell by running `pipenv shell`.
+   - Seed the database by running `python seed_customer.py`, `python seed_review.py`, and `python seed_plant.py`.
+   - Run the Flask app by executing `python app.py`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Frontend Installation**:
+   - Navigate to the client folder.
+   - Run `npm install` to install frontend dependencies.
+   - Start the development server with `npm start`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- After installation, users can access the application through the browser.
+- Various functionalities are available for users, including browsing plants, filtering by category, and leaving reviews.
+- Administrators can access the admin portal to perform CRUD actions on plants and view customer and review data.
 
-### `npm run eject`
+## Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [Anissa Lopez](https://github.com/anissalopez)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

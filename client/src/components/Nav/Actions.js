@@ -13,10 +13,13 @@ export default function Actions({matches}){
         <Component>
             <NavList type="row" 
                 sx={{ color:matches ? Colors.white : Colors.secondary,
-                    '& .MuiListItem-button':{
-                        justifyContent:"center"
-                    }  
-                }}>
+                    '& .MuiButtonBase-root':{
+                        display:"flex",
+                        justifyContent:"center",
+                        alignItems:"center"
+
+                    }
+                 }}>
                 <ListItemButton>
                     <ShoppingCartIcon></ShoppingCartIcon>
                 </ListItemButton>

@@ -22,7 +22,6 @@ import Settings from "../Admin/Settings";
 import Reviews from "../Admin/Reviews";
 import Customers from "../Admin/Customers";
 import AdminApp from "../Admin/AdminApp";
-import ReviewList from "../Reviews/ReviewList";
 
 import {ThreeDots} from 'react-loading-icons';
 
@@ -52,7 +51,7 @@ export default function App(){
       }
     };
     fetchPlants();
-  }, []);
+  }, [setLoading]);
 
   const updatePlantList = (method, plantInfo) =>{
     if(method === 'POST'){
@@ -73,8 +72,9 @@ export default function App(){
         setPlants(newPlantArray);
       };
     if(method === 'DELETE'){
-      const updatedPlants = plants.filter((plant) => plant.id !== plantInfo);
+      const updatedPlants = plants.filter((plant) => plant.id !== plantInfo.id);
       setPlants(updatedPlants);
+    
     };
   };
 
@@ -92,7 +92,7 @@ export default function App(){
       {!fetchError && !loading && 
         <ThemeProvider theme={theme}>
             <Container maxWidth="xl"> 
-              <Nav  ></Nav>
+              <Nav></Nav>
             </Container>
                   <Routes>
                     <Route exact path="/" element={<HomePage plants={plants}  theme={theme} reviews={reviews} setReviews={setReviews}/>} />
