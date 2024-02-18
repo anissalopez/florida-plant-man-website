@@ -1,6 +1,7 @@
 import {styled } from '@mui/system';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import IconButton  from '@mui/material/IconButton';
@@ -86,7 +87,29 @@ export const ProductMetaWrapper = styled(Box)(({theme}) =>({
     flexDirection:"column",
     alignItems:"center"
     
-}))
+}));
+
+export const AccordionWrapper = styled(Grid,{
+    shouldForwardProp: (prop) => prop !== 'show'
+    })(({theme}) =>({
+    ".MuiAccordionSummary-content":{
+        fontFamily:"Flower"
+    },
+    display:"flex",
+    justifyContent:"center", 
+    alignItems:"center",
+    marginTop:"50px",
+
+    "& .MuiAccordion-root":{
+        backgroundColor:Colors.white2,
+        fontSize:"1.2rem",
+        boxShadow:"none",
+
+    },
+    marginBottom:"75px"   
+}));
+
+
 export const ProductActionsWrapper = styled(Box,{
     shouldForwardProp: (prop) => prop !== 'show'
 })(({show, theme}) =>({
@@ -102,11 +125,12 @@ export const ProductActionsWrapper = styled(Box,{
 
 export const PlantContent = styled(Box)({
     display: "flex",
-    height: "600px",
+    height: "750px",
     width:"100%",
     flexDirection: "column",
     justifyContent:"space-between",
-    marginLeft:"20px",
+    // marginLeft:"20px",
+ 
     "div":{
       width:"100%",
       color: Colors.fifth,
@@ -130,7 +154,7 @@ export const PlantContent = styled(Box)({
    "button":{
         backgroundColor: Colors.fourth,
         color: Colors.primary,
-        width: "40%",
+        width: "400px",
         fontFamily: "Flower",
         borderRadius: "3px",
        "&:hover":{
@@ -171,8 +195,9 @@ export const ShopInfo = styled(Box)({
 });
 
 export const HeaderContainer = styled('div')({
-    marginTop:"25px",
-    marginBottom:"25px",
+    marginTop:"75px",
+    marginBottom:"75px",
+    
 
      
     '& .main-content':{
@@ -207,6 +232,8 @@ export const HeaderContainer = styled('div')({
     },
     '& .client-alert':{
         textAlign:'center',
+        padding:"32px",
+        color:"red"
 
     }
 });

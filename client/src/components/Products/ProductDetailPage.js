@@ -31,7 +31,7 @@ function PlantDetail({ setFetchError}) {
 
   const smScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const sliderWidth = smScreen ? 350 : 500
-  const sliderHeight = smScreen ? 400 : 600
+  const sliderHeight = smScreen ? 400 : 750
 
 
   useEffect(() => {
@@ -61,22 +61,24 @@ function PlantDetail({ setFetchError}) {
     <Container maxWidth="xl">
        {
           loading ?  <ThreeDots stroke={Colors.secondary} /> :
-                <ProductDetailGridItem sx={{mt:"70px"}} gap={2} container> 
-                  <ProductDetailGridItem item md={12} lg={5.5}>
+                <ProductDetailGridItem sx={{mt:"70px"}}  container> 
+                  <ProductDetailGridItem item md={12} lg={6}>
                       <SimpleImageSlider
                           width={sliderWidth}
                           height={sliderHeight}
+                  
                           images={images}
                           showBullets={true}
                           showNavs={true}  
                         /> 
                     </ProductDetailGridItem> 
-                    <ProductDetailGridItem item md={12} lg={5.5}>
+                    <ProductDetailGridItem md={12} lg={6}>
                       <PlantContent>
                         <Box> 
                           <h2>{plant.name}</h2>
                         </Box>
-                        <Box><h3>{plant.description}</h3></Box>  
+                        <Box>
+                          <h3>{plant.description}</h3></Box>  
                         <Divider></Divider> 
                         <Box>
                             <WbSunnyIcon />
@@ -94,11 +96,18 @@ function PlantDetail({ setFetchError}) {
                           <h3> ${plant.price}</h3>
                         </Box>
                         <Box><Button >Add to Cart</Button></Box> 
+                        
                       </PlantContent>
+                   
                   </ProductDetailGridItem>
               </ProductDetailGridItem>     
       }
-        <PlantInfoBanner plant={plant}/>
+         
+         <PlantInfoBanner plant={plant}/>
+      
+      
+    
+       
      </Container>   
   );
 };

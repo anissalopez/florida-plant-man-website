@@ -14,7 +14,7 @@ export default function Nav() {
         left: false
       });
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.down('xl'));
+    const matches = useMediaQuery(theme.breakpoints.down('lg'));
     const { pathname } = useLocation();
  
     const toggleDrawer = (anchor, open) => (event) => {
