@@ -9,6 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GroupsIcon from '@mui/icons-material/Groups';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import HomeIcon from '@mui/icons-material/Home';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 export default function NavMenu(){
@@ -21,6 +22,11 @@ export default function NavMenu(){
 
     return (
         <List> 
+          <ListItem  disablePadding onClick={()=>{navigate('/')}}>
+            <MenuItemBtn text='home' handleNav={handleNav}
+                  selected={selectedItem.includes('home')}
+                  icon={<HomeIcon />}/>
+          </ListItem>
           <ListItem  disablePadding onClick={()=>{navigate('/admin/dashboard')}}>
             <MenuItemBtn text='dashboard' handleNav={handleNav}
                   selected={selectedItem.includes('dashboard')}
