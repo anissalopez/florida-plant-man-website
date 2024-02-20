@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import InputBase from "@mui/material/InputBase";
+import MuiAppBar from "@mui/material/AppBar";
 
 import { Colors } from "../theme/MainTheme";
 
@@ -10,7 +11,7 @@ export const DashboardGridItem = styled(Grid, {
   })(({ primary, secondary, tertiary }) => ({
     backgroundColor: primary ? Colors.adminlightblue : 
                      secondary ? Colors.admingreen3 : 
-                     tertiary ? Colors.admindarkblue : Colors.adminorgange,
+                     tertiary ? Colors.admindarkblue : Colors.adminorange,
     color: Colors.white,
     borderRadius:"25px",
     display:"flex",
@@ -66,4 +67,21 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '20ch',
     },
   },
+}));
+
+export const AppBarStyled = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - 240px)`,
+    marginLeft: `240px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
 }));
