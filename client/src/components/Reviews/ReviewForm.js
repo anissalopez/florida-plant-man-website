@@ -1,15 +1,14 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
-import { FormContainer } from '../../styles/Review/Review.styles';
-import { Colors } from '../../styles/theme/MainTheme';
+import { FormContainer, ButtonContainer } from '../../styles/Review/Review.styles';
+import { Colors } from "../../styles/theme/MainTheme";
 
 export default function ReviewForm({reviews, setReviews, plants, customerId, setOpen, setDisplay, display }){
     const formSchema = yup.object().shape({
@@ -53,12 +52,12 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
   }});
 
     return(
-        <Box className="form-components">
+        <div>
           <FormContainer component="form" onSubmit={formik.handleSubmit}>
               <h2>Which of our Plant Companions did you take home?</h2>
                     <Select
-                      fullWidth
-                      className="form-components"
+                   
+                      // className="form-components"
                       labelId="select-plant"
                       id="plant_id"
                       name="plant_id"
@@ -67,28 +66,13 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                         {
                           plants.map((plant) =>{
                               return(
-                                  <MenuItem key={plant.id} 
-                                    sx={{
-                                      fontFamily:"Sometype Mono", 
-                                      color:"green"
-                                    }}
+                                  <MenuItem fullWidth key={plant.id} 
+
                                     value={plant.id}>
                                     {plant.name}
                                   </MenuItem>)})}
                     </Select>
-              <h2>We aim to earn your 5-star rating, please tell us how we did!</h2>
-                    <Rating
-                      id="rating"
-                      name="rating"
-                      type="number"
-                      value={Number(formik.values["rating"])}
-                      onChange={formik.handleChange}
-                      size="large"
-                      sx={{
-                        color:Colors.fourth
-                      }}
-                    />
-                  <p>{formik.errors['rating']}</p>
+             
               <h2>Please tell us about your experience with your purchase.</h2>
                    <TextField
                       id="comment"
@@ -98,19 +82,39 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                       onChange={formik.handleChange}     
                     />
                   <p>{formik.errors['comment']}</p>
-              <Box sx={{display:"flex", justifyContent:'space-between'}}>
-                <Button className="cancel-button"
-                        onClick={()=>{
-                        setOpen(false)
-                        setDisplay({...display, screen:"customer-name", customerId:null})
-                        }}
-                      >
-                  Cancel
-                </Button>
-                <Button className="next-button"
-                        type="submit">Submit</Button>
-              </Box>
-          </FormContainer >
-        </Box>
+                  </FormContainer >
+                  <h2
+                    style={{marginTop:0}}
+                  
+                  >We aim to earn your 5-star rating, please tell us how we did!</h2>
+                    <Rating
+                      id="rating"
+                      name="rating"
+                      type="number"
+                      value={Number(formik.values["rating"])}
+                      onChange={formik.handleChange}
+                      sx={{fontSize:"40px", color:Colors.fourth}}
+                    />
+               
+                  <p>{formik.errors['rating']}</p>
+      
+                <ButtonContainer>
+                    <Button className="cancel-button"
+                            onClick={()=>{
+                            setOpen(false)
+                            setDisplay({...display, screen:"customer-name", customerId:null})
+                            }}
+                          >
+                      Cancel
+                    </Button>
+                    <Button className="next-button"
+                            type="submit">
+                      Submit
+                    </Button>
+
+                </ButtonContainer>
+          
+     
+        </div>
     );
   };

@@ -6,33 +6,6 @@ import base64
 
 if __name__ == '__main__':
     with app.app_context():
-        
-        # image_directory = os.path.join(app.config["Images"])
-        # image_files = os.listdir(image_directory)
-
-        # images = {}
-        # for filename in image_files:
-        #     file_path = os.path.join(image_directory, filename)
-        #     with open(file_path, 'rb') as f:
-        #         encoded_image = base64.b64encode(f.read()).decode('utf-8')
-        #         encoded_image = encoded_image.replace('\n', '')
-        #         image_url = 'data:image/jpg;base64,' + encoded_image
-               
-        #         images[filename] = image_url
-     
-      
-        # ant1 = images['ant1.jpg']
-        # ant2 = images['ant2.jpg']
-        # ant3 = images['ant3.jpg']
-        # burl1 = images['burl1.jpg']
-        # burl2 = images['burl2.jpg']
-        # burl3 = images['burl3.jpg']
-        # thai1 = images['thai1.jpg']
-        # thai2 = images['thai2.jpg']
-        # thai3 = images['thai3.jpg']
-        # syn1 = images['syn1.jpg']
-        # syn2 = images['syn2.jpg']
-        # syn3 = images['syn3.jpg']
         ant1 = 'ant1.jpg'
         ant2 = 'ant2.jpg'
         ant3 = 'ant3.jpg'

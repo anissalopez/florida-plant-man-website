@@ -4,12 +4,12 @@ import * as yup from "yup";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-import { FormContainer, CustomerFormInput } from '../../styles/Review/Review.styles';
+import { FormContainer, CustomerFormInput, ButtonContainer } from '../../styles/Review/Review.styles';
 
 export default function CustomerForm({ setDisplay, display, setOpen }){
     const formSchema = yup.object().shape({
-      first_name: yup.string().min(2).max(100).required("Must enter first name"),
-      last_name: yup.string().min(2).max(100).required("Must enter last name")
+      first_name: yup.string().min(2).max(100).required("Required"),
+      last_name: yup.string().min(2).max(100).required("Required")
       });
 
     const formik = useFormik({
@@ -41,12 +41,13 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
       
     return (
         <FormContainer >
-          <h1>We're excited to hear from you! What can we call you while we celebrate your review? </h1>
-          <Box component="form" onSubmit={formik.handleSubmit} className="form-components"  >
+          <h2>We're excited to hear from you! What can we call you while we celebrate your review? </h2>
+          <Box component="form" onSubmit={formik.handleSubmit} className="form-components">
             <CustomerFormInput
                 FormHelperTextProps={{className:"helper"}}
                 InputLabelProps={{className:"label"}}
                 helperText ={formik.errors['first_name']}
+          
                 label="First Name"
                 id="first_name"
                 name="first_name"
@@ -63,14 +64,14 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
                 onChange={formik.handleChange}
                 value={formik.values["last_name"]}
                     />
-            <Box sx={{display:"flex", justifyContent:'space-between'}}>
+            <ButtonContainer>
               <Button className="cancel-button"
                 onClick={()=>{setOpen(false)}}>
                   Cancel</Button>
               <Button className="next-button" type="submit">
                 Next
               </Button>
-            </Box>
+            </ButtonContainer>
           </Box>
         </FormContainer>
       );

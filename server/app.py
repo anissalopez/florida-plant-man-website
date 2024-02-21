@@ -6,11 +6,14 @@ from werkzeug.utils import secure_filename
 import uuid
 
 
-# Local imports
 from config import app, db, api
 import os
-# Add your model imports
-from models import Plant, Review, Customer
+
+from Models.customer import Customer
+from Models.review import Review
+from Models.plant import Plant
+
+
 import base64
 
 def encode_imgage_directory():
@@ -43,7 +46,8 @@ class Plants(Resource):
                 "qty": plant.qty,
                 "sun": plant.sun,
                 "water": plant.water,
-                "reviews": [],  
+                "reviews": [review.to_dict() for review in plant.reviews],  
+                "customers": [customer.to_dict() for customer in plant.customers],
                 "image1": encoded_images[plant.image1], 
                 "image2": encoded_images[plant.image2], 
                 "image3": encoded_images[plant.image3],  
@@ -155,61 +159,6 @@ class PlantById(Resource):
         except Exception as exc:
             response = make_response({"Error": exc}, 500)
 
-    # def patch(self, id):
-    #     plant = Plant.query.filter(Plant.id == id).first()
-
-    #     default_value = '0'
-
-    #     if not plant:
-    #         return make_response({"Error": "Plant not found"}, 404)
-
-    #     image_directory = app.config["Images"]
-    #     images = []
-
-    #     uploaded_files = [
-    #         request.files.get('image1', default_value),
-    #         request.files.get('image2', default_value),
-    #         request.files.get('image3', default_value)
-    #     ]
-
-    #     unique_str = str(uuid.uuid4())[:8]
-
-    #     for image in uploaded_files:
-    #         try:
-    #             if image != default_value:
-    #                 filename = f"{unique_str}_{secure_filename(image.filename)}"
-    #                 images.append(filename)
-    #                 image_path = os.path.join(image_directory, filename)
-    #                 image.save(image_path)
-    #         except Exception as exc:
-    #             return make_response({"An error occurred saving image": str(exc)}, 400)
-
-    #     # for attr in request.form:
-    #     #     if 'image' not in attr:
-    #     #         setattr(plant, attr, request.form[attr])
-
-    #     # Update specific attributes
-    #     plant.name = request.form.get('name', plant.name)
-    #     plant.price = request.form.get('price', plant.price)
-    #     plant.description = request.form.get('description', plant.description)
-    #     plant.water = request.form.get('water', plant.water)
-    #     plant.sun = request.form.get('sun', plant.sun)
-    #     plant.qty = request.form.get('qty', plant.qty)
-
-    #     # Update image paths if new images were uploaded
-    #     if images:
-    #         plant.image1 = images[0]
-    #         plant.image2 = images[1]
-    #         plant.image3 = images[2]
-
-    #     try:
-    #         db.session.add(plant)
-    #         db.session.commit()
-    #         response_dict = plant.to_dict()
-    #         return make_response(response_dict, 200)
-    #     except Exception as exc:
-    #         db.session.rollback()
-    #         return make_response({"Error": str(exc)}, 500)
     def patch(self, id):
         plant = Plant.query.filter(Plant.id == id).first()
 
@@ -230,15 +179,6 @@ class PlantById(Resource):
 
         unique_str = str(uuid.uuid4())[:8]
 
-        # for image in uploaded_files:
-        #     try:
-        #         if image != default_value:
-        #             filename = f"{unique_str}_{secure_filename(image.filename)}"
-        #             images.append(filename)
-        #             image_path = os.path.join(image_directory, filename)
-        #             image.save(image_path)
-        #     except Exception as exc:
-        #         return make_response({"An error occurred saving image": str(exc)}, 400)
         for index, image in enumerate(uploaded_files):
             try:
                 if image != default_value:
@@ -257,8 +197,6 @@ class PlantById(Resource):
         plant.sun = request.form.get('sun', plant.sun)
         plant.qty = request.form.get('qty', plant.qty)
 
-
-        # Update image paths if new images were uploaded
         for index, image_info in images:
             if index == 0:
                 plant.image1 = image_info if image_info else plant.image1
@@ -268,8 +206,6 @@ class PlantById(Resource):
                 plant.image3 = image_info if image_info else plant.image3
 
       
-        
-        print(images)
         encoded_images = encode_imgage_directory()
 
         updated_plant = {
@@ -287,10 +223,7 @@ class PlantById(Resource):
 
         try:
             db.session.add(plant)
-            db.session.commit()
-
-
-            
+            db.session.commit() 
             return make_response(updated_plant, 200)
         except Exception as exc:
             db.session.rollback()
@@ -309,7 +242,6 @@ class PlantById(Resource):
             response_dict,
             200
         )
-
         return response
 
 
@@ -351,14 +283,11 @@ class Reviews(Resource):
 class Customers(Resource):
     def get(self):
         customers = [customers.to_dict() for customers in Customer.query.all()]
-        print(customers)
-
         response = make_response(customers, 200)
         return response
     
     def post(self):
         data = request.get_json()
-        print(data)
 
         new_customer = Customer(first_name=data.get("first_name", "0"), last_name=data.get("last_name", "0"))
         db.session.add(new_customer)
@@ -369,7 +298,6 @@ class Customers(Resource):
             return response
         except Exception as exc:
             db.session.rollback()
-            
             response = make_response({"Error creating customer": exc}, 400)
 
     

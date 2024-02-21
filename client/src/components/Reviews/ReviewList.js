@@ -46,7 +46,11 @@ const ReviewList = ({plants, reviews, setReviews}) => {
               sx={{
                 backgroundColor:Colors.fourth,
                 color:Colors.primary,
-                fontFamily:"Flower"
+                fontFamily:"Flower",
+                '&:hover':{
+                  backgroundColor:Colors.secondary,
+                  color:Colors.white2
+                }
               }}
             >
               Add Review

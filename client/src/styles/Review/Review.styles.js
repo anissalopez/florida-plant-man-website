@@ -10,24 +10,31 @@ export const FormContainer = styled(Box)({
     display:"flex", 
     justifyContent:"center", 
     flexDirection:"column",
-    gap:"10px",
    
     "& .form-components":{
         display:"flex", 
         flexDirection:"column", 
-        gap:"20px",
-        // marginBottom:"50px",
-        // marginTop:"50px"
+        gap:"30px",
     },
-    '& label':{
-        fontFamily:"Flower",
-        fontSize:"22px",
-        color:Colors.black,
-        [theme.breakpoints.down('md')]:{
-            fontSize:"14px"
-
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+        borderColor: Colors.primary
+        },
+        '&:hover fieldset': {
+            borderColor:Colors.fourth,
+        },
+        '&.Mui-focused fieldset': {
+        borderColor: Colors.fourth,
+        color:'white'
         }
-    },
+}
+    
+  
+})
+export const ButtonContainer = styled(Box)({
+    display:"flex", 
+    justifyContent:'space-between',
+    marginTop:"20px",
     "& .next-button":{
         backgroundColor:Colors.secondary,
         color:"#fff",
@@ -37,7 +44,7 @@ export const FormContainer = styled(Box)({
         width:"100px",
 
         "&:hover":{
-            backgroundColor:Colors.secondary
+            backgroundColor:Colors.primary
         }
     },
     "& .cancel-button":{
@@ -47,14 +54,18 @@ export const FormContainer = styled(Box)({
         letterSpacing:".2rem",
         marginTop:"20px",
         width:"100px",   
+        "&:hover":{
+            backgroundColor:"red",
+        }
     }
   
 })
 
+
+
 export const CustomerFormInput= styled(TextField)({
        '& .label.MuiFormLabel-root':{
         color:'#000',
-        // fontFamily:'Flower',
         '&:shrink':{
                 color:Colors.primary
             },

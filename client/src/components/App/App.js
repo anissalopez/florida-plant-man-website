@@ -53,6 +53,8 @@ export default function App(){
     fetchPlants();
   }, [setLoading]);
 
+  console.log(plants)
+
   const updatePlantList = (method, plantInfo) =>{
     if(method === 'POST'){
       const updatedPlants = [...plants, plantInfo];

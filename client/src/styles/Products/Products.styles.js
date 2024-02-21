@@ -37,7 +37,7 @@ export const ProductActionButton = styled(IconButton)(({theme})=>({
         background:Colors.fourth,
 
         '&:hover':{       
-            background:Colors.primary
+            background:Colors.secondary
           
         }
     }
@@ -57,8 +57,7 @@ export const ProductAddToCart = styled(Button,{
     shouldForwardProp: (prop) => prop !== 'show'
     })(({show, theme})=>({
     "&:hover":{
-        background:Colors.primary,
-        // color:Colors.primary,
+        background:Colors.secondary,
         transform: "scale3d(1.05, 1.05, 1)"
     },
     width:'50%',
