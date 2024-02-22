@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 from app import app
-from models import db, Plant
-import os
-import base64
+from Models.plant import db, Plant
+
 
 if __name__ == '__main__':
     with app.app_context():

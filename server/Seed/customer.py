@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-from app import app
-from models import db, Customer
+from Models.customer import Customer
+from config import db, app
 from faker import Faker
+import os 
+from Models.review import Review
 
 
 if __name__ == '__main__':

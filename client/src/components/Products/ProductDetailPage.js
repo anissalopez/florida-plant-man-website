@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import {ThreeDots} from 'react-loading-icons';
 import SimpleImageSlider from "react-simple-image-slider";
 
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
@@ -54,7 +54,7 @@ function PlantDetail({ setFetchError}) {
         };
       };
         fetchPlant();
-  }, [id]);
+  }, [id, setFetchError]);
 
  
   return (
@@ -62,17 +62,16 @@ function PlantDetail({ setFetchError}) {
        {
           loading ?  <ThreeDots stroke={Colors.secondary} /> :
                 <ProductDetailGridItem sx={{mt:"70px"}}  container> 
-                  <ProductDetailGridItem item md={12} lg={6}>
+                  <ProductDetailGridItem item md={12} lg={6} xs={12}>
                       <SimpleImageSlider
                           width={sliderWidth}
                           height={sliderHeight}
-                  
                           images={images}
                           showBullets={true}
                           showNavs={true}  
                         /> 
                     </ProductDetailGridItem> 
-                    <ProductDetailGridItem md={12} lg={6}>
+                    <ProductDetailGridItem item md={12} lg={6} xs={12}>
                       <PlantContent>
                         <Box> 
                           <h2>{plant.name}</h2>
@@ -97,17 +96,13 @@ function PlantDetail({ setFetchError}) {
                         </Box>
                         <Box><Button >Add to Cart</Button></Box> 
                         
-                      </PlantContent>
-                   
+                      </PlantContent>          
                   </ProductDetailGridItem>
               </ProductDetailGridItem>     
-      }
-         
+      }  
+        <Grid container sx={{marginTop:"75px"}}>
          <PlantInfoBanner plant={plant}/>
-      
-      
-    
-       
+        </Grid>
      </Container>   
   );
 };

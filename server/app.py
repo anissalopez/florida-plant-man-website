@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json
-from flask import make_response, request, send_from_directory, jsonify
+from flask import make_response, request
 from flask_restful import Resource
 from werkzeug.utils import secure_filename
 import uuid

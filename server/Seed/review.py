@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from app import app
-from models import db, Review
+from Models.review import db, Review
 
 
 if __name__ == '__main__':

@@ -192,12 +192,9 @@ export const ShopInfo = styled(Box)({
 
 });
 
-export const HeaderContainer = styled(Container)({
-    marginTop:"75px",
-    marginBottom:"75px",
-    
-
-     
+export const HeaderContainer = styled(Container)(({theme})=>({
+    // marginTop:"50px",
+    marginBottom:"50px",
     '& .main-content':{
         marginTop:"50px",
         display: "inline-flex",
@@ -207,7 +204,8 @@ export const HeaderContainer = styled(Container)({
     },
     '& .category':{
         fontSize:"50px",
-        height:"50px"
+        height:"50px",
+        fontFamily:"Flower"
 
     },
     '& .noun':{
@@ -218,7 +216,11 @@ export const HeaderContainer = styled(Container)({
     },
     '& .definition':{
         fontSize:"25px",
-        width:"75vw"
+        width:"75vw",
+        [theme.breakpoints.down('md')]:{
+            fontSize:"15px"
+        }
+
     },
     '& .pronunciation':{
         color: Colors.fifth,
@@ -229,7 +231,7 @@ export const HeaderContainer = styled(Container)({
 
     },
   
-});
+}));
 
 
 export const FilterHeader = styled('h1')({
@@ -242,7 +244,7 @@ export const FilterHeader = styled('h1')({
 export const ProductDetailGridItem = styled(Grid)({
     display:"flex",
     justifyContent:"center", 
-    alignItems:"center"
+    alignItems:"center",
 });
 
 export const ButtonFilter = styled(Button)({

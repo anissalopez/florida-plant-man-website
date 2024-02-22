@@ -10,6 +10,7 @@ import ProductCategoryHeaders from "./ProductCategoryHeader";
 import SingleProduct from "./SingleProduct";
 import SingleProductDesktop from "./SingleProductDesktop";
 import ProductFilterContainer from "./ProductFilterContainer";
+import { Colors } from "../../styles/theme/MainTheme";
 
 
 export default function ProductCategoryList({ plants } ){   
@@ -83,9 +84,10 @@ export default function ProductCategoryList({ plants } ){
       }
         <Grid container  sx={{marginTop:"10px",
                              '& .alert':{
-                                fontSize:"24px",
+                                fontSize:"25px",
                                 marginLeft:"20px",
-                               fontFamily:`Chalkduster`
+                               color:Colors.secondary
+                            
                              }}}  spacing = {matches ? 6 : 3}>
             {
             filteredPlants.length  ? 
