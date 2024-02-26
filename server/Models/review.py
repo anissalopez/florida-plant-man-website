@@ -3,6 +3,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from .plant import Plant
+from .customer import Customer
 import re
 
 from config import db
