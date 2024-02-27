@@ -9,11 +9,12 @@ import Paper from '@mui/material/Paper';
 
 
 export default function Customers({ customers, setCustomers }){
+
     return(
         <div>
             <Typography sx={{mt:7,mb: 4}} variant='h4'>Customers</Typography>
                 <TableContainer component={Paper}>
-                    <Table >
+                    <Table>
                         <TableHead > 
                             <TableRow>
                                 <TableCell>First Name</TableCell>
@@ -30,8 +31,18 @@ export default function Customers({ customers, setCustomers }){
                                 >
                                 <TableCell>{customer.first_name}</TableCell>
                                 <TableCell>{customer.last_name}</TableCell>
-                                <TableCell >{customer.plants}</TableCell>
-                                <TableCell ></TableCell>
+                                <TableCell >"Anthurium"</TableCell>
+                                <TableCell >
+                                    {
+                                        customer.reviews.map((review)=>(
+                                            `[Plant: ${review.plant.name}/
+                                             Rating: ${review.rating}]
+                                            `
+                                        ))
+                                        
+                                    }
+                                
+                                </TableCell>
                             
                             </TableRow>
                             ))} 

@@ -25,6 +25,7 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
           },
           validationSchema: formSchema, 
           onSubmit: async (values) => {
+            console.log(values)
             const review = {
                 ...values, customer_id:customerId, rating: values['rating']
             }
@@ -40,6 +41,7 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                   const data = await response.json()
                   alert('Your review was succesfully submitted.')
                   setOpen(false)
+                  setDisplay({...display, screen:"customer-name", customerId:null})
                   setReviews([...reviews, data ])
                 } else {
                   alert("Error creating review, please check form inputs and try again")   
@@ -82,7 +84,7 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                       onChange={formik.handleChange}     
                     />
                   <p>{formik.errors['comment']}</p>
-                  </FormContainer >
+                 
                   <h2
                     style={{marginTop:0}}
                   
@@ -111,10 +113,10 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                             type="submit">
                       Submit
                     </Button>
+                  
 
                 </ButtonContainer>
-          
-     
+                </FormContainer >
         </div>
     );
   };

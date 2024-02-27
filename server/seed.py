@@ -7,9 +7,6 @@ from config import db, app
 from faker import Faker
 import os 
 
-
-
-
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
