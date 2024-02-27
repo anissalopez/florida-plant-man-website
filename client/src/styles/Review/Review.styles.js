@@ -5,7 +5,6 @@ import  TextField  from '@mui/material/TextField';
 import { Colors } from '../theme/MainTheme';
 import theme from "../theme/MainTheme";
 
-
 export const FormContainer = styled(Box)({
     display:"flex", 
     justifyContent:"center", 
@@ -59,9 +58,7 @@ export const ButtonContainer = styled(Box)({
         }
     }
   
-})
-
-
+});
 
 export const CustomerFormInput= styled(TextField)({
        '& .label.MuiFormLabel-root':{
@@ -89,14 +86,14 @@ export const CustomerFormInput= styled(TextField)({
             color:'white'
             }
     }
-})
+});
 
 export const ReviewHeader = styled('h1')({
     fontFamily:"Flower",
     color:Colors.primary,
     textAlign:"center", marginBottom:"40px",
     fontSize:"3rem"
-})
+});
 
 export const ReviewContainer = styled(Box)({
     display:"flex",

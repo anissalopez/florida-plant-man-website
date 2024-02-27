@@ -9,8 +9,6 @@ import SearchAppBar from './SearchComponent';
 import { AppBarStyled } from '../../styles/Admin/Admin.styles'
 
 export default function Appbar({ open, setOpen}){
-  
-
     return(
             <AppBarStyled position="fixed" open={open} elevation={0}>
                 <Toolbar  sx={{backgroundColor:Colors.admindarkblue}}>
@@ -22,13 +20,13 @@ export default function Appbar({ open, setOpen}){
                   >
                     <MenuIcon />
                   </IconButton>
-                  {!open &&  
-                  <Typography
-                        fontWeight={'bold'}
-                        variant="h6" noWrap component="div">
-                      Admin Dashboard
-                    </Typography>
-                    }
+                    {!open &&  
+                    <Typography
+                          fontWeight={'bold'}
+                          variant="h6" noWrap component="div">
+                        Admin Dashboard
+                      </Typography>
+                      }
                   <SearchAppBar />
                 </Toolbar>
             </AppBarStyled>

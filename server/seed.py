@@ -5,7 +5,7 @@ from Models.plant import Plant
 
 from config import db, app
 from faker import Faker
-import os 
+
 
 if __name__ == '__main__':
     fake = Faker()

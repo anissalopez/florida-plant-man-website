@@ -13,8 +13,7 @@ export const Product = styled(Box)(({ theme })=>({
     alignItems:'center',
     flexDirection:'column',
     [theme.breakpoints.up('md')]:{
-        position:'relative',
-   
+        position:'relative',  
     }
 }));
 
@@ -30,7 +29,6 @@ export const ProductImage = styled('img')(({ src, theme })=>({
 }));
 
 export const ProductActionButton = styled(IconButton)(({theme})=>({
- 
     margin:4,
     [theme.breakpoints.up("md")]: {
         color:"white",
@@ -46,7 +44,6 @@ export const ProductActionButton = styled(IconButton)(({theme})=>({
 export const ProductFavButton = styled(ProductActionButton, {
     shouldForwardProp: (prop) => prop !== 'isfav'
 })(({isfav, theme})=>({
-  
     color: isfav ? Colors.secondary : Colors.third,
     [theme.breakpoints.up("md")]: {
        
@@ -66,15 +63,12 @@ export const ProductAddToCart = styled(Button,{
     fontFamily:"Flower",
     marginBottom:0,
     [theme.breakpoints.up('md')]:{
-        // borderBottomLeftRadius:"25px",
-        // borderBottomRightRadius:"25px",
         position:'absolute',
         bottom:'2%',
         width:'50%',
         padding:'10px 5px',
         animation: show && `${slideInBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`
     },
-
     background: Colors.fourth,
     opacity:0.9
 }));
@@ -102,11 +96,9 @@ export const AccordionWrapper = styled(Grid,{
         backgroundColor:Colors.white2,
         fontSize:"1.2rem",
         boxShadow:"none",
-
     },
     marginBottom:"75px"   
 }));
-
 
 export const ProductActionsWrapper = styled(Box,{
     shouldForwardProp: (prop) => prop !== 'show'
@@ -117,7 +109,6 @@ export const ProductActionsWrapper = styled(Box,{
         position:'absolute',
         right:"10%",
         top:'3%',
-        // animation: show && `${slideInRight} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both`
     }
 }));
 
@@ -138,7 +129,6 @@ export const PlantContent = styled(Box)({
    "h2":{
       color: Colors.secondary,
       fontFamily: "Flower"
-
    },
    "p":{
       color: "black",
@@ -189,11 +179,9 @@ export const ShopInfo = styled(Box)({
     "& .content":{
         lineHeight:"1.5em"
     }
-
 });
 
 export const HeaderContainer = styled(Container)(({theme})=>({
-    // marginTop:"50px",
     marginBottom:"50px",
     '& .main-content':{
         marginTop:"50px",
@@ -232,7 +220,6 @@ export const HeaderContainer = styled(Container)(({theme})=>({
     },
   
 }));
-
 
 export const FilterHeader = styled('h1')({
     color:"#000",

@@ -22,7 +22,6 @@ export default function Footer(){
     ) 
     return null;
 
-
     return(    
         <Box sx={{background:Colors.third, color:Colors.primary,
                 pt:12, 

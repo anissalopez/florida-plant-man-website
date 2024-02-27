@@ -8,9 +8,7 @@ export default function ProductCategoryHeaders({plantCategory}){
             }
             return null;
         });
-
         
-
     return(
             <HeaderContainer>
                 <div className="main-content">

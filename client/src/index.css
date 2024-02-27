@@ -5,65 +5,6 @@
 }
 
 
-/* 
-:root {
-  --bodyColor: "#E4DCCD";
-} */
-
-/* body{ */
-  /* background-color: #233017; */
-  /* background-image: url("./images/image1.webp"); */
-  /* background-image: linear-gradient(#6DC01E, #377E30, #BED500, white); */
-  /* background-size:100% 100%;
-  background-attachment: fixed;
-  background-repeat: no-repeat; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  min-height: 100vh; */
-  /* padding: 30px;
-  margin: 0;  */
-
-
-
-
-  /* background-color: var(--bodyColor); */
-  /* margin:0;
-  padding:0;
-  font-family: 'Sometype Mono', monospace; */
-  /* font-family: "Roboto", sans-serif; */
-
-/* } */
-
-/* .container {
-  max-width: 300px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  width: 500px;
-  height: 300px;
-  padding: 35px;
-
-  border: 1px solid rgba(255, 255, 255, .25);
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25); */
-
-  /* backdrop-filter: blur(15px); */
-/* } */
-  
-/* .homepage-headers{
-  text-align: center;
-  padding: 30px;
-  font-family: "Flower";
-  font-size: 36px;
-  color:#377E30
-
-} */
-
 
 
 

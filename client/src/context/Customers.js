@@ -6,8 +6,7 @@ export const useCustomersContext = () => useContext(CustomersContext);
 
 export const CustomersProvider = ( { children } ) => {
         const [customers, setCustomers] = useState([]);
-       
-
+        
         useEffect(()=> {
         const fetchCustomers = async () => {
             try{

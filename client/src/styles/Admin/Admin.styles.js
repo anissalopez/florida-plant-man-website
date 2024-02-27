@@ -19,7 +19,7 @@ export const DashboardGridItem = styled(Grid, {
     justifyContent:"space-between",
     alignItems:"center",
                     
-  }));
+}));
 
 export const DashboardBox = styled(Box)({
   display:"flex",
@@ -27,8 +27,6 @@ export const DashboardBox = styled(Box)({
   justifyContent:"space-between",
   alignItems:"center"
 });
-
-
 
 export const Search = styled('div')(({ theme}) => ({
   position: 'relative',
@@ -84,4 +82,14 @@ export const AppBarStyled = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
+}));
+
+export const DrawerHeaderComponent = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  backgroundColor:Colors.admindarkblue,
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+
 }));

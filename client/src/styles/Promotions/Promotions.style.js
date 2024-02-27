@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import { Colors } from "../theme/MainTheme";
 import {styled} from "@mui/material/styles";
 
-
 export const PromotionsContainer = styled(Box)(({ theme })=>({
     display:'flex',
     justifyContent:'center',

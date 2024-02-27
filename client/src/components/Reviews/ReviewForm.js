@@ -72,9 +72,9 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
 
                                     value={plant.id}>
                                     {plant.name}
-                                  </MenuItem>)})}
+                                  </MenuItem>)})
+                        }
                     </Select>
-             
               <h2>Please tell us about your experience with your purchase.</h2>
                    <TextField
                       id="comment"
@@ -83,12 +83,10 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                       value={formik.values["comment"]}
                       onChange={formik.handleChange}     
                     />
-                  <p>{formik.errors['comment']}</p>
-                 
+                  <p>{formik.errors['comment']}</p>   
                   <h2
-                    style={{marginTop:0}}
-                  
-                  >We aim to earn your 5-star rating, please tell us how we did!</h2>
+                    style={{marginTop:0}}>
+                      We aim to earn your 5-star rating, please tell us how we did!</h2>
                     <Rating
                       id="rating"
                       name="rating"
@@ -97,9 +95,7 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                       onChange={formik.handleChange}
                       sx={{fontSize:"40px", color:Colors.fourth}}
                     />
-               
                   <p>{formik.errors['rating']}</p>
-      
                 <ButtonContainer>
                     <Button className="cancel-button"
                             onClick={()=>{
@@ -109,12 +105,11 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                           >
                       Cancel
                     </Button>
-                    <Button className="next-button"
-                            type="submit">
+                    <Button 
+                      className="next-button"
+                      type="submit">
                       Submit
                     </Button>
-                  
-
                 </ButtonContainer>
                 </FormContainer >
         </div>

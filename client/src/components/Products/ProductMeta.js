@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography";
 import { ProductMetaWrapper } from "../../styles/Products/Products.styles";
 import { Colors } from "../../styles/theme/MainTheme";
 
-
 export default function ProductMeta({product, matches}){  
     return(
         <ProductMetaWrapper>

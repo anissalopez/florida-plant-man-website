@@ -7,7 +7,7 @@ import { DashboardBox, DashboardGridItem } from '../../styles/Admin/Admin.styles
 export default function Dashboard(){
     return(
         <div>
-        <Typography sx={{mt:7,mb: 4}} variant='h4'>Dashboard</Typography>
+            <Typography sx={{mt:7,mb: 4}} variant='h4'>Dashboard</Typography>
             <Grid container gap={2}
              sx={{mt:2, mb:2}}>
                 <DashboardGridItem item sm={5.5} xs={12} primary>

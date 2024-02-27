@@ -1,5 +1,7 @@
+import Typography from "@mui/material/Typography";
+
 export default function Settings(){
     return(
-        <h1>Settings</h1>
-    )
-}
+        <Typography sx={{mt:7,mb: 4}} variant='h4'>Customers</Typography>
+    );
+};

@@ -14,10 +14,8 @@ import { Colors } from "../../styles/theme/MainTheme";
 import PlantFormImages from './PlantFormImages';
 import PlantFormItems from './PlantFormItems';
 
-
 export default function PlantForm({ setInitialValues, initialValues, setOpen, open, updatePlantList }) {
   const [preview, setPreview] = useState(null);
-
 
   const formSchema = yup.object().shape({
     name: yup.string().min(5).required("Must enter plant name"),
@@ -52,7 +50,7 @@ export default function PlantForm({ setInitialValues, initialValues, setOpen, op
 
         for (let value in values) {
           formData.append(value, values[value]);
-        }
+        };
 
         const method = initialValues === null ? "POST" : "PATCH";
         let url = "/plants";

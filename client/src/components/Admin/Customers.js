@@ -7,9 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-
 export default function Customers({ customers, setCustomers }){
-
     return(
         <div>
             <Typography sx={{mt:7,mb: 4}} variant='h4'>Customers</Typography>
@@ -39,11 +37,8 @@ export default function Customers({ customers, setCustomers }){
                                              Rating: ${review.rating}]
                                             `
                                         ))
-                                        
-                                    }
-                                
+                                    }    
                                 </TableCell>
-                            
                             </TableRow>
                             ))} 
                         </TableBody>

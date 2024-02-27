@@ -9,15 +9,13 @@ export const NavContainer = styled(Box)({
     marginTop:4,
     justifyContent:"center",
     alignItems:"center",
-    padding:"2px 8px",
-   
+    padding:"2px 8px", 
     color:Colors.primary,
     "& a":{
         textDecoration:"none",
         color:Colors.primary,
     }
 });
-
 
 export const NavHeader = styled(Typography)({
     // padding:"4px",

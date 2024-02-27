@@ -33,7 +33,6 @@ function PlantDetail({ setFetchError}) {
   const sliderWidth = smScreen ? 350 : 500
   const sliderHeight = smScreen ? 400 : 750
 
-
   useEffect(() => {
     const fetchPlant = async () => {
         try{
@@ -56,7 +55,6 @@ function PlantDetail({ setFetchError}) {
         fetchPlant();
   }, [id, setFetchError]);
 
- 
   return (
     <Container maxWidth="xl">
        {

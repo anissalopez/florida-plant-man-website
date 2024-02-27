@@ -9,7 +9,6 @@ import { NavList, NavHeader } from "../../styles/Nav/Nav.styles";
 import { Colors } from "../../styles/theme/MainTheme"
 
 export default function NavMobile({ matches, toggleDrawer }){
-
     return(
         <NavList type="row" >
             <IconButton  sx={{color:Colors.primary}}  onClick={toggleDrawer("left", true)}>

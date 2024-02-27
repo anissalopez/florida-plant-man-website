@@ -75,13 +75,14 @@ export default function ProductCategoryList({ plants } ){
  
     return(
     <Container sx={{ marginBottom:"200px", pr:5}}>
-      {category === 'all' ? 
-        <ProductFilterContainer matches={matches} 
-                              setFilter={setFilter} 
-                              setSort={setSort} plants={plants}/> 
-                              : 
-        <ProductCategoryHeaders plantCategory={category}/> 
-      }
+        {
+            category === 'all' ? 
+                <ProductFilterContainer matches={matches} 
+                                    setFilter={setFilter} 
+                                    setSort={setSort} plants={plants}/> 
+                                    : 
+                <ProductCategoryHeaders plantCategory={category}/> 
+        }
         <Grid container  sx={{marginTop:"10px",
                              '& .alert':{
                                 fontSize:"25px",
@@ -90,12 +91,12 @@ export default function ProductCategoryList({ plants } ){
                             
                              }}}  spacing = {matches ? 6 : 3}>
             {
-            filteredPlants.length  ? 
-                 filteredPlants : 
-                <Grid item xs={12} className='alert' >
-                    Sorry we do not have any <span>{category} </span>
-                    plants at this moment. Please check again next week.
-                </Grid>
+                filteredPlants.length  ? 
+                    filteredPlants : 
+                    <Grid item xs={12} className='alert' >
+                        Sorry we do not have any <span>{category} </span>
+                        plants at this moment. Please check again next week.
+                    </Grid>
            }
         </Grid>
    </Container>

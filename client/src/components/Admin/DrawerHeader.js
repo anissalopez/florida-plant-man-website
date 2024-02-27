@@ -1,22 +1,13 @@
-import { styled, useTheme } from '@mui/material/styles';
-
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { Colors } from '../../styles/theme/MainTheme';
+import { useTheme } from '@mui/material';
 
-export const DrawerHeaderComponent = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    backgroundColor:Colors.admindarkblue,
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-   
-  }));
+import { DrawerHeaderComponent } from '../../styles/Admin/Admin.styles';
 
-  export default function DrawerHeader({ setOpen } ){
+export default function DrawerHeader({ setOpen } ){
     const theme = useTheme();
     return (
         <DrawerHeaderComponent>

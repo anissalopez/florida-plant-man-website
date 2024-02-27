@@ -47,6 +47,17 @@ The application includes various features:
   - "react-show-more-text": "^1.7.1"
   - "react-toastify": "^10.0.4"
   - "save": "^2.9.0"
+- **Backend Dependencies**:
+  - ipdb = "0.13.9"
+  - flask  
+  - flask-sqlalchemy = "3.0.3"
+  - Werkzeug = "2.2.2"
+  - flask-migrate 
+  - sqlalchemy-serializer
+  - flask-restful
+  - flask-cors 
+  - faker
+  - python version = "3.8.13"
 
 ## Installation
 

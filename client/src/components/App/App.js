@@ -35,7 +35,6 @@ export default function App(){
   const { customers, setCustomers } = useCustomersContext();
   const { reviews, setReviews } = useReviewsContext();
 
-
   useEffect(()=> {
     const fetchPlants = async () => {
       try{

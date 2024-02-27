@@ -5,10 +5,8 @@ import Typography from "@mui/material/Typography";
 import { Colors } from "../theme/MainTheme";
 import theme from "../theme/MainTheme";
 
-
 export const BannerContainer = styled(Box)(({theme})=>({
     display:"flex",
-    // justifyContent:"center",
     width:"100%",
     height:"100%",
     padding:"0px 0px",
@@ -25,12 +23,10 @@ export const BannerContent = styled(Box)({
     display:"flex",
     flexDirection:"column",
     justifyContent:"center",
-    // alignItems:"center",
     maxWidth:"600px",
     [theme.breakpoints.down('md')]:{
         maxWidth:"420px"
     },
-    // maxWidth:"600px",
     padding:"30px"
 });
 
@@ -55,7 +51,6 @@ export const BannerDescription = styled(Typography)(({theme})=>({
     fontSize:"32px",
     color:Colors.secondary,
     fontWeight:"bold",
-
     [theme.breakpoints.down('md')]:{
         lineHeight:1.15,
         letterSpacing:1.15,

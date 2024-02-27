@@ -8,8 +8,7 @@ export const useReviewsContext = () => useContext(ReviewsContext);
 
 export const ReviewsProvider = ( { children } ) => {
         const [reviews, setReviews] = useState([]);
-       
-
+        
         useEffect(()=> {
         const fetchReviews = async () => {
             try{

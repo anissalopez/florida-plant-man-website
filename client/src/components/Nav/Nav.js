@@ -37,12 +37,13 @@ export default function Nav() {
         {
         matches ? 
           <NavMobile matches={matches} 
-                    toggleDrawer={toggleDrawer}
-          /> : 
+                    toggleDrawer={toggleDrawer}/> 
+          : 
           <NavDesktop matches={matches}  />
         }
-        <NavDrawer  toggleDrawer={toggleDrawer} 
-                    state={state} setState={setState} />
+        <NavDrawer  
+          toggleDrawer={toggleDrawer} 
+          state={state} setState={setState} />
       </div>
     );
   };

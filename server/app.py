@@ -103,6 +103,7 @@ class Plants(Resource):
         db.session.add(new_plant)
 
         encoded_images = encode_imgage_directory()
+        
         new_plant_dict = {
                 "id": new_plant.id,
                 "name": new_plant.name,
@@ -114,8 +115,7 @@ class Plants(Resource):
                 "image1": encoded_images[new_plant.image1], 
                 "image2": encoded_images[new_plant.image2], 
                 "image3": encoded_images[new_plant.image3],  
-            }
-        
+            } 
         try:
             db.session.commit()
             return make_response(new_plant_dict, 201)
@@ -123,9 +123,7 @@ class Plants(Resource):
                 db.session.rollback()  
                 return make_response({"An error occurred": str(exc)}, 400)
     
-
-class PlantById(Resource):
-    
+class PlantById(Resource): 
     def get(self, id):
         encoded_images = encode_imgage_directory()
 
@@ -145,8 +143,6 @@ class PlantById(Resource):
                 "image2": encoded_images[plant.image2], 
                 "image3": encoded_images[plant.image3],  
             }
-
-
         try:
             response = make_response(plant_info, 200)
             return response
@@ -289,8 +285,7 @@ class Customers(Resource):
         except Exception as exc:
             db.session.rollback()
             response = make_response({"Error creating customer": exc}, 400)
-
-    
+  
 api.add_resource(Plants, '/plants')
 api.add_resource(PlantById, '/plants/<int:id>')
 api.add_resource(Reviews, '/reviews')

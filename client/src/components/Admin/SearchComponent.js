@@ -4,8 +4,6 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import {Search, SearchIconWrapper, StyledInputBase} from "../../styles/Admin/Admin.styles"
 
-
-
 export default function SearchAppBar() {
   return (
           <Search>

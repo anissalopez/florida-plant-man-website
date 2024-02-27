@@ -4,9 +4,7 @@ from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 import re
 
-
 from config import db
-
 
 class Plant(db.Model, SerializerMixin):
     __tablename__ ='plants'

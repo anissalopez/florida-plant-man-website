@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 export default function Reviews({ reviews }){
     return(
         <div>
-        <Typography sx={{mt:7,mb: 4}} variant='h4'>Reviews</Typography>
+            <Typography sx={{mt:7,mb: 4}} variant='h4'>Reviews</Typography>
             <TableContainer component={Paper}>
                 <Table >
                     <TableHead > 

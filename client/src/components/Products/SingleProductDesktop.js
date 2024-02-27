@@ -1,4 +1,3 @@
-import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -11,8 +10,7 @@ import ProductMeta from "./ProductMeta";
 import { Link } from "react-router-dom";
 import { Colors } from "../../styles/theme/MainTheme";
 
-
-export default function SingleProductDesktop({plant, mediaQuery, matches}){
+export default function SingleProductDesktop({plant, matches}){
     const [show, setShow] = useState(false);
 
     const handleMouseEnter = () =>{
@@ -24,10 +22,10 @@ export default function SingleProductDesktop({plant, mediaQuery, matches}){
     };
 
     return(  
-        <Link style={{textDecoration:'none'}} 
-                to={`/plants/${plant.id}`} 
-                key={plant.id}
-        > 
+        <Link 
+            style={{textDecoration:'none'}} 
+            to={`/plants/${plant.id}`} 
+            key={plant.id}> 
             <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit}> 
                 <ProductImage src={plant.image1}></ProductImage>
                     {
