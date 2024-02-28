@@ -8,9 +8,7 @@ import uuid
 from config import app, db, api
 import os
 
-from Models.customer import Customer
-from Models.review import Review
-from Models.plant import Plant
+from models import Plant, Customer, Review
 
 
 import base64
@@ -103,7 +101,7 @@ class Plants(Resource):
         db.session.add(new_plant)
 
         encoded_images = encode_imgage_directory()
-        
+
         new_plant_dict = {
                 "id": new_plant.id,
                 "name": new_plant.name,
@@ -268,7 +266,7 @@ class Reviews(Resource):
 
 class Customers(Resource):
     def get(self):      
-        customers = [customers.to_dict() for customers in Customer.query.all()]
+        customers = [customers.to_dict() for customers in db.session.query(Customer)]
         response = make_response(customers, 200)
         return response
     

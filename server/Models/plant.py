@@ -26,9 +26,9 @@ class Plant(db.Model, SerializerMixin):
     reviews = db.relationship(
         'Review', back_populates='plant', cascade='all, delete-orphan')
    
-    customers = association_proxy('reviews', 'customer',
-                                 creator=lambda customer_obj: Review(customer=customer_obj))
-
+    # customers = association_proxy('reviews', 'customer',
+    #                              creator=lambda customer_obj: Review(customer=customer_obj))
+    customers = db.relationship('Plant', secondary='review', back_populates='plants')
     serialize_rules =('-reviews.plant',)
 
     @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', 'description')

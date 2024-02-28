@@ -5,6 +5,7 @@ from sqlalchemy.ext.associationproxy import association_proxy
 
 from config import db
 
+
 class Customer(db.Model, SerializerMixin):
     __tablename__ ='customers'
 
@@ -18,9 +19,10 @@ class Customer(db.Model, SerializerMixin):
     reviews = db.relationship(
         'Review', back_populates='customer', cascade='all, delete-orphan')
  
-    plants = association_proxy('reviews', 'plant',
-                                 creator=lambda project_obj: Review(project=project_obj))
+    # plants = association_proxy('reviews', 'plant',
+    #                              creator=lambda project_obj: Review(project=project_obj))
     
+    plants = db.relationship('Plants', secondary='review', back_populates='customers')
     serialize_rules =('-reviews.customer',)
 
     @validates('first_name', 'last_name')

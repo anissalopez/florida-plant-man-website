@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 export default function Customers({ customers, setCustomers }){
+    console.log(customers)
     return(
         <div>
             <Typography sx={{mt:7,mb: 4}} variant='h4'>Customers</Typography>
@@ -29,15 +30,19 @@ export default function Customers({ customers, setCustomers }){
                                 >
                                 <TableCell>{customer.first_name}</TableCell>
                                 <TableCell>{customer.last_name}</TableCell>
-                                <TableCell >"Anthurium"</TableCell>
+                                <TableCell >
+                                    {
+                                        customer.plants.map((plant)=>{
+                                            return `${plant.name}`
+                                        })
+                                    }
+
+                                </TableCell>
                                 <TableCell >
                                     {
                                         customer.reviews.map((review)=>(
-                                            `[Plant: ${review.plant.name}/
-                                             Rating: ${review.rating}]
-                                            `
-                                        ))
-                                    }    
+                                            `${review.rating}`))
+                                    }  
                                 </TableCell>
                             </TableRow>
                             ))} 
