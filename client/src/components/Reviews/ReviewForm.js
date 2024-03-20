@@ -58,8 +58,6 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
           <FormContainer component="form" onSubmit={formik.handleSubmit}>
               <h2>Which of our Plant Companions did you take home?</h2>
                     <Select
-                   
-                      // className="form-components"
                       labelId="select-plant"
                       id="plant_id"
                       name="plant_id"
@@ -69,7 +67,6 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
                           plants.map((plant) =>{
                               return(
                                   <MenuItem fullWidth key={plant.id} 
-
                                     value={plant.id}>
                                     {plant.name}
                                   </MenuItem>)})

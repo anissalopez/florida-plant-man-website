@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["Images"] = "Images"
+app.config['SECRET_KEY'] ='plants'
 app.json.compact = False
 
 metadata = MetaData(naming_convention={

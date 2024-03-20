@@ -10,7 +10,7 @@ import ProductMeta from "./ProductMeta";
 import { Link } from "react-router-dom";
 import { Colors } from "../../styles/theme/MainTheme";
 
-export default function SingleProductDesktop({plant, matches}){
+export default function SingleProductDesktop({plant, matches, addToCart}){
     const [show, setShow] = useState(false);
 
     const handleMouseEnter = () =>{
@@ -22,14 +22,12 @@ export default function SingleProductDesktop({plant, matches}){
     };
 
     return(  
-        <Link 
-            style={{textDecoration:'none'}} 
-            to={`/plants/${plant.id}`} 
-            key={plant.id}> 
+        <>
+      
             <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit}> 
                 <ProductImage src={plant.image1}></ProductImage>
                     {
-                        show && <ProductAddToCart show={show}  >
+                        show && <ProductAddToCart show={show} onClick={()=>addToCart(plant.id)}  >
                                 Add to Cart
                                 </ProductAddToCart> 
                     }
@@ -47,7 +45,12 @@ export default function SingleProductDesktop({plant, matches}){
                         </Stack> 
                 </ProductActionsWrapper>
             </Product>
+            <Link 
+              style={{textDecoration:'none'}} 
+              to={`/plants/${plant.id}`} 
+              key={plant.id}> 
             <ProductMeta matches={matches} product={plant} />
         </Link> 
+    </>
     );
 };

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
@@ -9,13 +9,10 @@ import { Product, ProductActionButton, ProductActionsWrapper, ProductAddToCart, 
 import ProductMeta from "./ProductMeta";
 
 
-export default function SingleProduct({plant, matches}){
+export default function SingleProduct({plant, matches, addToCart}){
+  
     return(
-     <>
-       <Link style={{textDecoration:'none'}} 
-                to={`/plants/${plant.id}`} 
-                key={plant.id}
-        > 
+        <>
             <Product>
                 <ProductImage src={plant.image1}></ProductImage>
                 <ProductMeta matches={matches} product={plant} />
@@ -33,8 +30,8 @@ export default function SingleProduct({plant, matches}){
                     </Stack> 
                 </ProductActionsWrapper>
             </Product>   
-        </Link>   
-        <ProductAddToCart variant="contained">Add to Cart</ProductAddToCart>
+   
+        <ProductAddToCart onClick={() => addToCart(plant.id)} variant="contained">Add to Cart</ProductAddToCart>
     </>  
-    );
-};
+    )
+}

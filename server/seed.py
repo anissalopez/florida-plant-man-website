@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-from Models.review import Review
-from Models.customer import Customer
-from Models.plant import Plant
+from models import Plant, Customer, Review, Cart
 
 from config import db, app
 from faker import Faker
-
 
 if __name__ == '__main__':
     fake = Faker()
@@ -96,9 +93,34 @@ if __name__ == '__main__':
             db.session.commit()
             print("Adding review seed data...")
         
+             
+        def create_cart_data():
+                print("Deleting existing cart data...")
+                Cart.query.delete()
+
+                plants = Plant.query.all()
+         
+
+                cart1 = Cart()
+                cart2 = Cart()
+
+                cart1.plants.extend([plants[0], plants[1], plants[2]])
+                cart2.plants.extend([plants[1], plants[2]])
+              
+ 
+                db.session.add_all([cart1, cart2])
+
+                cart1.update_total()
+                cart2.update_total()
+                print(cart1.plants)
+
+                db.session.commit()
+                print("Cart seeded!")
+                    
         create_customer_data()
         create_plant_data()
         create_review_data()
+        create_cart_data()
         print("database seeded")
             
 

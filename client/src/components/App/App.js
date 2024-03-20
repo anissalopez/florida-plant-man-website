@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import { useLoadingContext }   from "../../context/Loading";
 import { useReviewsContext } from "../../context/Reviews";
 import { useCustomersContext } from "../../context/Customers";
+import { usePlantsContext } from "../../context/Plants";
+import { useErrorContext } from "../../context/Error";
 
 import { ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
@@ -26,33 +28,16 @@ import AdminApp from "../Admin/AdminApp";
 import {ThreeDots} from 'react-loading-icons';
 
 
+
 export default function App(){
-  const [plants, setPlants] = useState([]);
-  const [fetchError, setFetchError] = useState(null);
- 
-  const plant_url = '/plants';
   const { loading, setLoading } = useLoadingContext();
   const { customers, setCustomers } = useCustomersContext();
   const { reviews, setReviews } = useReviewsContext();
+  const { plants, setPlants } = usePlantsContext();
+  const {error, setError } = useErrorContext();
 
-  useEffect(()=> {
-    const fetchPlants = async () => {
-      try{
-          const response = await fetch(plant_url);
-          if (!response.ok) throw Error('Error receiving data');
-          const plantList = await response.json();
-          setPlants(plantList);
-          setFetchError(null);
-      }catch(err){
-          setFetchError(err.message);
-      }finally{
-          setLoading(false);
-      }
-    };
-    fetchPlants();
-  }, [setLoading]);
 
-  console.log(plants)
+
 
   const updatePlantList = (method, plantInfo) =>{
     if(method === 'POST'){
@@ -74,8 +59,7 @@ export default function App(){
       };
     if(method === 'DELETE'){
       const updatedPlants = plants.filter((plant) => plant.id !== plantInfo.id);
-      setPlants(updatedPlants);
-    
+      setPlants(updatedPlants);  
     };
   };
 
@@ -88,16 +72,16 @@ export default function App(){
         </Container>
       }
       {
-        fetchError && <h2>Error loading page, please try again later</h2>
+        error && <h2>Error loading page, please try again later</h2>
       }
-      {!fetchError && !loading && 
+      {!error && !loading && 
         <ThemeProvider theme={theme}>
             <Container maxWidth="xl"> 
               <Nav></Nav>
             </Container>
                   <Routes>
                     <Route exact path="/" element={<HomePage plants={plants}  theme={theme} reviews={reviews} setReviews={setReviews}/>} />
-                    <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setFetchError} />} />
+                    <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setError} />} />
                     <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants}  />} />
                     <Route  exact path="/admin" element={<AdminApp updatePlantList={updatePlantList}/>}>
                       <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
@@ -106,8 +90,7 @@ export default function App(){
                       <Route exact path="dashboard" element={<Dashboard />} />
                       <Route exact path="settings" element={<Settings />} /> 
                     </Route>  
-                  </Routes>
-                  
+                  </Routes>   
                   <Footer />          
         </ThemeProvider>
       }
