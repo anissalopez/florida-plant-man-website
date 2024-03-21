@@ -14,7 +14,7 @@ export const CartProvider = ( { children } ) => {
         useEffect(()=> {
         const fetchCart = async () => {
             try{
-                const response = await fetch('/addtocart')
+                const response = await fetch('/cartitems')
                 if (!response.ok) throw Error('Error receiving data')
                 const cartList = await response.json()
                 setCart(cartList)

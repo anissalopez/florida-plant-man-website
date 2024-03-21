@@ -13,7 +13,7 @@ import ProductFilterContainer from "./ProductFilterContainer";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductCategoryList({ plants } ){   
+export default function ProductCategoryList({ plants, addToCart } ){   
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const { category } = useParams();
@@ -64,8 +64,8 @@ export default function ProductCategoryList({ plants } ){
         return null}).map( plant => (
         <Grid item xs={12} sm={6} md={4} key={plant.id} style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
             { matches ? <SingleProduct plant={plant} 
-                            matches={matches}/> : 
-                        <SingleProductDesktop plant={plant} 
+                            matches={matches} addToCart={addToCart}/> : 
+                        <SingleProductDesktop addToCart={addToCart} plant={plant} 
                         matches={matches} />
             } 
         </Grid>))

@@ -2,11 +2,16 @@ import { NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav/Nav.sty
 import { Colors } from "../../styles/theme/MainTheme";
 
 import ListItemButton  from "@mui/material/ListItemButton";
+import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonIcon from '@mui/icons-material/Person';
 
-export default function Actions({matches}){
+import { useCartContext } from '../../context/Cart';
+
+export default function Actions({matches, toggleCartDrawer}){
+    const { cart } = useCartContext()
+   
 
     const Component = matches ? ActionsMobile : ActionsDesktop
     return(
@@ -19,8 +24,10 @@ export default function Actions({matches}){
                         alignItems:"center"
                     }
                  }}>
-                <ListItemButton>
-                    <ShoppingCartIcon></ShoppingCartIcon>
+                <ListItemButton onClick={toggleCartDrawer(true)}>
+                    <Badge badgeContent={cart ? cart.total_items : null }>
+                    <ShoppingCartIcon ></ShoppingCartIcon>
+                    </Badge>
                 </ListItemButton>
                 <ListItemButton>
                     <FavoriteIcon></FavoriteIcon>

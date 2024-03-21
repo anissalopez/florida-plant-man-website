@@ -6,7 +6,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Actions from "./Actions";
 import { NavContainer, NavHeader, NavList} from "../../styles/Nav/Nav.styles";
 
-export default function NavDesktop({matches}){
+export default function NavDesktop({matches, toggleCartDrawer}){
     return(
        <NavContainer >
             <NavHeader>
@@ -25,7 +25,7 @@ export default function NavDesktop({matches}){
                         </ListItem>
                 </Link>))}
             </NavList>
-                <Actions matches={matches}/>
+                <Actions toggleCartDrawer={toggleCartDrawer} matches={matches}/>
        </NavContainer>
     );
 };

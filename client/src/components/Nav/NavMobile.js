@@ -8,7 +8,7 @@ import { NavList, NavHeader } from "../../styles/Nav/Nav.styles";
 
 import { Colors } from "../../styles/theme/MainTheme"
 
-export default function NavMobile({ matches, toggleDrawer }){
+export default function NavMobile({ matches, toggleCartDrawer, toggleDrawer }){
     return(
         <NavList type="row" >
             <IconButton  sx={{color:Colors.primary}}  onClick={toggleDrawer("left", true)}>
@@ -20,7 +20,7 @@ export default function NavMobile({ matches, toggleDrawer }){
             <IconButton>
                 <SearchIcon sx={{color:Colors.primary}}/>
             </IconButton>
-            <Actions matches={matches}></Actions>
+            <Actions toggleCartDrawer={toggleCartDrawer} matches={matches}></Actions>
         </NavList>
     );
 };

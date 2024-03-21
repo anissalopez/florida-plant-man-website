@@ -13,41 +13,17 @@ import { useMediaQuery } from "@mui/material";
 
 import { useCartContext } from "../../context/Cart";
 
-export default function Products({ plants }){
+export default function Products({ plants, addToCart }){
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const { cart, setCart } = useCartContext()
 
-    const addToCart = (plantId) => {
-        const postToCart = async () => {
-            try {
-                const response = await fetch('/addtocart', {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(plantId)
-                  });
-                if (response.ok) {
-                    const updatedCart = await response.json()
-                    setCart(updatedCart)   
-                } else {
-                  alert("Error adding product to cart, please try again later") 
-              } 
-    
-            }
-            catch(err){
-                console.log(err)
-            }
-    }
-    postToCart()
-}
-
+ 
 
     const renderPlants = plants.map( plant => (
         <Grid item xs={12} sm={6} md={4} key={plant.id} style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
-           {matches ? <SingleProduct addToCart={addToCart} plant={plant} matches={matches}/> : <SingleProductDesktop plant={plant} matches={matches} 
-            addToCart={addToCart} />} 
+           {matches ? <SingleProduct addToCart={addToCart} plant={plant} matches={matches}/> : <SingleProductDesktop addToCart={addToCart} plant={plant} matches={matches} 
+             />} 
         </Grid>
     ));
 

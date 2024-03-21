@@ -5,15 +5,14 @@ import ReviewList from "../Reviews/ReviewList";
 import Container from "@mui/material/Container";
 
 import theme from "../../styles/theme/MainTheme";
-import CartDrawer from "../Cart/CartDrawer";
 
-export default function HomePage ({ plants, matches, reviews, setReviews}) {
+
+export default function HomePage ({ plants, matches, reviews, setReviews, addToCart}) {
 
     return(   
             <Container maxWidth="xl" >
-                <CartDrawer></CartDrawer>
                 <Banner />
-                <Products plants={plants} matches={matches} theme={theme}/>
+                <Products plants={plants} matches={matches} theme={theme} addToCart={addToCart}/>
                 <ReviewList reviews={reviews} setReviews={setReviews} plants={plants}/>
             </Container>       
     );
