@@ -53,10 +53,27 @@ class Review(db.Model, SerializerMixin):
         return f'Id: {self.id} - Plant_Info <{self.plant_id}> - PlantName: {self.plant} - Rating: {self.rating}'
 
 
-cart_plants = db.Table('cart_plants',
-    db.Column('cart_id', db.Integer, db.ForeignKey('carts.id'), primary_key=True),
-    db.Column('plant_id', db.Integer, db.ForeignKey('plants.id'), primary_key=True)
-)
+# cart_plants = db.Table('cart_plants',
+#     db.Column('cart_id', db.Integer, db.ForeignKey('carts.id'), primary_key=True),
+#     db.Column('plant_id', db.Integer, db.ForeignKey('plants.id'), primary_key=True)
+# )
+    
+
+class CartItem(db.Model, SerializerMixin):
+    __tablename__ ='cartitems'
+
+    id = db.Column(db.Integer, primary_key=True)
+    plant_id = db.Column(db.Integer, db.ForeignKey('plants.id'))
+    cart_id = db.Column(db.Integer, db.ForeignKey('carts.id'))
+    qty = db.Column(db.Integer, nullable=False, default=1)
+
+    created_at = db.Column(DateTime(), server_default=func.now())
+    updated_at = db.Column(DateTime(), onupdate=func.now())
+
+    plant = db.relationship('Plant', back_populates='cartitems')
+    cart = db.relationship('Cart', back_populates='cartitems')
+
+    serialize_rules =('-cart.cartitems', '-plant.cartitems')
 
 class Plant(db.Model, SerializerMixin):
     __tablename__ ='plants'
@@ -71,17 +88,19 @@ class Plant(db.Model, SerializerMixin):
     image2 = db.Column(db.String, nullable=False)
     image3 = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-    carts = db.relationship('Cart', secondary=cart_plants, back_populates='plants')
+    #carts = db.relationship('Cart', secondary="cartitems", back_populates='plants')
+
+    cartitems = db.relationship('CartItem', back_populates='plant', cascade='all, delete-orphan')
 
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='plant', cascade='all, delete-orphan')
+        'Review', back_populates='plant', cascade='all, delete-orphan', viewonly=True)
    
     customers = db.relationship('Customer', secondary="reviews", back_populates='plants', viewonly=True)
     
-    serialize_rules =('-carts.plants','-reviews.plant', '-customers.reviews', '-customers.plants')
+    serialize_rules =('-cartitems.plant','-carts.plants','-reviews.plant', '-customers.reviews', '-customers.plants')
 
     @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', 'description')
     def validate_inputs(self, key, value):  
@@ -118,7 +137,7 @@ class Customer(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='customer', cascade='all, delete-orphan')
+        'Review', back_populates='customer', cascade='all, delete-orphan', viewonly=True)
     
     plants = db.relationship('Plant', secondary="reviews", back_populates='customers', viewonly=True)
     serialize_rules =('-reviews.customer','-plants.customers', '-plants.reviews')
@@ -138,17 +157,21 @@ class Cart(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     total = db.Column(db.Float, default=0.0) 
-    plants = db.relationship('Plant', secondary=cart_plants, back_populates='carts')
+    #plants = db.relationship('Plant', secondary="cartitems", back_populates='carts')
+    cartitems = db.relationship('CartItem', back_populates='cart', cascade='all, delete-orphan', overlaps="carts,plants")
 
-
-    serialize_rules=('-plants.carts',)
+    serialize_rules=('-plants.carts','-cartitems.cart', '-cartitems.plant.reviews', '-cartitems.plant.customers')
 
     def update_total(self):
-        self.total = sum([float(plant.price) for plant in self.plants])
+        self.total = sum([item.qty * float(item.plant.price) for item in self.cartitems])
         db.session.commit()
+
+  
+    def total_quantity(self):
+        return sum(item.qty for item in self.cartitems)
 
     created_at = db.Column(DateTime(), server_default=func.now())
     updated_at = db.Column(DateTime(), onupdate=func.now())
     
-    def __repr__(self):
-        return f'Total: {self.total}'
+    # def __repr__(self):
+    #     return f'Total: {self.total}'

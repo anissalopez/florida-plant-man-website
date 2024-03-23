@@ -1,5 +1,5 @@
-
-
+import { useDispatch } from 'react-redux';
+import { addCartItem } from '../../actions/cartActions';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import FitScreenIcon from '@mui/icons-material/FitScreen';
@@ -9,8 +9,9 @@ import { Product, ProductActionButton, ProductActionsWrapper, ProductAddToCart, 
 import ProductMeta from "./ProductMeta";
 
 
-export default function SingleProduct({plant, matches, addToCart}){
-  
+export default function SingleProduct({plant, matches }){
+    const dispatch = useDispatch();
+ 
     return(
         <>
             <Product>
@@ -31,7 +32,7 @@ export default function SingleProduct({plant, matches, addToCart}){
                 </ProductActionsWrapper>
             </Product>   
    
-        <ProductAddToCart onClick={() => addToCart(plant.id)} variant="contained">Add to Cart</ProductAddToCart>
+        <ProductAddToCart onClick={() => dispatch(addCartItem(plant.id))} variant="contained">Add to Cart</ProductAddToCart>
     </>  
     )
 }

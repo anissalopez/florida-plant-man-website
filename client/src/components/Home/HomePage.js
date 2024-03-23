@@ -7,12 +7,12 @@ import Container from "@mui/material/Container";
 import theme from "../../styles/theme/MainTheme";
 
 
-export default function HomePage ({ plants, matches, reviews, setReviews, addToCart}) {
+export default function HomePage ({ plants, matches, reviews, setReviews}) {
 
     return(   
             <Container maxWidth="xl" >
                 <Banner />
-                <Products plants={plants} matches={matches} theme={theme} addToCart={addToCart}/>
+                <Products plants={plants} matches={matches} theme={theme} />
                 <ReviewList reviews={reviews} setReviews={setReviews} plants={plants}/>
             </Container>       
     );

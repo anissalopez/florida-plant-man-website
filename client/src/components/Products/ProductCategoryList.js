@@ -1,5 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+
+import { addCartItem  } from '../../actions/cartActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -13,7 +16,7 @@ import ProductFilterContainer from "./ProductFilterContainer";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductCategoryList({ plants, addToCart } ){   
+export default function ProductCategoryList({ plants } ){   
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const { category } = useParams();
@@ -21,9 +24,19 @@ export default function ProductCategoryList({ plants, addToCart } ){
     const [sort, setSort] = useState("");
     const [filtered_plant, setFilter] = useState("");
 
+    const dispatch = useDispatch();
+
     useEffect(()=>{
         setFilter(category)
     }, [category]);
+
+
+    const addToCart = (e, id, method) => {
+        const qty = e.target.value; 
+    
+        dispatch(addCartItem(id, qty));
+        
+      };
 
     const filteredPlants = plants.sort(function(a,b){       
         if (sort === 'Alphabetically, A-Z'){

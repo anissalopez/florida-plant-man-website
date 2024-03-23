@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCartItem, deleteCartItem, addCartItem  } from '../../actions/cartActions';
+
 import { useLoadingContext }   from "../../context/Loading";
 import { useReviewsContext } from "../../context/Reviews";
 import { useCustomersContext } from "../../context/Customers";
@@ -36,49 +39,29 @@ export default function App(){
   const { customers, setCustomers } = useCustomersContext();
   const { reviews, setReviews } = useReviewsContext();
   const { plants, setPlants } = usePlantsContext();
-  const {error, setError } = useErrorContext();
-  const { cart, setCart } = useCartContext()
+
+  const dispatch = useDispatch();
+
+  // const cart = useSelector((state) => state.cart.cartItems);
+  // const status = useSelector((state) => state.cart.status);
+  const error = useSelector((state) => state.cart.error);
+  // const { setError } = useErrorContext();
+  // const { cart, setCart } = useCartContext()
 
 
-  const [cartState, setCartState] = useState({
+  const [cartDrawerState, setCartDrawerState] = useState({
     right: false,
     
   });
 
   const toggleCartDrawer = ( open ) => (event) => {
+
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    setCartState({ ...cartState, ["right"]: open });
+    setCartDrawerState({ ...cartDrawerState, ["right"]: open });
   };
-
-  const addToCart = (plantId) => {
-    const postToCart = async () => {
-        try {
-            const response = await fetch('/cartitems', {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({plant_id:plantId})
-              });
-            if (response.ok) {
-                const updatedCart = await response.json()
-                console.log(updatedCart)
-                setCart(updatedCart)   
-            } else {
-              alert("Error adding product to cart, please try again later") 
-          } 
-
-        }
-        catch(err){
-            console.log(err)
-        }
-}
-postToCart()
-}
-
 
 
   const updatePlantList = (method, plantInfo) =>{
@@ -120,15 +103,15 @@ postToCart()
         <ThemeProvider theme={theme}>
             <Container maxWidth="xl"> 
               <Nav toggleCartDrawer={toggleCartDrawer}></Nav>
-              <CartDrawer addToCart={addToCart} toggleCartDrawer={toggleCartDrawer} cartState={cartState} setCartState={setCartState} />
+              <CartDrawer toggleCartDrawer={toggleCartDrawer} setCartDrawerState={setCartDrawerState} cartDrawerState={cartDrawerState}/>
             </Container>
                   <Routes>
                     <Route exact path="/" element={<HomePage plants={plants}  theme={theme} reviews={reviews} setReviews={setReviews} toggleCartDrawer={toggleCartDrawer} 
-                    setCartState={setCartState} cartState={cartState}
-                    addToCart={addToCart}
+                    setDrawerCartState={setCartDrawerState} cartState={cartDrawerState}
+                    
                     />} />
-                    <Route exact path="/plants/:id" element={<PlantDetail setFetchError={setError} />} />
-                    <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants} addToCart={addToCart} />} />
+                    <Route exact path="/plants/:id" element={<PlantDetail  />} />
+                    <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants} />} />
                     <Route  exact path="/admin" element={<AdminApp updatePlantList={updatePlantList}/>}>
                       <Route exact path="products"  element={<Products plants={plants} updatePlantList={updatePlantList}/>} />
                       <Route exact path="reviews" element={<Reviews reviews={reviews} setReviews={setReviews} />} />

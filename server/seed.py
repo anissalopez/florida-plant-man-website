@@ -94,33 +94,33 @@ if __name__ == '__main__':
             print("Adding review seed data...")
         
              
-        def create_cart_data():
-                print("Deleting existing cart data...")
-                Cart.query.delete()
+        # def create_cart_data():
+        #         print("Deleting existing cart data...")
+        #         Cart.query.delete()
 
-                plants = Plant.query.all()
+        #         plants = Plant.query.all()
          
 
-                cart1 = Cart()
-                cart2 = Cart()
+        #         cart1 = Cart()
+        #         cart2 = Cart()
 
-                cart1.plants.extend([plants[0], plants[1], plants[2]])
-                cart2.plants.extend([plants[1], plants[2]])
+        #         cart1.plants.extend([plants[0], plants[1], plants[2]])
+        #         cart2.plants.extend([plants[1], plants[2]])
               
  
-                db.session.add_all([cart1, cart2])
+        #         db.session.add_all([cart1, cart2])
 
-                cart1.update_total()
-                cart2.update_total()
-                print(cart1.plants)
+        #         cart1.update_total()
+        #         cart2.update_total()
+        #         print(cart1.plants)
 
-                db.session.commit()
-                print("Cart seeded!")
+        #         db.session.commit()
+        #         print("Cart seeded!")
                     
         create_customer_data()
         create_plant_data()
         create_review_data()
-        create_cart_data()
+        # create_cart_data()
         print("database seeded")
             
 

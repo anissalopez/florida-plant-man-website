@@ -9,7 +9,7 @@ import uuid
 from config import app, db, api
 import os
 
-from models import Plant, Customer, Review, Cart
+from models import Plant, Customer, Review, Cart, CartItem
 
 
 import base64
@@ -291,67 +291,203 @@ class Customers(Resource):
             response = make_response({"Error creating customer": exc}, 400)
 
 
-class AddToCart(Resource):
+#create a function for cart details 
+            
+def cart_details(cart):
+    encoded_images = encode_imgage_directory()
+    cartDetails = []
+   
+    for item in cart.cartitems:
+                    
+        item_details = {}  
+         
+        item_details['displayImg'] = encoded_images[item.plant.image1]
+        item_details['qty'] = item.qty
+        item_details['name'] = item.plant.name
+        item_details['price'] = item.plant.price
+        item_details['id'] = item.plant.id
+
+        cartDetails.append(item_details)
+
+    modified_cart_dict = cart.to_dict() 
+    modified_cart_dict['cartitems'] = cartDetails
+    modified_cart_dict['total_items'] = cart.total_quantity()
+
+    return modified_cart_dict
+
+    
+
+
+class CartItems(Resource):
 
     def get(self):
-        encoded_images = encode_imgage_directory()
+
         if 'cart_id' in session:
             cart = Cart.query.filter_by(id=session['cart_id']).first()
-            for plant in cart.plants:
-                plant.image1 = encoded_images[plant.image1]
-           
-        response = make_response(cart.to_dict(), 200)
-        return response 
+
+
+            if not cart:
+                del session['cart_id']
+                response = make_response({"cartitems": [], "total": 0}, 200)
+                return response 
+        
+            # cartDetails = []
+   
+            # for item in cart.cartitems:
+                    
+            #     item_details = {}  
+         
+            #     item_details['displayImg'] = encoded_images[item.plant.image1]
+            #     item_details['qty'] = item.qty
+            #     item_details['name'] = item.plant.name
+            #     item_details['price'] = item.plant.price
+            #     item_details['id'] = item.plant.id
+
+            #     cartDetails.append(item_details)
+
+            # modified_cart_dict = cart.to_dict() 
+            # modified_cart_dict['cartitems'] = cartDetails
+            # modified_cart_dict['total_items'] = cart.total_quantity()
+
+            cart_info = cart_details(cart)
+
+            response = make_response(cart_info, 200)
+            return response
+     
+        else:
+     
+            response = make_response({"cartitems": [], "total": 0}, 200)
+            return response 
+
+        # encoded_images = encode_imgage_directory()
+        # if 'cart_id' in session:
+        #     cart = Cart.query.filter_by(id=session['cart_id']).first()
+        #     for item in cart.cartitems:
+
+        #         item.plant.image1 = encoded_images[item.plant.image1]
+
+        # response = make_response(cart.to_dict(), 200)
+        # return response
 
     def post(self):
+        data = request.get_json()
+        plant_id = data.get('plant_id')
+        qty = data.get('qty', 1)
 
-
-        plant_id = request.get_json()
+        if not plant_id:
+            return abort(400, description="Plant ID is required")
 
         plant = Plant.query.filter_by(id=plant_id).first()
-      
+
         if not plant:
             return abort(404, description="Plant not found")
 
         if 'cart_id' in session:
             cart = Cart.query.filter_by(id=session['cart_id']).first()
-           
             if not cart:
                 del session['cart_id']
-            else:
-                # Add plant to existing cart
-                
-                if plant in cart.plants:
-                    return make_response(cart.to_dict(), 201)
+                return abort(404, description="Cart not found")
 
-                cart.plants.append(plant)
-                
-                db.session.add(cart)
-                cart.update_total()
-              
-         
-                db.session.commit()
-                print(cart.plants)
-                return make_response(cart.to_dict(), 201)
         
+            cart_plant = CartItem.query.filter_by(
+                cart_id=cart.id, plant_id=plant_id).first()
+            
+            if cart_plant:
+                
+                cart_plant.qty += qty
+            else:
+            
+                cart_plant = CartItem(
+                    plant_id=plant_id, cart_id=cart.id, qty=qty)
+              
+                cart.cartitems.append(cart_plant)
+
+ 
+         
+
+
+            db.session.commit()
+            cart.update_total()
+
+            cart_info = cart_details(cart)
+
+            response = make_response(cart_info, 201)
+
+            return response
+            
+           
+
+          
+        else:
+         
+            new_cart = Cart()
+            db.session.add(new_cart)
       
-        new_cart = Cart()
-        new_cart.plants.append(plant)
-       
-        db.session.add(new_cart)
+
+            cart_plant = CartItem(
+                plant_id=plant_id, cart_id=new_cart.id, qty=qty)
+
+            new_cart.cartitems.append(cart_plant)
+
+            db.session.add(cart_plant)
+            
+            db.session.commit()
+            new_cart.update_total()
+
+     
+            cart_info = cart_details(new_cart)
+
+            response = make_response(cart_info, 201)
+            session['cart_id'] = new_cart.id
+            return response
+        
+    def patch(self):
+
+        data = request.get_json()
+
+        plant_id = data.get('plant_id')
+        qty = data.get('qty', 1)
+
+        cart = Cart.query.filter_by(id=session['cart_id']).first() 
+
+        cart_plant = CartItem.query.filter_by(
+                cart_id=cart.id, plant_id=plant_id).first()
+           
+        cart_plant.qty = qty
+
+        db.session.commit()
+        cart.update_total()
+      
+        cart_info = cart_details(cart)
+
+        response = make_response(cart_info, 201)
+  
+        return response
     
-        new_cart.update_total()
+    def delete(self):
+        data = request.get_json()
+        plant_id = data.get('plant_id')
+        cart = Cart.query.filter_by(id=session['cart_id']).first()
+        cart_plant = CartItem.query.filter_by(
+                cart_id=cart.id, plant_id=plant_id).first()
+            
+        db.session.delete(cart_plant)
         db.session.commit()
 
-        session['cart_id'] = new_cart.id
-        return make_response(new_cart.to_dict(), 201)
+        cart.update_total()
+        cart_info = cart_details(cart)
+
+        response = make_response(cart_info, 201)
+        return response
+            
+           
 
 
 api.add_resource(Plants, '/plants')
 api.add_resource(PlantById, '/plants/<int:id>')
 api.add_resource(Reviews, '/reviews')
 api.add_resource(Customers, '/customers')
-api.add_resource(AddToCart, '/addtocart')
+api.add_resource(CartItems, '/cartitems')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

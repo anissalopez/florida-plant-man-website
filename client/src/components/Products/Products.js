@@ -1,6 +1,9 @@
 import SingleProduct from "./SingleProduct";
 import SingleProductDesktop from "./SingleProductDesktop";
 
+import { addCartItem  } from '../../actions/cartActions';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Colors } from "../../styles/theme/MainTheme";
 
 import Grid from '@mui/material/Grid';
@@ -11,18 +14,17 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
-import { useCartContext } from "../../context/Cart";
 
-export default function Products({ plants, addToCart }){
+
+export default function Products({ plants }){
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
-    const { cart, setCart } = useCartContext()
+    const dispatch = useDispatch();
 
- 
 
     const renderPlants = plants.map( plant => (
         <Grid item xs={12} sm={6} md={4} key={plant.id} style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
-           {matches ? <SingleProduct addToCart={addToCart} plant={plant} matches={matches}/> : <SingleProductDesktop addToCart={addToCart} plant={plant} matches={matches} 
+           {matches ? <SingleProduct  plant={plant} matches={matches}/> : <SingleProductDesktop plant={plant} matches={matches} 
              />} 
         </Grid>
     ));

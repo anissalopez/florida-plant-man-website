@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import { NavList, ActionsDesktop, ActionsMobile } from "../../styles/Nav/Nav.styles";
 import { Colors } from "../../styles/theme/MainTheme";
 
@@ -7,11 +9,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonIcon from '@mui/icons-material/Person';
 
-import { useCartContext } from '../../context/Cart';
 
 export default function Actions({matches, toggleCartDrawer}){
-    const { cart } = useCartContext()
-   
+    
+    const cart = useSelector((state) => state.cart);
 
     const Component = matches ? ActionsMobile : ActionsDesktop
     return(
@@ -25,7 +26,7 @@ export default function Actions({matches, toggleCartDrawer}){
                     }
                  }}>
                 <ListItemButton onClick={toggleCartDrawer(true)}>
-                    <Badge badgeContent={cart ? cart.total_items : null }>
+                    <Badge badgeContent={cart ? cart.cart.total_items : null }>
                     <ShoppingCartIcon ></ShoppingCartIcon>
                     </Badge>
                 </ListItemButton>

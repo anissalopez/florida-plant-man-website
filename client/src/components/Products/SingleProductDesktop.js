@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+import { useDispatch } from 'react-redux';
+import { addCartItem } from '../../actions/cartActions';
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import FitScreenIcon from '@mui/icons-material/FitScreen';
@@ -10,8 +13,12 @@ import ProductMeta from "./ProductMeta";
 import { Link } from "react-router-dom";
 import { Colors } from "../../styles/theme/MainTheme";
 
-export default function SingleProductDesktop({plant, matches, addToCart}){
+
+export default function SingleProductDesktop({plant, matches}){
+    const dispatch = useDispatch();
+    
     const [show, setShow] = useState(false);
+    
 
     const handleMouseEnter = () =>{
         setShow(true);
@@ -21,13 +28,13 @@ export default function SingleProductDesktop({plant, matches, addToCart}){
         setShow(false);
     };
 
+
     return(  
-        <>
-      
+        <> 
             <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit}> 
                 <ProductImage src={plant.image1}></ProductImage>
                     {
-                        show && <ProductAddToCart show={show} onClick={()=>addToCart(plant.id)}  >
+                        show && <ProductAddToCart show={show} onClick={()=>dispatch(addCartItem(plant.id))}  >
                                 Add to Cart
                                 </ProductAddToCart> 
                     }
