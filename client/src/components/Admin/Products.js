@@ -49,8 +49,8 @@ export default function Products({ plants, updatePlantList }){
                 }}>
               Add Product
             </Button> 
-            <ProductTable editProduct={editProduct} plants={plants} updatePlantList={updatePlantList} />
-            <PlantForm setInitialValues={setInitialValues} newProduct={newProduct} initialValues={initialValues} updatePlantList={updatePlantList} handleClose={handleClose} setOpen={setOpen} open={open}/>  
+            <ProductTable editProduct={editProduct} plants={plants} />
+            <PlantForm setInitialValues={setInitialValues} newProduct={newProduct} initialValues={initialValues} handleClose={handleClose} setOpen={setOpen} open={open}/>  
         </Container>
     );
 };

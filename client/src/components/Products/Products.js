@@ -22,7 +22,7 @@ export default function Products({ plants }){
     const dispatch = useDispatch();
 
 
-    const renderPlants = plants.map( plant => (
+    const renderPlants = plants.plants.map( plant => (
         <Grid item xs={12} sm={6} md={4} key={plant.id} style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
            {matches ? <SingleProduct  plant={plant} matches={matches}/> : <SingleProductDesktop plant={plant} matches={matches} 
              />} 
@@ -36,7 +36,7 @@ export default function Products({ plants }){
             </Box>
             <Grid container
                 spacing = {matches ? 6 : 3}>
-                {renderPlants}
+                {plants ? renderPlants : null}
             </Grid>
         </Container>
     );

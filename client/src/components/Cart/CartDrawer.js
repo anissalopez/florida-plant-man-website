@@ -34,7 +34,7 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState}) {
         <React.Fragment key="right">
           <Drawer
             anchor="right"
-            open={cartDrawerState["right"]}
+            open={cartDrawerState}
             onClose={toggleCartDrawer(false)}
             sx={{
               "& .MuiPaper-root": {
@@ -98,7 +98,7 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState}) {
                       </Box>
                     </Grid>
                     <Grid item xs={4}>
-                      <Box><p>${item.price}</p></Box>
+                      <Box>{item.qty > 1 ? <p>${formatNumberWithCommas(item.price * item.qty)}</p>:<p>${item.price}</p>}</Box>
                       <Box
                         onClick={(e) => dispatch(deleteCartItem(item.id))}
                         sx={{ '&:hover': { color: "red" } }}

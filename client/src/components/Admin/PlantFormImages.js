@@ -2,6 +2,8 @@ import Grid from '@mui/material/Grid';
 import InputLabel from "@mui/material/InputLabel";
 
 export default function PlantFormImages({formik, setPreview, preview, initialValues}){
+
+    console.log(initialValues)
     return(
             <>
                 <Grid item lg={4} xs={12} key="image1">
@@ -9,6 +11,7 @@ export default function PlantFormImages({formik, setPreview, preview, initialVal
                         <input
                             id="image1"
                             name="image1"
+                            onClick={(e)=>console.log(e)}
                             onChange={(e)=>{
                             formik.setFieldValue("image1", e.currentTarget.files[0]);
                             setPreview((prevState) => ({

@@ -290,9 +290,6 @@ class Customers(Resource):
             db.session.rollback()
             response = make_response({"Error creating customer": exc}, 400)
 
-
-#create a function for cart details 
-            
 def cart_details(cart):
     encoded_images = encode_imgage_directory()
     cartDetails = []
@@ -330,44 +327,16 @@ class CartItems(Resource):
                 del session['cart_id']
                 response = make_response({"cartitems": [], "total": 0}, 200)
                 return response 
-        
-            # cartDetails = []
-   
-            # for item in cart.cartitems:
-                    
-            #     item_details = {}  
-         
-            #     item_details['displayImg'] = encoded_images[item.plant.image1]
-            #     item_details['qty'] = item.qty
-            #     item_details['name'] = item.plant.name
-            #     item_details['price'] = item.plant.price
-            #     item_details['id'] = item.plant.id
-
-            #     cartDetails.append(item_details)
-
-            # modified_cart_dict = cart.to_dict() 
-            # modified_cart_dict['cartitems'] = cartDetails
-            # modified_cart_dict['total_items'] = cart.total_quantity()
 
             cart_info = cart_details(cart)
 
             response = make_response(cart_info, 200)
             return response
      
-        else:
-     
+        else: 
             response = make_response({"cartitems": [], "total": 0}, 200)
             return response 
 
-        # encoded_images = encode_imgage_directory()
-        # if 'cart_id' in session:
-        #     cart = Cart.query.filter_by(id=session['cart_id']).first()
-        #     for item in cart.cartitems:
-
-        #         item.plant.image1 = encoded_images[item.plant.image1]
-
-        # response = make_response(cart.to_dict(), 200)
-        # return response
 
     def post(self):
         data = request.get_json()
@@ -402,10 +371,6 @@ class CartItems(Resource):
               
                 cart.cartitems.append(cart_plant)
 
- 
-         
-
-
             db.session.commit()
             cart.update_total()
 
@@ -414,9 +379,6 @@ class CartItems(Resource):
             response = make_response(cart_info, 201)
 
             return response
-            
-           
-
           
         else:
          

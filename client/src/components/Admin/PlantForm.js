@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { useDispatch } from 'react-redux';
+import { postPlant, updatePlant } from "../../actions/plantsActions";
+
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
@@ -14,8 +17,9 @@ import { Colors } from "../../styles/theme/MainTheme";
 import PlantFormImages from './PlantFormImages';
 import PlantFormItems from './PlantFormItems';
 
-export default function PlantForm({ setInitialValues, initialValues, setOpen, open, updatePlantList }) {
+export default function PlantForm({ setInitialValues, initialValues, setOpen, open }) {
   const [preview, setPreview] = useState(null);
+  const dispatch = useDispatch();
 
   const formSchema = yup.object().shape({
     name: yup.string().min(5).required("Must enter plant name"),
@@ -52,35 +56,13 @@ export default function PlantForm({ setInitialValues, initialValues, setOpen, op
           formData.append(value, values[value]);
         };
 
-        const method = initialValues === null ? "POST" : "PATCH";
-        let url = "/plants";
-
-        if (method === "PATCH") {
-          url += `/${initialValues.id}`; 
-        };
-      
-        try {
-          const response = await fetch(url, {
-            method: method,
-            mode: "same-origin",
-            body: formData
-          });
-      
-          if (!response.ok) {
-            throw new Error('HTTP error: ' + response.status);
-          };
-
-          const data = await response.json();
-     
-          updatePlantList(method, data);
-          setOpen(false);
-          setPreview(null);
-          alert("Product " + (method === "PATCH" ? "updated" : "added") + " successfully");
-          resetForm({ values: '' });
-          setInitialValues(null);
-        } catch (error) {
-          throw new Error('HTTP error: ' + error);
-        };
+        initialValues === null ? dispatch(postPlant(formData)) : dispatch(updatePlant(formData,initialValues.id));
+        setOpen(false);
+        setPreview(null);
+         
+        resetForm({ values: '' });
+        setInitialValues(null);
+    
     }
   });
 
@@ -97,6 +79,7 @@ export default function PlantForm({ setInitialValues, initialValues, setOpen, op
                   preview={preview}
 
                 />
+             
                 <PlantFormItems formik={formik} />
             </Grid>
             </DialogContent>

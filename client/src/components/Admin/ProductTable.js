@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux';
+import {  deletePlant } from "../../actions/plantsActions";
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,19 +17,13 @@ import ShowMoreText from "react-show-more-text";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductTable({ plants, editProduct, updatePlantList }) {
-  const handleDelete = (plant) => {
-    if (window.confirm("Are you sure?")) {
-      fetch(`http://localhost:3000/plants/${plant.id}`, {
-          method: "DELETE"
-        })
-          .then(resp => resp.json())
-          .then(() => updatePlantList('DELETE', plant))
-    };
-  };
+export default function ProductTable({ plants, editProduct }) {
+  const dispatch = useDispatch();
+ 
     
   return (
     <TableContainer component={Paper}>
+      
       <Table >
         <TableHead > 
           <TableRow>
@@ -38,7 +35,7 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
           </TableRow>
         </TableHead>
         <TableBody>
-        {plants.map((plant) => (
+        {plants.plants.length ? plants.plants.map((plant) => (
         <TableRow
               key={plant.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
@@ -79,8 +76,7 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
                     </IconButton>
                     <IconButton
                      onClick={()=>{
-                      // updatePlantList('DELETE',plant)
-                      handleDelete(plant)
+                      dispatch(deletePlant(plant))
                     }}
                     
                      >
@@ -89,7 +85,7 @@ export default function ProductTable({ plants, editProduct, updatePlantList }) {
                     </IconButton>   
               </TableCell> 
         </TableRow>
-          ))} 
+          )): null} 
         </TableBody>
       </Table>
     </TableContainer>
