@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { postCustomer } from '../../actions/customerActions';
+
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -7,6 +10,8 @@ import Button from '@mui/material/Button';
 import { FormContainer, CustomerFormInput, ButtonContainer } from '../../styles/Review/Review.styles';
 
 export default function CustomerForm({ setDisplay, display, setOpen }){
+    const dispatch = useDispatch();
+    const currentCustomerId = useSelector(state => state.customers.currentCustomerId);
     const formSchema = yup.object().shape({
       first_name: yup.string().min(2).max(100).required("Required"),
       last_name: yup.string().min(2).max(100).required("Required")
@@ -19,24 +24,11 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
         },
         validationSchema: formSchema, 
         onSubmit: async (values) => {
-            try {
-                const response = await fetch('/customers', {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(values, null, 2)
-                  });
-                if (response.ok) {
-                  const customer = await response.json()
-                  setDisplay({...display, screen:"review-form", customerId:customer.id})
-                } else {
-                  alert("Error creating customer, please check form inputs and try again") 
-              } 
-        }
-        catch (error) {
-            throw new Error('HTTP error: ', error)
-        }  
+          dispatch(postCustomer(values))
+          if (currentCustomerId) {
+        
+            setDisplay({ ...display, screen: "review-form", customerId: currentCustomerId });
+          }     
     }});
       
     return (

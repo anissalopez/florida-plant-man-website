@@ -25,7 +25,7 @@ export const fetchPlants = () => async (dispatch, getState) => {
 }
 };
 
-export const postPlant = (formData) => async (dispatch, getState) => {
+export const postPlant = (formData) => async (dispatch) => {
   try {
     const response = await fetch('/plants', {
       method: "POST",
@@ -35,14 +35,11 @@ export const postPlant = (formData) => async (dispatch, getState) => {
     if (!response.ok) throw new Error('Error adding plant');
 
     const newPlant = await response.json();
-    const currentState = getState();
-    const currentPlants = currentState.plants;
-
-    const updatedPlants = [...currentPlants, newPlant];
+   
     
     dispatch({
       type: POST_PLANT,
-      payload: updatedPlants,
+      payload: newPlant,
     });
   } catch (error) {
     dispatch({ type: FETCH_PLANTS_FAILURE, payload: error.message });

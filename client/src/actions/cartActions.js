@@ -4,7 +4,7 @@ export const FETCH_CART_FAILURE = 'FETCH_CART_FAILURE';
 
 
 export const updateCartItem = (id, qty) => async (dispatch) => {
-  console.log(id)
+  
   try {
     const response = await fetch('/cartitems', {
       method: "PATCH",

@@ -1,7 +1,7 @@
 import SingleProduct from "./SingleProduct";
 import SingleProductDesktop from "./SingleProductDesktop";
 
-import { addCartItem  } from '../../actions/cartActions';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Colors } from "../../styles/theme/MainTheme";
@@ -16,10 +16,14 @@ import { useMediaQuery } from "@mui/material";
 
 
 
-export default function Products({ plants }){
+
+export default function Products(){
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const dispatch = useDispatch();
+    const plants = useSelector((state) => state.plants)
+
+
 
 
     const renderPlants = plants.plants.map( plant => (

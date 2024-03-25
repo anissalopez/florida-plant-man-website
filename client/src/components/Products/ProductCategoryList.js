@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
+
 import { addCartItem  } from '../../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,7 +17,7 @@ import ProductFilterContainer from "./ProductFilterContainer";
 import { Colors } from "../../styles/theme/MainTheme";
 
 
-export default function ProductCategoryList({ plants } ){   
+export default function ProductCategoryList(){   
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const { category } = useParams();
@@ -25,6 +26,7 @@ export default function ProductCategoryList({ plants } ){
     const [filtered_plant, setFilter] = useState("");
 
     const dispatch = useDispatch();
+    const plants = useSelector((state) => state.plants)
 
     useEffect(()=>{
         setFilter(category)

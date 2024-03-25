@@ -6,7 +6,7 @@ import CustomerForm from './CustomerForm';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
-export default function AddReview({ open, plants, setOpen, reviews, setReviews }){
+export default function AddReview({ open, setOpen }){
     const [display, setDisplay] = useState({
         screen:"customer-name",
         customerId:null    
@@ -20,13 +20,11 @@ export default function AddReview({ open, plants, setOpen, reviews, setReviews }
               display={display}/>
             }
             {display.screen === 'review-form' && 
-              <ReviewForm plants={plants} 
+              <ReviewForm 
                   setOpen={setOpen}
-                  customerId={display.customerId} 
                   setDisplay={setDisplay}
                   display={display}
-                  reviews={reviews}
-                  setReviews={setReviews}
+                
                   />
             }    
           </DialogContent>      

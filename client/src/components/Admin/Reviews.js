@@ -1,3 +1,4 @@
+import {  useSelector } from 'react-redux';
 
 import Typography from '@mui/material/Typography';
 import Table from '@mui/material/Table';
@@ -8,7 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function Reviews({ reviews }){
+export default function Reviews(){
+    const reviews = useSelector((state) => state.reviews.reviews);
+    
     return(
         <div>
             <Typography sx={{mt:7,mb: 4}} variant='h4'>Reviews</Typography>
@@ -24,6 +27,7 @@ export default function Reviews({ reviews }){
                     </TableHead>
                     <TableBody>
                     {reviews.map((review) => (
+                        
                     <TableRow
                         key={review.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
@@ -36,6 +40,7 @@ export default function Reviews({ reviews }){
                         </TableCell>
                         <TableCell>{review.rating}</TableCell>
                         <TableCell >{review.comment}</TableCell>
+
                         <TableCell >{review.plant['name']}</TableCell>      
                     </TableRow>
                     ))} 

@@ -16,6 +16,7 @@ import { Colors } from "../../styles/theme/MainTheme";
 
 import PlantFormImages from './PlantFormImages';
 import PlantFormItems from './PlantFormItems';
+import { fetchReviews } from '../../actions/reviewActions';
 
 export default function PlantForm({ setInitialValues, initialValues, setOpen, open }) {
   const [preview, setPreview] = useState(null);

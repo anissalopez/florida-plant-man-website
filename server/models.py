@@ -88,7 +88,7 @@ class Plant(db.Model, SerializerMixin):
     image2 = db.Column(db.String, nullable=False)
     image3 = db.Column(db.String, nullable=False)
     description = db.Column(db.String, nullable=False)
-    #carts = db.relationship('Cart', secondary="cartitems", back_populates='plants')
+   
 
     cartitems = db.relationship('CartItem', back_populates='plant', cascade='all, delete-orphan')
 
@@ -96,7 +96,7 @@ class Plant(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='plant', cascade='all, delete-orphan', viewonly=True)
+        'Review', back_populates='plant',cascade='all, delete-orphan' )
    
     customers = db.relationship('Customer', secondary="reviews", back_populates='plants', viewonly=True)
     

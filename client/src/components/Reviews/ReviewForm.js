@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { postReview } from '../../actions/reviewActions';
+
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -10,7 +13,13 @@ import Select from '@mui/material/Select';
 import { FormContainer, ButtonContainer } from '../../styles/Review/Review.styles';
 import { Colors } from "../../styles/theme/MainTheme";
 
-export default function ReviewForm({reviews, setReviews, plants, customerId, setOpen, setDisplay, display }){
+
+export default function ReviewForm({setOpen, setDisplay, display }){
+  const dispatch = useDispatch();
+
+  const plants = useSelector(state => state.plants.plants);
+
+
     const formSchema = yup.object().shape({
         rating: yup.number().required("Must select review"),
         comment: yup.string().min(5).max(500).required("Must enter comment")
@@ -25,32 +34,16 @@ export default function ReviewForm({reviews, setReviews, plants, customerId, set
           },
           validationSchema: formSchema, 
           onSubmit: async (values) => {
-            console.log(values)
+         
             const review = {
-                ...values, customer_id:customerId, rating: values['rating']
+                ...values, customer_id:display.customerId, rating: values['rating']
             }
-            try {
-              const response = await fetch('/reviews', {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(review)
-                });
-                if (response.ok) {
-                  const data = await response.json()
-                  alert('Your review was succesfully submitted.')
-                  setOpen(false)
-                  setDisplay({...display, screen:"customer-name", customerId:null})
-                  setReviews([...reviews, data ])
-                } else {
-                  alert("Error creating review, please check form inputs and try again")   
-              } 
-          }
-          catch (error) {
-              throw new Error('HTTP error: ', error)
-          }
-      
+            dispatch(postReview(review))
+             
+            setOpen(false)
+            setDisplay({...display, screen:"customer-name", customerId:null})
+                
+             
   }});
 
     return(

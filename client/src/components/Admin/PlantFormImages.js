@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 
 export default function PlantFormImages({formik, setPreview, preview, initialValues}){
 
-    console.log(initialValues)
+    
     return(
             <>
                 <Grid item lg={4} xs={12} key="image1">

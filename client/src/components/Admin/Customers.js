@@ -6,9 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function Customers({ customers, setCustomers }){
-    console.log(customers)
+export default function Customers(){
+    const customers = useSelector((state) => state.customers.customers);
+
+
+  
     return(
         <div>
             <Typography sx={{mt:7,mb: 4}} variant='h4'>Customers</Typography>

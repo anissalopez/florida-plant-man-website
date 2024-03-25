@@ -1,4 +1,4 @@
-import { DELETE_PLANT, FETCH_PLANTS, FETCH_PLANTS_FAILURE, UPDATE_PLANT} from "../actions/plantsActions";
+import { DELETE_PLANT, FETCH_PLANTS, FETCH_PLANTS_FAILURE, POST_PLANT, UPDATE_PLANT} from "../actions/plantsActions";
 
 const initialState = {
   plants: [],
@@ -12,6 +12,11 @@ function plantsReducer(state = initialState, action) {
       return { ...state, loading: false, error: action.payload };
     case FETCH_PLANTS:
       return { ...state, plants: action.payload, loading:false };
+    case POST_PLANT:
+      
+      const currentPlants = state.plants;
+      const newPlants = [...currentPlants, action.payload];
+      return{...state, plants: newPlants, loading:false };
     case UPDATE_PLANT:
        const newPlantArray = state.plants.map((plant) => {
             if(plant.id === action.payload.id) {

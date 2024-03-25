@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
 
 import AddReview from "./AddReview";
 import Review from "./Review";
@@ -12,8 +13,13 @@ import Button from "@mui/material/Button";
 import { Colors } from "../../styles/theme/MainTheme";
 import { ReviewHeader } from "../../styles/Review/Review.styles";
 
-const ReviewList = ({plants, reviews, setReviews}) => {
+
+
+const ReviewList = () => {
     const [open, setOpen ] = useState(false);
+
+    const reviews = useSelector((state) => state.reviews.reviews)
+
     const { pathname } = useLocation();
 
     const reviewList = reviews.slice(-3).map((review) => (
@@ -56,7 +62,7 @@ const ReviewList = ({plants, reviews, setReviews}) => {
               Add Review
             </Button>
           </Box>
-          <AddReview reviews={reviews} setReviews={setReviews} plants={plants} open={open} setOpen={setOpen}/>
+          <AddReview  open={open} setOpen={setOpen}/>
         </Container>
       );
 };

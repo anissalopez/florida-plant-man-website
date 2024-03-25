@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -6,14 +7,16 @@ import AddIcon from '@mui/icons-material/Add';
 import Container from '@mui/material/TableContainer';
 import ProductTable from './ProductTable';
 
+
 import { Colors } from '../../styles/theme/MainTheme';
 
 import PlantForm from './PlantForm';
 
-export default function Products({ plants, updatePlantList }){
+export default function Products(){
     const [initialValues, setInitialValues] = useState(null);
     const [newProduct, setNewProduct] = useState(false);
     const [open, setOpen] = useState(false);
+    const plants = useSelector((state) => state.plants)
   
     const handleAddProduct = () => {
       setOpen(true);

@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPlants } from "../../actions/plantsActions";
-
-import { useReviewsContext } from "../../context/Reviews";
-import { useCustomersContext } from "../../context/Customers";
-
+import { fetchReviews } from "../../actions/reviewActions";
+import { fetchCustomers } from "../../actions/customerActions";
+import { fetchCart } from "../../actions/cartActions";
 
 import { ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
@@ -21,7 +20,7 @@ import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import Dashboard from "../Admin/Dashboard";
 import Products from "../Admin/Products";
-import Settings from "../Admin/Settings";
+
 import Reviews from "../Admin/Reviews";
 import Customers from "../Admin/Customers";
 import AdminApp from "../Admin/AdminApp";
@@ -31,19 +30,18 @@ import {ThreeDots} from 'react-loading-icons';
 
 
 
+
 export default function App(){
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPlants());
+    dispatch(fetchCustomers());
+    dispatch(fetchReviews());
+    dispatch(fetchCart());
   }, [dispatch]);
 
-
-  const { customers, setCustomers } = useCustomersContext();
-  const { reviews, setReviews } = useReviewsContext();
-
   const loading = useSelector((state) => state.plants.loading);
-  const plants = useSelector((state) => state.plants)
   const error = useSelector((state) => state.plants.error);
 
 
@@ -74,18 +72,18 @@ export default function App(){
               <CartDrawer toggleCartDrawer={toggleCartDrawer} setCartDrawerState={setCartDrawerState} cartDrawerState={cartDrawerState}/>
             </Container>
                   <Routes>
-                    <Route exact path="/" element={<HomePage plants={plants}  theme={theme} reviews={reviews} setReviews={setReviews} toggleCartDrawer={toggleCartDrawer} 
+                    <Route exact path="/" element={<HomePage  theme={theme} toggleCartDrawer={toggleCartDrawer} 
                     setDrawerCartState={setCartDrawerState} cartState={cartDrawerState}
                     
                     />} />
                     <Route exact path="/plants/:id" element={<PlantDetail  />} />
-                    <Route exact path="/plants/category/:category" element={<ProductCategoryList plants={plants} />} />
+                    <Route exact path="/plants/category/:category" element={<ProductCategoryList  />} />
                     <Route  exact path="/admin" element={<AdminApp />}>
-                      <Route exact path="products"  element={<Products plants={plants} />} />
-                      <Route exact path="reviews" element={<Reviews reviews={reviews} setReviews={setReviews} />} />
-                      <Route exact path="customers" element={<Customers customers={customers} setCustomers={setCustomers} />} />
+                      <Route exact path="products"  element={<Products  />} />
+                      <Route exact path="reviews" element={<Reviews />} />
+                      <Route exact path="customers" element={<Customers />} />
                       <Route exact path="dashboard" element={<Dashboard />} />
-                      <Route exact path="settings" element={<Settings />} /> 
+                 
                     </Route>  
                   </Routes>   
                   <Footer />          
