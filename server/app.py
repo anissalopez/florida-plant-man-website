@@ -82,7 +82,7 @@ class Plants(Resource):
         price = request.form.get('price', default_value)
         description = request.form.get('description', default_value)
         water = request.form.get('water', default_value)
-
+        id = request.form.get('id', default_value)
         sun = request.form.get('sun', default_value)
         qty = request.form.get('qty', default_value)
         image1 = images[0]
@@ -90,6 +90,7 @@ class Plants(Resource):
         image3 = images[2]
 
         new_plant = Plant(
+            id=id,
             name=name,
             price=price,
             description=description,
@@ -272,7 +273,27 @@ class Customers(Resource):
     def get(self):
         customers = [customers.to_dict()
                      for customers in db.session.query(Customer)]
+        print(customers)
         response = make_response(customers, 200)
+        return response
+
+    def patch(self):
+        data = request.get_json()
+        customerId = data.get('customerId', 0)
+        plantId = data.get('plantId',0)
+   
+
+        customer = Customer.query.filter_by(id=customerId).first()
+        plant = Plant.query.filter_by(id=plantId).first()
+        if plant and customer:
+            customer.plants.append(plant)
+            db.session.commit()
+            response = make_response(customer.to_dict(), 201)
+        else:
+           
+            db.session.rollback()
+            response = make_response({"error": "Customer or plant not found"}, 400)
+        
         return response
 
     def post(self):
@@ -285,6 +306,7 @@ class Customers(Resource):
         try:
             db.session.commit()
             response = make_response(new_customer.to_dict(), 201)
+        
             return response
         except Exception as exc:
             db.session.rollback()

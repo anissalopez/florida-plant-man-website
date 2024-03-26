@@ -98,7 +98,7 @@ class Plant(db.Model, SerializerMixin):
     reviews = db.relationship(
         'Review', back_populates='plant',cascade='all, delete-orphan' )
    
-    customers = db.relationship('Customer', secondary="reviews", back_populates='plants', viewonly=True)
+    customers = db.relationship('Customer', secondary="reviews", back_populates='plants')
     
     serialize_rules =('-cartitems.plant','-carts.plants','-reviews.plant', '-customers.reviews', '-customers.plants')
 
@@ -137,9 +137,9 @@ class Customer(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='customer', cascade='all, delete-orphan', viewonly=True)
+        'Review', back_populates='customer', cascade='all, delete-orphan')
     
-    plants = db.relationship('Plant', secondary="reviews", back_populates='customers', viewonly=True)
+    plants = db.relationship('Plant', secondary="reviews", back_populates='customers')
     serialize_rules =('-reviews.customer','-plants.customers', '-plants.reviews')
 
     @validates('first_name', 'last_name')

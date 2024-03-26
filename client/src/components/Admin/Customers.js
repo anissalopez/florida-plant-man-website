@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function Customers(){
     const customers = useSelector((state) => state.customers.customers);
 
-
+    console.log(useSelector((state) => state.customers))
   
     return(
         <div>
@@ -23,7 +23,6 @@ export default function Customers(){
                                 <TableCell>First Name</TableCell>
                                 <TableCell>Last Name</TableCell>
                                 <TableCell>Plants</TableCell>
-                                <TableCell>Reviews</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -41,12 +40,6 @@ export default function Customers(){
                                         })
                                     }
 
-                                </TableCell>
-                                <TableCell >
-                                    {
-                                        customer.reviews.map((review)=>(
-                                            `${review.rating}`))
-                                    }  
                                 </TableCell>
                             </TableRow>
                             ))} 

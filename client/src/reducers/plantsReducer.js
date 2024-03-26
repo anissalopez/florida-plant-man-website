@@ -28,7 +28,7 @@ function plantsReducer(state = initialState, action) {
                 return plant;
               };
             });
-      return {...state,plants:newPlantArray, loading:false};
+      return {...state, plants:newPlantArray, loading:false};
     case DELETE_PLANT:
       const updatedPlants = state.plants.filter((plant)=>plant.id !== action.payload.id)
       return {...state, plants: updatedPlants, loading:false};

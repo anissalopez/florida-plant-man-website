@@ -11,7 +11,7 @@ import { FormContainer, CustomerFormInput, ButtonContainer } from '../../styles/
 
 export default function CustomerForm({ setDisplay, display, setOpen }){
     const dispatch = useDispatch();
-    const currentCustomerId = useSelector(state => state.customers.currentCustomerId);
+   
     const formSchema = yup.object().shape({
       first_name: yup.string().min(2).max(100).required("Required"),
       last_name: yup.string().min(2).max(100).required("Required")
@@ -24,12 +24,13 @@ export default function CustomerForm({ setDisplay, display, setOpen }){
         },
         validationSchema: formSchema, 
         onSubmit: async (values) => {
-          dispatch(postCustomer(values))
-          if (currentCustomerId) {
-        
-            setDisplay({ ...display, screen: "review-form", customerId: currentCustomerId });
-          }     
+
+          const newCustomerId = await dispatch(postCustomer(values));
+
+          setDisplay({ ...display, screen: "review-form", customerId: newCustomerId });
+           
     }});
+    
       
     return (
         <FormContainer >

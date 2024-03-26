@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { postReview } from '../../actions/reviewActions';
+import { updateCustomer } from '../../actions/customerActions';
 
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -20,6 +21,7 @@ export default function ReviewForm({setOpen, setDisplay, display }){
   const plants = useSelector(state => state.plants.plants);
 
 
+
     const formSchema = yup.object().shape({
         rating: yup.number().required("Must select review"),
         comment: yup.string().min(5).max(500).required("Must enter comment")
@@ -34,14 +36,22 @@ export default function ReviewForm({setOpen, setDisplay, display }){
           },
           validationSchema: formSchema, 
           onSubmit: async (values) => {
+            console.log(values)
          
-            const review = {
-                ...values, customer_id:display.customerId, rating: values['rating']
-            }
-            dispatch(postReview(review))
-             
-            setOpen(false)
-            setDisplay({...display, screen:"customer-name", customerId:null})
+            try{
+              const review = {
+                    ...values, customer_id:display.customerId, rating: values['rating']
+                }
+         
+                dispatch(postReview(review))
+                dispatch(updateCustomer(display.customerId, values.plant_id))
+                
+                setOpen(false)
+                setDisplay({...display, screen:"customer-name", customerId:null})
+              }
+          catch(err){
+              console.log(err)
+          }
                 
              
   }});

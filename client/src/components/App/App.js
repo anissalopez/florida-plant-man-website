@@ -41,6 +41,7 @@ export default function App(){
     dispatch(fetchCart());
   }, [dispatch]);
 
+
   const loading = useSelector((state) => state.plants.loading);
   const error = useSelector((state) => state.plants.error);
 

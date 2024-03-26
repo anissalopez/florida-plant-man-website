@@ -30,7 +30,8 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState}) {
 
   return (
     <>
-      {!loading && !error && cart.cart.cartitems.length > 0 && (
+      
+      {!loading && !error && cart.cart  && (
         <React.Fragment key="right">
           <Drawer
             anchor="right"
@@ -74,7 +75,8 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState}) {
                 marginBottom: "40px",
                 marginLeft: "10px"
               }}>
-                {cart.cart.cartitems ? cart.cart.cartitems.map((item) => (
+
+                {cart.cart.cartitems.length > 0 ? cart.cart.cartitems.map((item) => (
                   <React.Fragment key={item.name}>
                     <Grid item xs={4}>
                       <Box sx={{ width: "80%" }}>
