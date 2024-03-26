@@ -2,23 +2,18 @@ export const FETCH_REVIEWS = 'FETCH_REVIEWS'
 export const FETCH_REVIEWS_FAILURE = 'FETCH_REVIEWS_FAILURE';
 export const POST_REVIEW = 'POST_REVIEW';
 
-
-
-
 export const fetchReviews = () => async (dispatch) => {
-  try {
-    const response = await fetch(`/reviews`)
-    if (!response.ok) throw new Error('Error fetching reviews');
-
-    const reviews = await response.json();
-
-    dispatch({
-      type: FETCH_REVIEWS,
-      payload: reviews,
-    });
-  }  catch (error) {
-  dispatch({ type: FETCH_REVIEWS_FAILURE, payload: error.message });
-}
+    try {
+      const response = await fetch(`/reviews`)
+      if (!response.ok) throw new Error('Error fetching reviews');
+      const reviews = await response.json();
+      dispatch({
+        type: FETCH_REVIEWS,
+        payload: reviews,
+      });
+    }  catch (error) {
+    dispatch({ type: FETCH_REVIEWS_FAILURE, payload: error.message });
+  }
 };
 
 export const postReview = (formData) => async (dispatch) => {

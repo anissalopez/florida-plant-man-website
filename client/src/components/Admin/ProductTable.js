@@ -19,8 +19,7 @@ import { Colors } from "../../styles/theme/MainTheme";
 
 export default function ProductTable({ plants, editProduct }) {
   const dispatch = useDispatch();
- 
-    
+  
   return (
     <TableContainer component={Paper}>
       

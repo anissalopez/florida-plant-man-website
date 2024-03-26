@@ -4,7 +4,6 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { Colors } from '../../styles/theme/MainTheme';
 
-
 export default function MenuItemBtn({selected, icon, text, handleNav}){
     return(
         <ListItemButton onClick={()=>handleNav(text)}

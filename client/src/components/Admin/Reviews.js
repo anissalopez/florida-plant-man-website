@@ -26,24 +26,23 @@ export default function Reviews(){
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {reviews.map((review) => (
-                        
+                    {
+                    reviews.map((review) => (          
                     <TableRow
                         key={review.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                         >
                         <TableCell
                             sx={{width:"30%"}}
-                            >
-                                
+                        >    
                             {`${review.customer['first_name']} ${review.customer['last_name']}`}    
                         </TableCell>
                         <TableCell>{review.rating}</TableCell>
                         <TableCell >{review.comment}</TableCell>
-
                         <TableCell >{review.plant['name']}</TableCell>      
                     </TableRow>
-                    ))} 
+                    ))
+                    } 
                     </TableBody>
                 </Table>
             </TableContainer>  

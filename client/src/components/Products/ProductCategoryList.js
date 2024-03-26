@@ -26,18 +26,16 @@ export default function ProductCategoryList(){
     const [filtered_plant, setFilter] = useState("");
 
     const dispatch = useDispatch();
-    const plants = useSelector((state) => state.plants)
+    const plants = useSelector((state) => state.plants.plants)
 
     useEffect(()=>{
         setFilter(category)
     }, [category]);
 
 
-    const addToCart = (e, id, method) => {
+    const addToCart = (e, id) => {
         const qty = e.target.value; 
-    
-        dispatch(addCartItem(id, qty));
-        
+        dispatch(addCartItem(id, qty));   
       };
 
     const filteredPlants = plants.sort(function(a,b){       

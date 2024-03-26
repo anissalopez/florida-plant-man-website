@@ -16,7 +16,6 @@ import { Colors } from "../../styles/theme/MainTheme";
 
 import PlantFormImages from './PlantFormImages';
 import PlantFormItems from './PlantFormItems';
-import { fetchReviews } from '../../actions/reviewActions';
 
 export default function PlantForm({ setInitialValues, initialValues, setOpen, open }) {
   const [preview, setPreview] = useState(null);
@@ -52,18 +51,15 @@ export default function PlantForm({ setInitialValues, initialValues, setOpen, op
     validationSchema: formSchema,
     onSubmit: async (values, { resetForm }) => {
         const formData = new FormData();
-
         for (let value in values) {
           formData.append(value, values[value]);
         };
 
         initialValues === null ? dispatch(postPlant(formData)) : dispatch(updatePlant(formData,initialValues.id));
         setOpen(false);
-        setPreview(null);
-         
+        setPreview(null); 
         resetForm({ values: '' });
         setInitialValues(null);
-    
     }
   });
 
@@ -80,7 +76,6 @@ export default function PlantForm({ setInitialValues, initialValues, setOpen, op
                   preview={preview}
 
                 />
-             
                 <PlantFormItems formik={formik} />
             </Grid>
             </DialogContent>

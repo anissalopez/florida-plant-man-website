@@ -5,7 +5,6 @@ import MenuItemBtn from './MenuItemButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-
 import GroupsIcon from '@mui/icons-material/Groups';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import ReceiptIcon from '@mui/icons-material/Receipt';
@@ -46,8 +45,7 @@ export default function NavMenu(){
             <MenuItemBtn text='reviews' handleNav={handleNav}
                   selected={selectedItem.includes('reviews')}
                   icon={<ReviewsIcon />}/>
-          </ListItem>
-         
+          </ListItem> 
         </List>
     );
 };
