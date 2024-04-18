@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a full-stack application built for a company that sells plants online. The front-end was developed using React, while the backend utilizes Flask, Python, and SQLite for the database. Object-oriented design principles were employed to create four database models: Plant, Reviews, Customers, CartItem and Cart.
+This project is a full-stack application built for a company that sells plants online. The front-end was developed using React, while the backend utilizes Flask, Python, and SQLite for the database. Object-oriented design principles were employed to create five database models: Plant, Reviews, Customers, CartItem and Cart.
 
 [![Watch the video](https://img.youtube.com/vi/1lVPPZC-9rg/maxresdefault.jpg)](https://youtu.be/1lVPPZC-9rg)
 
