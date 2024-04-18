@@ -75,7 +75,6 @@ export default function App(){
                   <Routes>
                     <Route exact path="/" element={<HomePage  theme={theme} toggleCartDrawer={toggleCartDrawer} 
                     setDrawerCartState={setCartDrawerState} cartState={cartDrawerState}
-                    
                     />} />
                     <Route exact path="/plants/:id" element={<PlantDetail  />} />
                     <Route exact path="/plants/category/:category" element={<ProductCategoryList  />} />

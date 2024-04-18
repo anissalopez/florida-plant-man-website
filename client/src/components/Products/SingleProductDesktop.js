@@ -38,19 +38,6 @@ export default function SingleProductDesktop({plant, matches}){
                                 Add to Cart
                                 </ProductAddToCart> 
                     }
-                    <ProductActionsWrapper show={show}>
-                        <Stack direction="column">
-                            <ProductFavButton isfav={0} >
-                                <FavoriteIcon />
-                            </ProductFavButton>
-                            <ProductActionButton>
-                                <ShareIcon sx={{color:Colors.white}} />
-                            </ProductActionButton>
-                            <ProductActionButton>
-                                <FitScreenIcon sx={{color:Colors.white}} />
-                            </ProductActionButton>
-                        </Stack> 
-                </ProductActionsWrapper>
             </Product>
             <Link 
               style={{textDecoration:'none'}} 

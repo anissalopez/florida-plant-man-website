@@ -1,19 +1,12 @@
 #!/usr/bin/env python3
-import json
 from flask import abort, make_response, request, session
+from models import Plant, Customer, Review, Cart, CartItem
 from flask_restful import Resource
-from sqlalchemy import func
 from werkzeug.utils import secure_filename
 import uuid
-
 from config import app, db, api
 import os
-
-from models import Plant, Customer, Review, Cart, CartItem
-
-
 import base64
-
 
 def encode_imgage_directory():
     image_directory = os.path.join(app.config["Images"])
@@ -28,7 +21,6 @@ def encode_imgage_directory():
             image_url = 'data:image/jpg;base64,' + encoded_image
             images[filename] = image_url
     return images
-
 
 class Plants(Resource):
     def get(self):
@@ -153,7 +145,6 @@ class PlantById(Resource):
 
     def patch(self, id):
         plant = Plant.query.filter(Plant.id == id).first()
-
         default_value = '0'
 
         if not plant:
@@ -174,7 +165,7 @@ class PlantById(Resource):
             try:
                 if image != default_value:
                     filename = f"{unique_str}_{secure_filename(image.filename)}"
-                    # Append a tuple containing the index and filename
+
                     images.append((index, filename))
                     image_path = os.path.join(image_directory, filename)
                     image.save(image_path)
@@ -282,7 +273,6 @@ class Customers(Resource):
         customerId = data.get('customerId', 0)
         plantId = data.get('plantId',0)
    
-
         customer = Customer.query.filter_by(id=customerId).first()
         plant = Plant.query.filter_by(id=plantId).first()
         if plant and customer:
@@ -290,10 +280,8 @@ class Customers(Resource):
             db.session.commit()
             response = make_response(customer.to_dict(), 201)
         else:
-           
             db.session.rollback()
-            response = make_response({"error": "Customer or plant not found"}, 400)
-        
+            response = make_response({"error": "Customer or plant not found"}, 400) 
         return response
 
     def post(self):
@@ -335,8 +323,6 @@ def cart_details(cart):
     return modified_cart_dict
 
     
-
-
 class CartItems(Resource):
 
     def get(self):
@@ -344,14 +330,12 @@ class CartItems(Resource):
         if 'cart_id' in session:
             cart = Cart.query.filter_by(id=session['cart_id']).first()
 
-
             if not cart:
                 del session['cart_id']
                 response = make_response({"cartitems": [], "total": 0}, 200)
                 return response 
 
             cart_info = cart_details(cart)
-
             response = make_response(cart_info, 200)
             return response
      
@@ -407,7 +391,6 @@ class CartItems(Resource):
             new_cart = Cart()
             db.session.add(new_cart)
       
-
             cart_plant = CartItem(
                 plant_id=plant_id, cart_id=new_cart.id, qty=qty)
 
@@ -418,7 +401,6 @@ class CartItems(Resource):
             db.session.commit()
             new_cart.update_total()
 
-     
             cart_info = cart_details(new_cart)
 
             response = make_response(cart_info, 201)
@@ -426,7 +408,6 @@ class CartItems(Resource):
             return response
         
     def patch(self):
-
         data = request.get_json()
 
         plant_id = data.get('plant_id')
@@ -465,8 +446,6 @@ class CartItems(Resource):
         return response
             
            
-
-
 api.add_resource(Plants, '/plants')
 api.add_resource(PlantById, '/plants/<int:id>')
 api.add_resource(Reviews, '/reviews')

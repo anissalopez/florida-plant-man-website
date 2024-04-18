@@ -2,7 +2,7 @@ import SingleProduct from "./SingleProduct";
 import SingleProductDesktop from "./SingleProductDesktop";
 
 
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 import { Colors } from "../../styles/theme/MainTheme";
 
@@ -20,7 +20,6 @@ import { useMediaQuery } from "@mui/material";
 export default function Products(){
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
-    const dispatch = useDispatch();
     const plants = useSelector((state) => state.plants)
 
 

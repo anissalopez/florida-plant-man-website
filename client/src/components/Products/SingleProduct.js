@@ -17,22 +17,8 @@ export default function SingleProduct({plant, matches }){
             <Product>
                 <ProductImage src={plant.image1}></ProductImage>
                 <ProductMeta matches={matches} product={plant} />
-                <ProductActionsWrapper>
-                    <Stack direction="row">
-                        <ProductFavButton isfav={0}>
-                            <FavoriteIcon />
-                        </ProductFavButton>
-                        <ProductActionButton>
-                            <ShareIcon color="secondary" />
-                        </ProductActionButton>
-                        <ProductActionButton>
-                            <FitScreenIcon color="secondary" />
-                        </ProductActionButton>
-                    </Stack> 
-                </ProductActionsWrapper>
             </Product>   
-   
-        <ProductAddToCart onClick={() => dispatch(addCartItem(plant.id))} variant="contained">Add to Cart</ProductAddToCart>
+            <ProductAddToCart onClick={() => dispatch(addCartItem(plant.id))} variant="contained">Add to Cart</ProductAddToCart>
     </>  
     )
 }
