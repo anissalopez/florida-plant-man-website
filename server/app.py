@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
 load_dotenv()
-from flask import abort, make_response, request, session
+from flask import abort, make_response, render_template, request, session
 from models import Plant, Customer, Review, Cart, CartItem
 from flask_restful import Resource
 from werkzeug.utils import secure_filename
@@ -9,6 +9,11 @@ import uuid
 from config import app, db, api
 import os
 import base64
+
+@app.route('/')
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template("index.html")
 
 def encode_imgage_directory():
     image_directory = os.path.join(app.config["Images"])
@@ -454,5 +459,7 @@ api.add_resource(Reviews, '/reviews')
 api.add_resource(Customers, '/customers')
 api.add_resource(CartItems, '/cartitems')
 
+
+
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(port=5555, debug=True)

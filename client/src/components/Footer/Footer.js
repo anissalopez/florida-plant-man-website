@@ -59,21 +59,6 @@ export default function Footer(){
                                     </ListItemTypography>   
                                 </ListItemText>
                             </Link>
-                            <ListItemText>
-                                <ListItemTypography>
-                                    Shipping Policy
-                                </ListItemTypography>   
-                            </ListItemText>
-                            <ListItemText>
-                                <ListItemTypography>
-                                    Return Policy
-                                </ListItemTypography>  
-                            </ListItemText>
-                            <ListItemText>
-                                <ListItemTypography>
-                                    FAQ
-                                </ListItemTypography>    
-                            </ListItemText>
                         </List>
                     </Grid>
                     <Grid item   md={6} xs={12} >

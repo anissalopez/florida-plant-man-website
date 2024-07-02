@@ -53,7 +53,7 @@ export const list = (anchor, toggleDrawer, handleNav) => (
                                 color:Colors.primary
                             }
                     }}}}>
-                {['Admin Portal', 'About Us', 'Shipping Policy', 'Return Policy'].map((text) => (
+                {['Admin Portal'].map((text) => (
                 <ListItem  onClick={handleNav} key={text} disablePadding>
                     <ListItemButton sx={{'& .MuiTypography-root':{
                         color:Colors.primary
