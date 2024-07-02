@@ -36,7 +36,7 @@ export default function ReviewForm({setOpen, setDisplay, display }){
           },
           validationSchema: formSchema, 
           onSubmit: async (values) => {
-            console.log(values)
+   
          
             try{
               const review = {

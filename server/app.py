@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from dotenv import load_dotenv
+load_dotenv()
 from flask import abort, make_response, request, session
 from models import Plant, Customer, Review, Cart, CartItem
 from flask_restful import Resource
@@ -454,4 +456,4 @@ api.add_resource(Customers, '/customers')
 api.add_resource(CartItems, '/cartitems')
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=8000, debug=True)
