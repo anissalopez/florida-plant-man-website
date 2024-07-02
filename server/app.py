@@ -231,7 +231,6 @@ class PlantById(Resource):
 class Reviews(Resource):
     def get(self):
         reviews = [review.to_dict() for review in Review.query.all()]
-        print(reviews)
 
         response = make_response(reviews, 200)
         

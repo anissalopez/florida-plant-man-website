@@ -1,8 +1,8 @@
-"""updated schema
+"""deployment migration
 
-Revision ID: a479d118d58f
+Revision ID: 16b9643286e6
 Revises: 
-Create Date: 2024-03-21 17:11:00.884482
+Create Date: 2024-07-02 14:05:25.338828
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a479d118d58f'
+revision = '16b9643286e6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('carts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('total', sa.Float(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(), nullable=True),
     sa.Column('last_name', sa.String(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('image2', sa.String(), nullable=False),
     sa.Column('image3', sa.String(), nullable=False),
     sa.Column('description', sa.String(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -53,7 +53,7 @@ def upgrade():
     sa.Column('plant_id', sa.Integer(), nullable=True),
     sa.Column('cart_id', sa.Integer(), nullable=True),
     sa.Column('qty', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['cart_id'], ['carts.id'], name=op.f('fk_cartitems_cart_id_carts')),
     sa.ForeignKeyConstraint(['plant_id'], ['plants.id'], name=op.f('fk_cartitems_plant_id_plants')),
@@ -65,7 +65,7 @@ def upgrade():
     sa.Column('customer_id', sa.Integer(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('comment', sa.String(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
+    sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], name=op.f('fk_reviews_customer_id_customers')),
     sa.ForeignKeyConstraint(['plant_id'], ['plants.id'], name=op.f('fk_reviews_plant_id_plants')),
