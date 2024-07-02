@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { postReview } from '../../actions/reviewActions';
-import { updateCustomer } from '../../actions/customerActions';
+
 
 import { useFormik } from "formik";
 import * as yup from "yup";

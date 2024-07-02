@@ -1,11 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { addCartItem } from '../../actions/cartActions';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import FitScreenIcon from '@mui/icons-material/FitScreen';
-import Stack from "@mui/material/Stack";
 
-import { Product, ProductActionButton, ProductActionsWrapper, ProductAddToCart, ProductFavButton, ProductImage } from "../../styles/Products/Products.styles";
+
+import { Product,  ProductAddToCart, ProductImage } from "../../styles/Products/Products.styles";
 import ProductMeta from "./ProductMeta";
 
 

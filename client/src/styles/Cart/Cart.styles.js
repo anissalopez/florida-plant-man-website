@@ -1,9 +1,6 @@
 import { styled } from "@mui/material/styles";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from "@mui/material/Typography";
-import { Colors } from "../theme/MainTheme";
-import theme from "../theme/MainTheme";
+
 
 
 export const Product = styled(Box)(({ theme })=>({

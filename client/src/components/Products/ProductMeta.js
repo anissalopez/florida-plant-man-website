@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+
 
 import { ProductMetaWrapper } from "../../styles/Products/Products.styles";
 import { Colors } from "../../styles/theme/MainTheme";
