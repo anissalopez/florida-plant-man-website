@@ -229,8 +229,10 @@ class PlantById(Resource):
 class Reviews(Resource):
     def get(self):
         reviews = [review.to_dict() for review in Review.query.all()]
+        print(reviews)
 
         response = make_response(reviews, 200)
+        
         return response
 
     def post(self):
@@ -264,7 +266,6 @@ class Customers(Resource):
     def get(self):
         customers = [customers.to_dict()
                      for customers in db.session.query(Customer)]
-        print(customers)
         response = make_response(customers, 200)
         return response
 

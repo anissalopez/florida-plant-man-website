@@ -44,7 +44,7 @@ export default function ReviewForm({setOpen, setDisplay, display }){
                 }
          
                 dispatch(postReview(review))
-                dispatch(updateCustomer(display.customerId, values.plant_id))
+                //dispatch(updateCustomer(display.customerId, values.plant_id))
                 
                 setOpen(false)
                 setDisplay({...display, screen:"customer-name", customerId:null})

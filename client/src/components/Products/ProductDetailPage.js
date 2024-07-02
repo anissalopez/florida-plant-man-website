@@ -47,9 +47,9 @@ function PlantDetail({ setFetchError}) {
             setImages(imagesArray);
             setLoading(false);
             
-            setFetchError(null)
+            // setFetchError(null)
         }catch(err){
-            setFetchError(err.message);
+            // setFetchError(err.message);
         };
       };
         fetchPlant();

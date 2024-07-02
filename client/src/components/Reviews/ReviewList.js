@@ -19,6 +19,7 @@ const ReviewList = () => {
     const [open, setOpen ] = useState(false);
 
     const reviews = useSelector((state) => state.reviews.reviews)
+    console.log(reviews)
 
     const { pathname } = useLocation();
 
