@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
+
+load_dotenv(override=True)
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-load_dotenv()
+
 from flask import abort, make_response, render_template, request, session
 from models import Plant, Customer, Review, Cart, CartItem
 from flask_restful import Resource
-from werkzeug.utils import secure_filename
-import uuid
+
 from config import app, db, api
 import os
 import base64
+
+
+
+cloudinary.config(cloud_name =os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'), 
+        api_secret=os.getenv('API_SECRET'))
+
 
 
 @app.route('/')
@@ -60,22 +67,23 @@ def index(id=0):
 #             images[filename] = image_url
 #     return images
 
-def encode_image_directory():
-    image_directory = os.path.join(app.config["Images"])
-    image_files = os.listdir(image_directory)
+# def encode_image_directory():
+#     image_directory = os.path.join(app.config["Images"])
+#     image_files = os.listdir(image_directory)
 
-    images = {}
-    for filename in image_files:
-        file_path = os.path.join(image_directory, filename)
-        with open(file_path, 'rb') as f:
-            encoded_image = base64.b64encode(f.read()).decode('utf-8')
-            encoded_image = encoded_image.replace('\n', '')
-            image_url = 'data:image/jpg;base64,' + encoded_image
-            images[filename] = image_url
-    return images
+#     images = {}
+#     for filename in image_files:
+#         file_path = os.path.join(image_directory, filename)
+#         with open(file_path, 'rb') as f:
+#             encoded_image = base64.b64encode(f.read()).decode('utf-8')
+#             encoded_image = encoded_image.replace('\n', '')
+#             image_url = 'data:image/jpg;base64,' + encoded_image
+#             images[filename] = image_url
+#     return images
 
 class Plants(Resource):
     def get(self):
+        
         # encoded_images = encode_image_directory()
         plants = Plant.query.all()
         # plant_data = []
@@ -101,8 +109,7 @@ class Plants(Resource):
         return make_response(data, 200)
 
     def post(self):
-        cloudinary.config(cloud_name ='ds5xrsi5x', api_key=271652675192696, 
-        api_secret='NUi0m9hveOxc7m5__2Ux5fxrn2E')
+      
        
         default_value = '0'
 
@@ -209,8 +216,7 @@ class PlantById(Resource):
             response = make_response({"Error": exc}, 500)
 
     def patch(self, id):
-        cloudinary.config(cloud_name ='ds5xrsi5x', api_key=271652675192696, 
-        api_secret='NUi0m9hveOxc7m5__2Ux5fxrn2E')
+       
         
         plant = Plant.query.filter(Plant.id == id).first()
         default_value = '0'
@@ -351,6 +357,7 @@ class Customers(Resource):
    
         customer = Customer.query.filter_by(id=customerId).first()
         plant = Plant.query.filter_by(id=plantId).first()
+        
         if plant and customer:
             customer.plants.append(plant)
             db.session.commit()
@@ -377,7 +384,7 @@ class Customers(Resource):
             response = make_response({"Error creating customer": exc}, 400)
 
 def cart_details(cart):
-    encoded_images = encode_image_directory()
+    # encoded_images = encode_image_directory()
     cartDetails = []
    
     for item in cart.cartitems:
