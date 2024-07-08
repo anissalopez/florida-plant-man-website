@@ -495,6 +495,7 @@ class CartItems(Resource):
 
         plant_id = data.get('plant_id')
         qty = data.get('qty', 1)
+        print(qty)
 
         cart = Cart.query.filter_by(id=session['cart_id']).first() 
 

@@ -162,8 +162,8 @@
 //   );
 // }
 
-import React, { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateCartItem, deleteCartItem, fetchCart } from '../../actions/cartActions';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -187,14 +187,6 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState }) {
 
   useEffect(() => {
     dispatch(fetchCart());
-  }, [dispatch]);
-
-  const handleUpdateCartItem = useCallback((id, qty) => {
-    dispatch(updateCartItem(id, qty));
-  }, [dispatch]);
-
-  const handleDeleteCartItem = useCallback((id) => {
-    dispatch(deleteCartItem(id));
   }, [dispatch]);
 
   function formatNumberWithCommas(x) {
@@ -267,7 +259,7 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState }) {
                       <Select
                         value={item.qty}
                         label="Qty"
-                        onChange={handleUpdateCartItem(item.id, item.qty)}
+                        onChange={(e) => dispatch(updateCartItem(item.id, e.target.value))}
                       >
                         {[...Array(6).keys()].map(value => (
                           <MenuItem key={value + 1} value={value + 1}>
@@ -286,7 +278,7 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState }) {
                       )}
                     </Box>
                     <Box
-                      onClick={handleDeleteCartItem(item.id)}
+                      onClick={() => dispatch(deleteCartItem(item.id))}
                       sx={{ '&:hover': { color: "red" } }}
                     >
                       <DeleteIcon />
