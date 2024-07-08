@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 load_dotenv()
 from flask import abort, make_response, render_template, request, session
 from models import Plant, Customer, Review, Cart, CartItem
@@ -10,12 +13,54 @@ from config import app, db, api
 import os
 import base64
 
+
 @app.route('/')
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
 
-def encode_imgage_directory():
+# def encode_image_directory(target_size=(128, 128)):
+#     image_directory = os.path.join(app.config["Images"])
+#     image_files = os.listdir(image_directory)
+
+#     images = {}
+#     for filename in image_files:
+#         file_path = os.path.join(image_directory, filename)
+#         try:
+#             with open(file_path, 'rb') as f:
+#                 image = Image.open(f)
+#                 image = image.resize(target_size)
+#                 buffered = BytesIO()
+#                 image.save(buffered, format="JPEG")
+#                 encoded_image = base64.b64encode(buffered.getvalue()).decode('utf-8')
+#                 encoded_image = encoded_image.replace('\n', '')
+#                 image_url = 'data:image/jpg;base64,' + encoded_image
+#                 images[filename] = image_url
+#         except UnidentifiedImageError:
+#             print(f"Cannot identify image file {file_path}. Skipping.")
+#         except Exception as e:
+#             print(f"An error occurred while processing {file_path}: {e}. Skipping.")
+#     return images
+
+# def encode_image_directory(target_size=(280, 374)):
+#     image_directory = os.path.join(app.config["Images"])
+#     image_files = os.listdir(image_directory)
+
+#     images = {}
+#     for filename in image_files:
+#         file_path = os.path.join(image_directory, filename)
+#         with open(file_path, 'rb') as f:
+#             image = Image.open(f)
+#             image = image.resize(target_size)
+#             buffered = BytesIO()
+#             image.save(buffered, format="JPEG")
+#             encoded_image = base64.b64encode(buffered.getvalue()).decode('utf-8')
+#             encoded_image = encoded_image.replace('\n', '')
+#             image_url = 'data:image/jpg;base64,' + encoded_image
+#             images[filename] = image_url
+#     return images
+
+def encode_image_directory():
     image_directory = os.path.join(app.config["Images"])
     image_files = os.listdir(image_directory)
 
@@ -31,32 +76,37 @@ def encode_imgage_directory():
 
 class Plants(Resource):
     def get(self):
-        encoded_images = encode_imgage_directory()
+        # encoded_images = encode_image_directory()
         plants = Plant.query.all()
-        plant_data = []
+        # plant_data = []
+        data = [plant.to_dict() for plant in plants]
 
-        for plant in plants:
-            plant_info = {
-                "id": plant.id,
-                "name": plant.name,
-                "description": plant.description,
-                "price": plant.price,
-                "qty": plant.qty,
-                "sun": plant.sun,
-                "water": plant.water,
-                "reviews": [review.to_dict() for review in plant.reviews],
-                "customers": [customer.to_dict() for customer in plant.customers],
-                "image1": encoded_images[plant.image1],
-                "image2": encoded_images[plant.image2],
-                "image3": encoded_images[plant.image3],
-            }
-            plant_data.append(plant_info)
-        return make_response(plant_data, 200)
+        # for plant in plants:
+            # plant_info = {
+            #     "id": plant.id,
+            #     "name": plant.name,
+            #     "description": plant.description,
+            #     "price": plant.price,
+            #     "qty": plant.qty,
+            #     "sun": plant.sun,
+            #     "water": plant.water,
+            #     "reviews": [review.to_dict() for review in plant.reviews],
+            #     "customers": [customer.to_dict() for customer in plant.customers],
+            #     "image1": encoded_images[plant.image1],
+            #     "image2": encoded_images[plant.image2],
+            #     "image3": encoded_images[plant.image3],
+            # }
+        
+   
+        return make_response(data, 200)
 
     def post(self):
+        cloudinary.config(cloud_name ='ds5xrsi5x', api_key=271652675192696, 
+        api_secret='NUi0m9hveOxc7m5__2Ux5fxrn2E')
+       
         default_value = '0'
 
-        image_directory = app.config["Images"]
+        # image_directory = app.config["Images"]
         images = []
 
         uploaded_files = [
@@ -65,60 +115,67 @@ class Plants(Resource):
             request.files.get('image3', default_value)
         ]
 
-        unique_str = str(uuid.uuid4())[:8]
+        # unique_str = str(uuid.uuid4())[:8]
+        
 
         for image in uploaded_files:
             try:
-                filename = f"{unique_str}_{secure_filename(image.filename)}"
-                images.append(filename)
-                image_path = os.path.join(image_directory, filename)
-                image.save(image_path)
+              
+                app.logger.info('%s file_to_upload', image)
+                upload_result = cloudinary.uploader.upload(image)
+                # app.logger.info(upload_result)
+                
+                # filename = f"{unique_str}_{secure_filename(image.filename)}"
+                images.append(upload_result['url'])
+                # image_path = os.path.join(image_directory, filename)
+                # image.save(image_path)
 
             except Exception as exc:
                 return make_response({"An error occurred saving image": str(exc)}, 400)
-
-        name = request.form.get('name', default_value)
-        price = request.form.get('price', default_value)
-        description = request.form.get('description', default_value)
-        water = request.form.get('water', default_value)
-        id = request.form.get('id', default_value)
-        sun = request.form.get('sun', default_value)
-        qty = request.form.get('qty', default_value)
-        image1 = images[0]
-        image2 = images[1]
-        image3 = images[2]
+        # return upload_result
+        # name = request.form.get('name', default_value)
+        # print(name)
+        # price = request.form.get('price', default_value)
+        # description = request.form.get('description', default_value)
+        # water = request.form.get('water', default_value)
+        # id = request.form.get('id', default_value)
+        # sun = request.form.get('sun', default_value)
+        # qty = request.form.get('qty', default_value)
+        # image1 = images[0]
+        # image2 = images[1]
+        # image3 = images[2]
 
         new_plant = Plant(
-            id=id,
-            name=name,
-            price=price,
-            description=description,
-            qty=qty,
-            image1=image1,
-            image2=image2,
-            image3=image3,
-            water=water,
-            sun=sun
+            id=request.form.get('id', default_value),
+            name=request.form.get('name', default_value),
+            price=request.form.get('price', default_value),
+            description=request.form.get('description', default_value),
+            qty=request.form.get('qty', default_value),
+            image1=images[0],
+            image2=images[1],
+            image3=images[2],
+            water=request.form.get('water', default_value),
+            sun=request.form.get('sun', default_value)
         )
         db.session.add(new_plant)
 
-        encoded_images = encode_imgage_directory()
+        # encoded_images = encode_image_directory()
 
-        new_plant_dict = {
-            "id": new_plant.id,
-            "name": new_plant.name,
-            "description": new_plant.description,
-            "price": new_plant.price,
-            "qty": new_plant.qty,
-            "sun": new_plant.sun,
-            "water": new_plant.water,
-            "image1": encoded_images[new_plant.image1],
-            "image2": encoded_images[new_plant.image2],
-            "image3": encoded_images[new_plant.image3],
-        }
+        # new_plant_dict = {
+        #     "id": new_plant.id,
+        #     "name": new_plant.name,
+        #     "description": new_plant.description,
+        #     "price": new_plant.price,
+        #     "qty": new_plant.qty,
+        #     "sun": new_plant.sun,
+        #     "water": new_plant.water,
+        #     "image1": encoded_images[new_plant.image1],
+        #     "image2": encoded_images[new_plant.image2],
+        #     "image3": encoded_images[new_plant.image3],
+        # }
         try:
             db.session.commit()
-            return make_response(new_plant_dict, 201)
+            return make_response(new_plant.to_dict(), 201)
         except Exception as exc:
             db.session.rollback()
             return make_response({"An error occurred": str(exc)}, 400)
@@ -126,24 +183,25 @@ class Plants(Resource):
 
 class PlantById(Resource):
     def get(self, id):
-        encoded_images = encode_imgage_directory()
+        # encoded_images = encode_image_directory()
 
         plant_info = None
         for plant in Plant.query.all():
             if plant.id == id:
-                plant_info = {
-                    "id": plant.id,
-                    "name": plant.name,
-                    "description": plant.description,
-                    "price": plant.price,
-                    "qty": plant.qty,
-                    "sun": plant.sun,
-                    "water": plant.water,
-                    "reviews": [],
-                    "image1": encoded_images[plant.image1],
-                    "image2": encoded_images[plant.image2],
-                    "image3": encoded_images[plant.image3],
-                }
+                plant_info = plant.to_dict()
+                # plant_info = {
+                #     "id": plant.id,
+                #     "name": plant.name,
+                #     "description": plant.description,
+                #     "price": plant.price,
+                #     "qty": plant.qty,
+                #     "sun": plant.sun,
+                #     "water": plant.water,
+                #     "reviews": [],
+                #     "image1": encoded_images[plant.image1],
+                #     "image2": encoded_images[plant.image2],
+                #     "image3": encoded_images[plant.image3],
+                # }
         try:
             response = make_response(plant_info, 200)
             return response
@@ -151,13 +209,16 @@ class PlantById(Resource):
             response = make_response({"Error": exc}, 500)
 
     def patch(self, id):
+        cloudinary.config(cloud_name ='ds5xrsi5x', api_key=271652675192696, 
+        api_secret='NUi0m9hveOxc7m5__2Ux5fxrn2E')
+        
         plant = Plant.query.filter(Plant.id == id).first()
         default_value = '0'
 
         if not plant:
             return make_response({"Error": "Plant not found"}, 404)
 
-        image_directory = app.config["Images"]
+        # image_directory = app.config["Images"]
         images = []
 
         uploaded_files = [
@@ -166,16 +227,23 @@ class PlantById(Resource):
             request.files.get('image3', default_value)
         ]
 
-        unique_str = str(uuid.uuid4())[:8]
+        # unique_str = str(uuid.uuid4())[:8]
 
         for index, image in enumerate(uploaded_files):
             try:
                 if image != default_value:
-                    filename = f"{unique_str}_{secure_filename(image.filename)}"
+                    app.logger.info('%s file_to_upload', image)
+                    upload_result = cloudinary.uploader.upload(image)
+                    # app.logger.info(upload_result)
+                    
+                    # filename = f"{unique_str}_{secure_filename(image.filename)}"
+                    images.append((index, upload_result['url']))
 
-                    images.append((index, filename))
-                    image_path = os.path.join(image_directory, filename)
-                    image.save(image_path)
+                    # filename = f"{unique_str}_{secure_filename(image.filename)}"
+
+                    # images.append((index, filename))
+                    # image_path = os.path.join(image_directory, filename)
+                    # image.save(image_path)
             except Exception as exc:
                 return make_response({"An error occurred saving image": str(exc)}, 400)
 
@@ -194,25 +262,26 @@ class PlantById(Resource):
             elif index == 2:
                 plant.image3 = image_info if image_info else plant.image3
 
-        encoded_images = encode_imgage_directory()
+        # encoded_images = encode_image_directory()
 
-        updated_plant = {
-            "id": plant.id,
-            "name": plant.name,
-            "description": plant.description,
-            "price": plant.price,
-            "qty": plant.qty,
-            "sun": plant.sun,
-            "water": plant.water,
-            "image1": encoded_images[plant.image1],
-            "image2": encoded_images[plant.image2],
-            "image3": encoded_images[plant.image3],
-        }
+        # updated_plant = {
+        #     "id": plant.id,
+        #     "name": plant.name,
+        #     "description": plant.description,
+        #     "price": plant.price,
+        #     "qty": plant.qty,
+        #     "sun": plant.sun,
+        #     "water": plant.water,
+        #     "image1": encoded_images[plant.image1],
+        #     "image2": encoded_images[plant.image2],
+        #     "image3": encoded_images[plant.image3],
+        # }
 
         try:
             db.session.add(plant)
             db.session.commit()
-            return make_response(updated_plant, 200)
+            # return make_response(updated_plant, 200)
+            return make_response(plant.to_dict(), 200)
         except Exception as exc:
             db.session.rollback()
             return make_response({"Error": str(exc)}, 500)
@@ -308,14 +377,14 @@ class Customers(Resource):
             response = make_response({"Error creating customer": exc}, 400)
 
 def cart_details(cart):
-    encoded_images = encode_imgage_directory()
+    encoded_images = encode_image_directory()
     cartDetails = []
    
     for item in cart.cartitems:
                     
         item_details = {}  
          
-        item_details['displayImg'] = encoded_images[item.plant.image1]
+        item_details['displayImg'] = item.plant.image1
         item_details['qty'] = item.qty
         item_details['name'] = item.plant.name
         item_details['price'] = item.plant.price

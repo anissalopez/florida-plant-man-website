@@ -7,6 +7,7 @@ from faker import Faker
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
+
         def create_customer_data():
             customers = []
             print("Deleting existing customer data...")
@@ -19,19 +20,18 @@ if __name__ == '__main__':
             db.session.commit()
             print("Adding customer seed data...")
          
-
-        ant1 = 'ant1.jpg'
-        ant2 = 'ant2.jpg'
-        ant3 = 'ant3.jpg'
-        burl1 = 'burl1.jpg'
-        burl2 = 'burl2.jpg'
-        burl3 = 'burl3.jpg'
-        thai1 = 'thai1.jpg'
-        thai2 = 'thai2.jpg'
-        thai3 = 'thai3.jpg'
-        syn1 = 'syn1.jpg'
-        syn2 = 'syn2.jpg'
-        syn3 = 'syn3.jpg'
+        ant1 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463065/ant2_zqfgya.avif'
+        ant2 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463057/ant1_w578jo.jpg'
+        ant3 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463065/ant3_bqjblj.jpg'
+        burl1 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463066/burl2_gta68x.avif'
+        burl2 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463065/burl1_kybblf.avif'
+        burl3 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463066/burl3_rs7a1z.jpg'
+        thai1 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463066/thai1_ro4kmu.avif'
+        thai2 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463067/thai2_hgcoqn.avif'
+        thai3 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463067/thai3_lz6ehl.jpg'
+        syn1 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463066/syn2_vll81q.jpg'
+        syn2 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463066/syn1_oanifl.avif'
+        syn3 = 'https://res.cloudinary.com/ds5xrsi5x/image/upload/v1720463066/syn3_arucla.avif'
         sun = "bright, indirect sunlight for 6-8 hours daily"
         water = "water thorougly once per week, allowing top layer of soil to dry out completely in between waterings."
         antdesc= """The new Anthurium 'Michelle' is  said to have been named after the "Anthurium Doctor" Jeff Block's wife, 
@@ -71,56 +71,57 @@ if __name__ == '__main__':
                 db.session.add_all(plants)
                 db.session.commit()
                 print("Adding seed data...")
-        comment1= """Item is exactly as described. Packaged very well and plant started putting out a new 
-                        leaf right away. Roots also looked very healthy!"""
-         
-        comment2="""Awesome plant from a great seller with excellent communication"""
-        comment3="""Plant showed up absolutely stunning and the seller did an amazing job answering all my 
-                    questions before ordering."""
-        comment4="""Company was wonderful to work with. The packaging was impeccable 
-                     and my plants arrived in great condition."""
+
+        
         def create_review_data():
             print("Deleting existing review data...")
-            Review.query.delete()
-            reviews = []
-            review1 = Review(plant_id=1, customer_id=1, rating=5, comment=comment1)
-            review2 = Review(plant_id=1, customer_id=2, rating=5, comment=comment2)
-            review3 = Review(plant_id=2, customer_id=3, rating=5, comment=comment3)
-            review4 = Review(plant_id=3, customer_id=4, rating=5, comment=comment4)
-            
-            reviews.extend([review1, review2, review3, review4])
-            db.session.add_all(reviews)
-            db.session.commit()
-            print("Adding review seed data...")
-        
+            try:
+               
+                Review.query.delete()
+
              
-        # def create_cart_data():
-        #         print("Deleting existing cart data...")
-        #         Cart.query.delete()
+                customers = Customer.query.limit(4).all()
 
-        #         plants = Plant.query.all()
-         
+                
+                plants = Plant.query.limit(4).all()
 
-        #         cart1 = Cart()
-        #         cart2 = Cart()
-
-        #         cart1.plants.extend([plants[0], plants[1], plants[2]])
-        #         cart2.plants.extend([plants[1], plants[2]])
               
- 
-        #         db.session.add_all([cart1, cart2])
+                if len(customers) < 4 or len(plants) < 4:
+                    raise ValueError("Not enough customers or plants to create reviews.")
 
-        #         cart1.update_total()
-        #         cart2.update_total()
-        #         print(cart1.plants)
+            
+                comments = [
+                    "Excellent plant, very healthy!",
+                    "This plant is beautiful and easy to care for.",
+                    "Thriving in my garden!",
+                    "Highly recommend, great quality!"
+                ]
 
-        #         db.session.commit()
-        #         print("Cart seeded!")
+                reviews = []
+                for i in range(4):
+                    review = Review(plant_id=plants[i].id, customer_id=customers[i].id, rating=5, comment=comments[i])
+                    reviews.append(review)
+
+                db.session.add_all(reviews)
+                db.session.commit()
+                print("Review seed data added successfully.")
+            except Exception as e:
+                db.session.rollback()
+                print(f"An error occurred: {e}")
+                
                     
+        def cart_data():
+                print("Deleting existing cart data...")
+                Cart.query.delete()
+                db.session.commit()
+
+        
+              
         create_customer_data()
         create_plant_data()
         create_review_data()
-        # create_cart_data()
+        cart_data()
+
         print("database seeded")
             
 

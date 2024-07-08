@@ -19,7 +19,7 @@ export const Product = styled(Box)(({ theme })=>({
 
 export const ProductImage = styled('img')(({ src, theme })=>({
     src:`url(${src})`,
-    width:'100%',
+    width:"100%",
     borderRadius:"25px",
     boxShadow: `rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px`,
     marginBottom:"10px",

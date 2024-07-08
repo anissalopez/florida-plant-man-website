@@ -8,7 +8,7 @@ export default function Banner(){
 
     return(
         <BannerContainer>
-          <BannerImage src={image} />
+          <BannerImage src={image} height="700" widht="200" />
           <BannerContent>
             <BannerTitle variant="h4">Welcome to our GreenHouse</BannerTitle>
             <BannerDescription variant='subtitle'>Bringing Exotic Greenery to Your Home, One Leaf at a Time!</BannerDescription>     

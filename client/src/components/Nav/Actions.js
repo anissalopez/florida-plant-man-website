@@ -9,9 +9,11 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
-export default function Actions({matches, toggleCartDrawer}){
+export default function Actions({matches, toggleCartDrawer, cartDrawerState}){
+    console.log(cartDrawerState)
     
-    const cart = useSelector((state) => state.cart);
+    const cart = useSelector((state) => state.cart)
+  
 
     const Component = matches ? ActionsMobile : ActionsDesktop
     return(
@@ -25,8 +27,8 @@ export default function Actions({matches, toggleCartDrawer}){
                        
                     }
                  }}>
-                <ListItemButton onClick={toggleCartDrawer(true)}>
-                    <Badge badgeContent={cart ? cart.cart.total_items : null }>
+                <ListItemButton onClick={toggleCartDrawer(!cartDrawerState)}>
+                    <Badge badgeContent={cart ? cart.items.total_items: null }>
                     <ShoppingCartIcon ></ShoppingCartIcon>
                     </Badge>
                 </ListItemButton>

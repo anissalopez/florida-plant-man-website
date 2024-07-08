@@ -11,7 +11,7 @@ import { useMediaQuery } from '@mui/material';
 
 
 
-export default function Nav({ toggleCartDrawer }) {
+export default function Nav({ toggleCartDrawer,cartDrawerState }) {
     const [state, setState] = useState({
         left: false
       });
@@ -40,9 +40,9 @@ export default function Nav({ toggleCartDrawer }) {
         matches ? 
           <NavMobile matches={matches} 
                     toggleDrawer={toggleDrawer}
-                    toggleCartDrawer={toggleCartDrawer}/> 
+                    toggleCartDrawer={toggleCartDrawer} cartDrawerState={cartDrawerState}/> 
           : 
-          <NavDesktop matches={matches} toggleCartDrawer={toggleCartDrawer}  />
+          <NavDesktop matches={matches} toggleCartDrawer={toggleCartDrawer} cartDrawerState={cartDrawerState}  />
         }
         <NavDrawer  
           toggleDrawer={toggleDrawer} 

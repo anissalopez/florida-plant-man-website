@@ -11,7 +11,7 @@ class Review(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plants.id'))
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id', ondelete='CASCADE'))
     rating = db.Column(db.Integer)
     comment = db.Column(db.String)
 
@@ -63,7 +63,7 @@ class CartItem(db.Model, SerializerMixin):
     __tablename__ ='cartitems'
 
     id = db.Column(db.Integer, primary_key=True)
-    plant_id = db.Column(db.Integer, db.ForeignKey('plants.id'))
+    plant_id = db.Column(db.Integer, db.ForeignKey('plants.id', ondelete='CASCADE'))
     cart_id = db.Column(db.Integer, db.ForeignKey('carts.id'))
     qty = db.Column(db.Integer, nullable=False, default=1)
 
@@ -96,16 +96,16 @@ class Plant(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='plant',cascade='all, delete-orphan' )
+        'Review', back_populates='plant',cascade='all, delete-orphan', overlaps="plant,reviews" )
    
-    customers = db.relationship('Customer', secondary="reviews", back_populates='plants')
+    customers = db.relationship('Customer', secondary="reviews", back_populates='plants', overlaps="plant, customer, reviews")
     
     serialize_rules =('-cartitems.plant','-carts.plants','-reviews.plant', '-customers.reviews', '-customers.plants')
 
     @validates('name', 'water', 'sun', 'image1', 'image2', 'image3', 'description')
     def validate_inputs(self, key, value):  
         if len(value) < 5:
-            raise ValueError('Input must be greater than 5 characters')
+            raise ValueError(f'{key}  must be greater than 5 characters')
         return value
     
     @validates('qty')
@@ -137,9 +137,9 @@ class Customer(db.Model, SerializerMixin):
     updated_at = db.Column(DateTime(), onupdate=func.now())
 
     reviews = db.relationship(
-        'Review', back_populates='customer', cascade='all, delete-orphan')
+        'Review', back_populates='customer', cascade='all, delete-orphan', overlaps="customer,reviews")
     
-    plants = db.relationship('Plant', secondary="reviews", back_populates='customers')
+    plants = db.relationship('Plant', secondary="reviews", back_populates='customers', overlaps="plant,reviews, customer" )
     serialize_rules =('-reviews.customer','-plants.customers', '-plants.reviews')
 
     @validates('first_name', 'last_name')

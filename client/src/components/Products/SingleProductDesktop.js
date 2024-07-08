@@ -15,6 +15,7 @@ export default function SingleProductDesktop({plant, matches}){
     
     const [show, setShow] = useState(false);
     
+    
 
     const handleMouseEnter = () =>{
         setShow(true);
@@ -27,20 +28,26 @@ export default function SingleProductDesktop({plant, matches}){
 
     return(  
         <> 
+        {/* <Link 
+              style={{textDecoration:'none'}} 
+              to={show ? `/plants/${plant.id}` : null} 
+              key={plant.id}>  */}
             <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit}> 
                 <ProductImage src={plant.image1}></ProductImage>
                     {
-                        show && <ProductAddToCart show={show} onClick={()=>dispatch(addCartItem(plant.id))}  >
+                        show && <ProductAddToCart show={show} 
+                                   onClick={(e) => {
+                                        e.stopPropagation();
+                                        dispatch(addCartItem(plant.id));
+                                    }}  
+                                >
                                 Add to Cart
                                 </ProductAddToCart> 
                     }
             </Product>
-            <Link 
-              style={{textDecoration:'none'}} 
-              to={`/plants/${plant.id}`} 
-              key={plant.id}> 
+            
             <ProductMeta matches={matches} product={plant} />
-        </Link> 
+        {/* </Link>  */}
     </>
     );
 };

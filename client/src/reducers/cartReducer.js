@@ -1,22 +1,34 @@
-import { FETCH_CART_FAILURE, FETCH_CART_ITEMS } from "../actions/cartActions";
-
+import {
+  ADD_CART_ITEM_OPTIMISTIC,
+  UPDATE_CART_ITEM_OPTIMISTIC,
+  DELETE_CART_ITEM_OPTIMISTIC,
+  FETCH_CART_ITEMS_REQUEST,
+  FETCH_CART_ITEMS_SUCCESS,
+  FETCH_CART_ITEMS_FAILURE,
+} from '../actions/cartActions.js';
 const initialState = {
-  cart: [],
-  testing:true,
-  loading: true,
+  items: [],
+  loading: false,
   error: null,
 };
 
-function cartReducer(state = initialState, action) {
+const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CART_FAILURE:
-      return { ...state, loading: false, error: action.payload };
-    case FETCH_CART_ITEMS:
-      return { ...state, cart: action.payload, testing:false, loading:false };
-    default:
-      return state;
+      case 'FETCH_CART_ITEMS_REQUEST':
+          return { ...state, loading: true, error: null };
+      case 'FETCH_CART_ITEMS_SUCCESS':
+          return { ...state, loading: false, items: action.payload };
+      case 'FETCH_CART_ITEMS_FAILURE':
+          return { ...state, loading: false, error: action.payload };
+      case 'ADD_CART_ITEM_OPTIMISTIC':
+      case 'UPDATE_CART_ITEM_OPTIMISTIC':
+      case 'DELETE_CART_ITEM_OPTIMISTIC':
+          return { ...state, items: action.payload };
+      default:
+          return state;
   }
-}
+};
 
 export default cartReducer;
+
 

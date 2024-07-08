@@ -69,7 +69,7 @@ export default function App(){
       {!error && !loading && 
         <ThemeProvider theme={theme}>
             <Container maxWidth="xl"> 
-              <Nav toggleCartDrawer={toggleCartDrawer}></Nav>
+              <Nav cartDrawerState={cartDrawerState} toggleCartDrawer={toggleCartDrawer}></Nav>
               <CartDrawer toggleCartDrawer={toggleCartDrawer} setCartDrawerState={setCartDrawerState} cartDrawerState={cartDrawerState}/>
             </Container>
                   <Routes>

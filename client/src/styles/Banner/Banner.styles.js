@@ -12,7 +12,7 @@ export const BannerContainer = styled(Box)(({theme})=>({
     padding:"0px 0px",
     color:Colors.primary,
     background: Colors.third,
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down('md')]:{
         flexDirection:"column",
         alignItems:"center",
         background: Colors.light_gray
@@ -36,7 +36,7 @@ export const BannerTitle = styled(Typography)(({theme})=>({
     fontSize:'64px',
     marginBottom:'20px',
     fontFamily:"Flower",
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down('md')]:{
         fontSize:'42px'
     },
     [theme.breakpoints.down('md')]:{
@@ -62,7 +62,9 @@ export const BannerImage = styled('img')(({src, theme}) => ({
     src: `url(${src})`,
     width:"50%",
     [theme.breakpoints.down('md')]:{
-        width:"350px"
+        width:"100%",
+        objectFit:"cover",
+        height:"300px"
     },
     [theme.breakpoints.down('sm')]:{
         width:"100%",
@@ -85,6 +87,7 @@ export const BannerShopButton = styled(Button, {
     color:Colors.white,
     fontWeight:'bold',
     fontSize:'16px',
+    
     [theme.breakpoints.down('sm')]:{
         padding: "10px 0px",
         fontSize:"14px"

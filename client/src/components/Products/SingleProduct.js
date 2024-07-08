@@ -12,10 +12,10 @@ export default function SingleProduct({plant, matches }){
     return(
         <>
             <Product>
-                <ProductImage src={plant.image1}></ProductImage>
+                <ProductImage src={plant.image1} width="200" height="200"></ProductImage>
                 <ProductMeta matches={matches} product={plant} />
             </Product>   
             <ProductAddToCart onClick={() => dispatch(addCartItem(plant.id))} variant="contained">Add to Cart</ProductAddToCart>
-    </>  
+        </>  
     )
 }

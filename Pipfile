@@ -17,6 +17,8 @@ python-dotenv = "*"
 gunicorn = "*"
 importlib-metadata = "*"
 psycopg2-binary = "*"
+pillow = "*"
+cloudinary = "*"
 
 [requires]
 python_full_version = "3.8.13"
