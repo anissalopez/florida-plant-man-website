@@ -22,20 +22,13 @@ export const fetchCart = () => async (dispatch) => {
 };
 
 export const updateCartItem = (id, qty) => async (dispatch, getState) => {
-    // Safely get the current cart items from the state
+
     const currentCartItems = getState().cart.items.cartitems || [];
-
-    // Create the optimistic cart items by updating the item quantity
-    const optimisticCartItems = currentCartItems.map(item => 
-        item.id === id ? { ...item, qty } : item
-    );
-
-    // Dispatch an action to optimistically update the cart
     dispatch({
-        type: 'UPDATE_CART_ITEM_OPTIMISTIC',
-        payload: optimisticCartItems,
+        type: 'FETCH_CART_ITEMS_REQUEST',
     });
 
+    
     try {
         const response = await fetch('/cartitems', {
             method: "PATCH",
@@ -47,13 +40,13 @@ export const updateCartItem = (id, qty) => async (dispatch, getState) => {
         if (!response.ok) throw new Error('Error updating cart item');
 
         const updatedCart = await response.json();
-        // Dispatch an action with the actual updated cart from the server
+       
         dispatch({
             type: 'FETCH_CART_ITEMS_SUCCESS',
             payload: updatedCart,
         });
     } catch (error) {
-        // Revert the optimistic update if the server request fails
+        
         dispatch({
             type: 'FETCH_CART_ITEMS_FAILURE',
             payload: currentCartItems,
@@ -63,15 +56,16 @@ export const updateCartItem = (id, qty) => async (dispatch, getState) => {
 };
 
 export const addCartItem = (id) => async (dispatch, getState) => {
-    // Safely get the current cart items from the state
-    const currentCartItems = getState().cart.items.cartitems || [];
-    console.log(currentCartItems)
+    dispatch({
+        type: 'FETCH_CART_ITEMS_REQUEST',
+    });
 
-    // Create the optimistic cart items by adding the new item
-    const newCartItem = { id, qty: 1 }; // Assuming quantity starts at 1
+    const currentCartItems = getState().cart.items.cartitems || [];
+ 
+
+    const newCartItem = { id, qty: 1 }; 
     const optimisticCartItems = [...currentCartItems, newCartItem];
 
-    // Dispatch an action to optimistically update the cart
     dispatch({
         type: 'ADD_CART_ITEM_OPTIMISTIC',
         payload: optimisticCartItems,
@@ -88,13 +82,13 @@ export const addCartItem = (id) => async (dispatch, getState) => {
         if (!response.ok) throw new Error('Error adding cart item');
 
         const updatedCart = await response.json();
-        // Dispatch an action with the actual updated cart from the server
+       
         dispatch({
             type: 'FETCH_CART_ITEMS_SUCCESS',
             payload: updatedCart,
         });
     } catch (error) {
-        // Revert the optimistic update if the server request fails
+    
         dispatch({
             type: 'FETCH_CART_ITEMS_FAILURE',
             payload: currentCartItems,
@@ -109,13 +103,9 @@ export const addCartItem = (id) => async (dispatch, getState) => {
 
 
 export const deleteCartItem = (id) => async (dispatch, getState) => {
-    // Safely get the current cart items from the state
     const currentCartItems = getState().cart.items.cartitems || [];
-
-    // Create the optimistic cart items by removing the specified item
     const optimisticCartItems = currentCartItems.filter(item => item.id !== id);
-
-    // Dispatch an action to optimistically update the cart
+    
     dispatch({
         type: 'DELETE_CART_ITEM_OPTIMISTIC',
         payload: optimisticCartItems,
@@ -132,13 +122,13 @@ export const deleteCartItem = (id) => async (dispatch, getState) => {
         if (!response.ok) throw new Error('Error deleting cart item');
 
         const updatedCart = await response.json();
-        // Dispatch an action with the actual updated cart from the server
+   
         dispatch({
             type: 'FETCH_CART_ITEMS_SUCCESS',
             payload: updatedCart,
         });
     } catch (error) {
-        // Revert the optimistic update if the server request fails
+     
         dispatch({
             type: 'FETCH_CART_ITEMS_FAILURE',
             payload: currentCartItems,
