@@ -9,7 +9,7 @@ export default function PlantFormImages({ formik, setPreview, preview, initialVa
         <input
           id="image1"
           name="image1"
-          onClick={(e) => console.log(e)}
+         
           onChange={(e) => {
             formik.setFieldValue("image1", e.currentTarget.files[0]);
             setPreview((prevState) => ({

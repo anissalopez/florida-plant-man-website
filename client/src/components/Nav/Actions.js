@@ -10,7 +10,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 export default function Actions({matches, toggleCartDrawer, cartDrawerState}){
-    console.log(cartDrawerState)
     
     const cart = useSelector((state) => state.cart)
   

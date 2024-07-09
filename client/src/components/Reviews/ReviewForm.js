@@ -50,7 +50,7 @@ export default function ReviewForm({setOpen, setDisplay, display }){
                 setDisplay({...display, screen:"customer-name", customerId:null})
               }
           catch(err){
-              console.log(err)
+              console.message(err)
           }
                 
              

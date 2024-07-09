@@ -21,7 +21,7 @@ export default function CartDrawer({ toggleCartDrawer, cartDrawerState }) {
   const cart = useSelector((state) => state.cart);
   const error = useSelector((state) => state.cart.error);
   const loading = useSelector((state) => state.cart.loading);
-  console.log(cart)
+ 
 
   useEffect(() => {
     dispatch(fetchCart());
