@@ -28,10 +28,7 @@ export default function SingleProductDesktop({plant, matches}){
 
     return(  
         <> 
-        {/* <Link 
-              style={{textDecoration:'none'}} 
-              to={show ? `/plants/${plant.id}` : null} 
-              key={plant.id}>  */}
+        
             <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit}> 
                 <ProductImage src={plant.image1}></ProductImage>
                     {
@@ -45,9 +42,12 @@ export default function SingleProductDesktop({plant, matches}){
                                 </ProductAddToCart> 
                     }
             </Product>
-            
+            <Link 
+              style={{textDecoration:'none'}} 
+              to={show ? `/plants/${plant.id}` : null} 
+              key={plant.id}>   
             <ProductMeta matches={matches} product={plant} />
-        {/* </Link>  */}
+            </Link> 
     </>
     );
 };
