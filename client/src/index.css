@@ -4,17 +4,11 @@
     url("./fonts/Flowers-Sunday.otf") format("truetype");
 }
 
-
-
-
-
-
-
-
-/* .material-icons{
-  vertical-align: middle;
+@font-face {
+  font-family: "Roboto";   
+  src: local("RobotoMono"),
+    url("./fonts/RobotoMono.ttf") format("truetype");
 }
- */
 
  html, body {
   width: 100%;
@@ -24,6 +18,6 @@
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Sometype Mono', monospace; 
+  font-family: "Roboto";
   background-color: #F5F5F5;
 }

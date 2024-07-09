@@ -38,7 +38,7 @@ const theme = createTheme({
         }
     },
     typography:{
-        fontFamily:`'Sometype Mono', monospace`,
+        fontFamily:"Roboto",
         larger:{
             fontSize:"24px"
         }
