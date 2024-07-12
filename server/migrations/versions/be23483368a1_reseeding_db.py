@@ -1,8 +1,8 @@
-"""deployment migration
+"""reseeding db
 
-Revision ID: 16b9643286e6
+Revision ID: be23483368a1
 Revises: 
-Create Date: 2024-07-02 14:05:25.338828
+Create Date: 2024-07-12 10:15:58.320737
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '16b9643286e6'
+revision = 'be23483368a1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -56,7 +56,7 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['cart_id'], ['carts.id'], name=op.f('fk_cartitems_cart_id_carts')),
-    sa.ForeignKeyConstraint(['plant_id'], ['plants.id'], name=op.f('fk_cartitems_plant_id_plants')),
+    sa.ForeignKeyConstraint(['plant_id'], ['plants.id'], name=op.f('fk_cartitems_plant_id_plants'), ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('reviews',
@@ -67,7 +67,7 @@ def upgrade():
     sa.Column('comment', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('now()'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], name=op.f('fk_reviews_customer_id_customers')),
+    sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], name=op.f('fk_reviews_customer_id_customers'), ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['plant_id'], ['plants.id'], name=op.f('fk_reviews_plant_id_plants')),
     sa.PrimaryKeyConstraint('id')
     )
